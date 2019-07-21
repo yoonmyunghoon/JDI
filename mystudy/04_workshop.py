@@ -1,6 +1,6 @@
 import math
-n = float(input())
 a = float(input())
+b = float(input())
 c = float(input())
 def my_sqrt(a, b, c):
     if math.isclose(a**2, b) and math.isclose(c**2, b):
