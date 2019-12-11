@@ -1,12 +1,10 @@
 import sys
 sys.stdin = open("input.txt")
 
-
 def dfs(v):
     for w in range(1, V+1):
         if graph[v][w] == 1:
             check[w] -= 1
-
 
 T = 10
 for tc in range(1, T+1):

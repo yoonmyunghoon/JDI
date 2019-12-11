@@ -29,7 +29,7 @@ for i in range(N):
         if G[i][j] == 1 and visitied[i][j] == 0:
             count += 1
             cnt = 0
-            dfs(i,j)
+            dfs(i, j)
             counts.append(cnt)
 print(count)
 print(counts)

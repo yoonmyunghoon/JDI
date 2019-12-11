@@ -8,7 +8,7 @@ def bfs(v):
     while deq:
         t = deq.popleft()
         print(t, end=' ')
-        for w in range(V+1):
+        for w in range(1, V+1):
             if visited[w] == 0 and G[t][w] == 1:
                 visited[w] = 1
                 deq.append(w)
