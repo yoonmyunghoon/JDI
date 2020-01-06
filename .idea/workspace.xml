@@ -2,77 +2,30 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e1972930-8d11-4459-84b4-b1189c95813c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/JDI.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SW Expert Academy/problem/1247(최적경로(2)).py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SW Expert Academy/problem/1247_최적경로(가지치기).py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SW Expert Academy/problem/1247_최적경로(가지치기2).py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SW Expert Academy/problem/1247_최적경로.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SW Expert Academy/problem/2383_점심 식사시간.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SW Expert Academy/problem/2383_점심 식사시간.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SW Expert Academy/problem/4111_무선 단속 카메라.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SW Expert Academy/problem/4111_무선 단속 카메라.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SW Expert Academy/problem/5209_최소생산비용.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SW Expert Academy/problem/5209_최소생산비용.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SW Expert Academy/problem/5215_햄버거 다이어트.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SW Expert Academy/problem/5215_햄버거 다이어트.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SW Expert Academy/problem/5432_쇠막대기 자르기.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SW Expert Academy/problem/5432_쇠막대기 자르기.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SW Expert Academy/problem/LINE 코테/NumberPrinting.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SW Expert Academy/problem/LINE 코테/NumberPrinting.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SW Expert Academy/problem/LINE 코테/k번째순열찾기.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SW Expert Academy/problem/LINE 코테/k번째순열찾기.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SW Expert Academy/problem/LINE 코테/메시지처리시간.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SW Expert Academy/problem/LINE 코테/메시지처리시간.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SW Expert Academy/problem/LINE 코테/출근하는브라운.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SW Expert Academy/problem/LINE 코테/출근하는브라운.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SW Expert Academy/problem/LINE 코테/코니와문의술래잡기.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SW Expert Academy/problem/LINE 코테/코니와문의술래잡기.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SW Expert Academy/problem/LINE 코테/화장실.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SW Expert Academy/problem/LINE 코테/화장실.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SW Expert Academy/problem/mst(크루스칼).py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SW Expert Academy/problem/mst.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SW Expert Academy/problem/practice1.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SW Expert Academy/problem/practice2.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SW Expert Academy/problem/완전검색_그리디/practice3.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SW Expert Academy/problem/완전검색_그리디/베이비진 게임.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SW Expert Academy/problem/완전검색_그리디/베이비진 게임.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SW Expert Academy/problem/완전검색_그리디/전자카트.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SW Expert Academy/problem/완전검색_그리디/전자카트.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SW Expert Academy/problem/완전검색_그리디/중복순열(1).py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SW Expert Academy/problem/완전검색_그리디/최소합.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SW Expert Academy/problem/완전검색_그리디/최소합.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SW Expert Academy/problem/완전검색_그리디/컨테이너 운반.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SW Expert Academy/problem/완전검색_그리디/컨테이너 운반.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SW Expert Academy/problem/완전검색_그리디/화물 도크.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SW Expert Academy/problem/완전검색_그리디/화물 도크.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SW Expert Academy/problem/중복순열.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SW Expert Academy/problem/중복조합.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SW Expert Academy/problem/최대상금.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SW Expert Academy/problem/최대상금.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/백준/15649_N과M(1).py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/백준/15649_N과M(1).txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/백준/15649_N과M(2).py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/백준/15649_N과M(2).txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/백준/16236_아기상어.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/백준/16236_아기상어.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/백준/17472_다리만들기2.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/백준/17472_다리만들기2.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/백준/17822_원판돌리기.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/백준/17822_원판돌리기.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/백준/17825_주사위 윷놀이.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/백준/17825_주사위 윷놀이.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/백준/4179_불!(1).py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/백준/4179_불!.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/백준/4179_불!.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SW Expert Academy/problem/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/SW Expert Academy/problem/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SW Expert Academy/problem/1249_보급로(2).py" beforeDir="false" afterPath="$PROJECT_DIR$/SW Expert Academy/problem/1249_보급로(2).py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SW Expert Academy/problem/1249_보급로.txt" beforeDir="false" afterPath="$PROJECT_DIR$/SW Expert Academy/problem/1249_보급로.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SW Expert Academy/problem/BFS.py" beforeDir="false" afterPath="$PROJECT_DIR$/SW Expert Academy/problem/BFS.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SW Expert Academy/problem/두더지굴.py" beforeDir="false" afterPath="$PROJECT_DIR$/SW Expert Academy/problem/두더지굴.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SW Expert Academy/problem/작업순서.py" beforeDir="false" afterPath="$PROJECT_DIR$/SW Expert Academy/problem/작업순서.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/백준/1010_다리놓기.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/백준/1010_다리놓기.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/백준/16234_인구 이동.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/백준/16234_인구 이동.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/백준/17780_새로운 게임.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/백준/17780_새로운 게임.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/백준/17825_주사위 윷놀이(1).py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/백준/17825_주사위 윷놀이(base).py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/백준/17825_주사위 윷놀이(pass).py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/백준/17837_새로운 게임2.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/백준/17837_새로운 게임2.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/백준/1912_연속합.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/백준/1912_연속합.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/백준/1929_소수 구하기.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/백준/1929_소수 구하기.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/백준/2606_바이러스.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/백준/2606_바이러스.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/백준/2628_종이자르기.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/백준/2628_종이자르기.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/practice1/venv/Lib/site-packages/IPython/core/tests/test_history.py" beforeDir="false" afterPath="$PROJECT_DIR$/practice1/venv/Lib/site-packages/IPython/core/tests/test_history.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/practice1/venv/Lib/site-packages/IPython/core/tests/test_profile.py" beforeDir="false" afterPath="$PROJECT_DIR$/practice1/venv/Lib/site-packages/IPython/core/tests/test_profile.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/백준/17825_주사위 윷놀이.py" beforeDir="false" afterPath="$PROJECT_DIR$/백준/17825_주사위 윷놀이.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/백준/17825_주사위 윷놀이.txt" beforeDir="false" afterPath="$PROJECT_DIR$/백준/17825_주사위 윷놀이.txt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -83,19 +36,19 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/백준/15683_감시.py">
+        <entry file="file://$PROJECT_DIR$/백준/2628_종이자르기.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1150">
-              <caret line="110" column="25" selection-start-line="110" selection-start-column="25" selection-end-line="110" selection-end-column="25" />
+            <state relative-caret-position="114">
+              <caret line="6" column="9" lean-forward="true" selection-start-line="6" selection-start-column="9" selection-end-line="6" selection-end-column="9" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/백준/15683_감시.txt">
+        <entry file="file://$PROJECT_DIR$/백준/2628_종이자르기.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="38">
-              <caret line="2" column="9" selection-start-line="2" selection-start-column="9" selection-end-line="2" selection-end-column="9" />
+            <state relative-caret-position="76">
+              <caret line="4" column="3" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="3" />
             </state>
           </provider>
         </entry>
@@ -108,6 +61,11 @@
         <option value="Python Script" />
       </list>
     </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>10</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -139,16 +97,37 @@
         <option value="$PROJECT_DIR$/백준/15649_N과M(2).py" />
         <option value="$PROJECT_DIR$/백준/17822_원판돌리기.txt" />
         <option value="$PROJECT_DIR$/백준/17822_원판돌리기.py" />
-        <option value="$PROJECT_DIR$/백준/17825_주사위 윷놀이.txt" />
-        <option value="$PROJECT_DIR$/백준/17825_주사위 윷놀이.py" />
         <option value="$PROJECT_DIR$/백준/15683_감시.txt" />
         <option value="$PROJECT_DIR$/백준/15683_감시.py" />
+        <option value="$PROJECT_DIR$/백준/test.py" />
+        <option value="$PROJECT_DIR$/백준/17825_주사위 윷놀이.py" />
+        <option value="$PROJECT_DIR$/백준/test3.py" />
+        <option value="$PROJECT_DIR$/백준/test2.py" />
+        <option value="$PROJECT_DIR$/백준/test1.py" />
+        <option value="$PROJECT_DIR$/백준/17825_주사위 윷놀이.txt" />
+        <option value="$PROJECT_DIR$/백준/17780_새로운 게임.txt" />
+        <option value="$PROJECT_DIR$/백준/17837_새로운 게임2.txt" />
+        <option value="$PROJECT_DIR$/백준/17780_새로운 게임.py" />
+        <option value="$PROJECT_DIR$/백준/17837_새로운 게임2.py" />
+        <option value="$PROJECT_DIR$/백준/16234_인구 이동.txt" />
+        <option value="$PROJECT_DIR$/백준/16234_인구 이동.py" />
+        <option value="$PROJECT_DIR$/백준/BJ_2589_보물섬1.py" />
+        <option value="$PROJECT_DIR$/백준/BJ_2589_보물섬.py" />
+        <option value="$PROJECT_DIR$/백준/1929_소수 구하기.py" />
+        <option value="$PROJECT_DIR$/백준/1929_소수 구하기.txt" />
+        <option value="$PROJECT_DIR$/백준/2606_바이러스.txt" />
+        <option value="$PROJECT_DIR$/백준/2606_바이러스.py" />
+        <option value="$PROJECT_DIR$/백준/1912_연속합.txt" />
+        <option value="$PROJECT_DIR$/백준/1912_연속합.py" />
+        <option value="$PROJECT_DIR$/백준/1010_다리놓기.txt" />
+        <option value="$PROJECT_DIR$/백준/1010_다리놓기.py" />
+        <option value="$PROJECT_DIR$/백준/2628_종이자르기.txt" />
+        <option value="$PROJECT_DIR$/백준/2628_종이자르기.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="127" />
-    <option name="y" value="3" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="676" />
     <option name="width" value="697" />
     <option name="height" value="735" />
   </component>
@@ -160,7 +139,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -177,6 +155,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -195,8 +174,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.15683_감시">
-    <configuration name="15649_N과M(1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
+  <component name="RunManager" selected="Python.2628_종이자르기">
+    <configuration name="1010_다리놓기" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="JDI" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -208,7 +187,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/백준/15649_N과M(1).py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/백준/1010_다리놓기.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -217,7 +196,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="15649_N과M(2)" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="1912_연속합" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="JDI" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -229,7 +208,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/백준/15649_N과M(2).py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/백준/1912_연속합.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -238,7 +217,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="15683_감시" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="1929_소수 구하기" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="JDI" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -250,7 +229,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/백준/15683_감시.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/백준/1929_소수 구하기.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -259,7 +238,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="17822_원판돌리기" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="2606_바이러스" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="JDI" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -271,7 +250,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/백준/17822_원판돌리기.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/백준/2606_바이러스.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -280,7 +259,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="17825_주사위 윷놀이" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="2628_종이자르기" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="JDI" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -292,7 +271,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/백준/17825_주사위 윷놀이.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/백준/2628_종이자르기.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -303,11 +282,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.15683_감시" />
-        <item itemvalue="Python.17825_주사위 윷놀이" />
-        <item itemvalue="Python.17822_원판돌리기" />
-        <item itemvalue="Python.15649_N과M(2)" />
-        <item itemvalue="Python.15649_N과M(1)" />
+        <item itemvalue="Python.2628_종이자르기" />
+        <item itemvalue="Python.1010_다리놓기" />
+        <item itemvalue="Python.1912_연속합" />
+        <item itemvalue="Python.2606_바이러스" />
+        <item itemvalue="Python.1929_소수 구하기" />
       </list>
     </recent_temporary>
   </component>
@@ -325,53 +304,92 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="676" y="0" width="697" height="735" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1748512" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2579666" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4985119" weight="0.26557377" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3295082" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4977307" weight="0.31447586" />
       <window_info anchor="bottom" id="Cvs" order="3" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="4" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="5" />
       <window_info anchor="bottom" id="Version Control" order="6" />
       <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.50074404" side_tool="true" weight="0.55737704" />
+      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.50226927" side_tool="true" weight="0.27377048" />
       <window_info anchor="bottom" id="Python Console" order="9" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Debug" order="3" sideWeight="0.5014881" weight="0.42284417" />
+      <window_info anchor="right" id="Debug" order="3" sideWeight="0.5014881" weight="0.5695915" />
     </layout>
+    <layout-to-restore>
+      <window_info content_ui="combo" id="Project" order="0" weight="0.31866464" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3295082" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49848714" visible="true" weight="0.17377049" />
+      <window_info anchor="bottom" id="Cvs" order="3" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="4" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="5" />
+      <window_info anchor="bottom" id="Version Control" order="6" />
+      <window_info anchor="bottom" id="Terminal" order="7" />
+      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.5015129" side_tool="true" weight="0.28196722" />
+      <window_info anchor="bottom" id="Python Console" order="9" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Debug" order="3" sideWeight="0.5014881" weight="0.5257186" />
+    </layout-to-restore>
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/백준/17825_주사위 윷놀이.py</url>
-          <line>43</line>
-          <option name="timeStamp" value="1" />
+          <line>331</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/백준/17780_새로운 게임.py</url>
+          <line>97</line>
+          <option name="timeStamp" value="6" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
-        <watch expression="office" />
-        <watch expression="inspected" />
+        <watch expression="visited" />
+        <watch expression="countries" language="Python" />
       </configuration>
     </watches-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="watch">
       <expression>
-        <expression-string>hap</expression-string>
+        <expression-string>countries</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>turns</expression-string>
+        <expression-string>t</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>visited</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>roads_visited</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>types</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
@@ -381,7 +399,12 @@
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>types</expression-string>
+        <expression-string>hap</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>turns</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
@@ -395,127 +418,9 @@
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
-      <expression>
-        <expression-string>visited</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/백준/16236_아기상어.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="3" column="5" selection-start-line="3" selection-start-column="5" selection-end-line="3" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/백준/16236_아기상어.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="6" column="29" lean-forward="true" selection-start-line="6" selection-start-column="29" selection-end-line="6" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SW Expert Academy/problem/2383_점심 식사시간.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1254" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SW Expert Academy/problem/1249_보급로(2).py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SW Expert Academy/problem/1249_보급로.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="1" lean-forward="true" selection-start-column="1" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SW Expert Academy/problem/1249_보급로.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="19" column="71" lean-forward="true" selection-start-line="19" selection-start-column="71" selection-end-line="19" selection-end-column="71" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SW Expert Academy/problem/중복 조합.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SW Expert Academy/problem/중복조합.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="7" column="16" lean-forward="true" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SW Expert Academy/problem/부분집합.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="10" column="24" lean-forward="true" selection-start-line="10" selection-start-column="24" selection-end-line="10" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SW Expert Academy/problem/완전검색_그리디/중복순열(1).py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="4" column="15" lean-forward="true" selection-start-line="4" selection-start-column="15" selection-end-line="4" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SW Expert Academy/problem/중복순열.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="15" column="36" lean-forward="true" selection-start-line="15" selection-start-column="36" selection-end-line="15" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SW Expert Academy/problem/완전검색_그리디/practice3.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-194" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SW Expert Academy/problem/mst(크루스칼).py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="20" column="18" lean-forward="true" selection-start-line="20" selection-start-column="18" selection-end-line="20" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SW Expert Academy/problem/mst.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="382">
-          <caret line="23" column="5" lean-forward="true" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/백준/17472_다리만들기2.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="7" column="15" selection-start-line="7" selection-start-column="15" selection-end-line="7" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/백준/17472_다리만들기2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="21" column="18" lean-forward="true" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SW Expert Academy/problem/5215_햄버거 다이어트.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="26" column="18" lean-forward="true" selection-start-line="26" selection-start-column="18" selection-end-line="26" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/SW Expert Academy/problem/작업순서.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-228">
@@ -541,13 +446,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="409">
           <caret line="24" column="35" selection-start-line="24" selection-start-column="35" selection-end-line="24" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../AppData/Local/Programs/Python/Python37/Lib/codecs.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="111">
-          <caret line="292" selection-start-line="292" selection-end-line="292" />
         </state>
       </provider>
     </entry>
@@ -633,13 +531,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/백준/15649_N과M(1).txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="3" selection-start-column="3" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/백준/15649_N과M(2).py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="152">
@@ -689,10 +580,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/백준/17825_주사위 윷놀이.py">
+    <entry file="file://$PROJECT_DIR$/백준/15683_감시.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="11" column="22" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
+        <state relative-caret-position="1586">
+          <caret line="107" column="22" selection-start-line="107" selection-start-column="22" selection-end-line="107" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/백준/15683_감시.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="2" column="9" selection-start-line="2" selection-start-column="9" selection-end-line="2" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/백준/17825_주사위 윷놀이(pass).py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="10" column="10" selection-start-line="10" selection-start-column="10" selection-end-line="10" selection-end-column="10" />
         </state>
       </provider>
     </entry>
@@ -703,17 +608,167 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/백준/15683_감시.py">
+    <entry file="file://$PROJECT_DIR$/백준/17825_주사위 윷놀이(1).py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1150">
-          <caret line="110" column="25" selection-start-line="110" selection-start-column="25" selection-end-line="110" selection-end-column="25" />
+        <state relative-caret-position="266">
+          <caret line="14" column="27" selection-start-line="14" selection-start-column="27" selection-end-line="14" selection-end-column="27" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/백준/15683_감시.txt">
+    <entry file="file://$PROJECT_DIR$/백준/17825_주사위 윷놀이(base).py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="2" column="9" selection-start-line="2" selection-start-column="9" selection-end-line="2" selection-end-column="9" />
+        <state relative-caret-position="266">
+          <caret line="18" column="31" lean-forward="true" selection-start-line="18" selection-start-column="31" selection-end-line="18" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/백준/17825_주사위 윷놀이.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="5" column="18" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../AppData/Local/Programs/Python/Python37/Lib/codecs.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="267" selection-start-line="267" selection-end-line="267" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/백준/15649_N과M(1).txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="3" selection-start-column="3" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/백준/17780_새로운 게임.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="16" column="5" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/백준/17780_새로운 게임.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="172">
+          <caret line="107" column="10" lean-forward="true" selection-start-line="107" selection-start-column="10" selection-end-line="107" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/백준/17837_새로운 게임2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="6" column="30" lean-forward="true" selection-start-line="6" selection-start-column="30" selection-end-line="6" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/백준/17837_새로운 게임2.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="8" column="5" selection-start-line="8" selection-start-column="5" selection-end-line="8" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/백준/16234_인구 이동.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="7" selection-start-column="7" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/백준/16234_인구 이동.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="646">
+          <caret line="34" column="30" lean-forward="true" selection-start-line="34" selection-start-column="30" selection-end-line="34" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/백준/BJ_2589_보물섬1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="6" column="29" lean-forward="true" selection-start-line="6" selection-start-column="29" selection-end-line="6" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/백준/BJ_2589_보물섬.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="29">
+          <caret line="9" column="30" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/백준/BJ_2589_보물섬.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/백준/1929_소수 구하기.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="4" selection-start-column="4" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/백준/1929_소수 구하기.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="13" column="20" lean-forward="true" selection-start-line="13" selection-start-column="20" selection-end-line="13" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/백준/2606_바이러스.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="18" column="16" lean-forward="true" selection-start-line="18" selection-start-column="16" selection-end-line="18" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/백준/2606_바이러스.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="7" column="3" selection-start-line="7" selection-start-column="3" selection-end-line="7" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/백준/1912_연속합.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="1" column="26" selection-start-line="1" selection-start-column="26" selection-end-line="1" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/백준/1912_연속합.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="11" column="14" lean-forward="true" selection-start-line="11" selection-start-column="14" selection-end-line="11" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/백준/1010_다리놓기.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="11" column="24" lean-forward="true" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/백준/1010_다리놓기.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="1" selection-start-column="1" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/백준/2628_종이자르기.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="4" column="3" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/백준/2628_종이자르기.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="6" column="9" lean-forward="true" selection-start-line="6" selection-start-column="9" selection-end-line="6" selection-end-column="9" />
         </state>
       </provider>
     </entry>

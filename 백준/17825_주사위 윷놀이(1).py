@@ -4,15 +4,17 @@ sys.stdin = open("17825_주사위 윷놀이.txt")
 # n: 몇번쨰, maxmal: 몇번쨰 말까지 사용할지(0, 1, 2, 3 이 올 수 있음), hap: 합
 def dfs(n, maxmal, hap):
     global maximum
+    if maxmal > 3:
+        return
     if n == len(turns):
         if maximum < hap:
             maximum = hap
         return
-    if maxmal >= 4:
-        return
-    for i in range(maxmal+1):
+    for i in range(4):
         if visited[i] == 0:
             if i == maxmal:
+                if maxmal >= 3:
+                    continue
                 t = mals[i]
                 a = types[i]
                 mals[i] += turns[n]
