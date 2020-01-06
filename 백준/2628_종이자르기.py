@@ -25,5 +25,4 @@ for i in range(1, len(cols)):
     d = cols[i] - cols[i-1]
     if maxcol < d:
         maxcol = d
-
 print(maxrow*maxcol)

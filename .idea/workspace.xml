@@ -2,30 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e1972930-8d11-4459-84b4-b1189c95813c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/백준/1010_다리놓기.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/백준/1010_다리놓기.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/백준/16234_인구 이동.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/백준/16234_인구 이동.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/백준/17780_새로운 게임.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/백준/17780_새로운 게임.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/백준/17825_주사위 윷놀이(1).py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/백준/17825_주사위 윷놀이(base).py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/백준/17825_주사위 윷놀이(pass).py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/백준/17837_새로운 게임2.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/백준/17837_새로운 게임2.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/백준/1912_연속합.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/백준/1912_연속합.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/백준/1929_소수 구하기.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/백준/1929_소수 구하기.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/백준/2606_바이러스.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/백준/2606_바이러스.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/백준/2628_종이자르기.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/백준/2628_종이자르기.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/practice1/venv/Lib/site-packages/IPython/core/tests/test_history.py" beforeDir="false" afterPath="$PROJECT_DIR$/practice1/venv/Lib/site-packages/IPython/core/tests/test_history.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/practice1/venv/Lib/site-packages/IPython/core/tests/test_profile.py" beforeDir="false" afterPath="$PROJECT_DIR$/practice1/venv/Lib/site-packages/IPython/core/tests/test_profile.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/백준/17825_주사위 윷놀이.py" beforeDir="false" afterPath="$PROJECT_DIR$/백준/17825_주사위 윷놀이.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/백준/17825_주사위 윷놀이.txt" beforeDir="false" afterPath="$PROJECT_DIR$/백준/17825_주사위 윷놀이.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/백준/2628_종이자르기.py" beforeDir="false" afterPath="$PROJECT_DIR$/백준/2628_종이자르기.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -38,8 +15,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/백준/2628_종이자르기.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="114">
-              <caret line="6" column="9" lean-forward="true" selection-start-line="6" selection-start-column="9" selection-end-line="6" selection-end-column="9" />
+            <state relative-caret-position="323">
+              <caret line="21" column="18" lean-forward="true" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -758,17 +735,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/백준/2628_종이자르기.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="21" column="18" lean-forward="true" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/백준/2628_종이자르기.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="76">
           <caret line="4" column="3" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/백준/2628_종이자르기.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="6" column="9" lean-forward="true" selection-start-line="6" selection-start-column="9" selection-end-line="6" selection-end-column="9" />
         </state>
       </provider>
     </entry>
