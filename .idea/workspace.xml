@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e1972930-8d11-4459-84b4-b1189c95813c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/백준/2309_일곱난쟁이.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/백준/2309_일곱난쟁이.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/백준/2455_지능형기차.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/백준/2455_지능형기차.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/백준/15685_드래곤 커브.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/백준/15685_드래곤 커브.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -17,19 +15,19 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/백준/2455_지능형기차.py">
+        <entry file="file://$PROJECT_DIR$/백준/15685_드래곤 커브.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="76">
-              <caret line="4" column="18" lean-forward="true" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="18" />
+            <state relative-caret-position="271">
+              <caret line="29" column="7" lean-forward="true" selection-start-line="29" selection-start-column="7" selection-end-line="29" selection-end-column="7" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/백준/2455_지능형기차.txt">
+        <entry file="file://$PROJECT_DIR$/백준/15685_드래곤 커브.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="57">
-              <caret line="3" column="4" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="4" />
+            <state relative-caret-position="76">
+              <caret line="4" column="10" selection-start-line="4" selection-start-column="10" selection-end-line="4" selection-end-column="10" />
             </state>
           </provider>
         </entry>
@@ -54,8 +52,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/SW Expert Academy/problem/1249_보급로.py" />
-        <option value="$PROJECT_DIR$/SW Expert Academy/problem/중복순열.py" />
         <option value="$PROJECT_DIR$/SW Expert Academy/problem/완전검색_그리디/중복순열(1).py" />
         <option value="$PROJECT_DIR$/SW Expert Academy/problem/mst.txt" />
         <option value="$PROJECT_DIR$/백준/17472_다리만들기2.txt" />
@@ -105,6 +101,8 @@
         <option value="$PROJECT_DIR$/백준/2309_일곱난쟁이.py" />
         <option value="$PROJECT_DIR$/백준/2455_지능형기차.txt" />
         <option value="$PROJECT_DIR$/백준/2455_지능형기차.py" />
+        <option value="$PROJECT_DIR$/백준/15685_드래곤 커브.txt" />
+        <option value="$PROJECT_DIR$/백준/15685_드래곤 커브.py" />
       </list>
     </option>
   </component>
@@ -121,7 +119,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -138,6 +135,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -156,7 +154,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.2455_지능형기차">
+  <component name="RunManager" selected="Python.15685_드래곤 커브">
     <configuration name="1010_다리놓기" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="JDI" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -178,7 +176,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="1912_연속합" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="15685_드래곤 커브" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="JDI" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -190,7 +188,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/백준/1912_연속합.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/백준/15685_드래곤 커브.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -264,11 +262,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.15685_드래곤 커브" />
         <item itemvalue="Python.2455_지능형기차" />
         <item itemvalue="Python.2309_일곱난쟁이" />
         <item itemvalue="Python.2628_종이자르기" />
         <item itemvalue="Python.1010_다리놓기" />
-        <item itemvalue="Python.1912_연속합" />
       </list>
     </recent_temporary>
   </component>
@@ -288,12 +286,12 @@
   <component name="ToolWindowManager">
     <frame x="676" y="0" width="697" height="735" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2579666" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.2579666" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3295082" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4977307" weight="0.31447586" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4977307" weight="0.2296173" />
       <window_info anchor="bottom" id="Cvs" order="3" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="4" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="5" />
@@ -304,7 +302,7 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Debug" order="3" sideWeight="0.5014881" weight="0.5695915" />
+      <window_info anchor="right" id="Debug" order="3" sideWeight="0.5014881" weight="0.56828886" />
     </layout>
     <layout-to-restore>
       <window_info content_ui="combo" id="Project" order="0" weight="0.31866464" />
@@ -403,20 +401,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/SW Expert Academy/problem/5209_최소생산비용.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="13" column="47" lean-forward="true" selection-start-line="13" selection-start-column="47" selection-end-line="13" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SW Expert Academy/problem/5432_쇠막대기 자르기.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="1" selection-start-column="1" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/SW Expert Academy/problem/5432_쇠막대기 자르기.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="114">
@@ -740,6 +724,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/백준/2455_지능형기차.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="4" column="18" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/백준/2455_지능형기차.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="57">
@@ -747,10 +738,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/백준/2455_지능형기차.py">
+    <entry file="file://$PROJECT_DIR$/백준/15685_드래곤 커브.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="76">
-          <caret line="4" column="18" lean-forward="true" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="18" />
+          <caret line="4" column="10" selection-start-line="4" selection-start-column="10" selection-end-line="4" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/백준/15685_드래곤 커브.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="271">
+          <caret line="29" column="7" lean-forward="true" selection-start-line="29" selection-start-column="7" selection-end-line="29" selection-end-column="7" />
         </state>
       </provider>
     </entry>
