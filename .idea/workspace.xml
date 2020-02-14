@@ -2,9 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e1972930-8d11-4459-84b4-b1189c95813c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/백준/14890_경사로.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/백준/14890_경사로.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/백준/13458_시험감독.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/백준/13458_시험감독.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/백준/17779_게리맨더링2.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/백준/17779_게리맨더링2.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/백준/14890_경사로.py" beforeDir="false" afterPath="$PROJECT_DIR$/백준/14890_경사로.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/백준/14890_경사로.txt" beforeDir="false" afterPath="$PROJECT_DIR$/백준/14890_경사로.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,7 +49,7 @@
       <recent name="C:\Users\LGPC\JDI\백준" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.14890_경사로">
+  <component name="RunManager" selected="Python.17779_게리맨더링2">
     <configuration name="14890_경사로" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="JDI" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -88,6 +92,27 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="17779_게리맨더링2" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="JDI" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/백준" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/백준/17779_게리맨더링2.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="2531_회전초밥" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="JDI" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -101,27 +126,6 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/백준/2531_회전초밥.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="2823_유턴 싫어" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="JDI" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/백준" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/백준/2823_유턴 싫어.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -153,11 +157,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.17779_게리맨더링2" />
         <item itemvalue="Python.14890_경사로" />
         <item itemvalue="Python.17144_미세먼지 안녕!" />
         <item itemvalue="Python.3190_뱀" />
         <item itemvalue="Python.2531_회전초밥" />
-        <item itemvalue="Python.2823_유턴 싫어" />
       </list>
     </recent_temporary>
   </component>
@@ -211,42 +215,50 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
-    <state width="729" height="468" key="GridCell.Tab.0.bottom" timestamp="1581352624027">
+    <state width="360" height="432" key="GridCell.Tab.0.bottom" timestamp="1581691659667">
       <screen x="0" y="23" width="1440" height="793" />
     </state>
-    <state width="729" height="468" key="GridCell.Tab.0.bottom/0.23.1440.793@0.23.1440.793" timestamp="1581352624027" />
-    <state width="729" height="468" key="GridCell.Tab.0.center" timestamp="1581352624026">
+    <state width="1398" height="203" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1581515258592" />
+    <state width="360" height="432" key="GridCell.Tab.0.bottom/0.23.1440.793@0.23.1440.793" timestamp="1581691659667" />
+    <state width="360" height="432" key="GridCell.Tab.0.center" timestamp="1581691659666">
       <screen x="0" y="23" width="1440" height="793" />
     </state>
-    <state width="729" height="468" key="GridCell.Tab.0.center/0.23.1440.793@0.23.1440.793" timestamp="1581352624026" />
-    <state width="729" height="468" key="GridCell.Tab.0.left" timestamp="1581352624026">
+    <state width="1398" height="203" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1581515258590" />
+    <state width="360" height="432" key="GridCell.Tab.0.center/0.23.1440.793@0.23.1440.793" timestamp="1581691659666" />
+    <state width="360" height="432" key="GridCell.Tab.0.left" timestamp="1581691659665">
       <screen x="0" y="23" width="1440" height="793" />
     </state>
-    <state width="729" height="468" key="GridCell.Tab.0.left/0.23.1440.793@0.23.1440.793" timestamp="1581352624026" />
-    <state width="729" height="468" key="GridCell.Tab.0.right" timestamp="1581352624027">
+    <state width="1398" height="203" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1581515258590" />
+    <state width="360" height="432" key="GridCell.Tab.0.left/0.23.1440.793@0.23.1440.793" timestamp="1581691659665" />
+    <state width="360" height="432" key="GridCell.Tab.0.right" timestamp="1581691659666">
       <screen x="0" y="23" width="1440" height="793" />
     </state>
-    <state width="729" height="468" key="GridCell.Tab.0.right/0.23.1440.793@0.23.1440.793" timestamp="1581352624027" />
-    <state width="729" height="468" key="GridCell.Tab.1.bottom" timestamp="1581352624028">
+    <state width="1398" height="203" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1581515258591" />
+    <state width="360" height="432" key="GridCell.Tab.0.right/0.23.1440.793@0.23.1440.793" timestamp="1581691659666" />
+    <state width="360" height="432" key="GridCell.Tab.1.bottom" timestamp="1581691659668">
       <screen x="0" y="23" width="1440" height="793" />
     </state>
-    <state width="729" height="468" key="GridCell.Tab.1.bottom/0.23.1440.793@0.23.1440.793" timestamp="1581352624028" />
-    <state width="729" height="468" key="GridCell.Tab.1.center" timestamp="1581352624028">
+    <state width="360" height="432" key="GridCell.Tab.1.bottom/0.23.1440.793@0.23.1440.793" timestamp="1581691659668" />
+    <state width="360" height="432" key="GridCell.Tab.1.center" timestamp="1581691659667">
       <screen x="0" y="23" width="1440" height="793" />
     </state>
-    <state width="729" height="468" key="GridCell.Tab.1.center/0.23.1440.793@0.23.1440.793" timestamp="1581352624028" />
-    <state width="729" height="468" key="GridCell.Tab.1.left" timestamp="1581352624028">
+    <state width="360" height="432" key="GridCell.Tab.1.center/0.23.1440.793@0.23.1440.793" timestamp="1581691659667" />
+    <state width="360" height="432" key="GridCell.Tab.1.left" timestamp="1581691659667">
       <screen x="0" y="23" width="1440" height="793" />
     </state>
-    <state width="729" height="468" key="GridCell.Tab.1.left/0.23.1440.793@0.23.1440.793" timestamp="1581352624028" />
-    <state width="729" height="468" key="GridCell.Tab.1.right" timestamp="1581352624028">
+    <state width="360" height="432" key="GridCell.Tab.1.left/0.23.1440.793@0.23.1440.793" timestamp="1581691659667" />
+    <state width="360" height="432" key="GridCell.Tab.1.right" timestamp="1581691659667">
       <screen x="0" y="23" width="1440" height="793" />
     </state>
-    <state width="729" height="468" key="GridCell.Tab.1.right/0.23.1440.793@0.23.1440.793" timestamp="1581352624028" />
-    <state x="397" y="252" key="com.intellij.ide.util.TipDialog" timestamp="1581341423895">
+    <state width="360" height="432" key="GridCell.Tab.1.right/0.23.1440.793@0.23.1440.793" timestamp="1581691659667" />
+    <state x="397" y="252" key="com.intellij.ide.util.TipDialog" timestamp="1581422565553">
       <screen x="0" y="23" width="1440" height="793" />
     </state>
-    <state x="397" y="252" key="com.intellij.ide.util.TipDialog/0.23.1440.793@0.23.1440.793" timestamp="1581341423895" />
+    <state x="397" y="252" key="com.intellij.ide.util.TipDialog/0.23.1440.793@0.23.1440.793" timestamp="1581422565553" />
+    <state x="284" y="162" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1581424616983">
+      <screen x="0" y="23" width="1440" height="793" />
+    </state>
+    <state x="284" y="162" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.23.1440.793@0.23.1440.793" timestamp="1581424616983" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -263,59 +275,5 @@
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
-  </component>
-  <component name="debuggerHistoryManager">
-    <expressions id="watch">
-      <expression>
-        <expression-string>forest</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>check</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>d</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>y</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>x</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>ny</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>nx</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>nx, ny</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>size</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>time</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-    </expressions>
   </component>
 </project>
