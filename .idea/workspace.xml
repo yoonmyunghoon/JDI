@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e1972930-8d11-4459-84b4-b1189c95813c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/백준/13458_시험감독.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/백준/13458_시험감독.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/백준/17779_게리맨더링2.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/백준/17779_게리맨더링2.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/백준/14890_경사로.py" beforeDir="false" afterPath="$PROJECT_DIR$/백준/14890_경사로.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/백준/14890_경사로.txt" beforeDir="false" afterPath="$PROJECT_DIR$/백준/14890_경사로.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -251,10 +245,11 @@
       <screen x="0" y="23" width="1440" height="793" />
     </state>
     <state width="360" height="432" key="GridCell.Tab.1.right/0.23.1440.793@0.23.1440.793" timestamp="1581691659667" />
-    <state x="397" y="252" key="com.intellij.ide.util.TipDialog" timestamp="1581422565553">
-      <screen x="0" y="23" width="1440" height="793" />
+    <state x="397" y="253" key="com.intellij.ide.util.TipDialog" timestamp="1581943559646">
+      <screen x="0" y="23" width="1440" height="797" />
     </state>
-    <state x="397" y="252" key="com.intellij.ide.util.TipDialog/0.23.1440.793@0.23.1440.793" timestamp="1581422565553" />
+    <state x="397" y="252" key="com.intellij.ide.util.TipDialog/0.23.1440.793@0.23.1440.793" timestamp="1581691933610" />
+    <state x="397" y="253" key="com.intellij.ide.util.TipDialog/0.23.1440.797@0.23.1440.797" timestamp="1581943559646" />
     <state x="284" y="162" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1581424616983">
       <screen x="0" y="23" width="1440" height="793" />
     </state>
