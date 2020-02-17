@@ -2,7 +2,36 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e1972930-8d11-4459-84b4-b1189c95813c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/SW Expert Academy/problem/1952_수영장.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SW Expert Academy/problem/1952_수영장.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SW Expert Academy/problem/LINE 코테/NumberPrinting.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SW Expert Academy/problem/LINE 코테/NumberPrinting.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SW Expert Academy/problem/LINE 코테/k번째순열찾기.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SW Expert Academy/problem/LINE 코테/k번째순열찾기.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SW Expert Academy/problem/LINE 코테/메시지처리시간.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SW Expert Academy/problem/LINE 코테/메시지처리시간.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SW Expert Academy/problem/LINE 코테/출근하는브라운.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SW Expert Academy/problem/LINE 코테/출근하는브라운.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SW Expert Academy/problem/LINE 코테/코니와문의술래잡기.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SW Expert Academy/problem/LINE 코테/코니와문의술래잡기.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SW Expert Academy/problem/LINE 코테/화장실.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SW Expert Academy/problem/LINE 코테/화장실.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SW Expert Academy/problem/완전검색_그리디/practice3.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SW Expert Academy/problem/완전검색_그리디/베이비진 게임.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SW Expert Academy/problem/완전검색_그리디/베이비진 게임.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SW Expert Academy/problem/완전검색_그리디/윤명훈_190918.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SW Expert Academy/problem/완전검색_그리디/전자카트.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SW Expert Academy/problem/완전검색_그리디/전자카트.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SW Expert Academy/problem/완전검색_그리디/중복순열(1).py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SW Expert Academy/problem/완전검색_그리디/최소합.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SW Expert Academy/problem/완전검색_그리디/최소합.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SW Expert Academy/problem/완전검색_그리디/컨테이너 운반.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SW Expert Academy/problem/완전검색_그리디/컨테이너 운반.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SW Expert Academy/problem/완전검색_그리디/화물 도크.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SW Expert Academy/problem/완전검색_그리디/화물 도크.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/백준/13458_시험감독.py" beforeDir="false" afterPath="$PROJECT_DIR$/백준/13458_시험감독.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/백준/13458_시험감독.txt" beforeDir="false" afterPath="$PROJECT_DIR$/백준/13458_시험감독.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,7 +72,28 @@
       <recent name="C:\Users\LGPC\JDI\백준" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.17779_게리맨더링2">
+  <component name="RunManager" selected="Python.1952_수영장">
+    <configuration name="13458_시험감독" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="JDI" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/백준" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/백준/13458_시험감독.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="14890_경사로" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="JDI" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -107,7 +157,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="2531_회전초밥" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="1952_수영장" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="JDI" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -115,32 +165,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/백준" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/SW Expert Academy/problem" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/백준/2531_회전초밥.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="3190_뱀" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="JDI" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/백준" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/백준/3190_뱀.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/SW Expert Academy/problem/1952_수영장.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -151,11 +180,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.1952_수영장" />
+        <item itemvalue="Python.13458_시험감독" />
         <item itemvalue="Python.17779_게리맨더링2" />
         <item itemvalue="Python.14890_경사로" />
         <item itemvalue="Python.17144_미세먼지 안녕!" />
-        <item itemvalue="Python.3190_뱀" />
-        <item itemvalue="Python.2531_회전초밥" />
       </list>
     </recent_temporary>
   </component>
@@ -209,26 +238,38 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
-    <state width="360" height="432" key="GridCell.Tab.0.bottom" timestamp="1581691659667">
-      <screen x="0" y="23" width="1440" height="793" />
+    <state x="861" y="231" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1581946367278">
+      <screen x="0" y="23" width="1440" height="797" />
+    </state>
+    <state x="861" y="231" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1440.797@0.23.1440.797" timestamp="1581946367278" />
+    <state width="569" height="284" key="GridCell.Tab.0.bottom" timestamp="1581955832096">
+      <screen x="0" y="23" width="1440" height="798" />
     </state>
     <state width="1398" height="203" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1581515258592" />
     <state width="360" height="432" key="GridCell.Tab.0.bottom/0.23.1440.793@0.23.1440.793" timestamp="1581691659667" />
-    <state width="360" height="432" key="GridCell.Tab.0.center" timestamp="1581691659666">
-      <screen x="0" y="23" width="1440" height="793" />
+    <state width="670" height="175" key="GridCell.Tab.0.bottom/0.23.1440.797@0.23.1440.797" timestamp="1581945510236" />
+    <state width="569" height="284" key="GridCell.Tab.0.bottom/0.23.1440.798@0.23.1440.798" timestamp="1581955832096" />
+    <state width="569" height="284" key="GridCell.Tab.0.center" timestamp="1581955832095">
+      <screen x="0" y="23" width="1440" height="798" />
     </state>
     <state width="1398" height="203" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1581515258590" />
     <state width="360" height="432" key="GridCell.Tab.0.center/0.23.1440.793@0.23.1440.793" timestamp="1581691659666" />
-    <state width="360" height="432" key="GridCell.Tab.0.left" timestamp="1581691659665">
-      <screen x="0" y="23" width="1440" height="793" />
+    <state width="670" height="175" key="GridCell.Tab.0.center/0.23.1440.797@0.23.1440.797" timestamp="1581945510235" />
+    <state width="569" height="284" key="GridCell.Tab.0.center/0.23.1440.798@0.23.1440.798" timestamp="1581955832095" />
+    <state width="569" height="284" key="GridCell.Tab.0.left" timestamp="1581955832094">
+      <screen x="0" y="23" width="1440" height="798" />
     </state>
     <state width="1398" height="203" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1581515258590" />
     <state width="360" height="432" key="GridCell.Tab.0.left/0.23.1440.793@0.23.1440.793" timestamp="1581691659665" />
-    <state width="360" height="432" key="GridCell.Tab.0.right" timestamp="1581691659666">
-      <screen x="0" y="23" width="1440" height="793" />
+    <state width="670" height="175" key="GridCell.Tab.0.left/0.23.1440.797@0.23.1440.797" timestamp="1581945510235" />
+    <state width="569" height="284" key="GridCell.Tab.0.left/0.23.1440.798@0.23.1440.798" timestamp="1581955832094" />
+    <state width="569" height="284" key="GridCell.Tab.0.right" timestamp="1581955832096">
+      <screen x="0" y="23" width="1440" height="798" />
     </state>
     <state width="1398" height="203" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1581515258591" />
     <state width="360" height="432" key="GridCell.Tab.0.right/0.23.1440.793@0.23.1440.793" timestamp="1581691659666" />
+    <state width="670" height="175" key="GridCell.Tab.0.right/0.23.1440.797@0.23.1440.797" timestamp="1581945510236" />
+    <state width="569" height="284" key="GridCell.Tab.0.right/0.23.1440.798@0.23.1440.798" timestamp="1581955832096" />
     <state width="360" height="432" key="GridCell.Tab.1.bottom" timestamp="1581691659668">
       <screen x="0" y="23" width="1440" height="793" />
     </state>
