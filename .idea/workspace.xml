@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e1972930-8d11-4459-84b4-b1189c95813c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/SW Expert Academy/problem/4008_숫자 만들기.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SW Expert Academy/problem/4008_숫자 만들기.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SW Expert Academy/problem/1861_정사각형 방(DFS).py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SW Expert Academy/problem/1861_정사각형 방(n1000).txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SW Expert Academy/problem/1861_정사각형 방(배열).py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SW Expert Academy/problem/1861_정사각형 방.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -45,7 +47,7 @@
       <recent name="C:\Users\LGPC\JDI\백준" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.4008_숫자 만들기">
+  <component name="RunManager" selected="Python.1861_정사각형 방(배열)">
     <configuration name="부분집합" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="JDI" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -67,28 +69,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="13458_시험감독" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="JDI" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/백준" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/백준/13458_시험감독.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="1952_수영장" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="1861_정사각형 방(DFS)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="JDI" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -100,7 +81,28 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/SW Expert Academy/problem/1952_수영장.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/SW Expert Academy/problem/1861_정사각형 방(DFS).py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="1861_정사각형 방(배열)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="JDI" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/SW Expert Academy/problem" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/SW Expert Academy/problem/1861_정사각형 방(배열).py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -153,11 +155,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.1861_정사각형 방(배열)" />
+        <item itemvalue="Python.1861_정사각형 방(DFS)" />
         <item itemvalue="Python.4008_숫자 만들기" />
         <item itemvalue="Python.2115_벌꿀채취" />
         <item itemvalue="Python.부분집합" />
-        <item itemvalue="Python.1952_수영장" />
-        <item itemvalue="Python.13458_시험감독" />
       </list>
     </recent_temporary>
   </component>
@@ -211,11 +213,15 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
+    <state x="184" y="90" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1583216888835">
+      <screen x="0" y="23" width="1440" height="810" />
+    </state>
+    <state x="184" y="90" key="#com.intellij.execution.impl.EditConfigurationsDialog/1440.23.960.681/0.23.1440.810@0.23.1440.810" timestamp="1583216888835" />
     <state x="861" y="231" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1581946367278">
       <screen x="0" y="23" width="1440" height="797" />
     </state>
     <state x="861" y="231" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1440.797@0.23.1440.797" timestamp="1581946367278" />
-    <state width="1419" height="178" key="GridCell.Tab.0.bottom" timestamp="1583114900455">
+    <state width="1419" height="208" key="GridCell.Tab.0.bottom" timestamp="1583220042368">
       <screen x="0" y="23" width="1440" height="810" />
     </state>
     <state width="1398" height="203" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1581515258592" />
@@ -223,7 +229,8 @@
     <state width="670" height="175" key="GridCell.Tab.0.bottom/0.23.1440.797@0.23.1440.797" timestamp="1581945510236" />
     <state width="577" height="147" key="GridCell.Tab.0.bottom/0.23.1440.798@0.23.1440.798" timestamp="1582274573666" />
     <state width="1419" height="178" key="GridCell.Tab.0.bottom/0.23.1440.810@0.23.1440.810" timestamp="1583114900455" />
-    <state width="1419" height="178" key="GridCell.Tab.0.center" timestamp="1583114900454">
+    <state width="1419" height="208" key="GridCell.Tab.0.bottom/1440.23.960.681/0.23.1440.810@0.23.1440.810" timestamp="1583220042368" />
+    <state width="1419" height="208" key="GridCell.Tab.0.center" timestamp="1583220042366">
       <screen x="0" y="23" width="1440" height="810" />
     </state>
     <state width="1398" height="203" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1581515258590" />
@@ -231,7 +238,8 @@
     <state width="670" height="175" key="GridCell.Tab.0.center/0.23.1440.797@0.23.1440.797" timestamp="1581945510235" />
     <state width="577" height="147" key="GridCell.Tab.0.center/0.23.1440.798@0.23.1440.798" timestamp="1582274573666" />
     <state width="1419" height="178" key="GridCell.Tab.0.center/0.23.1440.810@0.23.1440.810" timestamp="1583114900454" />
-    <state width="1419" height="178" key="GridCell.Tab.0.left" timestamp="1583114900453">
+    <state width="1419" height="208" key="GridCell.Tab.0.center/1440.23.960.681/0.23.1440.810@0.23.1440.810" timestamp="1583220042366" />
+    <state width="1419" height="208" key="GridCell.Tab.0.left" timestamp="1583220042365">
       <screen x="0" y="23" width="1440" height="810" />
     </state>
     <state width="1398" height="203" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1581515258590" />
@@ -239,7 +247,8 @@
     <state width="670" height="175" key="GridCell.Tab.0.left/0.23.1440.797@0.23.1440.797" timestamp="1581945510235" />
     <state width="577" height="147" key="GridCell.Tab.0.left/0.23.1440.798@0.23.1440.798" timestamp="1582274573665" />
     <state width="1419" height="178" key="GridCell.Tab.0.left/0.23.1440.810@0.23.1440.810" timestamp="1583114900453" />
-    <state width="1419" height="178" key="GridCell.Tab.0.right" timestamp="1583114900454">
+    <state width="1419" height="208" key="GridCell.Tab.0.left/1440.23.960.681/0.23.1440.810@0.23.1440.810" timestamp="1583220042365" />
+    <state width="1419" height="208" key="GridCell.Tab.0.right" timestamp="1583220042367">
       <screen x="0" y="23" width="1440" height="810" />
     </state>
     <state width="1398" height="203" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1581515258591" />
@@ -247,6 +256,7 @@
     <state width="670" height="175" key="GridCell.Tab.0.right/0.23.1440.797@0.23.1440.797" timestamp="1581945510236" />
     <state width="577" height="147" key="GridCell.Tab.0.right/0.23.1440.798@0.23.1440.798" timestamp="1582274573666" />
     <state width="1419" height="178" key="GridCell.Tab.0.right/0.23.1440.810@0.23.1440.810" timestamp="1583114900454" />
+    <state width="1419" height="208" key="GridCell.Tab.0.right/1440.23.960.681/0.23.1440.810@0.23.1440.810" timestamp="1583220042367" />
     <state width="360" height="432" key="GridCell.Tab.1.bottom" timestamp="1581691659668">
       <screen x="0" y="23" width="1440" height="793" />
     </state>
