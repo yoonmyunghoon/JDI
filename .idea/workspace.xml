@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e1972930-8d11-4459-84b4-b1189c95813c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/알고리즘/프로그래머스/2020 Kakao Internship 코딩테스트/경주로 건설.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/알고리즘/프로그래머스/2020 Kakao Internship 코딩테스트/동굴.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/알고리즘/프로그래머스/2020 Kakao Internship 코딩테스트/스마트폰 숫자패드 누르기.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/알고리즘/프로그래머스/2020 Kakao Internship 코딩테스트/연산자 우선순위 상금.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/알고리즘/프로그래머스/2020 Kakao Internship 코딩테스트/연속으로 보석사기.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/알고리즘/프로그래머스/2020 Kakao Internship 코딩테스트/연속으로 보석사기1.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/알고리즘/프로그래머스/코딩테스트 고득점 Kit/정렬/K번째수.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/알고리즘/프로그래머스/코딩테스트 고득점 Kit/정렬/가장 큰 수.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -50,28 +46,7 @@
       <recent name="C:\Users\LGPC\JDI\백준" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.연속으로 보석사기">
-    <configuration name="스마트폰 숫자패드 누르기" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="JDI" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/알고리즘/프로그래머스/2020 Kakao Internship 코딩테스트" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/알고리즘/프로그래머스/2020 Kakao Internship 코딩테스트/스마트폰 숫자패드 누르기.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Python.K번째수">
     <configuration name="연산자 우선순위 상금" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="JDI" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -156,6 +131,27 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="스마트폰 숫자패드 누르기" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="JDI" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/알고리즘/프로그래머스/2020 Kakao Internship 코딩테스트" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/알고리즘/프로그래머스/2020 Kakao Internship 코딩테스트/스마트폰 숫자패드 누르기.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="부분집합" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="JDI" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -177,13 +173,33 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="K번째수" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="JDI" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/알고리즘/프로그래머스/코딩테스트 고득점 Kit/정렬" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/알고리즘/프로그래머스/코딩테스트 고득점 Kit/정렬/K번째수.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.K번째수" />
         <item itemvalue="Python.연속으로 보석사기" />
         <item itemvalue="Python.연속으로 보석사기1" />
-        <item itemvalue="Python.연산자 우선순위 상금" />
         <item itemvalue="Python.스마트폰 숫자패드 누르기" />
-        <item itemvalue="Python.문자열 압축" />
       </list>
     </recent_temporary>
   </component>
@@ -249,47 +265,47 @@
       <screen x="0" y="23" width="1440" height="806" />
     </state>
     <state x="837" y="180" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1440.806@0.23.1440.806" timestamp="1585373318454" />
-    <state width="694" height="553" key="GridCell.Tab.0.bottom" timestamp="1589014804089">
+    <state width="684" height="231" key="GridCell.Tab.0.bottom" timestamp="1589292882922">
       <screen x="0" y="23" width="1440" height="806" />
     </state>
     <state width="1398" height="203" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1581515258592" />
     <state width="360" height="432" key="GridCell.Tab.0.bottom/0.23.1440.793@0.23.1440.793" timestamp="1581691659667" />
     <state width="670" height="175" key="GridCell.Tab.0.bottom/0.23.1440.797@0.23.1440.797" timestamp="1581945510236" />
     <state width="577" height="147" key="GridCell.Tab.0.bottom/0.23.1440.798@0.23.1440.798" timestamp="1582274573666" />
-    <state width="694" height="553" key="GridCell.Tab.0.bottom/0.23.1440.806@0.23.1440.806" timestamp="1589014804089" />
+    <state width="684" height="231" key="GridCell.Tab.0.bottom/0.23.1440.806@0.23.1440.806" timestamp="1589292882922" />
     <state width="1419" height="178" key="GridCell.Tab.0.bottom/0.23.1440.810@0.23.1440.810" timestamp="1583114900455" />
     <state width="1419" height="240" key="GridCell.Tab.0.bottom/1440.23.960.681/0.23.1440.806@0.23.1440.806" timestamp="1588775535581" />
     <state width="1419" height="208" key="GridCell.Tab.0.bottom/1440.23.960.681/0.23.1440.810@0.23.1440.810" timestamp="1583299875484" />
-    <state width="694" height="553" key="GridCell.Tab.0.center" timestamp="1589014804088">
+    <state width="684" height="231" key="GridCell.Tab.0.center" timestamp="1589292882921">
       <screen x="0" y="23" width="1440" height="806" />
     </state>
     <state width="1398" height="203" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1581515258590" />
     <state width="360" height="432" key="GridCell.Tab.0.center/0.23.1440.793@0.23.1440.793" timestamp="1581691659666" />
     <state width="670" height="175" key="GridCell.Tab.0.center/0.23.1440.797@0.23.1440.797" timestamp="1581945510235" />
     <state width="577" height="147" key="GridCell.Tab.0.center/0.23.1440.798@0.23.1440.798" timestamp="1582274573666" />
-    <state width="694" height="553" key="GridCell.Tab.0.center/0.23.1440.806@0.23.1440.806" timestamp="1589014804088" />
+    <state width="684" height="231" key="GridCell.Tab.0.center/0.23.1440.806@0.23.1440.806" timestamp="1589292882921" />
     <state width="1419" height="178" key="GridCell.Tab.0.center/0.23.1440.810@0.23.1440.810" timestamp="1583114900454" />
     <state width="1419" height="240" key="GridCell.Tab.0.center/1440.23.960.681/0.23.1440.806@0.23.1440.806" timestamp="1588775535580" />
     <state width="1419" height="208" key="GridCell.Tab.0.center/1440.23.960.681/0.23.1440.810@0.23.1440.810" timestamp="1583299875483" />
-    <state width="694" height="553" key="GridCell.Tab.0.left" timestamp="1589014804087">
+    <state width="684" height="231" key="GridCell.Tab.0.left" timestamp="1589292882921">
       <screen x="0" y="23" width="1440" height="806" />
     </state>
     <state width="1398" height="203" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1581515258590" />
     <state width="360" height="432" key="GridCell.Tab.0.left/0.23.1440.793@0.23.1440.793" timestamp="1581691659665" />
     <state width="670" height="175" key="GridCell.Tab.0.left/0.23.1440.797@0.23.1440.797" timestamp="1581945510235" />
     <state width="577" height="147" key="GridCell.Tab.0.left/0.23.1440.798@0.23.1440.798" timestamp="1582274573665" />
-    <state width="694" height="553" key="GridCell.Tab.0.left/0.23.1440.806@0.23.1440.806" timestamp="1589014804087" />
+    <state width="684" height="231" key="GridCell.Tab.0.left/0.23.1440.806@0.23.1440.806" timestamp="1589292882921" />
     <state width="1419" height="178" key="GridCell.Tab.0.left/0.23.1440.810@0.23.1440.810" timestamp="1583114900453" />
     <state width="1419" height="240" key="GridCell.Tab.0.left/1440.23.960.681/0.23.1440.806@0.23.1440.806" timestamp="1588775535580" />
     <state width="1419" height="208" key="GridCell.Tab.0.left/1440.23.960.681/0.23.1440.810@0.23.1440.810" timestamp="1583299875482" />
-    <state width="694" height="553" key="GridCell.Tab.0.right" timestamp="1589014804088">
+    <state width="684" height="231" key="GridCell.Tab.0.right" timestamp="1589292882922">
       <screen x="0" y="23" width="1440" height="806" />
     </state>
     <state width="1398" height="203" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1581515258591" />
     <state width="360" height="432" key="GridCell.Tab.0.right/0.23.1440.793@0.23.1440.793" timestamp="1581691659666" />
     <state width="670" height="175" key="GridCell.Tab.0.right/0.23.1440.797@0.23.1440.797" timestamp="1581945510236" />
     <state width="577" height="147" key="GridCell.Tab.0.right/0.23.1440.798@0.23.1440.798" timestamp="1582274573666" />
-    <state width="694" height="553" key="GridCell.Tab.0.right/0.23.1440.806@0.23.1440.806" timestamp="1589014804088" />
+    <state width="684" height="231" key="GridCell.Tab.0.right/0.23.1440.806@0.23.1440.806" timestamp="1589292882922" />
     <state width="1419" height="178" key="GridCell.Tab.0.right/0.23.1440.810@0.23.1440.810" timestamp="1583114900454" />
     <state width="1419" height="240" key="GridCell.Tab.0.right/1440.23.960.681/0.23.1440.806@0.23.1440.806" timestamp="1588775535581" />
     <state width="1419" height="208" key="GridCell.Tab.0.right/1440.23.960.681/0.23.1440.810@0.23.1440.810" timestamp="1583299875483" />
