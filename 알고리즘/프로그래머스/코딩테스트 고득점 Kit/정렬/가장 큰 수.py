@@ -1,8 +1,8 @@
 
 def solution(numbers):
-    answer = ''
-    return answer
-
+    newnumbers = list(map(str, numbers))
+    newnumbers.sort(key=lambda x: x*3, reverse=True)
+    return str(int(''.join(newnumbers)))
 
 Numbers = [
     [6, 10, 2],
