@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e1972930-8d11-4459-84b4-b1189c95813c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/알고리즘/기초/정렬/Bubble Sort.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/알고리즘/기초/정렬/Insertion Sort.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/알고리즘/기초/정렬/Merge Sort.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/알고리즘/기초/정렬/Quick Sort.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/알고리즘/기초/정렬/Selection Sort.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/알고리즘/프로그래머스/코딩테스트 고득점 Kit/정렬/H-Index.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -44,8 +40,8 @@
       <recent name="C:\Users\LGPC\JDI\백준" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.Quick Sort">
-    <configuration name="스마트폰 숫자패드 누르기" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python.H-Index">
+    <configuration name="H-Index" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="JDI" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -53,32 +49,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/알고리즘/프로그래머스/2020 Kakao Internship 코딩테스트" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/알고리즘/프로그래머스/코딩테스트 고득점 Kit/정렬" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/알고리즘/프로그래머스/2020 Kakao Internship 코딩테스트/스마트폰 숫자패드 누르기.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Bubble Sort" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="JDI" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/알고리즘/기초/정렬" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/알고리즘/기초/정렬/Bubble Sort.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/알고리즘/프로그래머스/코딩테스트 고득점 Kit/정렬/H-Index.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -173,11 +148,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.H-Index" />
         <item itemvalue="Python.Quick Sort" />
         <item itemvalue="Python.Merge Sort" />
         <item itemvalue="Python.Insertion Sort" />
         <item itemvalue="Python.Selection Sort" />
-        <item itemvalue="Python.Bubble Sort" />
       </list>
     </recent_temporary>
   </component>
@@ -243,50 +218,50 @@
       <screen x="0" y="23" width="1440" height="806" />
     </state>
     <state x="837" y="180" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1440.806@0.23.1440.806" timestamp="1585373318454" />
-    <state width="1419" height="151" key="GridCell.Tab.0.bottom" timestamp="1589803056496">
+    <state width="662" height="151" key="GridCell.Tab.0.bottom" timestamp="1589903150568">
       <screen x="0" y="23" width="1440" height="806" />
     </state>
     <state width="1398" height="203" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1581515258592" />
     <state width="360" height="432" key="GridCell.Tab.0.bottom/0.23.1440.793@0.23.1440.793" timestamp="1581691659667" />
     <state width="670" height="175" key="GridCell.Tab.0.bottom/0.23.1440.797@0.23.1440.797" timestamp="1581945510236" />
     <state width="577" height="147" key="GridCell.Tab.0.bottom/0.23.1440.798@0.23.1440.798" timestamp="1582274573666" />
-    <state width="1419" height="151" key="GridCell.Tab.0.bottom/0.23.1440.806@0.23.1440.806" timestamp="1589803056496" />
+    <state width="662" height="151" key="GridCell.Tab.0.bottom/0.23.1440.806@0.23.1440.806" timestamp="1589903150568" />
     <state width="1419" height="178" key="GridCell.Tab.0.bottom/0.23.1440.810@0.23.1440.810" timestamp="1583114900455" />
     <state width="1398" height="231" key="GridCell.Tab.0.bottom/1440.23.960.681/0.23.1440.806@0.23.1440.806" timestamp="1589701396357" />
     <state width="918" height="151" key="GridCell.Tab.0.bottom/1440.23.960.681/0.23.1440.806@1440.23.960.681" timestamp="1589711348100" />
     <state width="1419" height="208" key="GridCell.Tab.0.bottom/1440.23.960.681/0.23.1440.810@0.23.1440.810" timestamp="1583299875484" />
-    <state width="1419" height="151" key="GridCell.Tab.0.center" timestamp="1589803056495">
+    <state width="662" height="151" key="GridCell.Tab.0.center" timestamp="1589903150567">
       <screen x="0" y="23" width="1440" height="806" />
     </state>
     <state width="1398" height="203" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1581515258590" />
     <state width="360" height="432" key="GridCell.Tab.0.center/0.23.1440.793@0.23.1440.793" timestamp="1581691659666" />
     <state width="670" height="175" key="GridCell.Tab.0.center/0.23.1440.797@0.23.1440.797" timestamp="1581945510235" />
     <state width="577" height="147" key="GridCell.Tab.0.center/0.23.1440.798@0.23.1440.798" timestamp="1582274573666" />
-    <state width="1419" height="151" key="GridCell.Tab.0.center/0.23.1440.806@0.23.1440.806" timestamp="1589803056495" />
+    <state width="662" height="151" key="GridCell.Tab.0.center/0.23.1440.806@0.23.1440.806" timestamp="1589903150567" />
     <state width="1419" height="178" key="GridCell.Tab.0.center/0.23.1440.810@0.23.1440.810" timestamp="1583114900454" />
     <state width="1398" height="231" key="GridCell.Tab.0.center/1440.23.960.681/0.23.1440.806@0.23.1440.806" timestamp="1589701396356" />
     <state width="918" height="151" key="GridCell.Tab.0.center/1440.23.960.681/0.23.1440.806@1440.23.960.681" timestamp="1589711348098" />
     <state width="1419" height="208" key="GridCell.Tab.0.center/1440.23.960.681/0.23.1440.810@0.23.1440.810" timestamp="1583299875483" />
-    <state width="1419" height="151" key="GridCell.Tab.0.left" timestamp="1589803056494">
+    <state width="662" height="151" key="GridCell.Tab.0.left" timestamp="1589903150566">
       <screen x="0" y="23" width="1440" height="806" />
     </state>
     <state width="1398" height="203" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1581515258590" />
     <state width="360" height="432" key="GridCell.Tab.0.left/0.23.1440.793@0.23.1440.793" timestamp="1581691659665" />
     <state width="670" height="175" key="GridCell.Tab.0.left/0.23.1440.797@0.23.1440.797" timestamp="1581945510235" />
     <state width="577" height="147" key="GridCell.Tab.0.left/0.23.1440.798@0.23.1440.798" timestamp="1582274573665" />
-    <state width="1419" height="151" key="GridCell.Tab.0.left/0.23.1440.806@0.23.1440.806" timestamp="1589803056494" />
+    <state width="662" height="151" key="GridCell.Tab.0.left/0.23.1440.806@0.23.1440.806" timestamp="1589903150566" />
     <state width="1419" height="178" key="GridCell.Tab.0.left/0.23.1440.810@0.23.1440.810" timestamp="1583114900453" />
     <state width="1398" height="231" key="GridCell.Tab.0.left/1440.23.960.681/0.23.1440.806@0.23.1440.806" timestamp="1589701396355" />
     <state width="918" height="151" key="GridCell.Tab.0.left/1440.23.960.681/0.23.1440.806@1440.23.960.681" timestamp="1589711348097" />
     <state width="1419" height="208" key="GridCell.Tab.0.left/1440.23.960.681/0.23.1440.810@0.23.1440.810" timestamp="1583299875482" />
-    <state width="1419" height="151" key="GridCell.Tab.0.right" timestamp="1589803056495">
+    <state width="662" height="151" key="GridCell.Tab.0.right" timestamp="1589903150567">
       <screen x="0" y="23" width="1440" height="806" />
     </state>
     <state width="1398" height="203" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1581515258591" />
     <state width="360" height="432" key="GridCell.Tab.0.right/0.23.1440.793@0.23.1440.793" timestamp="1581691659666" />
     <state width="670" height="175" key="GridCell.Tab.0.right/0.23.1440.797@0.23.1440.797" timestamp="1581945510236" />
     <state width="577" height="147" key="GridCell.Tab.0.right/0.23.1440.798@0.23.1440.798" timestamp="1582274573666" />
-    <state width="1419" height="151" key="GridCell.Tab.0.right/0.23.1440.806@0.23.1440.806" timestamp="1589803056495" />
+    <state width="662" height="151" key="GridCell.Tab.0.right/0.23.1440.806@0.23.1440.806" timestamp="1589903150567" />
     <state width="1419" height="178" key="GridCell.Tab.0.right/0.23.1440.810@0.23.1440.810" timestamp="1583114900454" />
     <state width="1398" height="231" key="GridCell.Tab.0.right/1440.23.960.681/0.23.1440.806@0.23.1440.806" timestamp="1589701396356" />
     <state width="918" height="151" key="GridCell.Tab.0.right/1440.23.960.681/0.23.1440.806@1440.23.960.681" timestamp="1589711348099" />
