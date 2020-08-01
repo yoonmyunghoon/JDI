@@ -1,3 +1,4 @@
+# n개 순서정하기 (엄밀히 따지면 순열이 아님)
 def perm(n, k):
     if n == k:
         print(arr)
