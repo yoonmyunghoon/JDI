@@ -1,6 +1,6 @@
 N = 4
 arr = list(range(1, N+1))
-#순열(n개중에서 r를 뽑아서 순서정하기)
+
 q = 3
 T = [0] * q
 def myprint(q):
@@ -8,6 +8,7 @@ def myprint(q):
         print(T[i], end=' ')
     print()
 
+#순열(n개중에서 r를 뽑아서 순서정하기)
 def perm2(n, r):
     if r == 0:
         myprint(q)
@@ -34,3 +35,4 @@ def perm3(n, r):
             arr[i], arr[n - 1] = arr[n - 1], arr[i]
 perm3(N, 3)
 print()
+
