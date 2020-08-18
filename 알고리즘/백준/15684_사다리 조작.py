@@ -17,14 +17,16 @@ def comb(n, r):
 
 def check(T):
     global result
-    sadari_c = copy.deepcopy(sadari)
     cnt = 0
     for t in T:
-        if sadari_c[checking[t][0]][checking[t][1]] == 0:
-            sadari_c[checking[t][0]][checking[t][1]] = 1
-            sadari_c[checking[t][0]][checking[t][1]+1] = 2
+        if sadari[checking[t][0]][checking[t][1]] == 0:
+            sadari[checking[t][0]][checking[t][1]] = 1
+            sadari[checking[t][0]][checking[t][1]+1] = 2
             cnt += 1
         else:
+            for t1 in T:
+                sadari[checking[t1][0]][checking[t1][1]] = 0
+                sadari[checking[t1][0]][checking[t1][1] + 1] = 0
             return
     if cnt == len(T):
         flag = 1
@@ -36,10 +38,10 @@ def check(T):
             while 1:
                 if flag == 0:
                     break
-                if sadari_c[x][y] == 1:
+                if sadari[x][y] == 1:
                     x = x+dx[2]
                     y = y+dy[2]
-                elif sadari_c[x][y] == 2:
+                elif sadari[x][y] == 2:
                     x = x+dx[1]
                     y = y+dy[1]
                 else:
@@ -51,6 +53,10 @@ def check(T):
                     break
         if flag == 1:
             result = len(T)
+    for t in T:
+        sadari[checking[t][0]][checking[t][1]] = 0
+        sadari[checking[t][0]][checking[t][1] + 1] = 0
+
 
 
 N, M, H = map(int, input().split())
