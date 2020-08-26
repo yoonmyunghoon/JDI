@@ -19,7 +19,7 @@
 
 ## NoSQL의 종류 ??
 
-![NoSQL](images\NoSQL.png)
+![NoSQL](images/NoSQL.png)
 
 https://docs.microsoft.com/ko-kr/dotnet/architecture/cloud-native/relational-vs-nosql-data
 
