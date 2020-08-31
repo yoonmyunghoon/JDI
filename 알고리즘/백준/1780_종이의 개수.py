@@ -4,7 +4,7 @@ sys.stdin = open("1780_종이의 개수.txt")
 
 def check(x1, y1, x2, y2):
     global m_one, zero, p_one
-    if x2 - x1 == 0:
+    if x2 - x1 < 0:
         return
     temp = paper[x1-1][y1-1]
     flag = 1
@@ -23,24 +23,19 @@ def check(x1, y1, x2, y2):
         else:
             p_one += 1
         return
-    check(1, 1, x2 // 3, y2 // 3)
-    check((x2 // 3) + 1, 1, (x2 // 3) * 2, y2 // 3)
-    check((x2 // 3) * 2 + 1, 1, x2, y2 // 3)
 
-    check(1, (y2 // 3) + 1, x2 // 3, (y2 // 3) * 2)
-    check((x2 // 3) + 1, (y2 // 3) + 1, (x2 // 3) * 2, (y2 // 3) * 2)
-    check((x2 // 3) * 2 + 1, (y2 // 3) + 1, x2, (y2 // 3) * 2)
-
-    check(1, (y2 // 3) * 2 + 1, x2 // 3, y2)
-    check((x2 // 3) + 1, (y2 // 3) * 2 + 1, (x2 // 3) * 2, y2)
-    check((x2 // 3) * 2 + 1, (y2 // 3) * 2 + 1, x2, y2)
+    diff = (x2 - x1 + 1) // 3
+    for n in range(3):
+        for m in range(3):
+            check(x1 + n * diff, y1 + m * diff, x1 + (n+1) * diff - 1, y1 + (m+1) * diff - 1)
 
 
 N = int(input())
 paper = [list(map(int, input().split())) for _ in range(N)]
-for i in paper:
-    print(i)
 m_one = 0
 zero = 0
 p_one = 0
-check(1, 1, 9, 9)
+check(1, 1, N, N)
+print(m_one)
+print(zero)
+print(p_one)
