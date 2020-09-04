@@ -2,16 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e1972930-8d11-4459-84b4-b1189c95813c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/알고리즘/백준/1074_Z.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/알고리즘/백준/1074_Z.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/알고리즘/백준/1725_히스토그램.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/알고리즘/백준/1725_히스토그램.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/알고리즘/백준/1992_쿼드트리.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/알고리즘/백준/1992_쿼드트리.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/알고리즘/백준/2339_석판 자르기.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/알고리즘/백준/2339_석판 자르기.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/알고리즘/백준/2003_수들의 합2.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/알고리즘/백준/2003_수들의 합2.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/알고리즘/백준/2104_부분배열 고르기.py" beforeDir="false" afterPath="$PROJECT_DIR$/알고리즘/백준/2104_부분배열 고르기.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,7 +43,7 @@
       <recent name="C:\Users\LGPC\JDI\백준" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.2339_석판 자르기">
+  <component name="RunManager" selected="Python.2003_수들의 합2">
     <configuration name="조합" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="JDI" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -219,7 +212,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="2104_부분배열 고르기" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="2003_수들의 합2" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="JDI" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -231,7 +224,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/알고리즘/백준/2104_부분배열 고르기.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/알고리즘/백준/2003_수들의 합2.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -326,11 +319,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.2003_수들의 합2" />
         <item itemvalue="Python.2339_석판 자르기" />
         <item itemvalue="Python.1725_히스토그램" />
         <item itemvalue="Python.1074_Z" />
         <item itemvalue="Python.1992_쿼드트리" />
-        <item itemvalue="Python.2104_부분배열 고르기" />
       </list>
     </recent_temporary>
   </component>
@@ -396,36 +389,36 @@
       <screen x="0" y="23" width="1440" height="806" />
     </state>
     <state x="963" y="323" key="#com.jetbrains.python.refactoring.move.PyMoveModuleMembersDialog/0.23.1440.806@0.23.1440.806" timestamp="1597727943473" />
-    <state width="669" height="539" key="GridCell.Tab.0.bottom" timestamp="1599047310247">
+    <state width="680" height="120" key="GridCell.Tab.0.bottom" timestamp="1599132681752">
       <screen x="0" y="23" width="1440" height="808" />
     </state>
     <state width="661" height="448" key="GridCell.Tab.0.bottom/0.23.1440.804@0.23.1440.804" timestamp="1597405877574" />
     <state width="790" height="457" key="GridCell.Tab.0.bottom/0.23.1440.806@0.23.1440.806" timestamp="1598343572656" />
-    <state width="669" height="539" key="GridCell.Tab.0.bottom/0.23.1440.808@0.23.1440.808" timestamp="1599047310247" />
+    <state width="680" height="120" key="GridCell.Tab.0.bottom/0.23.1440.808@0.23.1440.808" timestamp="1599132681752" />
     <state width="631" height="193" key="GridCell.Tab.0.bottom/0.23.1440.877/-1366.110.1366.679@-1366.110.1366.679" timestamp="1598530426507" />
     <state width="1419" height="151" key="GridCell.Tab.0.bottom/1440.23.960.681/0.23.1440.804@0.23.1440.804" timestamp="1596520932244" />
-    <state width="669" height="539" key="GridCell.Tab.0.center" timestamp="1599047310246">
+    <state width="680" height="120" key="GridCell.Tab.0.center" timestamp="1599132681751">
       <screen x="0" y="23" width="1440" height="808" />
     </state>
     <state width="661" height="448" key="GridCell.Tab.0.center/0.23.1440.804@0.23.1440.804" timestamp="1597405877573" />
     <state width="790" height="457" key="GridCell.Tab.0.center/0.23.1440.806@0.23.1440.806" timestamp="1598343572654" />
-    <state width="669" height="539" key="GridCell.Tab.0.center/0.23.1440.808@0.23.1440.808" timestamp="1599047310246" />
+    <state width="680" height="120" key="GridCell.Tab.0.center/0.23.1440.808@0.23.1440.808" timestamp="1599132681751" />
     <state width="631" height="193" key="GridCell.Tab.0.center/0.23.1440.877/-1366.110.1366.679@-1366.110.1366.679" timestamp="1598530426505" />
     <state width="1419" height="151" key="GridCell.Tab.0.center/1440.23.960.681/0.23.1440.804@0.23.1440.804" timestamp="1596520932242" />
-    <state width="669" height="539" key="GridCell.Tab.0.left" timestamp="1599047310245">
+    <state width="680" height="120" key="GridCell.Tab.0.left" timestamp="1599132681750">
       <screen x="0" y="23" width="1440" height="808" />
     </state>
     <state width="661" height="448" key="GridCell.Tab.0.left/0.23.1440.804@0.23.1440.804" timestamp="1597405877573" />
     <state width="790" height="457" key="GridCell.Tab.0.left/0.23.1440.806@0.23.1440.806" timestamp="1598343572654" />
-    <state width="669" height="539" key="GridCell.Tab.0.left/0.23.1440.808@0.23.1440.808" timestamp="1599047310245" />
+    <state width="680" height="120" key="GridCell.Tab.0.left/0.23.1440.808@0.23.1440.808" timestamp="1599132681750" />
     <state width="631" height="193" key="GridCell.Tab.0.left/0.23.1440.877/-1366.110.1366.679@-1366.110.1366.679" timestamp="1598530426504" />
     <state width="1419" height="151" key="GridCell.Tab.0.left/1440.23.960.681/0.23.1440.804@0.23.1440.804" timestamp="1596520932241" />
-    <state width="669" height="539" key="GridCell.Tab.0.right" timestamp="1599047310246">
+    <state width="680" height="120" key="GridCell.Tab.0.right" timestamp="1599132681751">
       <screen x="0" y="23" width="1440" height="808" />
     </state>
     <state width="661" height="448" key="GridCell.Tab.0.right/0.23.1440.804@0.23.1440.804" timestamp="1597405877574" />
     <state width="790" height="457" key="GridCell.Tab.0.right/0.23.1440.806@0.23.1440.806" timestamp="1598343572655" />
-    <state width="669" height="539" key="GridCell.Tab.0.right/0.23.1440.808@0.23.1440.808" timestamp="1599047310246" />
+    <state width="680" height="120" key="GridCell.Tab.0.right/0.23.1440.808@0.23.1440.808" timestamp="1599132681751" />
     <state width="631" height="193" key="GridCell.Tab.0.right/0.23.1440.877/-1366.110.1366.679@-1366.110.1366.679" timestamp="1598530426506" />
     <state width="1419" height="151" key="GridCell.Tab.0.right/1440.23.960.681/0.23.1440.804@0.23.1440.804" timestamp="1596520932243" />
     <state width="669" height="539" key="GridCell.Tab.1.bottom" timestamp="1599047310249">
