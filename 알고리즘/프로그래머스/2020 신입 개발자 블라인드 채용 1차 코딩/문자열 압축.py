@@ -13,6 +13,7 @@ def check(arr):
             cnt = 1
     return hl
 
+
 def solution(s):
     minimum = len(s)
     for i in range(1, int(len(s)/2)+1):
