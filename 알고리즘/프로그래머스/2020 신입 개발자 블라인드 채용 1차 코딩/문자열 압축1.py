@@ -1,33 +1,35 @@
 
 def check(s, k):
     char = s[0:k]
-    start = k
-    cnt = 1
+    cnt = 0
     length = 0
-    while 1:
-        if start+k > len(s):
-            if cnt == 1:
-                length += k
+    for i in range(0, len(s), k):
+        if i+k >= len(s):
+            if s[i:i + k] == char:
+                cnt += 1
+                length += len(str(cnt)) + k
             else:
-                length += (k + len(str(cnt)))
-            length += (len(s) - start)
-            break
-        if s[start:start+k] == char:
-            cnt += 1
+                if cnt == 1:
+                    length += k
+                else:
+                    length += len(str(cnt)) + k
+                length += len(s) - i
         else:
-            if cnt == 1:
-                length += k
+            if s[i:i+k] == char:
+                cnt += 1
             else:
-                length += k + len(str(cnt))
-            char = s[start:start+k]
-            cnt = 1
-        start += k
+                if cnt == 1:
+                    length += k
+                else:
+                    length += len(str(cnt)) + k
+                cnt = 1
+                char = s[i:i+k]
     return length
 
 
 def solution(s):
     limit = len(s)//2
-    minimum = 1000
+    minimum = len(s)
     for i in range(1, limit+1):
         res = check(s, i)
         if minimum > res:
