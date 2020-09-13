@@ -6,7 +6,7 @@ from copy import deepcopy
 def solution(board_o, r, c):
     board = deepcopy(board_o)
 
-    def bfs(t, n, a, b):
+    def bfs(n, a, b):
         visited = [[0] * 4 for _ in range(4)]
         visited[a][b] = 1
         deq = deque()
@@ -61,10 +61,10 @@ def solution(board_o, r, c):
         ret = 0
         board = deepcopy(board_o)
         for d in od:
-            tx, ty, cnt = bfs(0, d, tx, ty)
+            tx, ty, cnt = bfs(d, tx, ty)
             ret += cnt
             board[tx][ty] = 0
-            tx, ty, cnt = bfs(1, d, tx, ty)
+            tx, ty, cnt = bfs(d, tx, ty)
             ret += cnt
             board[tx][ty] = 0
         minimum.append(ret)
