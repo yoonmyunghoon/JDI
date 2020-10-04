@@ -33,7 +33,7 @@
 
 ### 웹을 위한 스프링 프레임워크 모듈
 
-![웹을 위한 스프링 프레임워크 모듈](images/웹을 위한 스프링 프레임워크 모듈.png)
+![Spring framework module](images/Spring framework module.png)
 
 - 아직까지 선택할 수는 있음
   - Java SE 위에 EE
