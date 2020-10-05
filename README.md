@@ -10,7 +10,7 @@
 - 웹(프로젝트 참고)
   - 백엔드
     - Python(5), Django(4), ORM(4) - 프로젝트 3번
-    - Java(3), spring(0), mysql(4) - 개인프로젝트 진행중
+    - Java(3), spring boot(1), JPA(1) - 개인프로젝트 진행중
     - javascript(3), node.js(3), express(3), mariaDB(4) - 프로젝트 1번
   - 프론트엔드
     - html(1), css(1), bootstrap(1), react(1), vue.js(1)
