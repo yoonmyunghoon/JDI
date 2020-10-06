@@ -1,0 +1,19 @@
+// 상속
+
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		Student student1 = new Student("Reynold", 26, 175, 67, "201827537", 1, 4.5);
+		Student student2 = new Student("Joice", 28, 165, 48, "201627537", 4, 4.3);
+		student1.show();
+		student2.show();
+		
+		Teacher teacher1 = new Teacher("nold", 46, 175, 67, "ADF1827", 3000000, 5);
+		Teacher teacher2 = new Teacher("nolden", 40, 155, 47, "ABF1827", 2800000, 4);
+		teacher1.show();
+		
+	}
+
+}

@@ -1,0 +1,16 @@
+import java.util.Scanner;
+
+// 다형성(Polymorphism)
+
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		Scanner scanner = new Scanner(System.in);
+		Fruit fruit = new Banana();
+		fruit.show();
+		
+	}
+
+}

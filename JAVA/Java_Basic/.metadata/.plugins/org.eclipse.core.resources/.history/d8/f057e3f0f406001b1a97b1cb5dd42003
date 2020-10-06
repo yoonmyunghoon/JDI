@@ -1,0 +1,8 @@
+
+public class Teacher extends Person{
+	
+	private String teacherID;
+	private int monthSalary;
+	private int workedYear;
+	
+}

@@ -1,0 +1,36 @@
+
+public class Main {
+	
+//	final static double PI = 3.141592;
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+//		int intType = 100;
+//		double doubleType = 150.5;
+//		String stringType = "reynold";
+//		
+//		System.out.println(intType);
+//		System.out.println(doubleType);
+//		System.out.println(stringType);
+		
+//		int r = 30;
+//		System.out.println(r*r*PI);
+		
+		
+		
+		
+//		int a = 1;
+//		int b = 2;
+//		
+//		System.out.println(a+b);
+//		System.out.println(a-b);
+//		System.out.println(a*b);
+//		System.out.println(a/b);
+
+
+	
+	
+	}
+
+}

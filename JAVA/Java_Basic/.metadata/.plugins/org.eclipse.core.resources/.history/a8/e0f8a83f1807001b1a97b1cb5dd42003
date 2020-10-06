@@ -1,0 +1,7 @@
+
+public class Worrior extends Hero {
+	
+	public Warrior(String name) {
+		
+	}
+}

@@ -1,0 +1,14 @@
+// 객체 지향 기법의 활용
+
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		Hero[] heros = new Hero[3];
+		heros[0] = new Warrior("War");
+		heros[1] = new Archer("Arc");
+		heros[2] = new Wizard("Wiz");
+	}
+
+}

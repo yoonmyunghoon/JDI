@@ -1,0 +1,13 @@
+// 최종(Final)
+
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		final int number = 10;
+		number = 6;
+		System.out.println(number);
+	}
+
+}

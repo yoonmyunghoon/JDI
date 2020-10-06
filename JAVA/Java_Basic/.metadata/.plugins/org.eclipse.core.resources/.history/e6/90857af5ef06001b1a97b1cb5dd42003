@@ -1,0 +1,15 @@
+
+public class Node {
+	
+	private int x;
+	private int y;
+	
+	public int getX() {
+		return x;
+	}
+	
+	public voin setX(int x) {
+		this.x = x;
+	}
+
+}

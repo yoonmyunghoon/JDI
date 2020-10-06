@@ -1,0 +1,7 @@
+
+public class Parent extends Person{
+	
+	public final void show() {
+		System.out.println("hi!");
+	}
+}

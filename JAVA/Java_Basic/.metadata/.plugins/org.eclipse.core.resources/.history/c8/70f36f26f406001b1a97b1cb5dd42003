@@ -1,0 +1,12 @@
+// 상속
+
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		Student student = new Student("Reynold", 26, 175, 67, "201427537", 1, 4.5);
+		
+	}
+
+}
