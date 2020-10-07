@@ -30,7 +30,7 @@
   - HTML, CSS, JavaScript 간단 실습
   - 정적 웹
 - 서블릿/JSP
-- [Spring](웹/Spring 공부.md)
+- [Spring](웹/Spring_study.md)
 
 
 
