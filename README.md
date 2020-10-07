@@ -30,7 +30,7 @@
   - HTML, CSS, JavaScript 간단 실습
   - 정적 웹
 - 서블릿/JSP
-- [Spring](웹/Spring_공부)
+- [Spring](웹/Spring 공부)
 
 
 
@@ -63,7 +63,7 @@
 ## :closed_book: ​JAVA
 
 - JAVA 기초 학습
-- [JAVA 구조적 프로그래밍 학습](JAVA/구조적_프로그래밍)
+- [JAVA 구조적 프로그래밍 학습](JAVA/구조적 프로그래밍)
 - JAVA 객체지향 프로그래밍 학습
 
 
