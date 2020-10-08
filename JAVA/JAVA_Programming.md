@@ -1,4 +1,4 @@
-# Java Programming
+Java Programming
 
 
 
@@ -215,3 +215,405 @@ java Program
 
 
 
+## 10. 값의 진법 변환
+
+- 16진수는 2진수를 4개씩 나눠서 적고 8진수는 3개씩 나눠서 적으면 됨
+
+
+
+## 11. 값의 형식과 변환
+
+### 정수형식과 변환
+
+- 26 = 0x1A
+  - 1 바이트
+    - Byte
+    - 26
+  - 2 바이트
+    - Short
+    - 26
+  - 4 바이트
+    - Int
+    - 26
+  - 8 바이트
+    - Long
+    - 26L
+- 기본적으로 정수는 int를 가짐
+
+```java
+long x = 30;
+// long(8바이트)크기를 가진 그릇에 int(4바이트)크기를 가진 26을 넣는다? 기능하나?
+// 가능함
+// 묵시적으로 30을 30L로 바꿔서 크기를 맞춰줌, 데이터 손실이 없기 때문에 컴퓨터가 알아서 해줌
+
+byte x = 30;
+// 이때는 번역(컴파일)과정에서 에러가 남
+// 프로그래머가 생각해서 이거 문제없다하면
+byte x = (byte)30;
+// 이렇게 바꿔줌, 명시적 형변환
+
+//근데
+byte x = 30;
+// 여기서는 에러가 안남
+// 30이라는 숫자가 byte의 범위 안에 있기 때문에
+// 형변환 할때는 각 형식을 그릇으로 생각하고 숫자를 그 안에 있는 물로 생각하면 쉬움
+// byte라는 1바이트짜리 그릇이지만 4바이트짜리에 들어있던 30이라는 숫자를 넣어도 넘치기 않기때문에 에러가 안남
+// 만약에 200을 넣었다면 넘쳐서 에러가 났을 것, 이때는 앞에 (byte)를 붙여줘야됨, 물론 데이터 손실은 일어남
+```
+
+### 실수형식과 변환
+
+- 26.5 = 2.65e1
+  - 4바이트
+    - float
+  - 8바이트
+    - double
+
+```java
+float x = 3.5;
+// 에러남, 묵시적으로 형변환 불가능
+float x = (float)3.5;
+// 이러면 에러는 안나는데, 데이터 손실이 있을 수 있음
+
+double x = 3.5f;
+// 이건 에러안남, 묵시적으로 형변환 가능
+```
+
+### 문자형식
+
+- 2바이트
+  - char
+
+### 부울 형식
+
+- 1비트
+  - boolean
+
+![variable_type](JAVA_Programming_img/variable_type.png)
+
+
+
+## 12. 정수 값의 크기와 범위
+
+- 1바이트 = 8비트 = 2의 8승개의 데이터를 표현할수있음 = 256개 표현
+- 표현할 수 있는 숫자의 범위는: -2^7 ~ 2^7-1
+
+
+
+## 13. 부동 소수점(Float Point) 실수의 크기와 범위
+
+- 고정 소수점(Fixed Point) 4바이트
+  - 부호비트(1비트) + 정수부(15비트) + 실수부(16비트)
+  - 유동적이지가 않고, 비효율, 낭비, 표현의 한계가 생김
+- 부동 소수점(Float Point) 4바이트
+  - 부호비트(1비트) + 지수부(8비트) + 가수부(23비트)
+
+![FloatPoint1](JAVA_Programming_img/FloatPoint1.png)
+
+![FloatPoint2](JAVA_Programming_img/FloatPoint2.png)
+
+![FloatPoint3](JAVA_Programming_img/FloatPoint3.png)
+
+
+
+## 14. 자바 변수 선언
+
+### 선언이란?
+
+- 모든 키워드는 선언하고 사용해야만 한다.
+- 변수, 함수, 참조변수 ... 등 쓰임을 써야됨
+
+```java
+//변수
+int kor;
+
+//함수
+void add(int x, int y){
+  
+}
+
+//참조변수
+Animal 순심이;
+```
+
+### 변수란?
+
+- 값을 저장하기 위한 공간
+  - Byte, int, float 등
+- 변수 명명 규칙
+  - 영문자로 시작
+  - 공백 안됨
+  - 특수기호 안됨
+  - ...
+- 여러 변수 한번에 선언하기
+  - 자료형이 같을 경우에는 한 줄에 선언할 수 있음
+
+
+
+## 15. 출력 스트림 객체와 API
+
+### 자바 플랫폼의 내장 입/출력 객체와 멤버 함수
+
+![JAVA_IO_API](JAVA_Programming_img/JAVA_IO_API.png)
+
+- 스트림? 객체? 알아보자
+
+### 출력 스트림(Output Stream)을 이용한 비동기 처리
+
+- Stream: 단방향 버퍼
+- Output Stream: 출력 방향으로의 단방향 버퍼
+- 어플리케이션의 많은 프로그램들을 수행할 때 비동기로 처리할 수 있도록 버퍼가 있어야됨
+- 그 버퍼를 실행환경에서 운영하면서 순서를 정하고 처리를 해줌
+- 이때 보통 이런 운영은 운영체제해서 하는데 자바 플랫폼에 이런 기능이 있어서 자바 플랫폼에서 처리함
+- 그래서 우리는 출력을 바로 모니터로하는게 아니라 출력버퍼, 즉, 출력 스트림에다가 해주는 것
+- 출력스트림을 사용할 때는 개체를 쓰는게 아니라 객체를 쓰는 것
+
+![outputStream_process](JAVA_Programming_img/outputStream_process.png)
+
+### 개체(Entity)와 객체(Object)
+
+- 개체: 실체라는 것을 사용하기 위해 사용하는 타입
+  - 자동차 타입명: K7 하이브리드
+- 객체: 실존하는 것, 실체
+  - 내가 산 K7 하이브리드 타입의 자동차 이름: 쇠돌이
+
+### 입/출력 API는 입/출력 스트림 객체를 이용한다
+
+- 객체를 이용하는 함수
+  - 객체라고 하는 것을 누가 만들어달라고 한 적이 있어야됨
+  - 객체화를 위해 사용되는 new가 있음
+  - new를 통해 객체화하고나서 이름을 붙이는건 우리가 할 수 있음, 이게 참조변수
+  - 그런데 콘솔 입출력을 위한 출력스트림과 입력스트림의 객체는 자바 플랫폼에서 생성하고 이름까지 붙여둠
+  - 그게 out과 in임
+
+![IO_StreamObject](JAVA_Programming_img/IO_StreamObject.png)
+
+
+
+## 16. 콘솔 입출력과 문자코드
+
+- 미국에서 정한 문자코드
+  - 아스키코드
+- 각국의 문자코드 확장
+  - 아스키코드 + 각국의 코드들
+  - 문제점: 같은 번호라도 각국에서 다르게 표현됨
+- 그래서 유니코드가 쓰여짐
+  - 아스키코드 + 각국의 테이블을 안겹치게 모아둠
+
+
+
+## 17. 콘솔 문자열 출력 - PrintStream
+
+- write를 사용하면 문자 하나씩 출력할 수 있음
+- 문자열을 한번에 출력해줄수없나?
+
+### PrintStream과 객체 생성
+
+- Print(), println(), printf() 등이 있음
+- OutputStream을 응용한 것
+
+![PrintStream_object](JAVA_Programming_img/PrintStream_object.png)
+
+### 성적 출력하기
+
+```java
+package ex1.io.printstream;
+public class Program {
+
+	public static void main(String[] args) {
+		
+		int a = 50;
+		int b = 40;
+		int c = 30;
+		int total = a + b + c;
+
+		//------------성적 출력 부분-------------------------------
+		System.out.print("|---------------------|");
+		System.out.print("|        성적출력       |");
+		System.out.print("|---------------------|");
+		
+		System.out.print("국어1 : 0");
+		System.out.print("국어2 : 0");
+		System.out.print("국어3 : 0");
+		System.out.print("총점 : 0");
+		System.out.print("평균 : 0.00");
+	}
+}
+```
+
+
+
+## 18. Escape 문자
+
+### 출력을 제어하기 위한 방법이 필요
+
+- 이스케이프 문자: 문자열 사이에 꽂아 넣을 수 있는 명령어
+- \n, \b, \\\, \\', \\", \t, \f, \r...
+
+```java
+package ex3.io.escape;
+public class Program {
+
+	public static void main(String[] args) {
+		
+		int a = 50;
+		int b = 40;
+		int c = 30;
+		int total = a + b + c;
+
+		//------------성적 출력 부분-------------------------------
+		System.out.print("|---------------------|\n");
+		System.out.print("|        Score        |\n");
+		System.out.print("|---------------------|\n");
+		
+		System.out.print("국어1 : 0\n");
+		System.out.print("국어2 : 0\n");
+		System.out.print("국어3 : 0\n");
+		System.out.print("총점 : 0\n");
+		System.out.print("평균 : 0.00\n");
+		System.out.print("|---------------------|\n");
+		
+		System.out.println("|---------------------|");
+		System.out.println("|        Score        |");
+		System.out.println("|---------------------|");
+		
+		System.out.println("국어1 : 0");
+		System.out.println("국어2 : 0");
+		System.out.println("국어3 : 0");
+		System.out.println("총점 : 0");
+		System.out.println("평균 : 0.00");
+		System.out.println("|---------------------|");
+	}
+}
+```
+
+
+
+
+
+## 19. 출력 문자열 format과 숫자 출력 - printf
+
+```java
+System.out.print(80);
+// 숫자를 넣으면 "80" > '8' '0' 변환해서 보여주는 것까지 해줌
+System.out.printf("%d-%d-%d", 1995, 04, 08);
+// 표시형식을 지정해줄 수 있음
+```
+
+![printf_format](JAVA_Programming_img/printf_format.png)
+
+
+
+## 20. 형식지정자 옵션
+
+```java
+System.out.printf("평균 : %6.2f\n", avg);
+
+System.out.printf("%1$d %3$d %2$d\n", a, b, c);
+System.out.printf("%1$d %1$d %1$d", a);
+```
+
+
+
+## 21. 콘솔 입력하기(System.in, Scanner)
+
+### InputStream과 객체 생성
+
+![in_PrintStream_process](JAVA_Programming_img/in_PrintStream_process.png)
+
+
+
+## 22. 산술, 대입 연산자
+
+### 산술 연산자
+
+- 나머지 연산자
+  - 숫자를 나눌 때
+- 연산자와 자료형
+  - 손실되지 않는 쪽으로 묵시적인 형변환이 일어남
+  - 아니면 프로그래머가 그냥 명시적인 형변환을 할 수 있음
+- 연산자 우선순위
+  - 괄호 사용
+
+### 단항 연산자
+
+- 증가 연산자, 감소 연산자, 부정 연산자
+- 단항 연산자의 전위와 후위 연산 고려
+
+
+
+## 23. 비교, 관계 연산자
+
+- 비교 연산자
+  - ==, !=. >, >=,<, <=
+- 논리 연산자
+  - &&: and
+  - ||: or
+
+
+
+## 24. 비트(bit) 연산자
+
+### 비트 논리 연산자
+
+- &: 비트 교집합 연산
+  - 3 & 7 => 0011 & 0111 => 0011
+- |: 비트 합집합 연산
+- ^: 비트 차집합 연산
+- ~: 비트 부정 연산자
+
+### 쉬프트 연산자
+
+- <<
+  - 3 << 2 => 0011 << 2 => 1100 => 12
+- \>>
+  - 왼쪽 끝에 있는 숫자로 이어져서 옮겨짐
+- 사용 사례
+  - 한 변수에 두 개의 값을 대입하기
+
+
+
+## 25. 복합 대입 연산자와 연산자 우선순위
+
+### 복합 대입 연산자
+
+- +=, -=, *=, /=, %=, |=, <<=, \>>=
+
+### 기타 연산자
+
+- 3항 연산자
+  - ? :
+
+- 객체 형식 비교 연산자
+  - instanceof
+
+### 연산자 우선순위
+
+- 우선순위를 암기하기보단 괄호를 쓰자
+
+
+
+## 26. 제어 구조(Control)
+
+### 대부분의 컴퓨터 프로그램의 기본흐름
+
+- 컴퓨터 프로그램은 반복을 기본으로 한다
+
+### 제어구조의 종류
+
+- 선택문
+- 반복문
+- 분기문
+
+
+
+## 27. if와 while문
+
+### 제어문을 사용하면 흐름을 바꿀 수 있음
+
+
+
+## 28. 제어구조 do while문
+
+- do while을 쓰면 반복을 줄일 수 있음
+  - 수정해야될 부분을 줄일 수 있음
