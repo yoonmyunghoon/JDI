@@ -617,3 +617,637 @@ System.out.printf("%1$d %1$d %1$d", a);
 
 - do while을 쓰면 반복을 줄일 수 있음
   - 수정해야될 부분을 줄일 수 있음
+
+
+
+## 29. 제어구조 for문
+
+### 특정수 만큼 반복
+
+- 이런식으로도 쓰임
+
+```java
+int i = 0;
+for(; i<3 ;) {
+  
+	i++;
+}
+
+for(; true ;) {
+  
+}
+
+for(;;){
+  
+}
+
+for(int x=0, int y=0, x<0; x++, y=x) {
+  
+}
+```
+
+
+
+## 30. 수학의 필요성
+
+```java
+package ex10.control2.for_.example;
+
+import java.util.Scanner;
+
+public class Program {
+
+	public static void main(String[] args) {
+		
+		int total = 0;
+		
+//		for(int i=0; i<5; i++) {
+//			total += 3+i;
+//		}
+		
+//		n*(a+l)/2
+		total = 5*(3+7)/2;
+		
+		System.out.printf("total is %d\n", total);
+		
+	}
+}
+```
+
+
+
+## 31. 제어구조 else if, else
+
+### 메뉴 선택 기능을 추가
+
+```java
+package ex11.control2.elseif;
+
+import java.util.Scanner;
+
+public class Program {
+
+	public static void main(String[] args) {
+		
+		int kor1, kor2, kor3;
+		int total;
+		float avg;
+		int menu;
+		
+		Scanner scan = new Scanner(System.in);
+		
+		
+		kor1 = 0;
+		kor2 = 0;
+		kor3 = 0;
+		
+		
+		while(true) {
+			//------------메인 메뉴 부분------------------------------
+			System.out.println("|---------------------|");
+			System.out.println("|       Main menu     |");
+			System.out.println("|---------------------|");
+			
+			System.out.println("\t1.성적 입력");
+			System.out.println("\t2.성적 출력");
+			System.out.println("\t3.종료");
+			System.out.print("\t>");
+			
+			menu = scan.nextInt();
+			
+			
+			if (menu == 1) {
+				//------------성적 입력 부분------------------------------
+				System.out.println("|---------------------|");
+				System.out.println("|       Score in      |");
+				System.out.println("|---------------------|");
+				
+				do {
+					System.out.print("국어1 : ");
+					kor1 = scan.nextInt();
+					if(kor1 < 0 || 100 < kor1) {
+						System.out.println("out of scope 0~100");
+					}
+					
+				} while(kor1 < 0 || 100 < kor1);
+				
+				do {
+					System.out.print("국어2 : ");
+					kor2 = scan.nextInt();
+					if(kor2 < 0 || 100 < kor2) {
+						System.out.println("out of scope 0~100");
+					}
+					
+				} while(kor2 < 0 || 100 < kor2);
+				
+				do {
+					System.out.print("국어3 : ");
+					kor3 = scan.nextInt();
+					if(kor3 < 0 || 100 < kor3) {
+						System.out.println("out of scope 0~100");
+					}
+					
+				} while(kor3 < 0 || 100 < kor3);
+			
+			}
+			
+			else if (menu == 2) {
+				//------------성적 출력 부분------------------------------
+				total = kor1 + kor2 + kor3;
+				avg = total / 3.0f;
+				
+				System.out.println("|---------------------|");
+				System.out.println("|      Score out      |");
+				System.out.println("|---------------------|");
+				
+				for(int i=0; i<3; i++) {
+					System.out.printf("국어%d : %3d\n", i+1, kor1);
+				}
+						
+				System.out.printf("총점 : %3d\n", total);
+				System.out.printf("평균 : %6.2f\n", avg);
+				System.out.println("|---------------------|");
+			}
+			
+			else if (menu == 3) {
+				break;
+			}
+			else {
+				System.out.println("1~3까지만 입력해주세요.");
+			}
+		}
+		System.out.println("good bye~");
+	}
+}
+```
+
+
+
+## 32. 제어구조 switch와  break 라벨문
+
+### 사실 메뉴를 구현하는 else if는 적절한 제어흐름이 아님
+
+- Else if 문의 문제점
+  - 뒤쪽에 가다보면 실행되는데 오래걸림
+  - 이런 경우에는 선택문을 사용해야됨
+
+### Switch문을 이용한 선택 흐름
+
+```java
+switch(menu)
+
+case 1:
+	break;
+case 2:
+	break;
+case 3:
+	break;
+```
+
+### 중첩된 제어구조 벗어나기
+
+```java
+종료
+while
+	for
+		switch
+			break 종료:
+```
+
+### switch로 변형시킴
+
+```java
+package ex12.control2.switch_;
+
+import java.util.Scanner;
+
+public class Program {
+
+	public static void main(String[] args) {
+		
+		int kor1, kor2, kor3;
+		int total;
+		float avg;
+		int menu;
+		
+		Scanner scan = new Scanner(System.in);
+		
+		
+		kor1 = 0;
+		kor2 = 0;
+		kor3 = 0;
+		
+		종료:
+		while(true) {
+			//------------메인 메뉴 부분------------------------------
+			System.out.println("|---------------------|");
+			System.out.println("|       Main menu     |");
+			System.out.println("|---------------------|");
+			
+			System.out.println("\t1.성적 입력");
+			System.out.println("\t2.성적 출력");
+			System.out.println("\t3.종료");
+			System.out.print("\t>");
+			
+			menu = scan.nextInt();
+			
+			switch(menu) {
+			
+			case 1: 
+				//------------성적 입력 부분------------------------------
+				System.out.println("|---------------------|");
+				System.out.println("|       Score in      |");
+				System.out.println("|---------------------|");
+				
+				do {
+					System.out.print("국어1 : ");
+					kor1 = scan.nextInt();
+					if(kor1 < 0 || 100 < kor1) {
+						System.out.println("out of scope 0~100");
+					}
+					
+				} while(kor1 < 0 || 100 < kor1);
+				
+				do {
+					System.out.print("국어2 : ");
+					kor2 = scan.nextInt();
+					if(kor2 < 0 || 100 < kor2) {
+						System.out.println("out of scope 0~100");
+					}
+					
+				} while(kor2 < 0 || 100 < kor2);
+				
+				do {
+					System.out.print("국어3 : ");
+					kor3 = scan.nextInt();
+					if(kor3 < 0 || 100 < kor3) {
+						System.out.println("out of scope 0~100");
+					}
+					
+				} while(kor3 < 0 || 100 < kor3);
+			
+				break;
+				
+			case 2: 
+				//------------성적 출력 부분------------------------------
+				total = kor1 + kor2 + kor3;
+				avg = total / 3.0f;
+				
+				System.out.println("|---------------------|");
+				System.out.println("|      Score out      |");
+				System.out.println("|---------------------|");
+				
+				for(int i=0; i<3; i++) {
+					System.out.printf("국어%d : %3d\n", i+1, kor1);
+				}
+						
+				System.out.printf("총점 : %3d\n", total);
+				System.out.printf("평균 : %6.2f\n", avg);
+				System.out.println("|---------------------|");
+			
+				break;
+				
+			case 3: 
+				break 종료;
+				
+			default:
+				System.out.println("1~3까지만 입력해주세요.");
+				
+			}
+		}
+		System.out.println("good bye~");
+	}
+}
+```
+
+
+
+
+
+## 33. 제어구조  continue와 break문
+
+### 건너뛰기(continue)와 중단하기(break)
+
+
+
+## 34. 배열이란?
+
+### 임시 저장소 또는 버퍼의 필요성
+
+- 프로그램 방식
+  - 입력 > 데이터(계산) > 출력
+  - 중간에 저장소가 필욯함
+
+### 여러 개의 성적을 관리하기 위한 저장소 마련하기
+
+- 각각의 변수를 통해 저장하기보단 여러개의 변수를 한번에 저장할 수 있는 방법
+- 여러개의 변수를 각각 만드는 것과의 차이
+  - 변수 이름이 하나만 있으면 됨
+
+### 저장소 구현
+
+```java
+int [] kors = new int[3];
+```
+
+- 반복문을 사용해서 여러개의 값을 저장할 수 있음
+
+
+
+## 35. 배열을 이용한 성적 관리
+
+```java
+package ex14.array;
+
+import java.util.Scanner;
+
+public class Program {
+
+	public static void main(String[] args) {
+		
+//		int kor1, kor2, kor3;
+		int [] kors = new int[3];
+		int total;
+		float avg;
+		int menu;
+		
+		Scanner scan = new Scanner(System.in);
+		
+		
+//		kor1 = 0;
+//		kor2 = 0;
+//		kor3 = 0;
+		
+		for(int i=0; i<3; i++) {
+			kors[i] = 0;
+		}
+		
+		종료:
+		while(true) {
+			//------------메인 메뉴 부분------------------------------
+			System.out.println("|---------------------|");
+			System.out.println("|       Main menu     |");
+			System.out.println("|---------------------|");
+			
+			System.out.println("\t1.성적 입력");
+			System.out.println("\t2.성적 출력");
+			System.out.println("\t3.종료");
+			System.out.print("\t>");
+			
+			menu = scan.nextInt();
+			
+			switch(menu) {
+			
+			case 1: 
+				//------------성적 입력 부분------------------------------
+				System.out.println("|---------------------|");
+				System.out.println("|       Score in      |");
+				System.out.println("|---------------------|");
+				
+//				do {
+//					System.out.print("국어1 : ");
+//					kor1 = scan.nextInt();
+//					if(kor1 < 0 || 100 < kor1) {
+//						System.out.println("out of scope 0~100");
+//					}
+//					
+//				} while(kor1 < 0 || 100 < kor1);
+//				
+//				do {
+//					System.out.print("국어2 : ");
+//					kor2 = scan.nextInt();
+//					if(kor2 < 0 || 100 < kor2) {
+//						System.out.println("out of scope 0~100");
+//					}
+//					
+//				} while(kor2 < 0 || 100 < kor2);
+//				
+//				do {
+//					System.out.print("국어3 : ");
+//					kor3 = scan.nextInt();
+//					if(kor3 < 0 || 100 < kor3) {
+//						System.out.println("out of scope 0~100");
+//					}
+//					
+//				} while(kor3 < 0 || 100 < kor3);
+				
+				for(int i=0; i<3; i++) {
+					do {
+						System.out.printf("국어%d : ", i+1);
+						kors[i] = scan.nextInt();
+						if(kors[i] < 0 || 100 < kors[i]) {
+							System.out.println("out of scope 0~100");
+						}
+						
+					} while(kors[i] < 0 || 100 < kors[i]);
+				}
+			
+				break;
+				
+			case 2: 
+				//------------성적 출력 부분------------------------------
+//				total = kor1 + kor2 + kor3;
+				total = kors[0] + kors[1] + kors[2];
+				avg = total / 3.0f;
+				
+				System.out.println("|---------------------|");
+				System.out.println("|      Score out      |");
+				System.out.println("|---------------------|");
+				
+				for(int i=0; i<3; i++) {
+					System.out.printf("국어%d : %3d\n", i+1, kors[i]);
+				}
+						
+				System.out.printf("총점 : %3d\n", total);
+				System.out.printf("평균 : %6.2f\n", avg);
+				System.out.println("|---------------------|");
+			
+				break;
+				
+			case 3: 
+				break 종료;
+				
+			default:
+				System.out.println("1~3까지만 입력해주세요.");
+				
+			}
+		}
+		System.out.println("good bye~");
+	}
+}
+```
+
+
+
+## 36. 다차원 배열
+
+### 국어성적을 여러 개 저장하기 위한 더 큰 단위의 저장소
+
+- 학년 마다 국어성적들을 쓸려고 할 때
+
+```java
+int[][] kors = new int[3][3]
+```
+
+
+
+## 37. 다차원 배열 표현식
+
+```java
+package ex15.marray;
+
+import java.util.Scanner;
+
+public class Program2 {
+
+	public static void main(String[] args) {
+		
+//		int kor1, kor2, kor3;
+//		int [] kors = new int[3*3];
+		int[][] kors = new int[3][3];
+		int total;
+		float avg;
+		int menu;
+		
+		Scanner scan = new Scanner(System.in);
+		
+		
+//		kor1 = 0;
+//		kor2 = 0;
+//		kor3 = 0;
+		
+		for(int j=0; j<3; j++) {
+			for(int i=0; i<3; i++) {
+//				kors[j*3+i] = 0;
+				kors[j][i] = 0;
+			}
+		}
+		
+		종료:
+		while(true) {
+			//------------메인 메뉴 부분------------------------------
+			System.out.println("|---------------------|");
+			System.out.println("|       Main menu     |");
+			System.out.println("|---------------------|");
+			
+			System.out.println("\t1.성적 입력");
+			System.out.println("\t2.성적 출력");
+			System.out.println("\t3.종료");
+			System.out.print("\t>");
+			
+			menu = scan.nextInt();
+			
+			switch(menu) {
+			
+			case 1: 
+				//------------성적 입력 부분------------------------------
+				System.out.println("|---------------------|");
+				System.out.println("|       Score in      |");
+				System.out.println("|---------------------|");
+				
+//				do {
+//					System.out.print("국어1 : ");
+//					kor1 = scan.nextInt();
+//					if(kor1 < 0 || 100 < kor1) {
+//						System.out.println("out of scope 0~100");
+//					}
+//					
+//				} while(kor1 < 0 || 100 < kor1);
+//				
+//				do {
+//					System.out.print("국어2 : ");
+//					kor2 = scan.nextInt();
+//					if(kor2 < 0 || 100 < kor2) {
+//						System.out.println("out of scope 0~100");
+//					}
+//					
+//				} while(kor2 < 0 || 100 < kor2);
+//				
+//				do {
+//					System.out.print("국어3 : ");
+//					kor3 = scan.nextInt();
+//					if(kor3 < 0 || 100 < kor3) {
+//						System.out.println("out of scope 0~100");
+//					}
+//					
+//				} while(kor3 < 0 || 100 < kor3);
+				
+				for(int j=0; j<3; j++) {
+					for(int i=0; i<3; i++) {
+						do {
+							System.out.printf("%d학년 국어%d : ", j+1, i+1);
+							kors[j][i] = scan.nextInt();
+							if(kors[j][i] < 0 || 100 < kors[j][i]) {
+								System.out.println("out of scope 0~100");
+							}
+							
+						} while(kors[j][i] < 0 || 100 < kors[j][i]);
+					}
+				}
+			
+				break;
+				
+			case 2: 
+				//------------성적 출력 부분------------------------------
+				
+				System.out.println("|---------------------|");
+				System.out.println("|      Score out      |");
+				System.out.println("|---------------------|");
+				
+				for(int j=0; j<3; j++) {
+					
+					System.out.printf("-----<%d grade>--------\n", j+1);
+
+					total = 0;
+					for(int i=0; i<3; i++) {
+						total += kors[j][i];
+					}
+					avg = total / 3.0f;
+					
+					for(int i=0; i<3; i++) {
+						System.out.printf("국어%d : %3d\n", i+1, kors[j][i]);
+					}
+							
+					System.out.printf("총점 : %3d\n", total);
+					System.out.printf("평균 : %6.2f\n", avg);
+					System.out.println("---------------------");
+				}
+				break;
+				
+			case 3: 
+				break 종료;
+				
+			default:
+				System.out.println("1~3까지만 입력해주세요.");
+				
+			}
+		}
+		System.out.println("good bye~");
+	}
+}
+```
+
+
+
+## 38. 상수형 변수
+
+### 상수형 변수가 필요한 경우
+
+- 변수를 통해 문자로 의미를 파악할 수 있도록 함
+  - 방향을 설정할 때
+
+```java
+final int N = 1;
+final int E = 2;
+final int S = 3;
+final int W = 4;
+
+int direction;
+// 나중에 헷갈림
+direction = 4;
+// 이렇게 문자로 두면 나중에 봐도 바로 알 수 있음
+direction = W;
+```
+
+
+
