@@ -64,7 +64,7 @@
 
 - [JAVA 기초 학습](JAVA/JAVA_Programming.md)
 - [JAVA 구조적 프로그래밍 학습](JAVA/Structured_JAVA.md)
-- JAVA 객체지향 프로그래밍 학습
+- [JAVA 객체지향 프로그래밍 학습](JAVA/OOP_JAVA.md)
 
 
 
