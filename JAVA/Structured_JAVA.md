@@ -1200,6 +1200,8 @@ private static void printList(ExamList list) {
   - 이게 생성자
   - 이걸 통해서 클래스에서 정의된 변수 타입에 따라서 초기화가 진행되는 것 같음
   - 그래서  'new Exam()' 이걸 해주면 공간이 마련되고 초기값이 할당되니까 실체화(인스턴스화, 객체화)가 되었다고 하는 것 같음
+  - (+내용 추가) 'Exam()' 자체가 생성자는 아님
+    - new Exam 이 부분이 객체를 생성하는 부분이고, () 이게 생성자임(초기화해주는 역할)
 
 ![memory5](Structured_JAVA_img/memory5.png)
 
