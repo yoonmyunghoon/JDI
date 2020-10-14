@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e1972930-8d11-4459-84b4-b1189c95813c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/알고리즘/백준/2038_골롱 수열.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/알고리즘/백준/2038_골롱 수열.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/알고리즘/백준/2038_골롱 수열(1).py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/알고리즘/백준/2038_골롱 수열.py" beforeDir="false" afterPath="$PROJECT_DIR$/알고리즘/백준/2038_골롱 수열.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/알고리즘/백준/2038_골롱 수열.txt" beforeDir="false" afterPath="$PROJECT_DIR$/알고리즘/백준/2038_골롱 수열.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,7 +47,7 @@
       <recent name="C:\Users\LGPC\JDI\백준" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.2038_골롱 수열">
+  <component name="RunManager" selected="Python.2038_골롱 수열(1)">
     <configuration name="조합" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="JDI" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -173,7 +174,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="2" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="2038_골롱 수열(1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="JDI" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -181,11 +182,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/알고리즘/프로그래머스/월간 코드 챌린지 시즌1/10월" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/알고리즘/백준" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/알고리즘/프로그래머스/월간 코드 챌린지 시즌1/10월/2.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/알고리즘/백준/2038_골롱 수열(1).py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -322,11 +323,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.2038_골롱 수열(1)" />
         <item itemvalue="Python.2038_골롱 수열" />
         <item itemvalue="Python.4" />
         <item itemvalue="Python.2 (1)" />
         <item itemvalue="Python.3" />
-        <item itemvalue="Python.2" />
       </list>
     </recent_temporary>
   </component>
@@ -392,8 +393,8 @@
       <screen x="0" y="23" width="1440" height="806" />
     </state>
     <state x="963" y="323" key="#com.jetbrains.python.refactoring.move.PyMoveModuleMembersDialog/0.23.1440.806@0.23.1440.806" timestamp="1597727943473" />
-    <state width="939" height="166" key="GridCell.Tab.0.bottom" timestamp="1602509973161">
-      <screen x="1440" y="219" width="960" height="681" />
+    <state width="636" height="114" key="GridCell.Tab.0.bottom" timestamp="1602653043538">
+      <screen x="0" y="23" width="1440" height="811" />
     </state>
     <state width="661" height="448" key="GridCell.Tab.0.bottom/0.23.1440.804@0.23.1440.804" timestamp="1597405877574" />
     <state width="790" height="457" key="GridCell.Tab.0.bottom/0.23.1440.806@0.23.1440.806" timestamp="1598343572656" />
@@ -404,11 +405,12 @@
     <state width="631" height="193" key="GridCell.Tab.0.bottom/0.23.1440.877/-1366.110.1366.679@-1366.110.1366.679" timestamp="1598530426507" />
     <state width="327" height="401" key="GridCell.Tab.0.bottom/0.23.1440.877/-1366.110.1366.681@-1366.110.1366.681" timestamp="1599971091187" />
     <state width="1419" height="232" key="GridCell.Tab.0.bottom/0.23.1440.877/-1366.110.1366.681@0.23.1440.877" timestamp="1602164950984" />
-    <state width="939" height="166" key="GridCell.Tab.0.bottom/1440.219.960.681/0.23.1440.811@1440.219.960.681" timestamp="1602509973161" />
+    <state width="636" height="114" key="GridCell.Tab.0.bottom/1440.219.960.681/0.23.1440.811@0.23.1440.811" timestamp="1602653043538" />
+    <state width="939" height="114" key="GridCell.Tab.0.bottom/1440.219.960.681/0.23.1440.811@1440.219.960.681" timestamp="1602650261806" />
     <state width="1419" height="151" key="GridCell.Tab.0.bottom/1440.23.960.681/0.23.1440.804@0.23.1440.804" timestamp="1596520932244" />
     <state width="1398" height="211" key="GridCell.Tab.0.bottom/1440.23.960.681/0.23.1440.811@0.23.1440.811" timestamp="1601987314119" />
-    <state width="939" height="166" key="GridCell.Tab.0.center" timestamp="1602509973160">
-      <screen x="1440" y="219" width="960" height="681" />
+    <state width="636" height="114" key="GridCell.Tab.0.center" timestamp="1602653043536">
+      <screen x="0" y="23" width="1440" height="811" />
     </state>
     <state width="661" height="448" key="GridCell.Tab.0.center/0.23.1440.804@0.23.1440.804" timestamp="1597405877573" />
     <state width="790" height="457" key="GridCell.Tab.0.center/0.23.1440.806@0.23.1440.806" timestamp="1598343572654" />
@@ -419,11 +421,12 @@
     <state width="631" height="193" key="GridCell.Tab.0.center/0.23.1440.877/-1366.110.1366.679@-1366.110.1366.679" timestamp="1598530426505" />
     <state width="327" height="401" key="GridCell.Tab.0.center/0.23.1440.877/-1366.110.1366.681@-1366.110.1366.681" timestamp="1599971091185" />
     <state width="1419" height="232" key="GridCell.Tab.0.center/0.23.1440.877/-1366.110.1366.681@0.23.1440.877" timestamp="1602164950982" />
-    <state width="939" height="166" key="GridCell.Tab.0.center/1440.219.960.681/0.23.1440.811@1440.219.960.681" timestamp="1602509973160" />
+    <state width="636" height="114" key="GridCell.Tab.0.center/1440.219.960.681/0.23.1440.811@0.23.1440.811" timestamp="1602653043536" />
+    <state width="939" height="114" key="GridCell.Tab.0.center/1440.219.960.681/0.23.1440.811@1440.219.960.681" timestamp="1602650261805" />
     <state width="1419" height="151" key="GridCell.Tab.0.center/1440.23.960.681/0.23.1440.804@0.23.1440.804" timestamp="1596520932242" />
     <state width="1398" height="211" key="GridCell.Tab.0.center/1440.23.960.681/0.23.1440.811@0.23.1440.811" timestamp="1601987314118" />
-    <state width="939" height="166" key="GridCell.Tab.0.left" timestamp="1602509973159">
-      <screen x="1440" y="219" width="960" height="681" />
+    <state width="636" height="114" key="GridCell.Tab.0.left" timestamp="1602653043536">
+      <screen x="0" y="23" width="1440" height="811" />
     </state>
     <state width="661" height="448" key="GridCell.Tab.0.left/0.23.1440.804@0.23.1440.804" timestamp="1597405877573" />
     <state width="790" height="457" key="GridCell.Tab.0.left/0.23.1440.806@0.23.1440.806" timestamp="1598343572654" />
@@ -434,11 +437,12 @@
     <state width="631" height="193" key="GridCell.Tab.0.left/0.23.1440.877/-1366.110.1366.679@-1366.110.1366.679" timestamp="1598530426504" />
     <state width="327" height="401" key="GridCell.Tab.0.left/0.23.1440.877/-1366.110.1366.681@-1366.110.1366.681" timestamp="1599971091185" />
     <state width="1419" height="232" key="GridCell.Tab.0.left/0.23.1440.877/-1366.110.1366.681@0.23.1440.877" timestamp="1602164950981" />
-    <state width="939" height="166" key="GridCell.Tab.0.left/1440.219.960.681/0.23.1440.811@1440.219.960.681" timestamp="1602509973159" />
+    <state width="636" height="114" key="GridCell.Tab.0.left/1440.219.960.681/0.23.1440.811@0.23.1440.811" timestamp="1602653043536" />
+    <state width="939" height="114" key="GridCell.Tab.0.left/1440.219.960.681/0.23.1440.811@1440.219.960.681" timestamp="1602650261804" />
     <state width="1419" height="151" key="GridCell.Tab.0.left/1440.23.960.681/0.23.1440.804@0.23.1440.804" timestamp="1596520932241" />
     <state width="1398" height="211" key="GridCell.Tab.0.left/1440.23.960.681/0.23.1440.811@0.23.1440.811" timestamp="1601987314117" />
-    <state width="939" height="166" key="GridCell.Tab.0.right" timestamp="1602509973161">
-      <screen x="1440" y="219" width="960" height="681" />
+    <state width="636" height="114" key="GridCell.Tab.0.right" timestamp="1602653043537">
+      <screen x="0" y="23" width="1440" height="811" />
     </state>
     <state width="661" height="448" key="GridCell.Tab.0.right/0.23.1440.804@0.23.1440.804" timestamp="1597405877574" />
     <state width="790" height="457" key="GridCell.Tab.0.right/0.23.1440.806@0.23.1440.806" timestamp="1598343572655" />
@@ -449,7 +453,8 @@
     <state width="631" height="193" key="GridCell.Tab.0.right/0.23.1440.877/-1366.110.1366.679@-1366.110.1366.679" timestamp="1598530426506" />
     <state width="327" height="401" key="GridCell.Tab.0.right/0.23.1440.877/-1366.110.1366.681@-1366.110.1366.681" timestamp="1599971091186" />
     <state width="1419" height="232" key="GridCell.Tab.0.right/0.23.1440.877/-1366.110.1366.681@0.23.1440.877" timestamp="1602164950982" />
-    <state width="939" height="166" key="GridCell.Tab.0.right/1440.219.960.681/0.23.1440.811@1440.219.960.681" timestamp="1602509973161" />
+    <state width="636" height="114" key="GridCell.Tab.0.right/1440.219.960.681/0.23.1440.811@0.23.1440.811" timestamp="1602653043537" />
+    <state width="939" height="114" key="GridCell.Tab.0.right/1440.219.960.681/0.23.1440.811@1440.219.960.681" timestamp="1602650261805" />
     <state width="1419" height="151" key="GridCell.Tab.0.right/1440.23.960.681/0.23.1440.804@0.23.1440.804" timestamp="1596520932243" />
     <state width="1398" height="211" key="GridCell.Tab.0.right/1440.23.960.681/0.23.1440.811@0.23.1440.811" timestamp="1601987314119" />
     <state width="218" height="453" key="GridCell.Tab.1.bottom" timestamp="1602314332766">

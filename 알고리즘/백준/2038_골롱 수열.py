@@ -2,14 +2,14 @@ import sys
 sys.stdin = open("2038_골롱 수열.txt")
 
 n = int(input())
-data = [0]*(n+1)
-data[1] = 1
-k = 1
-s = 1
-e = 1
 if n == 1:
     print(1)
 else:
+    data = [0] * (n + 1)
+    data[1] = 1
+    k = 1
+    s = 1
+    e = 1
     while 1:
         k += 1
         s = e + 1
