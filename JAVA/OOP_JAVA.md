@@ -804,13 +804,520 @@ public ExamList(int size)
 
 ## 8. Getters와 Setters 그리고 이것을 써야하는 이유
 
+### 캡슐을 깨뜨리는 행위란?
+
+- ExamList에서 Exam을 직접 사용하고 있음
+  - 이렇게 되면 캡슐화가 깨지게 됨
+  - Exam에서 함수를 제공해줘야됨
+
+```java
+public class ExamList {
+  public void printList(int size) {
+      // ...
+      int kor = exam.getKor(); // exam.kor;
+      int eng = exam.getEng(); //exam.eng;
+      int math = exam.getMath(); //exam.math;
+    	// ...
+  }
+
+  public void inputList() {
+    	// ...
+      exam.setKor(kor); //exam.kor = kor;
+      exam.setEng(eng); //exam.eng = eng;
+      exam.setMath(math); //exam.math = math;
+    	// ...
+  
+  }
+}
+```
+
+```java
+package Part3.ex3.Getters와Setters;
+
+public class Exam {
+	int kor;
+	int eng;
+	int math;
+	
+	public int getKor() {
+		return kor;
+	}
+
+	public int getEng() {
+		return eng;
+	}
+
+	public int getMath() {
+		return math;
+	}
+
+	public void setKor(int kor) {
+		this.kor = kor;
+	}
+
+	public void setEng(int eng) {
+		this.eng = eng;
+	}
+
+	public void setMath(int math) {
+		this.math = math;
+	}
+}
+
+```
+
+### 캡슐을 깨는 유혹
+
+![OOP5](OOP_JAVA_img/OOP5.png)
+
+- 이렇게 해줘야 됨
+- 그런데 이렇게하는 이유가 있나? 비효율적인거 아닌가?
+
+### Getter/Setter의 용도가 무엇일까?
+
+#### 너무 비효율적인거 아닌가? 더 복잡한데.. 그냥 public으로 하면 안되나?
+
+- 속성명이 변경되는 것 때문인가? No!
+  - 속성명이 변경되는 일은 많이 없음
+- 데이터 구조가 변경되는 것 때문임
+  - 캡슐화는 데이터 구조를 사용하는 것들을 모아놓은 것
+- 데이터 구조가 변경되는 것에 따라서 종속되는 문제를 해결하려는 것이지 단순히 속성명 변경에 대한 문제를 해결하기 위한게 아님
+
+### 구조가 변경된다는 말의 의미는?
+
+- 구조화란 계층을 갖는 것, 정리를 계속해서 할 수 있음
+- 만약 작은 박스가 많아지면 큰 박스에 또 수납을 할 수도 있는 것
+
+![OOP6](OOP_JAVA_img/OOP6.png)
+
+![OOP7](OOP_JAVA_img/OOP7.png)
+
+- 속성명이나 개수가 달라진게 아니라 데이터의 구조가 달라짐, 더 깊어짐
+- 그런데도 변화를 줘야만함
+- 이때 Getters/Setters를 사용하면?
+  - 외부에서는 문제가 없음
+  - 내부에서 고쳐줌
+
+```java
+System.out.print("국어:");
+record.setKor(scan.nextInt());
+```
+
+- 결론적으론 데이터 구조가 변경되는 것에 따라서 종속되는 외부의 문제들을 없애기 위해서 사용하는 것
 
 
 
+## 9. Exam 클래스의 캡슐화 완성
+
+```java
+package Part3.ex3.Getters와Setters;
+
+public class Exam {
+	int kor;
+	int eng;
+	int math;
+	
+	public Exam() {
+		this(0, 0, 0);
+	}
+	
+	public Exam(int kor, int eng, int math) {
+		this.kor = kor;
+		this.eng = eng;
+		this.math = math;
+	}
+	public int getKor() {
+		return kor;
+	}
+	public void setKor(int kor) {
+		this.kor = kor;
+	}
+	public int getEng() {
+		return eng;
+	}
+	public void setEng(int eng) {
+		this.eng = eng;
+	}
+	public int getMath() {
+		return math;
+	}
+	public void setMath(int math) {
+		this.math = math;
+	}
+	public int total() {
+		
+		return kor+eng+math;
+	}
+	public float avg() {
+		
+		return total()/3.0f;
+	}
+	
+	
+}
+
+```
 
 
 
+## 10. UI 코드는 분리하는 것이 기본
 
+- 잘 갖춰진 캡슐을 꺠는 작업
+- 캡슐, 메소드 안에서 앞으로 변화가 일어날 부분들을 분류하는 것이 좋음
+- 분류하는 방법을 알아보자
+
+### 캡슐을 더 나눌 것인지를 선택하세요.
+
+- ExamList 안에 있는 input(), print()에서 입/출력 부분을 따로 빼내자
+
+![OOP8](OOP_JAVA_img/OOP8.png)
+
+![OOP9](OOP_JAVA_img/OOP9.png)
+
+```java
+package Part3.ex4.UI코드분리하기;
+
+import java.util.Scanner;
+
+public class ExamList {
+	private Exam[] exams;
+	private int current;
+	
+	public void printList() {
+		this.printList(this.current);
+	}
+	
+	public void printList(int size) {
+		System.out.println("|---------------------|");
+		System.out.println("|      Score out      |");
+		System.out.println("|---------------------|");
+        System.out.println();
+        
+//        int size = list.current;
+        if(size > this.current) {
+        	size = this.current;
+        }
+        
+        for(int i=0; i<size; i++) {
+	        Exam exam = this.get(i); // this.exams[i];
+	        int kor = exam.getKor(); // exam.kor;
+	        int eng = exam.getEng(); //exam.eng;
+	        int math = exam.getMath(); //exam.math;
+	        
+	        int total = exam.total(); // kor+eng+math;
+	        float avg = exam.avg(); // total/3.0f;
+	        
+	        System.out.printf("국어 : %d\n", kor);
+	        System.out.printf("영어 : %d\n", eng);
+	        System.out.printf("수학 : %d\n", math);
+	        
+	        System.out.printf("총점 : %3d\n", total);
+			System.out.printf("평균 : %6.2f\n", avg);
+			System.out.println("|---------------------|");
+        }
+		
+	}
+	
+	private Exam get(int i) {
+		
+		return this.exams[i];
+	}
+
+	public void inputList() {
+		Scanner scan = new Scanner(System.in);
+		
+		System.out.println("|---------------------|");
+		System.out.println("|       Score in      |");
+		System.out.println("|---------------------|");
+        System.out.println();
+        
+        
+        int kor, eng, math;
+        
+        do {
+        	System.out.printf("국어 : ");
+	        kor = scan.nextInt();
+        
+	        if(kor < 0 || 100 < kor)
+	        	System.out.println("out of scope 0~100");
+	        
+        }while(kor < 0 || 100 < kor);
+        
+        do {
+        	System.out.printf("영어 : ");
+        	eng = scan.nextInt();
+        
+	        if(eng < 0 || 100 < eng)
+	        	System.out.println("out of scope 0~100");
+	        
+        }while(eng < 0 || 100 < eng);
+        
+        do {
+        	System.out.printf("수학 : ");
+        	math = scan.nextInt();
+        
+	        if(math < 0 || 100 < math)
+	        	System.out.println("out of scope 0~100");
+	        
+        }while(math < 0 || 100 < math);
+        
+        
+//        Exam exam = new Exam();
+//        exam.setKor(kor); //exam.kor = kor;
+//        exam.setEng(eng); //exam.eng = eng;
+//        exam.setMath(math); //exam.math = math;
+        
+        
+        Exam exam = new Exam(kor, eng, math);
+        
+        
+//      -------------------------add----------------------------
+        add(exam);
+        
+	}
+
+	private void add(Exam exam) {
+		Exam[] exams = this.exams;
+        int size = this.current;
+        
+        if(exams.length == size) {
+        	// 1. 크기가 5개 정도 더 큰 새로운 배열을 생성하시오.
+        	Exam[] temp = new Exam[size+5];
+        	// 2. 값을 이주시키기
+        	for(int i=0; i<size; i++) {
+        		temp[i] = exams[i];
+        	}
+        	// 3. list.exams가 새로 만든 temp배열을 참조하도록 한다.
+        	this.exams = temp;
+        }
+        this.exams[this.current] = exam;
+        this.current++;
+		
+	}
+
+	public ExamList() {
+//		this.exams = new Exam[3];
+//		this.current = 0;
+		
+//		this생략가능, 식별해야할 경우엔 지우면 안됨
+		exams = new Exam[3];
+		current = 0;
+	}
+}
+
+```
+
+
+
+## 11. ExamConsole 클래스 구현하기
+
+```java
+package Part3.ex4.UI코드분리하기;
+
+public class ExamList {
+	private Exam[] exams;
+	private int current;
+	
+	public Exam get(int i) {
+		
+		return this.exams[i];
+	}
+
+	public void add(Exam exam) {
+		Exam[] exams = this.exams;
+        int size = this.current;
+        
+        if(exams.length == size) {
+        	// 1. 크기가 5개 정도 더 큰 새로운 배열을 생성하시오.
+        	Exam[] temp = new Exam[size+5];
+        	// 2. 값을 이주시키기
+        	for(int i=0; i<size; i++) {
+        		temp[i] = exams[i];
+        	}
+        	// 3. list.exams가 새로 만든 temp배열을 참조하도록 한다.
+        	this.exams = temp;
+        }
+        this.exams[this.current] = exam;
+        this.current++;
+		
+	}
+
+	public ExamList() {
+//		this.exams = new Exam[3];
+//		this.current = 0;
+		
+//		this생략가능, 식별해야할 경우엔 지우면 안됨
+		exams = new Exam[3];
+		current = 0;
+	}
+
+	
+	public int size() {
+		
+		return current;
+	}
+}
+
+```
+
+```java
+package Part3.ex4.UI코드분리하기;
+
+import java.util.Scanner;
+
+public class ExamConsole {
+	
+	private ExamList list = new ExamList();
+	
+	public void inputList() {
+		Scanner scan = new Scanner(System.in);
+		
+		System.out.println("|---------------------|");
+		System.out.println("|       Score in      |");
+		System.out.println("|---------------------|");
+        System.out.println();
+        
+        
+        int kor, eng, math;
+        
+        do {
+        	System.out.printf("국어 : ");
+	        kor = scan.nextInt();
+        
+	        if(kor < 0 || 100 < kor)
+	        	System.out.println("out of scope 0~100");
+	        
+        }while(kor < 0 || 100 < kor);
+        
+        do {
+        	System.out.printf("영어 : ");
+        	eng = scan.nextInt();
+        
+	        if(eng < 0 || 100 < eng)
+	        	System.out.println("out of scope 0~100");
+	        
+        }while(eng < 0 || 100 < eng);
+        
+        do {
+        	System.out.printf("수학 : ");
+        	math = scan.nextInt();
+        
+	        if(math < 0 || 100 < math)
+	        	System.out.println("out of scope 0~100");
+	        
+        }while(math < 0 || 100 < math);
+        
+        
+//        Exam exam = new Exam();
+//        exam.setKor(kor); //exam.kor = kor;
+//        exam.setEng(eng); //exam.eng = eng;
+//        exam.setMath(math); //exam.math = math;
+        
+        
+        Exam exam = new Exam(kor, eng, math);
+        
+        
+//      -------------------------add----------------------------
+        list.add(exam);
+        
+	}
+	
+	public void printList() {
+		printList(list.size());
+	}
+	
+	public void printList(int size) {
+		System.out.println("|---------------------|");
+		System.out.println("|      Score out      |");
+		System.out.println("|---------------------|");
+        System.out.println();
+        
+//        int size = list.current;
+        if(size > list.size()) {
+        	size = list.size();
+        }
+        
+        for(int i=0; i<size; i++) {
+	        Exam exam = list.get(i); // this.exams[i];
+	        int kor = exam.getKor(); // exam.kor;
+	        int eng = exam.getEng(); //exam.eng;
+	        int math = exam.getMath(); //exam.math;
+	        
+	        int total = exam.total(); // kor+eng+math;
+	        float avg = exam.avg(); // total/3.0f;
+	        
+	        System.out.printf("국어 : %d\n", kor);
+	        System.out.printf("영어 : %d\n", eng);
+	        System.out.printf("수학 : %d\n", math);
+	        
+	        System.out.printf("총점 : %3d\n", total);
+			System.out.printf("평균 : %6.2f\n", avg);
+			System.out.println("|---------------------|");
+        }
+		
+	}
+
+}
+
+```
+
+```java
+package Part3.ex4.UI코드분리하기;
+
+import java.util.Scanner;
+
+public class Program {
+
+	public static void main(String[] args) {
+		
+		ExamConsole list = new ExamConsole();
+		
+		int menu;
+        boolean keepLoop = true;
+        
+		while(keepLoop)
+		{
+			menu = inputMenu();
+	        
+	        switch(menu) {
+	        case 1:
+//	        	ExamList.inputList(list);
+	        	list.inputList();
+		        break;
+	        case 2:
+//	        	ExamList.printList(list);
+	        	list.printList();
+		        break;
+	        case 3:
+	        	System.out.println("Bye~~");
+	        	keepLoop = false;
+				break;
+	        default:
+	        	System.out.println("1~3까지만 입력해주세요.");
+	        }
+		}
+
+	}
+
+	static int inputMenu() {
+    	
+    	Scanner scan = new Scanner(System.in);
+    	
+    	System.out.println("|---------------------|");
+		System.out.println("|       Main menu     |");
+		System.out.println("|---------------------|");
+		System.out.println("\t1.성적 입력");
+		System.out.println("\t2.성적 출력");
+		System.out.println("\t3.종료");
+		System.out.print("\t>");
+        int menu = scan.nextInt();
+        
+        return menu;
+    }
+
+}
+
+```
 
 
 
