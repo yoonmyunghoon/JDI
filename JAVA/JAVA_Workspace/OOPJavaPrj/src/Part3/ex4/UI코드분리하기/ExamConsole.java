@@ -4,7 +4,18 @@ import java.util.Scanner;
 
 public class ExamConsole {
 	
-	private ExamList list = new ExamList();
+//	private ExamList list = new ExamList();
+	
+	// 원래는 이렇게 생성자를 통해서 객체화하는 게 정상인데,
+	// 컴파일러에서 위와 같이 적어도 이렇게 자동적으로 바꿔서 이해함 
+	// 여기서는 이해를 위해 이렇게 변경하겠음
+	// ExamConsole이 객체화되면 자동적으로 ExamList도 객체화
+	// Composition Has A 상속관계
+	private ExamList list;
+	
+	public ExamConsole() {
+		list = new ExamList();
+	}
 	
 	public void inputList() {
 		Scanner scan = new Scanner(System.in);

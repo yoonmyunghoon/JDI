@@ -1321,6 +1321,164 @@ public class Program {
 
 
 
+## 12. Has A 상속
+
+ ### 캡슐들은 서로를 사용하거나 사용되는 관계를 가지고 있다
+
+![OOP10](OOP_JAVA_img/OOP10.png)
+
+- 프로그램은 여러 개의 캡슐로 구성됨
+- 프로그램을 만드는 것은 이런 캡슐들을 어떻게 엮어낼 것인가를 의미
+- 각 캡슐들 간의 이용관계를 살펴보자
+  - 가장 루트는 Program임
+  - Program은 ExamConsole을 이용하고 있음
+  - ExanConsole은 ExamList, ExamList는 Exam을 이용하고 있음
+- 그런데 여기서 이용관계가 좀 잘못된 것이 있음
+  - Program은 main함수에서 ExamConsole를 객체회해서 input, print를 이용하고 있음
+  - ExanConsole은 ExamList를 객체화해서 input, print 안에서 add, get을 사용하고 있음
+  - ExamList는 Exam를 가지고는 있지만,  total이나 avb를 사용하지는 않음
+    - 일반적으로 List는 어떤 객체를 가지고는 있지만 사용하지는 않음
+    - 목록을 관리하는 역할을 함
+
+### 실제 캡슐들의 사용관계
+
+- 점선은 사용하고 있다는 의미
+  - ExamConsole의 input, print에서 Exam을 사용하고 있음
+- 실선은 포함관계임, 구성하고 있는가?
+  - ExamConsole은 ExamList를, ExamList는 Exam을 포함하고 있음
+  - 그런데, 실제 포함되고 있으면 사용되고 있어야되는 거 아닌가? 부품으로 가지고 있는가 먼가? 사용하기 위해서 아닌가?
+  - ExamList는 Exam를 포함하고 있지만, 사용하진 않음
+  - ExamConsole은 ExamList의 add, get을 사용하고 있지만, 기능 자체가 그냥 관리 목적이지 직접적인 사용이 아님
+  - 사용과 포함관계가 일치하지가 않음... 먼가 불편..
+
+![](OOP_JAVA_img/OOP11.png)
+
+- 일반적으로는 사용관계와 포함관계가 일치할 수 있도록 표현해줌
+  - 중간에  ExamList를 생략해서 표현해주자
+
+![OOP12](OOP_JAVA_img/OOP12.png)
+
+- 이렇게 되면 사용관계와 포함관계(구성관계)가 일치하기 때문에 사용관계(점선)를 묵시적으로 생략해줌
+
+![OOP13](OOP_JAVA_img/OOP13.png) 
+
+- ExamConsole이 Exam을 가지고 있다고 해서  Has A 관계라고 함
+  - Has A라는 말을 사용할 때, Has A 상속이라는 용어를 사용함
+  - 상속은 물려받는 것을 의미하는 데, 가지고 있음으로 인해서 기능을 사용할 수 있게 됨
+  - 즉, 한 캡슐이 다른 캡슐의 객체를 가지고 있는 상태, 부품으로 가지고 있는 상태
+- Has A에는 두가지 방식으로 표현됨
+  - Composition Has A
+    - 집합과 상관없이,  구성하는 객체가 만들어질 때, 구성되는 객체들도 같이 만들어지는 것
+    - 구성하는 객체가 만들어질 때, 구성되는 객체들도 필요한만큼 한번에 다 가지고 있는 것
+  - Aggregation Has A
+    - 집합적으로 가진다, 구성하는 객체가 만들어지더라고, 구성되는 객체들은 안만들어졌을 수도 있는 것
+    - 구성하는 객체가 만들어지더라고, 구성되는 객체들은 안만들어졌을 수도 있고, 필요에 의해 그때그때 만들어져 채워지는 것
+
+- 함수 내에서 일시적으로 객체를 사용하는 경우도 존재
+  - scanner 같은 것
+  - 이런 경우는 점선으로 표현,  dependency라고 함
+  - Program의 main함수에서  ExamConsole를 사용하기 때문에 dependency라고 할 수 있음
+  - Has A는 사용도하고 구성품으로써 영구적인 것을 의미
+    - 처음에 객체를 만들고 클래스 내에서 계속 사용되는지(Has A), 아니면 함수 내에서 일시적으로 객체화되어 사용되는지(dependency)의 차이인듯
+
+![OOP14](OOP_JAVA_img/OOP14.png)
+
+### 성적 출력 프로그램에서 관계들을 코드로 살펴보자
+
+- Program과 ExamConsole의 관계 : dependency
+
+```java
+package Part3.ex4.UI코드분리하기;
+
+import java.util.Scanner;
+
+public class Program {
+	
+  // 멤버로 가지고 있는 것이 없음
+  
+	public static void main(String[] args) {
+    // main함수안에서 객체화되어 일시적으로 사용됨, dependency관계
+		ExamConsole list = new ExamConsole();
+  }
+	static int inputMenu() {
+  }
+
+}
+
+```
+
+- ExamConsole와 ExamList의 관계 : Composition Has A 상속관계
+
+```java
+package Part3.ex4.UI코드분리하기;
+
+import java.util.Scanner;
+
+public class ExamConsole {
+	
+//	private ExamList list = new ExamList();
+	
+	// 원래는 이렇게 생성자를 통해서 객체화하는 게 정상인데,
+	// 컴파일러에서 위와 같이 적어도 이렇게 자동적으로 바꿔서 이해함 
+	// 여기서는 이해를 위해 이렇게 변경하겠음
+	// ExamConsole이 객체화되면 자동적으로 ExamList도 객체화
+	// Composition Has A 상속관계
+  
+  // 멤버로 ExamList를 가지고 있음, Has A 상속 관계
+	private ExamList list;
+	
+  // 생성자를 통해 동시에 ExamList를 객체화함, Composition Has A 상속관계
+	public ExamConsole() {
+		list = new ExamList();
+	}
+	
+	public void inputList() {
+	}
+	
+	public void printList() {
+	}
+	
+	public void printList(int size) {
+	}
+
+}
+
+```
+
+- ExamList와 Exam의 관계 : Aggregation Has A 상속 관계
+
+```java
+package Part3.ex4.UI코드분리하기;
+
+public class ExamList {
+  
+  // 멤버로 exams를, exam을 구성품으로 가지고 있음
+	private Exam[] exams;
+	private int current;
+	
+	public Exam get(int i) {
+	}
+
+	public void add(Exam exam) {
+	}
+	
+	
+	public ExamList() {
+    // 생성자에서 exam 객체가 아닌 참조변수 exams를 만들어줌
+    // Aggregation Has A 상속 관계 
+		exams = new Exam[3];
+		current = 0;
+	}
+
+	
+	public int size() {
+	}
+}
+
+```
+
+
+
 
 
 ## 참고

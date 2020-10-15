@@ -27,7 +27,8 @@ public class ExamList {
         this.current++;
 		
 	}
-
+	
+	// Aggregation Has A 상속 관계 
 	public ExamList() {
 //		this.exams = new Exam[3];
 //		this.current = 0;
