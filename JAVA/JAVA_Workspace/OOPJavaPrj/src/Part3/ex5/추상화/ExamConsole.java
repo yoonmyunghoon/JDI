@@ -2,7 +2,7 @@ package Part3.ex5.추상화;
 
 import java.util.Scanner;
 
-public class ExamConsole {
+public abstract class ExamConsole {
 	
 //	private ExamList list = new ExamList();
 	
@@ -17,7 +17,7 @@ public class ExamConsole {
 		list = new ExamList();
 	}
 	
-	public void inputList() {
+	public void input() {
 		Scanner scan = new Scanner(System.in);
 		
 		System.out.println("|---------------------|");
@@ -62,7 +62,12 @@ public class ExamConsole {
 //        exam.setMath(math); //exam.math = math;
         
         
-        Exam exam = new Exam(kor, eng, math);
+//        Exam exam = new Exam(kor, eng, math);
+        Exam exam = makeExam();
+        exam.setKor(kor);
+        exam.setEng(eng);
+        exam.setMath(math);
+        onInput(exam);
         
         
 //      -------------------------add----------------------------
@@ -70,11 +75,17 @@ public class ExamConsole {
         
 	}
 	
-	public void printList() {
-		printList(list.size());
+	protected abstract void onInput(Exam exam);
+	
+	protected abstract void onPrint(Exam exam);
+
+	protected abstract Exam makeExam();
+
+	public void print() {
+		print(list.size());
 	}
 	
-	public void printList(int size) {
+	public void print(int size) {
 		System.out.println("|---------------------|");
 		System.out.println("|      Score out      |");
 		System.out.println("|---------------------|");
@@ -98,11 +109,14 @@ public class ExamConsole {
 	        System.out.printf("영어 : %d\n", eng);
 	        System.out.printf("수학 : %d\n", math);
 	        
+	        onPrint(exam);
+	        
 	        System.out.printf("총점 : %3d\n", total);
 			System.out.printf("평균 : %6.2f\n", avg);
 			System.out.println("|---------------------|");
         }
 		
 	}
+
 
 }
