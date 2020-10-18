@@ -1,6 +1,6 @@
 # Spring Framework and Boot
 
-![Spring](images/Spring.png)
+![Spring](Spring_images/Spring.png)
 
 ## 1. 스프링 소개
 
@@ -33,7 +33,7 @@
 
 ### 웹을 위한 스프링 프레임워크 모듈
 
-![Spring framework module](images/Spring_framework_module.png)
+![Spring framework module](Spring_images/Spring_framework_module.png)
 
 - 아직까지 선택할 수는 있음
   - Java SE 위에 EE
