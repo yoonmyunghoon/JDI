@@ -427,13 +427,371 @@ public class B {
 
 ## 32. 개체 결합을 위한 인터페이스 구현하기
 
+### 객체간이 결합형으로 만들어질 수 밖에 없는 상황
+
+#### 나중에 B를 주입할 수 있게 하기
+
+![OOP65](OOP_JAVA_img/OOP65.png)
+
+#### 나중에 C로 대체도 가능하게 하기
+
+![OOP66](OOP_JAVA_img/OOP66.png)
+
+### 인터페이스라면
+
+- 함수의 구현부가 있으면 안됨
+- 캡슐이 아니기 때문에 보호나 서비스의 의미인 private, public등은 의미가 없음
+- 데이터를 사용해서 서비스를 하는 것이 아니라 그냥 서비스의 목록이기 때문에 속성을 정의하는 것도 안됨
+
+### 결합력을 낮추도록 리팩토링
+
+- Program
+
+```java
+package Part3.ex6.인터페이스;
+
+public class Program {
+
+	public static void main(String[] args) {
+		A a = new A();
+		B b = new B();
+		a.setX(b);
+		a.print();
+		
+
+	}
+
+}
+
+```
+
+- X
+
+```java
+package Part3.ex6.인터페이스;
+
+public interface X {
+	int total();
+}
+
+```
+
+- A
+
+```java
+package Part3.ex6.인터페이스;
+
+public class A {
+	private X x;
+	
+	public void setX(X x) {
+		this.x = x;
+	}
+
+	public A() {
+	}
+
+	public void print() {
+		int total = x.total();
+		
+		System.out.printf("total is %d\n", total);
+		
+	}
+	
+	
+
+}
+
+```
+
+- B
+
+```java
+package Part3.ex6.인터페이스;
+
+public class B implements X{
+
+	public int total() {
+		
+		return 30;
+	}
+	
+}
+
+```
 
 
 
+## 33. 새로운 객체로 바꾸기(문자열을 읽어서 객체로 만들기)
+
+- 소스코드를 변경하지 않고 객체를 바꿔서 끼울 수 있는 방법
+
+### 기존 부품을 새로운 부품으로 변경하는 방법(외부 파일 사용, 여기서는 간단히 txt로 해봄)
+
+- setting.txt
+
+```txt
+Part3.ex6.인터페이스.C
+```
+
+- Program
+
+```java
+package Part3.ex6.인터페이스;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Scanner;
+
+public class Program {
+
+	public static void main(String[] args) throws IOException, InstantiationException, IllegalAccessException, ClassNotFoundException {
+		FileInputStream fis = new FileInputStream("src/Part3/ex6/인터페이스/setting.txt");
+		Scanner scan = new Scanner(fis);
+		String className = scan.nextLine();
+		scan.close();
+		fis.close();
+		
+    // 여기서 이름으로 클래스 정보를 가져옴
+		Class clazz = Class.forName(className);
+		A a = new A();
+    // 가져온 클래스 정보를 통해 객체화
+		X x = (X) clazz.newInstance();
+		a.setX(x);
+		a.print();
+	}
+}
+
+```
+
+- C
+
+```java
+package Part3.ex6.인터페이스;
+
+public class C implements X{
+
+	@Override
+	public int total() {
+		
+		return 50;
+	}
+}
+```
 
 
 
+## 34. 일부 기능을 분리하는 인터페이스
 
+- 개체를 다른 것으로 바꿔끼우기 위해서 인터페이스를 사용했음
+- 여기서 개체가 같은 계열의 족보라면 인터페이스를 안쓰고 추상 클래스를 사용할 수도 있음
+- 만약 족보가 다르고 완전히 다른 계열이라면 인터페이스를 사용해야됨
+
+### 개체 단위가 아니라 일부 기능 단위로 바꿔끼우기를 원한다면?
+
+#### GamePrj 리팩토링
+
+- 사각형이 그려진 윈도우를 띄우고나서 종료가 불가능함, 콘솔에서 강제종료해야됨
+- 끄는 작업에서 사용자에게 커스터마이징하도록 맡겨버림
+- Program
+
+```java
+import java.awt.Frame;
+import java.awt.event.WindowListener;
+
+public class Program {
+
+	public static void main(String[] args) {
+		GameFrame frame = new GameFrame();
+    // WindowListener 인터페이스 사용
+		WindowListener listener = new GameWindowListener();
+    // 사용할 부분(windowClosing)만 커스터마이징한 객체를 추가
+		frame.addWindowListener(listener);
+		frame.setVisible(true);
+	}
+}
+```
+
+- GameWindowListener
+
+```java
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+
+import javax.swing.JOptionPane;
+
+public class GameWindowListener implements WindowListener{
+
+	@Override
+	public void windowOpened(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+  // WindowListener를 인터페이스 상속한 후, 사용할 부분만 따로 오버라이딩해줌
+	@Override
+	public void windowClosing(WindowEvent e) {
+		JOptionPane.showMessageDialog(null, "Good bye!!");
+		System.exit(0);		
+	}
+
+	@Override
+	public void windowClosed(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowIconified(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowDeiconified(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowActivated(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowDeactivated(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+}
+
+```
+
+
+
+## 35. 인터페이스를 구현하는 위치는?
+
+### 인터페이스를 구현하는 클래스의 위치 4군데 - 1. 다른 클래스
+
+- 가장 일반적인 형태, 새로운 클래스를 만들어서 구현
+- 하나의 부품으로써의 역할을 하기 때문에 자연스러움
+
+![OOP67](OOP_JAVA_img/OOP67.png)
+
+- 그렇다면 Game 예제에서 만들었던 GameWindowListener는 어떤가?
+  - 이 경우는 하나의 부품으로써 의미를 가지기 보다는 WindowListener라는 인터페이스를 구현하는 목적이 강함
+  - 커스터마이징할 수 있도록 제공되는 형태가 아니었다면 GameFrame 안에서 다 구현했어야할 부분들임
+  - GameWindowListener라는 클래스를 만드는게 좋은게 아닌거 같음
+    - 전체 프로그램 관점에서 클래스는 부품을 의미하는데 부품의 수가 늘어나는 것은 프로그램의 복잡도가 증가하는 것
+  - 더 좋은 방법은 GameFrame 안에다가 구현하는 것
+
+### 인터페이스를 구현하는 클래스의 위치 4군데 - 2. 존재하는 클래스에서 사용할 기능부분만 구현
+
+- 필요한 일부기능을 구현하는 것만을 위해 GameWindowListener라는 클래스를 따로 생성하는 것은 비효율적임
+- GameFram에서 인터페이스를 상속하고 필요한 기능만 구현하자
+
+- Program
+
+```java
+import java.awt.Frame;
+import java.awt.event.WindowListener;
+
+public class Program {
+
+	public static void main(String[] args) {
+		GameFrame frame = new GameFrame();
+    
+//		필요없게 되버림
+//		WindowListener listener = new GameWindowListener();
+//		frame.addWindowListener(listener);
+//		frame.setVisible(true);
+		
+	}
+
+}
+
+```
+
+- GameFram
+
+```java
+import java.awt.Frame;
+import java.awt.Graphics;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+
+import javax.swing.JOptionPane;
+
+public class GameFrame extends Frame implements WindowListener{
+	
+	public GameFrame() {
+//		생성되는 순간 인터페이스가 내부적으로 존재하게 됨, 객체화하는 작업이 필요없음
+//		WindowListener listener = new GameWindowListener();
+    
+    // this 생략해주자
+    // this.addWindowListener(this);
+		// this.setVisible(true);
+    
+    // 추가할 WindowListener가 WindowListener를 인터페이스 상속한 자기 자신임
+		addWindowListener(this);
+		setVisible(true);
+	}
+	
+	@Override
+	public void paint(Graphics g) {
+		super.paint(g);
+		
+		g.drawRect(100, 100, 200, 200);
+	}
+
+	@Override
+	public void windowOpened(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowClosing(WindowEvent e) {
+		JOptionPane.showMessageDialog(this, "Good bye!!");
+		System.exit(0);	
+		
+	}
+
+	@Override
+	public void windowClosed(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowIconified(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowDeiconified(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowActivated(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowDeactivated(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+}
+
+```
 
 
 

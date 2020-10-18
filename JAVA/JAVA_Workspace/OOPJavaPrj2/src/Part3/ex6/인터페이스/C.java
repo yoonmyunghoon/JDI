@@ -1,10 +1,11 @@
 package Part3.ex6.인터페이스;
 
-public class B implements X{
+public class C implements X{
 
+	@Override
 	public int total() {
 		
-		return 30;
+		return 50;
 	}
-	
+
 }
