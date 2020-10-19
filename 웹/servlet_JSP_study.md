@@ -9,11 +9,11 @@
   - 학습 순서
     - 자바(학습 완료) > HTML(프로젝트 경험), CSS(프로젝트 경험) > JDBC(프로젝트 경험, RDB, ORM 등) > 서블릿&JSP > 스프링 > 리눅스, 메이븐, Git(프로젝트 경험)
 
-![1](서블릿_JSP_images/1.png)
+![1](servlet_JSP_images/1.png)
 
 ### 학습 목표
 
-![2](서블릿_JSP_images/2.png)
+![2](servlet_JSP_images/2.png)
 
 - 여기서는 서블릿, JSP, JSP MVC까지 학습
 - 이어서 Spring 학습
@@ -26,7 +26,7 @@
 
 - 프로그램을 컴퓨터에서 바로 사용
 
-![3](서블릿_JSP_images/3.png)
+![3](servlet_JSP_images/3.png)
 
 ### CS(클라이언트 / 서버) 프로그램
 
@@ -36,13 +36,13 @@
 - 그런데 서버와 클라이언트를 하나의 언어로 개발했고, 각 지점에서 동기화하기 위해서는 모든 클라이언트와 서버가 같은 버전을 사용해야했기 때문에, 설치와 재설치가 빈번해졌음(자동으로 설치와 재설치가 되던 것이 아님)
 - 또, 소켓을 이용해서 데이터를 전송하는 것이 기본이었는데 직접 데이터를 포맷팅하고 유효성 검사하고 등등 부담스러움
 
-![4](서블릿_JSP_images/4.png)
+![4](servlet_JSP_images/4.png)
 
 - 이러한 불편함을 해결하기 위해 여러가지 방법들이 고안됨
   - 소켓, RPC, ... 웹 등
   - 결국에는 웹을 사용하게 됨
 
-![5](서블릿_JSP_images/5.png)
+![5](servlet_JSP_images/5.png)
 
 ### 데이터가 아닌 문서를 전달하는 웹을 사용하면?
 
@@ -62,7 +62,7 @@
   - 페이지를 요청하던 것에서 다시 예전처럼 데이터를 전달하는 방식으로 바뀜
   - 서버쪽에서 데이터를 보내주면 브라우저에서 돌아가는 자바스크립트로 된 클라이언트 프로그램을 만들게 됨
 
-![6](서블릿_JSP_images/6.png)
+![6](servlet_JSP_images/6.png)
 
 
 
@@ -87,7 +87,7 @@
   - 이를 실행시킬 수 있는 환경
     -  웹 서버 + WAS
 
-![7](서블릿_JSP_images/7.png)
+![7](servlet_JSP_images/7.png)
 
 ### 왜 웹 서버 응용 프로그램을 Servlet이라 명칭할까?
 
@@ -95,7 +95,7 @@
 - 그런데 이런 Server App은 사용자의 요청에 따라서 그때 그때 파편화된 것이 실행되고 전달되고나면 프로그램이 끝나버림
 - 그래서 이렇게 조각나있는 서버 어플리케이션을 명칭화한게 아닐까?
 
-![8](서블릿_JSP_images/8.png)
+![8](servlet_JSP_images/8.png)
 
 - 서블릿 단위로 만들기 위한 환경, 서블릿이라는 것을 만들기 위한 환경을 구축해보자
 
@@ -108,7 +108,7 @@
 1. http://tomcat.apache.org/
 2. 원하는 버전을 찾아서 다운로드받는다
 
-![9](서블릿_JSP_images/9.png)
+![9](servlet_JSP_images/9.png)
 
 3. 다운로드받고 압축을 해제해준다
 4. 터미널을 통해 다음과 같은 과정을 실행한다
@@ -139,7 +139,7 @@ sudo /Library/Tomcat/bin/shutdown.sh
 
 5. 실행 확인
 
-![10](서블릿_JSP_images/10.png)
+![10](servlet_JSP_images/10.png)
 
 
 
@@ -177,7 +177,7 @@ sudo /Library/Tomcat/bin/shutdown.sh
   - 물리적으로는 별개의 사이트이지만, 하나의 루트에서 나오는 것처럼 느껴지도록 만드는 것
   - 이런 것을 Context 사이트라고 함
 
-![11](서블릿_JSP_images/11.png)
+![11](servlet_JSP_images/11.png)
 
 - context 사이트를 추가하기 위해서는 conf > server.xml을 수정해줘야됨
   - 수정 후, 서버 재시작
@@ -195,13 +195,13 @@ sudo /Library/Tomcat/bin/shutdown.sh
 
 ```
 
-![12](서블릿_JSP_images/12.png)
+![12](servlet_JSP_images/12.png)
 
 - 결과
 
-![13](서블릿_JSP_images/13.png)
+![13](servlet_JSP_images/13.png)
 
-![14](서블릿_JSP_images/14.png)
+![14](servlet_JSP_images/14.png)
 
 - 그런데 톰캣 버전이 올라가면서 이렇게 server.xml을 수정하는 방식은 지양하게 됨
   - 서버를 재시작해야하기(껐다가 다시 켜야하기) 때문에 서비스에 치명적일 수 있음
@@ -232,7 +232,7 @@ sudo /Library/Tomcat/bin/shutdown.sh
 - 자바에서는 main함수를 썼지만, 여기서는 service함수를 main함수라고 생각하고, 기능단위로 나눠서 클래스명은 알아서 만들면 됨
 - 이렇게 만들어진 클래스를 'OO서블릿'이라고 함
 
-![15](서블릿_JSP_images/15.png)
+![15](servlet_JSP_images/15.png)
 
 - 이제 이 코드를 컴파일하고 사용자가 요청하면 실행될 수 있도록 만들어보자
 - 일단 이클립스를 사용하지않고 그냥 메모장에다가 만들어보자
@@ -272,7 +272,7 @@ public class Nana extends HttpServlet {
     - 이 곳에 있는 파일들은 특수한 의미로써 서버쪽에서 사용할 수 있음
     - 그래서 클래스파일들을 여기에 비공개로 두고 서버쪽에서 특별한 방식으로 사용해야 됨
 
-![16](서블릿_JSP_images/16.png)
+![16](servlet_JSP_images/16.png)
 
 - 그러면 사용자가 이걸 어떻게 요청하나?
 
@@ -282,13 +282,13 @@ public class Nana extends HttpServlet {
 - 톰캣 왈, "내가 실행은 해줄테니까 멀 원하는지 말해봐라"
   - URL과 매핑된 Servlet 코드를 찾아서 실행
 
-![17](서블릿_JSP_images/17.png)
+![17](servlet_JSP_images/17.png)
 
 ### 서블릿 코드를 URL과 매핑하기
 
 - web.xml에 다음과 같이 추가
 
-![18](서블릿_JSP_images/18.png)
+![18](servlet_JSP_images/18.png)
 
 ```xml
   <servlet>
@@ -329,7 +329,7 @@ public class Nana extends HttpServlet {
 - 기존에는 콘솔에 입출력을 했다면
 - 이제는 웹에 입출력을 해야함
 
-![19](서블릿_JSP_images/19.png)
+![19](servlet_JSP_images/19.png)
 
 ### 서블릿 코드 작성하기 : response를 이용한 출력방법
 
@@ -357,7 +357,7 @@ public class Nana extends HttpServlet {
 
 - 다시 컴파일하고 classes안에 넣어주고 톰캣을 다시 재시작하자
 
-![20](서블릿_JSP_images/20.png)
+![20](servlet_JSP_images/20.png)
 
 - 코드를 한번더 수정하자
   - 앞으로는 다국어를 지원하는 PrintWriter를 사용하자
