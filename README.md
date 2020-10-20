@@ -29,8 +29,15 @@
 - 계산기 실습
   - HTML, CSS, JavaScript 간단 실습
   - 정적 웹
-- [서블릿/JSP](웹/servlet_JSP_study.md)
-- [Spring](웹/Spring_study.md)
+- JSP_Basic_BBS 프로젝트
+  - JSP, bootstrap, mysql 사용한 간단 게시판
+  - 동적 웹
+- JSP
+  - Servlet_JSP 학습 과정에서의 실습 내용
+- Servlet_JSP
+  - [학습1](웹/servlet_JSP_1.md)
+  - [학습2](웹/servlet_JSP_2.md)
+- [Spring](웹/Spring.md)
 
 
 

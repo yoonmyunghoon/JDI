@@ -383,6 +383,441 @@ public class Nana extends HttpServlet {
 
 ## 10. 웹 개발을 위한 이클립스 IDE 준비하기
 
+- 이전까지 어떤 부분을 개발한다고하면
+  - 코드작성 > 컴파일 > 파일 이동 > 서버 재시작 > 실행
+  - 이렇게 번거로운 작업을 거쳐야했음
+  - 이런 작업들을 하나로 통합하여 쉽게 개발할 수 있게 도와주는 도구들이 있음
+  - 일반적으로 자바로 웹 개발을 하면 이클립스 엔터프라이즈 버전을 사용함
+
+### 프로젝트 관리 + 코드 편집 도구 : 코드 수정의 편리함
+
+- 코두 수정 > 컴파일 > 배포 > 톰캣 서버 재시작 > 브라우저로 요청
+- 이클립스로 한번에 해결
+- 이클립스 엔터프라이즈 버전 설치 > 동적 웹 프로젝트 생성 > tomcat 9 연결
+
+
+
+## 11. 이클립스를 이용한 서블릿 프로그래밍
+
+### html 파일 만들어 보기
+
+- 홈디렉토리(tomcat의 ROOT)가 어디냐?
+  - WebContent가 ROOT역할을 함
+  - WebContent에 index.html 생성
+  - 서버 재시작하고
+  - http://localhost:8080/JSPPrj/index.html 들어가서 확인가능
+- 그런데 JSPPrj라는 Context가 있는 것은 좋지 않음
+  - 설정을 통해서 properties > Web Project Settings > Context root
+  - JSPprj 를 / 로 변경
+  - 서버 재시작하고
+  - http://localhost:8080/index.html 에서 확인가능
+
+### 이클립스에서 Nana 서블릿 작성하기
+
+- 자바에서 클래스 만들었던 것과 똑같음
+- 패키지를 하나만들고 Nana.java 생성
+
+![21](servlet_JSP_images/21.png)
+
+```java
+package com.reynold.web;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public class Nana extends HttpServlet {
+	@Override
+	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		PrintWriter out = resp.getWriter();
+		out.println("Hello!!");
+	}
+}
+
+```
+
+- 서블릿을 실행하기 위해서는 매핑이 필요함
+- web.xml을 수정해줄려고 했는데 WEB-INF 안에 없음
+- 저번에 tomcat에서 수정했던 것 복사해서 가져오자
+- 패키지명만 추가해주자
+
+```xml
+	<servlet>
+     <servlet-name>na</servlet-name>
+     <servlet-class>com.reynold.web.Nana</servlet-class>
+  </servlet>
+ 
+  <servlet-mapping>
+     <servlet-name>na</servlet-name>
+     <url-pattern>/hello</url-pattern>
+  </servlet-mapping>
+```
+
+- 성공
+
+![22](servlet_JSP_images/22.png)
+
+
+
+## 12. 어노테이션(Annotation)을 이용한 URL 매핑
+
+### Annotation을 이용한 URL 매핑
+
+- 어노테이션을 사용하면 web.xml에서 매핑을 해줄 필요가 없음
+- WebServlet("/hello")
+
+```java
+package com.reynold.web;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/hello")
+public class Nana extends HttpServlet {
+	@Override
+	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		PrintWriter out = resp.getWriter();
+		out.println("Hello!!!");
+	}
+}
+
+```
+
+- 서블릿 2.X 버전에서는 사용할 수 있는 매핑 정보가 web.xml 밖에 없었음
+- 서블릿 3.0 이상부터 어노테이션 방법도 사용할 수 있게 됨
+  - 그런데 이걸 할려면 web.xml의 metadata-complete를 false로 바꿔야됨
+  - true는 매핑관련 설정을 전부 web.xml에서 했다는 의미이기 때문에 어노테이션이 적용되지 않음
+
+![23](servlet_JSP_images/23.png)
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+                      http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+  version="4.0"
+  metadata-complete="false">
+
+  <!-- 주석 처리 -->
+  <!-- <servlet>
+     <servlet-name>na</servlet-name>
+     <servlet-class>com.reynold.web.Nana</servlet-class>
+  </servlet>
+ 
+  <servlet-mapping>
+     <servlet-name>na</servlet-name>
+     <url-pattern>/hello</url-pattern>
+  </servlet-mapping> -->
+
+  <display-name>Welcome to Tomcat</display-name>
+  <description>
+     Welcome to Tomcat
+  </description>
+
+
+</web-app>
+
+```
+
+```java
+package com.reynold.web;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/hi")
+public class Nana extends HttpServlet {
+	@Override
+	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		PrintWriter out = resp.getWriter();
+		out.println("Hello!!!!!!");
+	}
+}
+
+```
+
+- 두가지 방법 중에 어떤 것이 더 좋은 방법인가?
+  - 어노테이션이 더 좋음
+    - 코드가 더 깔끔하기도 하고
+    - 기업형 프로그램을 만드는 것처럼 여러명에서 프로젝트를 하기 위해서는 각 맡은 부분을 따로 만들 수 있는 것이 좋음
+    - 전부 web.xml 파일을 동시에 건드리는 건 안좋음
+
+
+
+## 13. 서블릿 출력 형식을 지정해야 하는 이유
+
+### 제어구조를 이용한 출력
+
+- Nana.java
+
+```java
+package com.reynold.web;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/hi")
+public class Nana extends HttpServlet {
+	@Override
+	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		PrintWriter out = resp.getWriter();
+		
+		for(int i=0; i<100; i++) {
+			out.println((i+1) + "Line : Hello!!!!!!");
+		}
+		
+	}
+}
+
+```
+
+- 각 브라우저마다 출력되는 형태가 다름
+
+  - 크롬같은 경우, 내려쓰기가 되는데 그 이유가 넘겨진 파일의 형식을 txt로 인식했기 때문에 받은 그대로 보여준 것
+
+  - Edge의 경우에는 그냥 쭉 이어져서 나오는데 이게 사실 더 정상임
+
+    - 웹 문서(html)로 인식하기 때문에 태그를 통한 내려쓰기가 없어서 적용이 안됨
+
+  - ```java
+    for(int i=0; i<100; i++) {
+    			out.println((i+1) + "Line : Hello!!!!!!<br >");
+    		}
+    ```
+
+  - 이렇게 해줘야됨
+
+- 결국 브라우저에 컨텐츠 형식을 알려주지 않은 경우에는 각 브라우저에서 자의적으로 해석하게 됨
+
+- 클라이언트에게 어떤 내용을 보낼 때 어떤 형식의 문서인지 알려줘야됨
+
+- 그렇지 않으면, Edge나 인터넷익스프롤러는 html로 해석, 크롬은 text로 해석
+
+![24](servlet_JSP_images/24.png)
+
+
+
+## 14. 한글과 콘텐츠 형식 출력하기
+
+### 한글 출력하기
+
+- Nana.java
+
+```java
+package com.reynold.web;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/hi")
+public class Nana extends HttpServlet {
+	@Override
+	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		PrintWriter out = resp.getWriter();
+		
+		for(int i=0; i<100; i++) {
+			out.println((i+1) + "Line : 안녕 !!!!!!<br >");
+		}
+		
+	}
+}
+
+```
+
+- 한글이 깨져서  ?로 나옴
+
+### 한글이 꺠지는 이유 두 가지
+
+#### 서버에서 한글을 지원하지 않는 문자코드로 인코딩한 경우
+
+- ISO-8859-1 이라는 방식으로 인코딩해서 보낼 경우, 문자가 1바이트씩 보내지는데 이렇게 되면 ?가 찍힘
+- 한글로 나오게 할려면 2바이트씩 보내야됨
+
+#### 서버에서는  UTF-8로 인코딩해서 보냈지만 브라우저가 다른 코드로 잘못 해석한 경우
+
+- UTF-8은 2바이트씩 보내기 때문에 한글로 읽을 수 있도록 보내지만 브라우저에서 다른 인코딩방식으로 해석할 경우에는 결국 깨지게 됨
+
+![25](servlet_JSP_images/25.png)
+
+- UTF-8로 인코딩해서 보내기
+
+```java
+package com.reynold.web;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/hi")
+public class Nana extends HttpServlet {
+	@Override
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+    // 인코딩 변경해주기
+		response.setCharacterEncoding("UTF-8");
+		
+		PrintWriter out = response.getWriter();
+		
+		for(int i=0; i<100; i++) {
+			out.println((i+1) + "Line : 안녕 !!!!!!<br >");
+		}
+		
+	}
+}
+
+```
+
+![26](servlet_JSP_images/26.png)
+
+- 클라이언트에게 어떻게 해석해야할지도 알려줌
+
+```java
+package com.reynold.web;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/hi")
+public class Nana extends HttpServlet {
+	@Override
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		response.setCharacterEncoding("UTF-8");
+    // 컨텐츠 타입이 html이고 UTF-8로 해석하도록 해주는 코드
+		response.setContentType("text/html; charset=UTF-8");
+		
+		PrintWriter out = response.getWriter();
+		
+		for(int i=0; i<100; i++) {
+			out.println((i+1) + "Line : 안녕 !!!!!!<br >");
+		}
+		
+	}
+}
+
+```
+
+
+
+## 15. GET 요청과 쿼리스트링
+
+### 사용자 입력 다루기
+
+- 사용자가 입력은 무언가를 요청하는 과정에서 발생하는 것
+- 입력과 요청은 하나의 단위로 보기도 함
+- 요청할 때 전달하는 값을 어떻게 받을 것인가?
+- 사용자 요청의 가장 기본은 GET 요청
+
+### GET 요청
+
+#### 무엇을 달라고 하는 요청에는 옵션이 있을 수 있다
+
+- 이런 옵션을 쿼리스트링이라고 함
+  - GET http://localhost/hello
+  - GET http://localhost/hello?cnt=3
+  - 이렇게 클라이언트가 옵션을 넣어서 요청하면 서버쪽에서는 단순히 정적인 문서를 응답해주는 것이 아니라 옵션에 맞는 문서를 만들어줘야함
+
+![27](servlet_JSP_images/27.png)
+
+### 쿼리 스트링 값을 이용한 반복문 작성
+
+- Nana.java
+
+```java
+package com.reynold.web;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/hi")
+public class Nana extends HttpServlet {
+	@Override
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+		
+		PrintWriter out = response.getWriter();
+		
+    // cnt로 넣어준 값을 읽는데 이때 무조건 문자열로 전달이 됨, 문자열을 integer로 변환해서 사용
+		int cnt = Integer.parseInt(request.getParameter("cnt"));
+		
+		for(int i=0; i<cnt; i++) {
+			out.println((i+1) + "안녕 Servlet<br />");
+		}
+		
+	}
+}
+
+```
+
 
 
 
