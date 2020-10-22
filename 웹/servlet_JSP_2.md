@@ -402,6 +402,418 @@ public class NoticeReg extends HttpServlet {
 
 ## 21. 학습과제(사용자 입력을 통한 계산 요청)
 
+### 계산기 웹 프로그램 만들어보기
+
+![37](servlet_JSP_images/37.png)
+
+- add.html
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>calculator_ADD</title>
+</head>
+<body>
+	<div>
+		<form action="add" method="post">
+			<div>
+				<label>x :</label>
+				<input type="text" name="x" >
+			</div>
+			<div>
+				<label>y :</label>
+				<input type="text" name="y" >
+			</div>
+			<div>
+				<input type="submit" value="ADD">
+			</div>
+		</form>
+	</div>
+</body>
+</html>
+```
+
+- CalculatorADD.java
+
+```java
+package com.reynold.web;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/add")
+public class CalculatorADD extends HttpServlet {
+	@Override
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+		
+		PrintWriter out = response.getWriter();
+		
+		String x = request.getParameter("x");
+		String y = request.getParameter("y");
+		
+		int num_x = Integer.parseInt(x);
+		int num_y = Integer.parseInt(y);
+		int result = num_x + num_y;
+		
+		out.println(result);
+	}
+}
+```
+
+
+
+## 22. 과제 풀이(사용자 입력을 통한 계산 요청)
+
+### 사용자로부터 계산을 위한 값을 입력 받아서 계산을 요청한다.
+
+- Add.java
+
+```java
+package com.reynold.web;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/add")
+public class Add extends HttpServlet {
+
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charser=UTF-8");
+		
+		String x_ = request.getParameter("x");
+		String y_ = request.getParameter("y");
+		
+		int x = 0;
+		int y = 0;
+		
+		if(!x_.equals("")) {
+			x = Integer.parseInt(x_);
+		}
+		
+		if(!y_.equals("")) {
+			y = Integer.parseInt(y_);
+		}
+		
+		int result = x+y;
+		
+		response.getWriter().printf("result is %d\n", result);
+	}
+
+}
+
+```
+
+
+
+## 23. 여러 개의 Submit 버튼 사용하기
+
+### 사용자로부터 계산을 위한 값을 입력 받아서 계산을 요청한다.
+
+- calc.html
+  - submit에 name을 통해 value을 전달해줌으로써 서버쪽에서 어떤 연산을 요청하는지 알 수 있게 하자
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>calculator_ADD</title>
+</head>
+<body>
+	<div>
+		<form action="calc" method="post">
+			<div>
+				<label>x :</label>
+				<input type="text" name="x" >
+			</div>
+			<div>
+				<label>y :</label>
+				<input type="text" name="y" >
+			</div>
+			<div>
+				<input type="submit" name="operator" value="덧셈">
+				<input type="submit" name="operator" value="뺄셈">
+			</div>
+		</form>
+	</div>
+</body>
+</html>
+```
+
+- Calc.java
+
+```java
+package com.reynold.web;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/calc")
+public class Calc extends HttpServlet {
+
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charser=UTF-8");
+		
+		String x_ = request.getParameter("x");
+		String y_ = request.getParameter("y");
+		String op = request.getParameter("operator");
+		
+		int x = 0;
+		int y = 0;
+		
+		if(!x_.equals("")) {
+			x = Integer.parseInt(x_);
+		}
+		
+		if(!y_.equals("")) {
+			y = Integer.parseInt(y_);
+		}
+		
+		int result = 0;
+		
+		if (op.equals("덧셈")) {
+			result = x+y;
+		} else {
+			result = x-y;
+		}
+		
+		response.getWriter().printf("result is %d\n", result);
+	}
+}
+```
+
+
+
+## 24. 입력 데이터 배열로 받기
+
+- add2.html
+  - input에서 name이 같은 값들은 배열로 처리되서 서버에게 전달됨
+  - num이라는 이름으로 입력되는 값들은 배열로 전달
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>calculator_ADD</title>
+</head>
+<body>
+	<div>
+		<form action="add2" method="post">
+			<div>
+				<input type="text" name="num" >
+				<input type="text" name="num" >
+				<input type="text" name="num" >
+				<input type="text" name="num" >
+			</div>
+			<div>
+				<input type="submit" value="ADD">
+			</div>
+		</form>
+	</div>
+</body>
+</html>
+```
+
+- Add2.java
+
+```java
+package com.reynold.web;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/add2")
+public class Add2 extends HttpServlet {
+
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charser=UTF-8");
+		
+    // num이라는 이름으로 전달받은 배열을 num_에 저장
+		String[] num_ = request.getParameterValues("num");
+		
+		int result = 0;
+		
+		for(int i=0; i<num_.length; i++) {
+			int num = Integer.parseInt(num_[i]);
+			result += num;
+		}
+		
+		response.getWriter().printf("result is %d\n", result);
+	}
+
+}
+
+```
+
+
+
+## 25. 상태 유지를 필요로 하는 경우와 구현의 어려움
+
+- 웹에서 웹 서버 어플리케이션은 조각나 있음 == 서블릿
+- 그러다보니 전역변수같은 개념을 갖고 있지 않은 조각난 어플리케이션들 사이에서, 전역변수처럼 각 서블릿들 사이에서 값을 유지해야만하는 일이 필요해짐
+- 이런 경우에는 어떻게 처리할 것인가?
+
+### 사용자로부터 두 개의 값을 한번에 입력 받는 방식
+
+![38](servlet_JSP_images/38.png)
+
+### 사용자로부터 두 개의 값을 하나씩 개별적으로 입력 받는 방식
+
+- 이게  좀 더 현실적
+- 그런데 이렇게 되면 2를 입력하고 + 버튼을 누르면 서블릿이 실행되서 2가 저장은 되지만, 아무런 처리없이 서블릿이 종료되고 나면 기록이 안남음
+- 그 다음 숫자를 입력하고 계산 버튼을 눌러도 이전의 값을 알 수 없기 때문에 계산이 불가능함
+- 각 서블릿끼리 타임캡슐처럼 공유할 수 있는 것이 없음
+- 이런 일을 할 수 있는 방법이 5가지 있음
+
+![39](servlet_JSP_images/39.png)
+
+### 상태 유지를 위한 5가지 방법
+
+- application
+- session
+- cookie
+- hidden input
+- querystring
+- 이 중에서 application, session, cookie에 대해서 먼저 알아보자
+
+
+
+## 26. Application 객체와 그것을 사용한 상태 값 저장
+
+### Application 자장소: 서블릿 컨텍스트(Context)
+
+- 서블릿들간의 문맥을 이어갈 수 있는 공간
+- 상태 저장 공간
+- 자원 공유 공간
+
+![40](servlet_JSP_images/40.png)
+
+- calc2.html
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>calculator_ADD</title>
+</head>
+<body>
+	<div>
+		<form action="calc2" method="post">
+			<div>
+				<label>입력 :</label>
+				<input type="text" name="v" />
+			</div>
+			<div>
+				<input type="submit" name="operator" value="+" />
+				<input type="submit" name="operator" value="-" />
+				<input type="submit" name="operator" value="=" />
+			</div>
+			<div>
+					결과: 0
+			</div>
+		</form>
+	</div>
+</body>
+</html>
+```
+
+- Calc2.java
+
+```java
+package com.reynold.web;
+
+import java.io.IOException;
+
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/calc2")
+public class Calc2 extends HttpServlet {
+
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// ServletContext 객체화
+		ServletContext application = request.getServletContext();
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charser=UTF-8");
+		
+		String v_ = request.getParameter("v");
+		String op = request.getParameter("operator");
+		
+		int v = 0;
+		
+		if(!v_.equals("")) {
+			 v = Integer.parseInt(v_);
+		}
+		
+		// 계산 
+		if(op.equals("=")) {
+      // 값 받아오기
+			int x = (Integer) application.getAttribute("value");
+			int y = v;
+			String operator = (String) application.getAttribute("op");
+			
+			int result = 0;
+			
+			if (operator.equals("+")) {
+				result = x+y;
+			} else {
+				result = x-y;
+			}
+			response.getWriter().printf("result is %d\n", result);
+		// 값을 저장 
+		} else {
+      // 값 저장
+			application.setAttribute("value", v);
+			application.setAttribute("op", op);
+			
+		}
+		
+		
+	}
+
+}
+
+```
+
+
+
+## 26. Session 객체로 상태 값 저장하기(그리고 Application 객체와의 차이점)
+
 
 
 
