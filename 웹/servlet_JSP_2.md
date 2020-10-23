@@ -812,7 +812,462 @@ public class Calc2 extends HttpServlet {
 
 
 
-## 26. Session 객체로 상태 값 저장하기(그리고 Application 객체와의 차이점)
+## 27. Session 객체로 상태 값 저장하기(그리고 Application 객체와의 차이점)
+
+- Calc2.java
+  - application객체를 사용한 부분을 session객체로 변경해줬는데도 똑같은 기능을 수행함
+  - 그렇다면 아무거나 그냥 쓰면 되는 것인가? X
+  - application객체는 어플리케이션 전역에서 쓸 수 있다는 의미
+    - 모든 서블릿이 전역적으로 쓸 수 있는 전역공간
+  - session객체는 세션 범주 내에서 쓸 수 있다는 의미
+    - 세션이란 현재 접속한 사용자를 의미
+    - 사용자 별로 그 공간이 달라질 수 있다
+
+```java
+package com.reynold.web;
+
+import java.io.IOException;
+
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+@WebServlet("/calc2")
+public class Calc2 extends HttpServlet {
+
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		ServletContext application = request.getServletContext();
+		HttpSession session = request.getSession();
+		
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charser=UTF-8");
+		
+		String v_ = request.getParameter("v");
+		String op = request.getParameter("operator");
+		
+		int v = 0;
+		
+		if(!v_.equals("")) {
+			 v = Integer.parseInt(v_);
+		}
+		
+		// 계산 
+		if(op.equals("=")) {
+//			int x = (Integer) application.getAttribute("value");
+			int x = (Integer) session.getAttribute("value");
+			int y = v;
+//			String operator = (String) application.getAttribute("op");
+			String operator = (String) session.getAttribute("op");
+			
+			int result = 0;
+			
+			if (operator.equals("+")) {
+				result = x+y;
+			} else {
+				result = x-y;
+			}
+			response.getWriter().printf("result is %d\n", result);
+		// 값을 저장 
+		} else {
+//			application.setAttribute("value", v);
+//			application.setAttribute("op", op);
+			session.setAttribute("value", v);
+			session.setAttribute("op", op);
+		}
+	}
+}
+```
+
+- 세션을 사용한 코드를 통해 현재 접속자를 별로 공간을 따로 가지는 확인해보자
+  - 크롬과 사파리, 두 개의 브라우저로 각각 접속해보자
+  - 먼저 크롬으로 접속해서 덧셈을 수행하고난 후,
+  - 사파리로 접속해서 바로 '='을 눌럿는데 다음과 같은 오류가 나왔다
+  - 세션 객체에 저장된 값이 없기 때문에 생기는 오류인 듯 싶다
+
+![41](servlet_JSP_images/41.png)
+
+- 각 브라우저별로는 다른 사용자로 인식하지만, 같은 브라우저에서 새로운 창을 통해 똑같은 일을 수행하면 같은 사옹자로 인식함
+- 그 이유는 새창을 띄운다고해서 새로운 프로세스가 돌아가는게 아니라 하나의 브라우저가 여러개의 스레드를 사용하는 방식이기 때문에 각각의 스레드는 자원을 공유하기 때문에, WAS에서는 이들을 같은 세션으로 인식하게 됨
+
+
+
+## 28. WAS가 현재사용자(Session)을 구분하는 방식
+
+### 세션 ID와 사용자 저장소 구별
+
+- 세션을 통한 사용자 저장소는 헬스장의 사물함같은 느낌임
+- 처음 요청할 때는 세션 ID가 없어서 WAS에서 세션 공간을 사용할 수 없음
+
+![42](servlet_JSP_images/42.png)
+
+- 세션 ID를 할당해주고 응답할 때 돌려보내줌 
+
+![43](servlet_JSP_images/43.png)
+
+- 두번째 요청부터는 항상 세션 ID와 함께 요청하기 때문에 WAS에서 이를 인식하고 저장 공간을 쓸 수 있게 해줌
+
+![44](servlet_JSP_images/44.png)
+
+- 브라우저는 서버에 요청할 때마다 가지고 있는 세션을 함께 보내줌
+
+![45](servlet_JSP_images/45.png) 
+
+- 그렇다면 WAS는 계속해서 세션 공간을 유지하고 있을까?
+
+### 세션 메소드
+
+- 다양한 메소드들이 존재하고 이를 통해 인증이나 여러가지 기능에 활용될 수 있음
+
+![46](servlet_JSP_images/46.png)
+
+
+
+## 29. Cookie를 이용해 상태값 유지하기
+
+- WAS의 저장 공간에 두는 게 아니라 가지고 다닐 수도 있음 => 쿠키
+- 서블릿에서 요청에 대해서 먼가 처리를 해줄 때, WAS에 있는 저장공간(application, session)에서 값을 찾아서 가지고 올 수도 있지만, 요청과 함께 브라우저에서 보낸 정보(cookie)를 이용할 수도 있음
+  - 꺼내서 쓸수도 있지만, 가져온 값을 쓸 수도 있다
+
+![47](servlet_JSP_images/47.png)
+
+### 서블릿에서 사용할 수 있는 상태 저장소
+
+- 클라이언트가 서버에게 먼가를 요청할 때 값을 가지고 갈 수 있는데, 크게 3가지가 있음
+  - 헤더 정보
+    - 브라우저가 알아서 보내주는 정보
+    - Header 설정
+    - 서블릿에서 받을 때, getHeader("remote-host")
+  - 쿠키 데이터
+    - 내가 직접 심는건 아니지만 브라우저가 알아서 쿠키가 있으면 가져감
+    - 데이터 설정
+    - 서블릿에서 받을 때, getCookies();
+    - 서블릿에서 쿠키를 추가해서 응답할 때, addCookie();
+      - 이게 시작점임
+      - 서버에서 쿠키에 정보를 넣어서 응답하면 브라우저가 쿠키를 인식하고 다음 요청마다 쿠키를 가지고 감
+  - 사용자 데이터
+    - 내가 보내는 데이터
+    - 서블릿에서 받을 때, getParameter("x")를 통해서 받음
+
+![48](servlet_JSP_images/48.png)
+
+### 쿠키 사용하기
+
+![49](servlet_JSP_images/49.png)
+
+- Calc2.java
+  - 쿠키는 배열로 넘어옴
+    - Cookie[] cookies = request.getCookies();
+    - 이렇게 받아줘야됨
+  - 찾고자하는 쿠키를 반복문을 통해서 찾아줘야한다는 번거로움이 있음
+
+```java
+package com.reynold.web;
+
+import java.io.IOException;
+
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+@WebServlet("/calc2")
+public class Calc2 extends HttpServlet {
+
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		ServletContext application = request.getServletContext();
+		HttpSession session = request.getSession();
+		Cookie[] cookies = request.getCookies();
+		
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charser=UTF-8");
+		
+		String v_ = request.getParameter("v");
+		String op = request.getParameter("operator");
+		
+		int v = 0;
+		
+		if(!v_.equals("")) {
+			 v = Integer.parseInt(v_);
+		}
+		
+		// 계산 
+		if(op.equals("=")) {
+//			int x = (Integer) application.getAttribute("value");
+//			int x = (Integer) session.getAttribute("value");
+			
+			int x = 0;
+			for(Cookie c : cookies) { 
+				if(c.getName().equals("value")) {
+					x = Integer.parseInt(c.getValue());
+					break;
+				}
+			}
+			
+			
+			int y = v;
+//			String operator = (String) application.getAttribute("op");
+//			String operator = (String) session.getAttribute("op");
+			
+			String operator = "";
+			for(Cookie c : cookies) { 
+				if(c.getName().equals("op")) {
+					operator = c.getValue();
+					break;
+				}
+			}
+			
+			
+			int result = 0;
+			
+			if (operator.equals("+")) {
+				result = x+y;
+			} else {
+				result = x-y; 
+			}
+			response.getWriter().printf("result is %d\n", result);
+		// 값을 저장 
+		} else {
+//			application.setAttribute("value", v);
+//			application.setAttribute("op", op);
+			
+//			session.setAttribute("value", v);
+//			session.setAttribute("op", op);
+			
+			Cookie valueCookie = new Cookie("value", String.valueOf(v));
+			Cookie opCookie = new Cookie("op", op);
+			response.addCookie(valueCookie);
+			response.addCookie(opCookie);
+		}
+	}
+}
+
+```
+
+
+
+## 30. Cookie의 Path 옵션
+
+- 쿠키를 사용할 때 꼭 생각해야되는 것 두가지
+
+### 쿠키는 모든 페이지마다 동일한가?
+
+- 서블릿을 여러개 만들 것임
+- 서블릿마다 저장해야되는 값이 있어서 쿠키로 저장할려고 한다고 하자
+- 그러면 서블릿마다 쿠키가 같을까? 다를까?
+  - 상식적으로 달라야됨
+  - 각 서블릿마다 사용되는 값이 모든 서블릿에게 필요한 것이 아니기 때문에
+- 그래서 쿠키를 설정할 때, URL을 설정할 수가 있음
+  - 특정 서블릿들에게만 가지고 오도록 할 수 있음
+  - 이렇게 해야 쿠키가 비효율적으로 모든 값을 가지고 다니거나, 쿠키 안의 내용이 충돌된다거나 하는 것을 막을 수 있음
+- Calc2.java
+
+```java
+package com.reynold.web;
+
+import java.io.IOException;
+
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+@WebServlet("/calc2")
+public class Calc2 extends HttpServlet {
+
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		Cookie[] cookies = request.getCookies();
+		
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charser=UTF-8");
+		
+		String v_ = request.getParameter("v");
+		String op = request.getParameter("operator");
+		
+		int v = 0;
+		
+		if(!v_.equals("")) {
+			 v = Integer.parseInt(v_);
+		}
+		
+		// 계산 
+		if(op.equals("=")) {
+			
+			int x = 0;
+			for(Cookie c : cookies) { 
+				if(c.getName().equals("value")) {
+					x = Integer.parseInt(c.getValue());
+					break;
+				}
+			}
+			
+			
+			int y = v;
+			
+			String operator = "";
+			for(Cookie c : cookies) { 
+				if(c.getName().equals("op")) {
+					operator = c.getValue();
+					break;
+				}
+			}
+			
+			
+			int result = 0;
+			
+			if (operator.equals("+")) {
+				result = x+y;
+			} else {
+				result = x-y; 
+			}
+			response.getWriter().printf("result is %d\n", result);
+		// 값을 저장 
+		} else {
+			
+			Cookie valueCookie = new Cookie("value", String.valueOf(v));
+			Cookie opCookie = new Cookie("op", op);
+      // path 설정
+			valueCookie.setPath("/calc2");
+			opCookie.setPath("/calc2");
+			response.addCookie(valueCookie);
+			response.addCookie(opCookie);
+			
+		}
+  }
+}
+```
+
+
+
+## 31. Cookie의 maxAge 옵션
+
+ ### 브라우저가 닫혀도 유효한가?
+
+- maxAge 옵션을 따로 설정해주지 않으면 Cookie는 브라우저의 생명주기를 따르게 됨
+- 브라우저가 프로그램 종료되면 Cookie는 사라짐
+- maxAge 옵션을 사용하면 브라우저가 종료되도 설정한 기간 내에는 쿠키의 값이 유지가 됨
+- 브라우저가 닫혔는데 어떻게 유지하나?
+
+![50](servlet_JSP_images/50.png)
+
+![51](servlet_JSP_images/51.png)
+
+### 브라우저가 쿠키를 저장하는 공간
+
+- 기본적으로 쿠키는 브라우저의 memory에 저장됨
+- 그런데 기간설정, maxAge 설정을 하게 되면 브라우저와 별도로 저장되어야하기 때문에 외부 파일(영구 저장소라고 할 수 있는)에 저장됨
+- 따로 저 경로에 쿠키 정보가 저장됨 
+
+![52](servlet_JSP_images/52.png)
+
+- Calc2.java
+  - 가간 설정한 쿠키 정보는 브라우저를 종료하고 다시 봐도 남아있음
+
+```java
+package com.reynold.web;
+
+import java.io.IOException;
+
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+@WebServlet("/calc2")
+public class Calc2 extends HttpServlet {
+
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		ServletContext application = request.getServletContext();
+		HttpSession session = request.getSession();
+		Cookie[] cookies = request.getCookies();
+		
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charser=UTF-8");
+		
+		String v_ = request.getParameter("v");
+		String op = request.getParameter("operator");
+		
+		int v = 0;
+		
+		if(!v_.equals("")) {
+			 v = Integer.parseInt(v_);
+		}
+		
+		// 계산 
+		if(op.equals("=")) {
+			
+			int x = 0;
+			for(Cookie c : cookies) { 
+				if(c.getName().equals("value")) {
+					x = Integer.parseInt(c.getValue());
+					break;
+				}
+			}
+			
+			
+			int y = v;
+			
+			String operator = "";
+			for(Cookie c : cookies) { 
+				if(c.getName().equals("op")) {
+					operator = c.getValue();
+					break;
+				}
+			}
+			
+			
+			int result = 0;
+			
+			if (operator.equals("+")) {
+				result = x+y;
+			} else {
+				result = x-y; 
+			}
+			response.getWriter().printf("result is %d\n", result);
+		// 값을 저장 
+		} else {
+			
+			Cookie valueCookie = new Cookie("value", String.valueOf(v));
+			Cookie opCookie = new Cookie("op", op);
+			valueCookie.setPath("/calc2");
+      // 기간 설정
+			valueCookie.setMaxAge(24*60*60);
+			opCookie.setPath("/calc2");
+			response.addCookie(valueCookie);
+			response.addCookie(opCookie);
+		}
+	}
+}
+```
+
+![53](servlet_JSP_images/53.png)
+
+
+
+## 32. Application/Session/Cookie 정리
+
+
+
+
 
 
 
