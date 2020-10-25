@@ -9,6 +9,6 @@ def solution(citations):
         h += 1
     return h-1
 
-citations = [3, 0, 6, 1, 5]
+citations = [0]
 
 print(solution(citations))
