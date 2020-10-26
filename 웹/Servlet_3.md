@@ -1,4 +1,6 @@
-# 서블릿/JSP Study
+# Servlet 학습 3
+
+
 
 ## 33. 서버에서 페이지 전환해주기(redirect)
 
@@ -10,12 +12,12 @@
   - 사용자가 다시 뒤로가기를 누르거나, calc.html을 주소창에 쳐서 페이지를 요청해서 돌아온 후, 다른 값을 입력해야 됨
   - 서버에서 바로 calc.html을 응답해주는 방법은 없나?
 
-![57](servlet_JSP_images/57.png)
+![57](Servlet_images/57.png)
 
 - redirect
   - 사용자의 요청에 대해 바로 서블릿이 응답을 해주는 것이 아니라, calc.html로 경로를 우회해버림
 
-![58](servlet_JSP_images/58.png)
+![58](Servlet_images/58.png)
 
 ### 코드로 알아보자
 
@@ -115,13 +117,13 @@ public class Calc2 extends HttpServlet {
 - 단순한 정적인 html 문서가 아니라 동적으로 변하는 정보가 포함된 html 문서가 응답으로 와야함
 - 즉, 사용자가 입력한 내용을 서버에서 페이지를 만들 때 끼워 넣어야 함
 
-![59](servlet_JSP_images/59.png)
+![59](Servlet_images/59.png)
 
 ### 동적인 페이지(서버 페이지)의 필요성
 
 - 쿠키를 읽어서 이 페이지에 심어줘야하는데 단순히 html문서를 redirect해주는 방법으로는 안될 것 같음
 
-![60](servlet_JSP_images/60.png)
+![60](Servlet_images/60.png)
 
 - 서블릿으로 이용해서 동적으로 만들어줘야할 것 같음
   - 서블릿으로 동적 페이지를 만든다는 것은 이미 존재했던 calc.html을 보내주는게 아니라
@@ -131,7 +133,7 @@ public class Calc2 extends HttpServlet {
   - 위치 상 서버쪽에서 만들어지는 것이다보니 서버 페이지라고도 함
   - 이 페이지는 html같은 정적인 파일이 아니라 서블릿으로 된 동적인 문서를 만드는 프로그램으로 대신해야됨
 
-![61](servlet_JSP_images/61.png)
+![61](Servlet_images/61.png)
 
 ### 코드로 만들어보자
 
@@ -205,7 +207,7 @@ public class Calc2 extends HttpServlet {
 </html>
 ```
 
-![62](servlet_JSP_images/62.png)
+![62](Servlet_images/62.png)
 
  
 
@@ -215,7 +217,7 @@ public class Calc2 extends HttpServlet {
 
 ### 요청 Method에 따른 특화된 메소드들을 이용하기
 
-![63](servlet_JSP_images/63.png)
+![63](Servlet_images/63.png)
 
 - calc3.html
   - 정적 문서
@@ -288,7 +290,7 @@ public class Calc2 extends HttpServlet {
 </html>
 ```
 
-![64](servlet_JSP_images/64.png)
+![64](Servlet_images/64.png)
 
 - CalcPage.java
   - html을 그대로 출력할 수 있도록해줌
@@ -389,7 +391,7 @@ public class CalcPage extends HttpServlet {
 }
 ```
 
-![65](servlet_JSP_images/65.png)
+![65](Servlet_images/65.png)
 
 
 
@@ -715,7 +717,7 @@ public class Calculator extends HttpServlet {
   - 부모의 service함수는 사용자의 요청을 확인해서 get요청이면 doGet(), post요청이면 doPost()를 호출함
   - 그런데 이때, doGet()나 doPost()가 오버라이딩 안되어있으면 오류가 남
 
-![66](servlet_JSP_images/66.png)
+![66](Servlet_images/66.png)
 
 - 요청에 대한 처리부분을 개발할 때 선택할 수 있음
   - service함수를 오버라이딩해서 조건처리로 요청을 구분해서 응답해줄 것인지
@@ -785,7 +787,7 @@ public class Calculator extends HttpServlet {
     - 쿠키를 사용할 때, path설정을 안하면 루트로 지정되서 모든 서블릿에서 이 쿠키를 받게 됨
     - path설정은 하나의 경로만 가능하기 때문에 이 두가지 요청을 하나의 서블릿에서 처리해주도록 수정하는 것이 좋음
 
-![67](servlet_JSP_images/67.png)
+![67](Servlet_images/67.png)
 
 - Calculator.java
   - 하나의 서블릿에서 두가지 방식의 요청을 처리해주자

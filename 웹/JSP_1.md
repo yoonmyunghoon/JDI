@@ -1,4 +1,4 @@
-# 서블릿/JSP Study
+# JSP 학습 1
 
 
 

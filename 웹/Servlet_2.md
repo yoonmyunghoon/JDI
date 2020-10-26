@@ -1,4 +1,4 @@
-# 서블릿/JSP Study
+# Servlet 학습 2
 
 
 
@@ -10,13 +10,13 @@
 
 #### 쿼리스트링을 다음처럼 사용할 경우에 전달 되는 int 값은...?
 
-![28](servlet_JSP_images/28.png)
+![28](Servlet_images/28.png)
 
 #### 전달 방식의 차이
 
 - null이나 빈 문자열일 경우에는 기본값으로 대체
 
-![29](servlet_JSP_images/29.png)
+![29](Servlet_images/29.png)
 
 - 코드 업데이트
 
@@ -86,7 +86,7 @@ public class Nana extends HttpServlet {
 
 ### 반복횟수를 사용자로부터 입력 받으려면 입력폼을 준비해야된다.
 
-![30](servlet_JSP_images/30.png)
+![30](Servlet_images/30.png)
 
 ### 입력 폼
 
@@ -95,7 +95,7 @@ public class Nana extends HttpServlet {
   - input 태그를 통해 입력값을 받을 수 있도록 name을 맞춰주자
   - form과 input 태그를 사용하면 브라우저가 저런식으로 주소를 만들어서 요청을 보내줌
 
-![31](servlet_JSP_images/31.png)
+![31](Servlet_images/31.png)
 
 - hello.html
 
@@ -133,7 +133,7 @@ public class Nana extends HttpServlet {
 - 입력 폼을 받기위해서 GET 요청
 - 받은 입력 폼을 작성해서 POST 요청
 
-![32](servlet_JSP_images/32.png)
+![32](Servlet_images/32.png)
 
 ### title과 content를 보내는 POST 요청을 만들어보자
 
@@ -222,7 +222,7 @@ public class NoticeReg extends HttpServlet {
   - 한글이 깨짐
   - 깨진 값을 다시 보내니까 이상하게 보여지는 것
 
-![33](servlet_JSP_images/33.png)
+![33](Servlet_images/33.png)
 
 - 이를 해결할 수 있는 방법 2가지
   - request.setCharacterEncoding("UTF-8"); 을 사용해서 요청을 받을 때 인코딩 변환해줘서 받기
@@ -230,7 +230,7 @@ public class NoticeReg extends HttpServlet {
     - 그런데 일반적으로 톰캣 서버의 환경설정은 잘 안건드림
       - 만약 톰캣에서 여러개의 서비스를 돌릴 경우, 다른 서비스들도 영향을 줄 수 있기 때문에
 
-![34](servlet_JSP_images/34.png)
+![34](Servlet_images/34.png)
 
 - NoticeReg.java
 
@@ -280,7 +280,7 @@ public class NoticeReg extends HttpServlet {
 - WAS는 서블릿을 실행시켜서 결과를 Servlet Container에 넣어뒀다가 돌려줌
 - 더이상 서블릿이 사용되지 않으면 Servlet Container에서 삭제함
 
-![35](servlet_JSP_images/35.png)
+![35](Servlet_images/35.png)
 
 - 그런데 서블릿 말고 만들 수 있는 객체가 하나 더 있음
 - 그게 필터임
@@ -295,7 +295,7 @@ public class NoticeReg extends HttpServlet {
       - 그런데 모든 서블릿에서 이 코드를 작성하는 것이 아니라 필터에서 이런 부분을 담당할 수 있음
   - 실행되고 응답하는 과정에서도 먼가 추가적인 작업을 해줄 수 있음
 
-![36](servlet_JSP_images/36.png)
+![36](Servlet_images/36.png)
 
 - filter를 만들고 설정해줘야됨. 방법 2가지
 
@@ -404,7 +404,7 @@ public class NoticeReg extends HttpServlet {
 
 ### 계산기 웹 프로그램 만들어보기
 
-![37](servlet_JSP_images/37.png)
+![37](Servlet_images/37.png)
 
 - add.html
 
@@ -685,7 +685,7 @@ public class Add2 extends HttpServlet {
 
 ### 사용자로부터 두 개의 값을 한번에 입력 받는 방식
 
-![38](servlet_JSP_images/38.png)
+![38](Servlet_images/38.png)
 
 ### 사용자로부터 두 개의 값을 하나씩 개별적으로 입력 받는 방식
 
@@ -695,7 +695,7 @@ public class Add2 extends HttpServlet {
 - 각 서블릿끼리 타임캡슐처럼 공유할 수 있는 것이 없음
 - 이런 일을 할 수 있는 방법이 5가지 있음
 
-![39](servlet_JSP_images/39.png)
+![39](Servlet_images/39.png)
 
 ### 상태 유지를 위한 5가지 방법
 
@@ -716,7 +716,7 @@ public class Add2 extends HttpServlet {
 - 상태 저장 공간
 - 자원 공유 공간
 
-![40](servlet_JSP_images/40.png)
+![40](Servlet_images/40.png)
 
 - calc2.html
 
@@ -889,7 +889,7 @@ public class Calc2 extends HttpServlet {
   - 사파리로 접속해서 바로 '='을 눌럿는데 다음과 같은 오류가 나왔다
   - 세션 객체에 저장된 값이 없기 때문에 생기는 오류인 듯 싶다
 
-![41](servlet_JSP_images/41.png)
+![41](Servlet_images/41.png)
 
 - 각 브라우저별로는 다른 사용자로 인식하지만, 같은 브라우저에서 새로운 창을 통해 똑같은 일을 수행하면 같은 사옹자로 인식함
 - 그 이유는 새창을 띄운다고해서 새로운 프로세스가 돌아가는게 아니라 하나의 브라우저가 여러개의 스레드를 사용하는 방식이기 때문에 각각의 스레드는 자원을 공유하기 때문에, WAS에서는 이들을 같은 세션으로 인식하게 됨
@@ -903,19 +903,19 @@ public class Calc2 extends HttpServlet {
 - 세션을 통한 사용자 저장소는 헬스장의 사물함같은 느낌임
 - 처음 요청할 때는 세션 ID가 없어서 WAS에서 세션 공간을 사용할 수 없음
 
-![42](servlet_JSP_images/42.png)
+![42](Servlet_images/42.png)
 
 - 세션 ID를 할당해주고 응답할 때 돌려보내줌 
 
-![43](servlet_JSP_images/43.png)
+![43](Servlet_images/43.png)
 
 - 두번째 요청부터는 항상 세션 ID와 함께 요청하기 때문에 WAS에서 이를 인식하고 저장 공간을 쓸 수 있게 해줌
 
-![44](servlet_JSP_images/44.png)
+![44](Servlet_images/44.png)
 
 - 브라우저는 서버에 요청할 때마다 가지고 있는 세션을 함께 보내줌
 
-![45](servlet_JSP_images/45.png) 
+![45](Servlet_images/45.png) 
 
 - 그렇다면 WAS는 계속해서 세션 공간을 유지하고 있을까?
 
@@ -923,7 +923,7 @@ public class Calc2 extends HttpServlet {
 
 - 다양한 메소드들이 존재하고 이를 통해 인증이나 여러가지 기능에 활용될 수 있음
 
-![46](servlet_JSP_images/46.png)
+![46](Servlet_images/46.png)
 
 
 
@@ -933,7 +933,7 @@ public class Calc2 extends HttpServlet {
 - 서블릿에서 요청에 대해서 먼가 처리를 해줄 때, WAS에 있는 저장공간(application, session)에서 값을 찾아서 가지고 올 수도 있지만, 요청과 함께 브라우저에서 보낸 정보(cookie)를 이용할 수도 있음
   - 꺼내서 쓸수도 있지만, 가져온 값을 쓸 수도 있다
 
-![47](servlet_JSP_images/47.png)
+![47](Servlet_images/47.png)
 
 ### 서블릿에서 사용할 수 있는 상태 저장소
 
@@ -953,11 +953,11 @@ public class Calc2 extends HttpServlet {
     - 내가 보내는 데이터
     - 서블릿에서 받을 때, getParameter("x")를 통해서 받음
 
-![48](servlet_JSP_images/48.png)
+![48](Servlet_images/48.png)
 
 ### 쿠키 사용하기
 
-![49](servlet_JSP_images/49.png)
+![49](Servlet_images/49.png)
 
 - Calc2.java
   - 쿠키는 배열로 넘어옴
@@ -1162,9 +1162,9 @@ public class Calc2 extends HttpServlet {
 - maxAge 옵션을 사용하면 브라우저가 종료되도 설정한 기간 내에는 쿠키의 값이 유지가 됨
 - 브라우저가 닫혔는데 어떻게 유지하나?
 
-![50](servlet_JSP_images/50.png)
+![50](Servlet_images/50.png)
 
-![51](servlet_JSP_images/51.png)
+![51](Servlet_images/51.png)
 
 ### 브라우저가 쿠키를 저장하는 공간
 
@@ -1172,7 +1172,7 @@ public class Calc2 extends HttpServlet {
 - 그런데 기간설정, maxAge 설정을 하게 되면 브라우저와 별도로 저장되어야하기 때문에 외부 파일(영구 저장소라고 할 수 있는)에 저장됨
 - 따로 저 경로에 쿠키 정보가 저장됨 
 
-![52](servlet_JSP_images/52.png)
+![52](Servlet_images/52.png)
 
 - Calc2.java
   - 가간 설정한 쿠키 정보는 브라우저를 종료하고 다시 봐도 남아있음
@@ -1259,7 +1259,7 @@ public class Calc2 extends HttpServlet {
 }
 ```
 
-![53](servlet_JSP_images/53.png)
+![53](Servlet_images/53.png)
 
 
 
@@ -1269,15 +1269,15 @@ public class Calc2 extends HttpServlet {
 
 #### Application
 
-![54](servlet_JSP_images/54.png)
+![54](Servlet_images/54.png)
 
 #### Session
 
-![55](servlet_JSP_images/55.png)
+![55](Servlet_images/55.png)
 
 #### Cookie
 
-![56](servlet_JSP_images/56.png)
+![56](Servlet_images/56.png)
 
 ### 간단한 질문들에 대해 답해보자
 

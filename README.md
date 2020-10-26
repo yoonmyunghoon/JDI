@@ -32,13 +32,14 @@
 - JSP_Basic_BBS 프로젝트
   - JSP, bootstrap, mysql 사용한 간단 게시판
   - 동적 웹
-- JSP
-  - Servlet_JSP 학습 과정에서의 실습 내용
 - Servlet_JSP
-  - [학습1](웹/servlet_JSP_1.md)
-  - [학습2](웹/servlet_JSP_2.md)
-  - [학습3](웹/servlet_JSP_3.md)
-  - [학습4](웹/servlet_JSP_4.md)
+  - Servlet 및 JSP 학습 과정에서의 실습 내용
+- Servlet 학습
+  - [학습1](웹/Servlet_1.md)
+  - [학습2](웹/Servlet_2.md)
+  - [학습3](웹/Servlet_3.md)
+- JSP 학습
+  - [학습1](웹/JSP_1.md)
 - [Spring](웹/Spring.md)
 
 
