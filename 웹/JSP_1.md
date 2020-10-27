@@ -362,6 +362,510 @@ if(cnt_ != null && !cnt_.equals("")) {
 
 
 
+## 45. JSP MVC model1
+
+- Jasper를 통해 서블릿을 만들면(jsp에 코드블록을 활용해서) 프로그램을 쉽게 만들 수 있을 것이라고 생각했지만, 자칫 잘못해서 코드블록을 복잡하게 만들면 오히려 유지보수에 더 안좋을 수 있을 것이다..
+- 코드블록을 어떻게 복잡하지 않게 만들 수 있을까?
+  - 그래서 나온게 'JSP MVC model1' 방식
+  - 블록을 최소화하자는 것에서부터 시작됨
+  - 코드블록을 위쪽에 두고, 출력해야되는 부분만 밑쪽에 넣자
+  - 모델이라는 개념을 사용해서 위쪽의 코드블록에서 데이터(모델)와 로직을 다루고, 밑에쪽에서는 이 데이터를 사용해서 출력하는 방식
+    - 이렇게 양분화하지 않고, 출력이라는 것을 직접 제어하려고하면 코드블록이 여러개가 만들어질 수 밖에 없음
+
+### 일반적인 JSP 프로그래머가 구현하게 되는 코드
+
+![22](JSP_images/22.png)
+
+### 양분화된 JSP 코드와의 코드 블록 비교
+
+- 왼쪽은 코드블록이 4개, 오른쪽은 코드블록이 2개(출력 코드블록까지 포함해서)
+- 로직은 위쪽에서, 결과는 밑쪽에서
+- 데이터와 로직을 위쪽에서 처리, 밑쪽에서는 결과로 출력만
+
+![23](JSP_images/23.png)
+
+### 출력을 가볍게 만들기 위한 코드작성 방식
+
+- 입력, 제어를 담당하는 Controller
+  - 자바 코드
+- 출력을 담당하는 View
+  - HTML 코드 + 출력 코드 블록
+- 데이터를 의미하는 Model
+  - 적절한 데이터를 모델로 생각하고 코드를 짜면 이렇게 MVC 패턴으로 나눌 수 있음
+
+![24](JSP_images/24.png)
+
+- spag.jsp
+
+```jsp
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+
+<% 
+	int num = 0; 
+	String num_ = request.getParameter("n");
+	if(num_ != null && !num_.equals("")) {
+		num = Integer.parseInt(num_);
+	}
+	String result;
+	if(num%2 != 0) {
+		result = "홀수";
+	} else {
+		result = "짝수";
+	}
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<%= result %>입니다.
+</body>
+</html>
+```
+
+
+
+## 46. JSP MVC model1을 model2 방식으로
+
+### model 1 : 컨트롤러와 뷰가 물리적으로 분리되지 않은 방식
+
+- 하나의 JSP 파일 내에 MVC를 모두 구현했었음
+  - 하나에 다 구현하는 것이 더 바람직한지, 분리시키는 것이 바람직한지에 대해 생각하게 됨
+  - 분리하는게 더 바람직하겠다
+
+![25](JSP_images/25.png)
+
+### model 2 : 컨트롤러와 뷰가 물리적으로 분리된 방식
+
+- JSP에서 controller과 model 부분을 다시 원래대로 서블릿으로 올리고, view부분만 jsp로 남겨두자
+- 이렇게되면 controller과 model 부분은 사용자의 요청이 있을 때 서블릿으로 만들어지는 것이 아님, view부분만 jsp이기 때문에 사용자의 요청에 의해 서블릿으로 바뀜
+  - 서블릿으로 만들어야할 분량이 줄어듦
+  - controller과 model 부분은 미리 컴파일해둘 수 있게 되면서 실행속도도 빨라지게 됨
+- 자바코드부분(C, M)과 html부분(V)이 따로 존재하기 때문에 유지보수도 더 용이해짐
+- 모델 1과의 가장 큰 차이는 C,M 과 V를 물리적으로 분리했는가임
+- 여기에 한가지 요소가 더 있음
+
+![26](JSP_images/26.png)
+
+### MVC model 2 : Dispatcher를 집중화하기 전의 모델
+
+- 컨트롤러에서 뷰단에 연결하기 위해 포워딩 방식이 사용됨
+  - 컨트롤러도 서블릿이고, 뷰도 jsp이지만 서블릿으로 바뀌기 때문에 서블릿임
+  - 서블릿에서 서블릿으로 이전되면서 흐름을 이어받아서 코드를 진행할 때 사용되는 것이 포워딩
+  - 포워딩을 할 때, Dispatcher를 사용하게 됨
+  - 그런데 컨트롤러와 뷰를 계속 만들면서 Dispatcher도 계속 같이 만들어줘야 됨
+
+![27](JSP_images/27.png)
+
+### MVC model 2 : Dispatcher를 집중화 한 후의 모델
+
+- 컨트롤러를 따로 만들고, Dispatcher를 하나만 둬서, 실질적으로는 서블릿을 하나만 구현하게 됨
+- 일반적인 업무로직(컨트롤러들)은 POJO클래스라고해서 서블릿 클래스가 아닌 일반 클래스형태로 만듦
+- 사용자 요청이 들어오면 디스패처가 사용자 요청을 수반해서 적절한 컨트롤러를 찾아서 수행하는 방식으로 진행하게 됨
+- 컨트롤러는 로직처리하고 관련된 뷰를 호출할 수 있도록 디스패처에게 관련된 내용을 알려줌
+- 디스패처는 관련된 뷰를 호출하게 됨
+
+![28](JSP_images/28.png)
+
+### 일단 컨트롤러와 뷰를 물리적으로 분리시키는 것부터 코드로 구현해보자
+
+- Spag.java
+  - redirect vs forward
+    - redirect: 현재 작업과 전혀 상관없이 새로운 요청을 하는 것
+    - forward: 현재 작업한 내용을 이어갈 수 있도록 공유하는 것
+  - 상태를 저장할 수 있는 저장소(1~4: 서버 내의 저장소, 5: 클라이언트 저장소)
+    - 1. page Context: 하나의 페이지 내에서 사용하는 저장소
+    - 2. request: forward 관계의 둘 사이에서 사용하는 저장소 
+    - 3. session: 현재 session에서 공유될 수 있는 저장소 
+    - 4. application: 모든 session, 모든 페이지에서 공유될 수 있는 저장소 
+    - 5. cookie: 클라이언트에 저장할 수 있는 저장소
+  - forward 관계에 있는 둘 사이에 공유할 수 있는 저장소로는 request가 사용됨
+
+```java
+package com.reynold.web;
+
+import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/spag")
+public class Spag extends HttpServlet {
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int num = 0; 
+		String num_ = request.getParameter("n");
+		if(num_ != null && !num_.equals("")) {
+			num = Integer.parseInt(num_);
+		}
+		String result;
+		
+		if(num%2 != 0) {
+			result = "홀수";
+		} else {
+			result = "짝수";
+		}
+		
+    // request에 result 값 저장
+		request.setAttribute("result", result);
+		
+    // forward로 spag.jsp와 연결 및 요청
+		RequestDispatcher dispatcher = request.getRequestDispatcher("spag.jsp");
+		dispatcher.forward(request, response);
+	}
+}
+
+```
+
+- spag.jsp
+  - request로 받은 result를 출력
+
+```jsp
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<%=request.getAttribute("result") %>입니다.
+</body>
+</html>
+```
+
+- 물리적으로 분리는 됐지만, spag.jsp를 보면 아직 코드블록이 남아있음
+  - 이 부분을 완전히 없애기 위한 EL 표기법에 대해 알아보자
+
+
+
+## 47. View를 위한 데이터 추출 표현식, EL(Expression Language)
+
+### EL(Expression Language)
+
+#### 저장 객체에서 값을 추출해서 출력하는 표현식
+
+- 값을 출력하기 위해서는 <%=request.getAttribute("result") %> 이렇게 썼어야했는데
+- ${cnt} 이렇게만해도 되도록 해줌
+
+![29](JSP_images/29.png)
+
+- spag.jsp
+
+```jsp
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<%=request.getAttribute("result") %>입니다.
+	${result}입니다.
+</body>
+</html>
+```
+
+- 결과
+
+![30](JSP_images/30.png)
+
+### 값 하나가 아니라 배열처럼 복잡한 구조라면?
+
+- 배열은?
+
+![31](JSP_images/31.png)
+
+- Map은?
+
+![32](JSP_images/32.png)
+
+- Spag.java
+
+```java
+package com.reynold.web;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/spag")
+public class Spag extends HttpServlet {
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int num = 0; 
+		String num_ = request.getParameter("n");
+		if(num_ != null && !num_.equals("")) {
+			num = Integer.parseInt(num_);
+		}
+		String result;
+		
+		if(num%2 != 0) {
+			result = "홀수";
+		} else {
+			result = "짝수";
+		}
+		// 값 하나
+		request.setAttribute("result", result);
+		// 배열
+		String[] names = {"reynold", "dragon"};
+		request.setAttribute("names", names);
+		// 맵
+		Map<String, Object> notice = new HashMap<String, Object>();
+		notice.put("id", 1);
+		notice.put("title", "EL은 좋아요");
+		request.setAttribute("notice", notice);
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("spag.jsp");
+		dispatcher.forward(request, response);
+	}
+}
+
+```
+
+- spag.jsp
+
+```jsp
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<%=request.getAttribute("result") %>입니다.
+	${result}입니다.<br>
+	${names[0]}
+	${names[1]}<br>
+	${notice.id}
+	${notice.title}<br>
+</body>
+</html>
+```
+
+- 결과
+
+![33](JSP_images/33.png)
+
+- 그렇다면 EL의 저장소, 저장소의 우선순위, 데이터를 꺼낼 때 주의사항 등에 대해 알아보자
+
+
+
+## 48. EL의 데이터 저장소
+
+### 저장 객체에서 값을 추출하는 순서
+
+- request라는 저장소에 값을 넣었는데, EL은 사실 request 저장소에서만 키워드를 검색해서 가져오는게 아님
+- 서버 상에 존재하는 4개의 저장소가 있음
+  - page 객체
+  - request 객체
+  - session 객체
+  - application 객체
+- page 객체를 통해서도 EL 표현식으로 값을 꺼내올 수 있음
+- spag.jsp
+  - pageContext.setAttribute("aa", "hello"); 를 사용해서 값을 저장하고
+  - ${aa} 를 통해 출력할 수 있음
+
+```jsp
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<%
+pageContext.setAttribute("aa", "hello");
+%>
+<body>
+	<%=request.getAttribute("result") %>입니다.
+	${result}입니다.<br>
+	${names[0]}
+	${names[1]}<br>
+	${notice.id}
+	${notice.title}<br>
+	${aa}
+</body>
+</html>
+```
+
+- 그러면 만약 page, request, session, application 저장소에서 전부 cnt로 값을 넣었다고 하면, ${cnt}를 했을 때, 어떤 값이 나올까?
+- 우선순위가 존재함
+  - Page > request > session > application 순임
+  - 이런 우선순위 때문에 page에 cnt 값이 있으면 뒤쪽 저장소의 cnt들을 꺼내올수가 없게 됨
+- 이런 문제를 해결하기 위해 범위를 지정해주고 그 저장소에서만 찾게해주는 내장 객체가 있음
+
+![34](JSP_images/34.png)
+
+### 코드로 테스트해보자
+
+- spag.jsp
+
+```jsp
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<%
+pageContext.setAttribute("result", "hello");
+%>
+<body>
+	<%=request.getAttribute("result") %>입니다.
+	${result}입니다.<br>
+	${names[0]}
+	${names[1]}<br>
+	${notice.id}
+	${notice.title}<br>
+	<br>
+	request의 result ===> ${requestScope.result}<br>
+	page의 result ===> ${result}
+</body>
+</html>
+```
+
+- 결과
+
+![35](JSP_images/35.png)
+
+### EL 표기는 앞서 말한 4대 저장소말고도 사용할 수 있는 내장객체들이 있음
+
+- ${param.cnt}
+- ${header.host}
+- ${header["host"]}
+  - 변수의 이름이 변수 명명 규칙에 벗어났을 때 사용
+  - 예를 들면, 대쉬나 띄워쓰기가 들어갔을 경우 등
+- ...
+- 이런식으로 사용할 수 있음
+
+![36](JSP_images/36.png)
+
+- spag.jsp
+
+```jsp
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<%
+pageContext.setAttribute("result", "hello");
+%>
+<body>
+	<%=request.getAttribute("result") %>입니다.
+	${result}입니다.<br>
+	${names[0]}
+	${names[1]}<br>
+	${notice.id}
+	${notice.title}<br>
+	<br>
+	request의 result ===> ${requestScope.result}<br>
+	page의 result ===> ${result}
+	<br>
+	<br>
+	${param.n}<br>
+	${header.accept}<br>
+</body>
+</html>
+```
+
+- 결과
+
+![37](JSP_images/37.png)
+
+- pageContext
+  - EL에서는 함수를 호출하는 형태는 안됨
+  - 다만, get함수만 쓸 수 있음. 단, 메소드 호출의 느낌을 없애기 위해
+  - get과 괄호를 없애고 속성처럼 써야함 
+
+![38](JSP_images/38.png)
+
+
+
+## 49. EL의 연산자
+
+- 연산자
+  - empty
+    - null이거난 빈문자열이거나
+  - /
+    - 정수 / 정수 이렇게해도 결과가 소숫점으로 출력됨
+
+![39](JSP_images/39.png)
+
+- 사용예시
+
+![40](JSP_images/40.png)
+
+- spaq.jsp
+
+```jsp
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<%
+pageContext.setAttribute("result", "hello");
+%>
+<body>
+	<%=request.getAttribute("result") %>입니다.
+	${result}입니다.<br>
+	${names[0]}
+	${names[1]}<br>
+	${notice.id}
+	${notice.title}<br>
+	<br>
+	request의 result ===> ${requestScope.result}<br>
+	page의 result ===> ${result}
+	<br>
+	<br>
+	${param.n}<br>
+	${header.accept}<br>
+	<br>
+	${param.n <= 3}<br>
+	${param.n gt 3}<br>
+	${not empty param.n ? param.n : '값이 비어 있습니다.'}<br>
+	${param.n/3}<br>
+	
+</body>
+</html>
+```
+
+- 결과
+
+![41](JSP_images/41.png)
+
 
 
 

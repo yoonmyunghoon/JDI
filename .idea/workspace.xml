@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e1972930-8d11-4459-84b4-b1189c95813c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/알고리즘/프로그래머스/코딩테스트 고득점 Kit/DFS_BFS/타겟 넘버.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/알고리즘/프로그래머스/코딩테스트 고득점 Kit/이분탐색/입국심사.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/알고리즘/프로그래머스/코딩테스트 고득점 Kit/탐욕법(Greedy)/체육복(1).py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/알고리즘/프로그래머스/코딩테스트 고득점 Kit/탐욕법(Greedy)/체육복.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/알고리즘/프로그래머스/코딩테스트 고득점 Kit/정렬/H-Index(2).py" beforeDir="false" afterPath="$PROJECT_DIR$/알고리즘/프로그래머스/코딩테스트 고득점 Kit/정렬/H-Index(2).py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/알고리즘/프로그래머스/코딩테스트 고득점 Kit/정렬/H-Index.py" beforeDir="false" afterPath="$PROJECT_DIR$/알고리즘/프로그래머스/코딩테스트 고득점 Kit/정렬/H-Index.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,20 +36,20 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="ToolWindowDebug.ShowToolbar" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/알고리즘/백준" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/알고리즘/프로그래머스/코딩테스트 고득점 Kit/탐욕법(Greedy)" />
     <property name="settings.editor.selected.configurable" value="power.mode.ii" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/알고리즘/프로그래머스/코딩테스트 고득점 Kit/탐욕법(Greedy)" />
       <recent name="$PROJECT_DIR$/알고리즘/백준" />
       <recent name="$PROJECT_DIR$/알고리즘/프로그래머스/2020 신입 개발자 블라인드 채용 1차 코딩" />
       <recent name="$PROJECT_DIR$/알고리즘/프로그래머스/월간 코드 챌린지 시즌1/9월" />
       <recent name="$PROJECT_DIR$/알고리즘/프로그래머스/2020 Kakao Internship 코딩테스트" />
-      <recent name="C:\Users\LGPC\JDI\백준" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.H-Index(2)">
-    <configuration name="가장 큰 수(2)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python.체육복(1)">
+    <configuration name="타겟 넘버" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="JDI" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -55,53 +57,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/알고리즘/프로그래머스/코딩테스트 고득점 Kit/정렬" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/알고리즘/프로그래머스/코딩테스트 고득점 Kit/DFS_BFS" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/알고리즘/프로그래머스/코딩테스트 고득점 Kit/정렬/가장 큰 수(2).py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="더 맵게" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="JDI" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/알고리즘/프로그래머스/코딩테스트 고득점 Kit/힙(Heap)" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/알고리즘/프로그래머스/코딩테스트 고득점 Kit/힙(Heap)/더 맵게.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="10597_순열장난" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="JDI" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/알고리즘/백준" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/알고리즘/백준/10597_순열장난.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/알고리즘/프로그래머스/코딩테스트 고득점 Kit/DFS_BFS/타겟 넘버.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -215,7 +175,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="4" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="체육복" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="JDI" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -223,11 +183,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/알고리즘/기타/멀티캠퍼스(SW인재 통합공채)" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/알고리즘/프로그래머스/코딩테스트 고득점 Kit/탐욕법(Greedy)" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/알고리즘/기타/멀티캠퍼스(SW인재 통합공채)/4.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/알고리즘/프로그래머스/코딩테스트 고득점 Kit/탐욕법(Greedy)/체육복.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -383,13 +343,34 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="체육복(1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="JDI" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/알고리즘/프로그래머스/코딩테스트 고득점 Kit/탐욕법(Greedy)" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/알고리즘/프로그래머스/코딩테스트 고득점 Kit/탐욕법(Greedy)/체육복(1).py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.체육복(1)" />
+        <item itemvalue="Python.체육복" />
+        <item itemvalue="Python.타겟 넘버" />
         <item itemvalue="Python.H-Index(2)" />
         <item itemvalue="Python.H-Index" />
-        <item itemvalue="Python.4" />
-        <item itemvalue="Python.10597_순열장난" />
-        <item itemvalue="Python.가장 큰 수(2)" />
       </list>
     </recent_temporary>
   </component>
@@ -459,7 +440,7 @@
       <screen x="0" y="23" width="1440" height="806" />
     </state>
     <state x="963" y="323" key="#com.jetbrains.python.refactoring.move.PyMoveModuleMembersDialog/0.23.1440.806@0.23.1440.806" timestamp="1597727943473" />
-    <state width="1053" height="130" key="GridCell.Tab.0.bottom" timestamp="1603626481519">
+    <state width="585" height="533" key="GridCell.Tab.0.bottom" timestamp="1603720585827">
       <screen x="0" y="23" width="1440" height="811" />
     </state>
     <state width="661" height="448" key="GridCell.Tab.0.bottom/0.23.1440.804@0.23.1440.804" timestamp="1597405877574" />
@@ -471,11 +452,11 @@
     <state width="631" height="193" key="GridCell.Tab.0.bottom/0.23.1440.877/-1366.110.1366.679@-1366.110.1366.679" timestamp="1598530426507" />
     <state width="327" height="401" key="GridCell.Tab.0.bottom/0.23.1440.877/-1366.110.1366.681@-1366.110.1366.681" timestamp="1599971091187" />
     <state width="1419" height="232" key="GridCell.Tab.0.bottom/0.23.1440.877/-1366.110.1366.681@0.23.1440.877" timestamp="1602164950984" />
-    <state width="1419" height="130" key="GridCell.Tab.0.bottom/1440.219.960.681/0.23.1440.811@0.23.1440.811" timestamp="1603624646397" />
+    <state width="585" height="533" key="GridCell.Tab.0.bottom/1440.219.960.681/0.23.1440.811@0.23.1440.811" timestamp="1603720585827" />
     <state width="939" height="114" key="GridCell.Tab.0.bottom/1440.219.960.681/0.23.1440.811@1440.219.960.681" timestamp="1602650261806" />
     <state width="1419" height="151" key="GridCell.Tab.0.bottom/1440.23.960.681/0.23.1440.804@0.23.1440.804" timestamp="1596520932244" />
     <state width="1398" height="211" key="GridCell.Tab.0.bottom/1440.23.960.681/0.23.1440.811@0.23.1440.811" timestamp="1601987314119" />
-    <state width="1053" height="130" key="GridCell.Tab.0.center" timestamp="1603626481519">
+    <state width="585" height="533" key="GridCell.Tab.0.center" timestamp="1603720585825">
       <screen x="0" y="23" width="1440" height="811" />
     </state>
     <state width="661" height="448" key="GridCell.Tab.0.center/0.23.1440.804@0.23.1440.804" timestamp="1597405877573" />
@@ -487,11 +468,11 @@
     <state width="631" height="193" key="GridCell.Tab.0.center/0.23.1440.877/-1366.110.1366.679@-1366.110.1366.679" timestamp="1598530426505" />
     <state width="327" height="401" key="GridCell.Tab.0.center/0.23.1440.877/-1366.110.1366.681@-1366.110.1366.681" timestamp="1599971091185" />
     <state width="1419" height="232" key="GridCell.Tab.0.center/0.23.1440.877/-1366.110.1366.681@0.23.1440.877" timestamp="1602164950982" />
-    <state width="1419" height="130" key="GridCell.Tab.0.center/1440.219.960.681/0.23.1440.811@0.23.1440.811" timestamp="1603624646394" />
+    <state width="585" height="533" key="GridCell.Tab.0.center/1440.219.960.681/0.23.1440.811@0.23.1440.811" timestamp="1603720585825" />
     <state width="939" height="114" key="GridCell.Tab.0.center/1440.219.960.681/0.23.1440.811@1440.219.960.681" timestamp="1602650261805" />
     <state width="1419" height="151" key="GridCell.Tab.0.center/1440.23.960.681/0.23.1440.804@0.23.1440.804" timestamp="1596520932242" />
     <state width="1398" height="211" key="GridCell.Tab.0.center/1440.23.960.681/0.23.1440.811@0.23.1440.811" timestamp="1601987314118" />
-    <state width="1053" height="130" key="GridCell.Tab.0.left" timestamp="1603626481518">
+    <state width="585" height="533" key="GridCell.Tab.0.left" timestamp="1603720585825">
       <screen x="0" y="23" width="1440" height="811" />
     </state>
     <state width="661" height="448" key="GridCell.Tab.0.left/0.23.1440.804@0.23.1440.804" timestamp="1597405877573" />
@@ -503,11 +484,11 @@
     <state width="631" height="193" key="GridCell.Tab.0.left/0.23.1440.877/-1366.110.1366.679@-1366.110.1366.679" timestamp="1598530426504" />
     <state width="327" height="401" key="GridCell.Tab.0.left/0.23.1440.877/-1366.110.1366.681@-1366.110.1366.681" timestamp="1599971091185" />
     <state width="1419" height="232" key="GridCell.Tab.0.left/0.23.1440.877/-1366.110.1366.681@0.23.1440.877" timestamp="1602164950981" />
-    <state width="1419" height="130" key="GridCell.Tab.0.left/1440.219.960.681/0.23.1440.811@0.23.1440.811" timestamp="1603624646393" />
+    <state width="585" height="533" key="GridCell.Tab.0.left/1440.219.960.681/0.23.1440.811@0.23.1440.811" timestamp="1603720585825" />
     <state width="939" height="114" key="GridCell.Tab.0.left/1440.219.960.681/0.23.1440.811@1440.219.960.681" timestamp="1602650261804" />
     <state width="1419" height="151" key="GridCell.Tab.0.left/1440.23.960.681/0.23.1440.804@0.23.1440.804" timestamp="1596520932241" />
     <state width="1398" height="211" key="GridCell.Tab.0.left/1440.23.960.681/0.23.1440.811@0.23.1440.811" timestamp="1601987314117" />
-    <state width="1053" height="130" key="GridCell.Tab.0.right" timestamp="1603626481519">
+    <state width="585" height="533" key="GridCell.Tab.0.right" timestamp="1603720585826">
       <screen x="0" y="23" width="1440" height="811" />
     </state>
     <state width="661" height="448" key="GridCell.Tab.0.right/0.23.1440.804@0.23.1440.804" timestamp="1597405877574" />
@@ -519,11 +500,11 @@
     <state width="631" height="193" key="GridCell.Tab.0.right/0.23.1440.877/-1366.110.1366.679@-1366.110.1366.679" timestamp="1598530426506" />
     <state width="327" height="401" key="GridCell.Tab.0.right/0.23.1440.877/-1366.110.1366.681@-1366.110.1366.681" timestamp="1599971091186" />
     <state width="1419" height="232" key="GridCell.Tab.0.right/0.23.1440.877/-1366.110.1366.681@0.23.1440.877" timestamp="1602164950982" />
-    <state width="1419" height="130" key="GridCell.Tab.0.right/1440.219.960.681/0.23.1440.811@0.23.1440.811" timestamp="1603624646396" />
+    <state width="585" height="533" key="GridCell.Tab.0.right/1440.219.960.681/0.23.1440.811@0.23.1440.811" timestamp="1603720585826" />
     <state width="939" height="114" key="GridCell.Tab.0.right/1440.219.960.681/0.23.1440.811@1440.219.960.681" timestamp="1602650261805" />
     <state width="1419" height="151" key="GridCell.Tab.0.right/1440.23.960.681/0.23.1440.804@0.23.1440.804" timestamp="1596520932243" />
     <state width="1398" height="211" key="GridCell.Tab.0.right/1440.23.960.681/0.23.1440.811@0.23.1440.811" timestamp="1601987314119" />
-    <state width="585" height="533" key="GridCell.Tab.1.bottom" timestamp="1603461568833">
+    <state width="585" height="533" key="GridCell.Tab.1.bottom" timestamp="1603720585829">
       <screen x="0" y="23" width="1440" height="811" />
     </state>
     <state width="661" height="448" key="GridCell.Tab.1.bottom/0.23.1440.804@0.23.1440.804" timestamp="1597405877576" />
@@ -533,9 +514,9 @@
     <state width="585" height="533" key="GridCell.Tab.1.bottom/0.23.1440.811@0.23.1440.811" timestamp="1603461568833" />
     <state width="327" height="401" key="GridCell.Tab.1.bottom/0.23.1440.877/-1366.110.1366.681@-1366.110.1366.681" timestamp="1599971091190" />
     <state width="649" height="496" key="GridCell.Tab.1.bottom/0.23.1440.877/-1366.110.1366.681@0.23.1440.877" timestamp="1601176762931" />
-    <state width="536" height="549" key="GridCell.Tab.1.bottom/1440.219.960.681/0.23.1440.811@0.23.1440.811" timestamp="1603366614503" />
+    <state width="585" height="533" key="GridCell.Tab.1.bottom/1440.219.960.681/0.23.1440.811@0.23.1440.811" timestamp="1603720585829" />
     <state width="445" height="452" key="GridCell.Tab.1.bottom/1440.23.960.681/0.23.1440.811@0.23.1440.811" timestamp="1601987158591" />
-    <state width="585" height="533" key="GridCell.Tab.1.center" timestamp="1603461568833">
+    <state width="585" height="533" key="GridCell.Tab.1.center" timestamp="1603720585828">
       <screen x="0" y="23" width="1440" height="811" />
     </state>
     <state width="661" height="448" key="GridCell.Tab.1.center/0.23.1440.804@0.23.1440.804" timestamp="1597405877575" />
@@ -545,9 +526,9 @@
     <state width="585" height="533" key="GridCell.Tab.1.center/0.23.1440.811@0.23.1440.811" timestamp="1603461568833" />
     <state width="327" height="401" key="GridCell.Tab.1.center/0.23.1440.877/-1366.110.1366.681@-1366.110.1366.681" timestamp="1599971091188" />
     <state width="649" height="496" key="GridCell.Tab.1.center/0.23.1440.877/-1366.110.1366.681@0.23.1440.877" timestamp="1601176762929" />
-    <state width="536" height="549" key="GridCell.Tab.1.center/1440.219.960.681/0.23.1440.811@0.23.1440.811" timestamp="1603366614501" />
+    <state width="585" height="533" key="GridCell.Tab.1.center/1440.219.960.681/0.23.1440.811@0.23.1440.811" timestamp="1603720585828" />
     <state width="445" height="452" key="GridCell.Tab.1.center/1440.23.960.681/0.23.1440.811@0.23.1440.811" timestamp="1601987158590" />
-    <state width="585" height="533" key="GridCell.Tab.1.left" timestamp="1603461568832">
+    <state width="585" height="533" key="GridCell.Tab.1.left" timestamp="1603720585827">
       <screen x="0" y="23" width="1440" height="811" />
     </state>
     <state width="661" height="448" key="GridCell.Tab.1.left/0.23.1440.804@0.23.1440.804" timestamp="1597405877575" />
@@ -557,9 +538,9 @@
     <state width="585" height="533" key="GridCell.Tab.1.left/0.23.1440.811@0.23.1440.811" timestamp="1603461568832" />
     <state width="327" height="401" key="GridCell.Tab.1.left/0.23.1440.877/-1366.110.1366.681@-1366.110.1366.681" timestamp="1599971091188" />
     <state width="649" height="496" key="GridCell.Tab.1.left/0.23.1440.877/-1366.110.1366.681@0.23.1440.877" timestamp="1601176762929" />
-    <state width="536" height="549" key="GridCell.Tab.1.left/1440.219.960.681/0.23.1440.811@0.23.1440.811" timestamp="1603366614500" />
+    <state width="585" height="533" key="GridCell.Tab.1.left/1440.219.960.681/0.23.1440.811@0.23.1440.811" timestamp="1603720585827" />
     <state width="445" height="452" key="GridCell.Tab.1.left/1440.23.960.681/0.23.1440.811@0.23.1440.811" timestamp="1601987158589" />
-    <state width="585" height="533" key="GridCell.Tab.1.right" timestamp="1603461568833">
+    <state width="585" height="533" key="GridCell.Tab.1.right" timestamp="1603720585829">
       <screen x="0" y="23" width="1440" height="811" />
     </state>
     <state width="661" height="448" key="GridCell.Tab.1.right/0.23.1440.804@0.23.1440.804" timestamp="1597405877576" />
@@ -569,7 +550,7 @@
     <state width="585" height="533" key="GridCell.Tab.1.right/0.23.1440.811@0.23.1440.811" timestamp="1603461568833" />
     <state width="327" height="401" key="GridCell.Tab.1.right/0.23.1440.877/-1366.110.1366.681@-1366.110.1366.681" timestamp="1599971091189" />
     <state width="649" height="496" key="GridCell.Tab.1.right/0.23.1440.877/-1366.110.1366.681@0.23.1440.877" timestamp="1601176762930" />
-    <state width="536" height="549" key="GridCell.Tab.1.right/1440.219.960.681/0.23.1440.811@0.23.1440.811" timestamp="1603366614502" />
+    <state width="585" height="533" key="GridCell.Tab.1.right/1440.219.960.681/0.23.1440.811@0.23.1440.811" timestamp="1603720585829" />
     <state width="445" height="452" key="GridCell.Tab.1.right/1440.23.960.681/0.23.1440.811@0.23.1440.811" timestamp="1601987158590" />
     <state x="554" y="154" key="RollbackChangesDialog" timestamp="1597403884436">
       <screen x="0" y="23" width="1440" height="804" />
@@ -591,13 +572,14 @@
       <screen x="0" y="23" width="1440" height="806" />
     </state>
     <state x="482" y="64" key="refactoring.ChangeSignatureDialog/0.23.1440.806@0.23.1440.806" timestamp="1597557200951" />
-    <state x="385" y="153" width="670" height="682" key="search.everywhere.popup" timestamp="1601127870762">
+    <state x="385" y="153" width="670" height="682" key="search.everywhere.popup" timestamp="1603709583771">
       <screen x="0" y="23" width="1440" height="811" />
     </state>
     <state x="385" y="153" width="670" height="675" key="search.everywhere.popup/0.23.1440.804@0.23.1440.804" timestamp="1596710982662" />
     <state x="385" y="153" width="670" height="677" key="search.everywhere.popup/0.23.1440.806@0.23.1440.806" timestamp="1597892542548" />
     <state x="385" y="153" width="670" height="679" key="search.everywhere.popup/0.23.1440.808@0.23.1440.808" timestamp="1598690954988" />
     <state x="385" y="153" width="670" height="682" key="search.everywhere.popup/0.23.1440.811@0.23.1440.811" timestamp="1601127870762" />
+    <state x="385" y="153" width="670" height="682" key="search.everywhere.popup/1440.219.960.681/0.23.1440.811@0.23.1440.811" timestamp="1603709583771" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
