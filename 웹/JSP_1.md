@@ -868,7 +868,55 @@ pageContext.setAttribute("result", "hello");
 
 
 
+## 50. 수업용 프로젝트 준비하기
 
+![42](JSP_images/42.png)
+
+
+
+## 51. JSP를 이용해서 자바 웹 프로그램 만들기 시작
+
+### Jasper를 이용한 코드 작성 방법
+
+![43](JSP_images/43.png)
+
+### 코드 블록 4종류
+
+![44](JSP_images/44.png)
+
+### 모든 jsp 페이지에 한글 깨짐을 방지하기 위한 페이지 지시자 등록
+
+#### 페이지 상단에 <%@ page ... %> 블록을 이용해서 UTF-8 설정하기
+
+![45](JSP_images/45.png)
+
+- notice/list.jsp
+  - 맨 위쪽에 인코딩 설정해주기
+  - 중간에 공지사항 리스트를 반복문을 사용해서 출력하기
+
+```jsp
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!---생략---->
+					<% for(int i=0; i<10; i++){%>
+							
+					<tr>
+						<td><%= i+1 %></td>
+						<td class="title indent text-align-left"><a href="detail.html">스프링 8강까지의 예제 코드</a></td>
+						<td>newlec</td>
+						<td>
+							2019-08-18		
+						</td>
+						<td>146</td>
+					</tr>
+							
+					<% }%>
+<!---생략---->
+```
+
+- 결과
+
+![46](JSP_images/46.png)
 
 
 
