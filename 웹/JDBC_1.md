@@ -55,6 +55,7 @@
 - MacOS에서 오라클 DB를 사용하려면 Docker를 사용해야함
 - 다른 DBMS를 사용해도 되지만, Docker에 대해 공부할 겸, Docker를 사용해서 오라클 DB를 설치해보자
   - Docker에 대한 학습부분은 ITknowledge에 있는 Docker관련 마크다운파일에 정리했음
+  - 참고: https://seongjaemoon.github.io/database/2018/02/18/database-oracle6.html
 
 
 

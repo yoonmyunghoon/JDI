@@ -3,29 +3,28 @@ def solution(number, k):
     for i in range(len(number)):
         if k == 0:
             break
-        if len(stack) == 0:
-            stack.append(number[i])
-        else:
-            while 1:
-                if k == 0:
-                    stack.append(number[i:])
-                    break
-                if len(stack) == 0:
-                    stack.append(number[i])
-                    break
-                elif stack[-1] >= number[i]:
-                    stack.append(number[i])
-                    break
-                else:
-                    stack.pop()
-                    k -= 1
-    print(stack)
-    answer = ''.join(stack)
+        while 1:
+            if k == 0:
+                stack.append(number[i:])
+                break
+            if len(stack) == 0:
+                stack.append(number[i])
+                break
+            elif stack[-1] >= number[i]:
+                stack.append(number[i])
+                break
+            else:
+                stack.pop()
+                k -= 1
+    if k != 0:
+        answer = ''.join(stack[:-k])
+    else:
+        answer = ''.join(stack)
     return answer
 
 
-N = "777000"
-K = 2
+N = "4177252841"
+K = 4
 print(solution(N, K))
 
 
