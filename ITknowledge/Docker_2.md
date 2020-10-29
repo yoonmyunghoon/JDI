@@ -261,12 +261,6 @@ volumes:
 
 
 
-## 7. 이미지 만들고 배포하기
-
-- 참고하기 : https://subicura.com/2017/02/10/docker-guide-for-beginners-create-image-and-deploy.html
-
-
-
 ## 참고
 
 - 초보를 위한 도커 안내서
