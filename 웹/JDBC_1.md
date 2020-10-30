@@ -287,6 +287,7 @@ Completed: ALTER PLUGGABLE DATABASE XEPDB1 SAVE STATE
 ```
 
 - sqlplus 실행
+  - orcle DBMS를 설치하면 자동으로 설치되는 sqlplus
 
 ```shell
 docker exec -it --user=oracle ora18xe bash
@@ -295,6 +296,21 @@ docker exec -it --user=oracle ora18xe bash
 - 연결 성공
 
 ![7](JDBC_images/7.png)
+
+### SQL Developer 설치하기
+
+- 연결(인증), 실행, 결과집합 등 DB에 접근하는데 콘솔기반 UI보다 조금 더 사용하기 쉬운 GUI 프로그램 SQL Developer를 설치해보자
+
+  - https://www.oracle.com/tools/downloads/sqldev-v192-downloads.html
+  - http://taewan.kim/oci_docs/98_misc_tips/tools/install_sqldeveloper/
+
+- SQLDeveloper 오류: Locale not recoginized
+
+  - http://taewan.kim/tip/sqldeveloper_error_unrecog_locale/
+
+- 접속 성공
+
+  ![16](JDBC_images/16.png)
 
 ### 오라클 JDBC 드라이버 다운로드하기
 
@@ -366,7 +382,13 @@ docker exec -it --user=oracle ora18xe bash
 
 ## 4. 쿼리 실행하기 실습
 
+### 테이블 준비하기
 
+https://www.youtube.com/watch?v=6Ljhw_AKOqs&list=PLq8wAnVUcTFWxwoc41CqmwnO-ZyRDL0og&index=4
+
+https://www.youtube.com/watch?v=7rpwgjNuOwo&list=PLq8wAnVUcTFVq7RD1kuUwkdWabxvDGzfu&index=6
+
+https://www.youtube.com/watch?v=ZEW5WY0hxIc&list=PLq8wAnVUcTFVq7RD1kuUwkdWabxvDGzfu&index=10
 
 
 
