@@ -384,11 +384,249 @@ docker exec -it --user=oracle ora18xe bash
 
 ### 테이블 준비하기
 
-https://www.youtube.com/watch?v=6Ljhw_AKOqs&list=PLq8wAnVUcTFWxwoc41CqmwnO-ZyRDL0og&index=4
+- 참고
+  - MEMBER 테이블 생성하기
+    - https://www.youtube.com/watch?v=7rpwgjNuOwo&list=PLq8wAnVUcTFVq7RD1kuUwkdWabxvDGzfu&index=6
+  - 나머지 테이블 준비하기
+    - https://www.youtube.com/watch?v=ZEW5WY0hxIc&list=PLq8wAnVUcTFVq7RD1kuUwkdWabxvDGzfu&index=10
 
-https://www.youtube.com/watch?v=7rpwgjNuOwo&list=PLq8wAnVUcTFVq7RD1kuUwkdWabxvDGzfu&index=6
+### 테이블 준비하기에 앞서 SQL에 대해 간략 정리
 
-https://www.youtube.com/watch?v=ZEW5WY0hxIc&list=PLq8wAnVUcTFVq7RD1kuUwkdWabxvDGzfu&index=10
+#### SQL의 구분
+
+- DDL
+  - CREATE
+  - ALTER
+  - DROP
+- DML
+  - INSERT
+  - SELECT
+  - UPDATE
+  - DELETE
+- DCL
+  - GRANT
+  - REVOKE
+
+#### 테이블 생성하기 - CREATE
+
+- 테이블 정의하기 = 데이터 구조 정의하기 = 개념상의 데이터 정의하기 = Entity 정의하기
+- 프로그래밍 언어에서 데이터를 다룰 때, 클래스로 정의했음
+- 이를 데이터베이스에서는 테이블로 나타냄
+
+![17](JDBC_images/17.png)
+
+- 생성
+
+![18](JDBC_images/18.png)
+
+#### VALUE TYPE
+
+![19](JDBC_images/19.png)
+
+- Character 형식
+  - CHAR
+    - 길이가 고정일 때
+    - 크기가 정해져있기 때문에 검색할 경우, 시간이 적게 걸림
+  - VARCHAR2
+    - 길이가 변할 수 있을 때
+    - 데이터가 저장될 때, 구분자를 통해서 저장하기 때문에, 검색할 경우, 시간이 많이 걸림
+  - NCHAR
+    - 다양한 문자를 한번에 표현하기 위해서는 이 타입을 사용해야함
+    - 크기가 3배임
+  - NVARCHAR2
+    - 가변적인 NCHAR 타입
+  - LONG
+    - 최대 2G, 예전에 나와서 요새는 잘 안쓰임
+  - CLOB
+    - 대용량 텍스트 데이터 타입, 최대 4G
+  - NCLOB
+    - 대용량 텍스틑 유니코드 데이터 타입, 최대 4G
+- Numeric 형식
+  - NUMBER
+    - 정수와 실수 모두 표현할 수 있음
+- Date 형식
+  - DATE
+    - 년월일 표현
+  - TIMESTAMP
+    - 년월일+시분초까지 표현
+
+#### 테이블 수정하기 - ALTER
+
+![20](JDBC_images/20.png)
+
+- 결과
+
+![21](JDBC_images/21.png)
+
+- DDL의 경우, 자주 사용하는 명령어가 아니기 때문에 완벽하게 숙지하고 있는 것보다는 그냥 툴을 사용하는 편임
+
+![22](JDBC_images/22.png)
+
+### 나머지 테이블 준비하기
+
+![23](JDBC_images/23.png)
+
+- 테이블 생성 코드
+
+```sql
+CREATE TABLE MEMBER
+(
+    ID VARCHAR2(50),
+    PWD NVARCHAR2(50),
+    NAME NVARCHAR2(50),
+    GENDER NCHAR(2), --남성, 여성
+    AGE NUMBER(3),
+    BIRTHDAY CHAR(10), --2000-01-02
+    PHONE CHAR(13), --010-1234-2345
+    REGDATE DATE
+);
+
+DROP TABLE MEMBER;
+
+ALTER TABLE MEMBER MODIFY ID NVARCHAR2(50);
+
+ALTER TABLE MEMBER DROP COLUMN AGE;
+
+ALTER TABLE MEMBER ADD EMAIL VARCHAR2(200);
+
+
+CREATE TABLE NOTICE
+(
+    ID NUMBER,
+    TITLE NVARCHAR2(100),
+    WRITER_ID NVARCHAR2(50),
+    CONTENT CLOB,
+    REGDATE TIMESTAMP,
+    HIT NUMBER,
+    FILES NVARCHAR2(1000)    
+);
+
+CREATE TABLE "COMMENT"
+(
+    ID NUMBER,
+    CONTENT NVARCHAR2(2000),
+    REGDATE TIMESTAMP,
+    WRITER_ID NVARCHAR2(50),
+    NOTICE_ID NUMBER
+);
+
+CREATE TABLE ROLE
+(
+    ID VARCHAR2(50),
+    DISCRIPTION NVARCHAR2(500)
+);
+
+CREATE TABLE MEMBER_ROLE
+(
+    MEMBER_ID NVARCHAR2(50),
+    ROLE_ID VARCHAR2(50)
+);
+
+
+```
+
+- 테이블 준비완료
+
+![24](JDBC_images/24.png)
+
+### JDBC 코드 : 첫 번째 게시글 제목 출력하기
+
+![25](JDBC_images/25.png)
+
+- Program.java
+
+```java
+package ex1;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class Program {
+
+	public static void main(String[] args) throws ClassNotFoundException, SQLException {
+		
+		String url = "jdbc:oracle:thin:@localhost:1521/xepdb1";
+		String sql = "SELECT * FROM NOTICE";
+		
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+		Connection con = DriverManager.getConnection(url, "NEWLEC", "1234");
+		Statement st = con.createStatement();
+		ResultSet rs = st.executeQuery(sql);
+		
+		rs.next();
+		String title = rs.getString("TITLE");
+		System.out.println(title);
+		
+		rs.close();
+		st.close();
+		con.close();
+
+	}
+
+}
+```
+
+- 로케일을 찾을 수 없다는 에러가 뜸
+  - 찾아보니 맥북에서 발생하는 오류임
+  - 시스템환경설정에서 언어 및 지역의 지역을 미국으로 바꿨다가 다시 대한민국으로 바꾸니 해결됨;;
+    - https://butter-ring.tistory.com/5
+- Oracle
+  - notice에 데이터 한개 삽입
+  - 오라클을 commit을 수동으로 해줘야한다고 함
+
+```sql
+INSERT INTO NOTICE VALUES(1, 'JDBC란 무엇인가?', 'newlec', 'aaa', SYSDATE, 0, '');
+COMMIT;
+```
+
+- Program.java
+
+```java
+package ex1;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class Program {
+
+	public static void main(String[] args) throws ClassNotFoundException, SQLException {
+		
+		String url = "jdbc:oracle:thin:@localhost:1521/xepdb1";
+		String sql = "SELECT * FROM NOTICE";
+		
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+		Connection con = DriverManager.getConnection(url, "NEWLEC", "1234");
+		Statement st = con.createStatement();
+		ResultSet rs = st.executeQuery(sql);
+		
+		if (rs.next()) {
+			String title = rs.getString("TITLE");
+			System.out.println(title);
+		}
+		
+		rs.close();
+		st.close();
+		con.close();
+
+	}
+
+}
+
+```
+
+- 결과
+
+![26](JDBC_images/26.png)
+
+
+
+## 5. 혼자 풀어보는 문제 - 1
 
 
 
