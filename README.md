@@ -40,6 +40,7 @@
   - [학습3](웹/Servlet_3.md)
 - JDBC 학습
   - [학습1](웹/JDBC_1.md)
+  - [학습2](웹/JDBC_2.md)
 - JSP 학습
   - [학습1](웹/JSP_1.md)
 - [Spring](웹/Spring.md)

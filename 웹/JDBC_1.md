@@ -628,7 +628,398 @@ public class Program {
 
 ## 5. 혼자 풀어보는 문제 - 1
 
+### 레코드의 모든 컬럼 출력하기
 
+- Program.java
+
+```java
+package ex1;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Date;
+
+public class Program {
+
+	public static void main(String[] args) throws ClassNotFoundException, SQLException {
+		
+		String url = "jdbc:oracle:thin:@localhost:1521/xepdb1";
+		String sql = "SELECT * FROM NOTICE";
+		
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+		Connection con = DriverManager.getConnection(url, "NEWLEC", "1234");
+		Statement st = con.createStatement();
+		ResultSet rs = st.executeQuery(sql);
+		
+		while (rs.next()) {
+			int id = rs.getInt("ID");
+			String title = rs.getString("TITLE");
+			String writerId = rs.getString("WRITER_ID");
+			Date regDate = rs.getDate("REGDATE");
+			String content = rs.getString("CONTENT");
+			int hit = rs.getInt("hit");
+			System.out.printf("id:%d, title:%s, writerId:%s, regDate:%s, content:%s, hit:%d\n", 
+					id, title, writerId, regDate, content, hit);
+		}
+		
+		
+		rs.close();
+		st.close();
+		con.close();
+
+	}
+
+}
+
+```
+
+- 결과
+
+![27](JDBC_images/27.png)
+
+
+
+## 6. 혼자 풀어보는 문제 - 2
+
+### 조회수가 10 이상인 게시글만 출력되도록 하시오
+
+- Program.java
+
+```java
+package ex1;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Date;
+
+public class Program {
+
+	public static void main(String[] args) throws ClassNotFoundException, SQLException {
+		
+		String url = "jdbc:oracle:thin:@localhost:1521/xepdb1";
+		String sql = "SELECT * FROM NOTICE";
+		
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+		Connection con = DriverManager.getConnection(url, "NEWLEC", "1234");
+		Statement st = con.createStatement();
+		ResultSet rs = st.executeQuery(sql);
+		
+		while (rs.next()) {
+			int hit = rs.getInt("hit");
+			if (hit >= 10) {
+				int id = rs.getInt("ID");
+				String title = rs.getString("TITLE");
+				String writerId = rs.getString("WRITER_ID");
+				Date regDate = rs.getDate("REGDATE");
+				String content = rs.getString("CONTENT");
+				System.out.printf("id:%d, title:%s, writerId:%s, regDate:%s, content:%s, hit:%d\n", 
+						id, title, writerId, regDate, content, hit);
+			}
+		}
+		
+		
+		rs.close();
+		st.close();
+		con.close();
+
+	}
+
+}
+
+```
+
+- 결과
+
+![28](JDBC_images/28.png)
+
+
+
+## 7. SQL을 잘해야하는 이유
+
+![29](JDBC_images/29.png)
+
+- DBMS 서버는 데이터 공장이라고 생각하자
+- 데이터를 처리하는 것들은 모두 DBMS 서버에서 처리하고, 자바에서는 전체 결과를 사용하는 방식으로 해야 효율적임
+
+### 데이터 필터링, 정렬, 그룹화 등의 모든 데이터 연산은 데이터베이스에서 처리한다
+
+![30](JDBC_images/30.png)
+
+### 코드 리팩토링
+
+- Program.java
+
+```java
+package ex1;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Date;
+
+public class Program {
+
+	public static void main(String[] args) throws ClassNotFoundException, SQLException {
+		
+		String url = "jdbc:oracle:thin:@localhost:1521/xepdb1";
+		String sql = "SELECT * FROM NOTICE WHERE hit >= 10";
+		
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+		Connection con = DriverManager.getConnection(url, "NEWLEC", "1234");
+		Statement st = con.createStatement();
+		ResultSet rs = st.executeQuery(sql);
+		
+		while (rs.next()) {
+			int id = rs.getInt("ID");
+			String title = rs.getString("TITLE");
+			String writerId = rs.getString("WRITER_ID");
+			Date regDate = rs.getDate("REGDATE");
+			String content = rs.getString("CONTENT");
+			int hit = rs.getInt("hit");
+			System.out.printf("id:%d, title:%s, writerId:%s, regDate:%s, content:%s, hit:%d\n", 
+					id, title, writerId, regDate, content, hit);
+		}
+		
+		
+		rs.close();
+		st.close();
+		con.close();
+
+	}
+
+}
+
+```
+
+
+
+## 8. 데이터 입력을 위한 쿼리문 준비하기
+
+- NOTICE 테이블에 데이터를 삽입할 때, 사용자가 직접 입력하지 않을 데이터들은 빼야함
+  - ID
+    - 데이터베이스 내부적으로 사용되는 값이므로 사용자가 입력할 필요가 없음
+    - 시퀀스를 사용해서 자동으로 이전값에 +1 하는 방법을 사용
+    - 시퀀스 사용 방법 참고
+      - https://www.youtube.com/watch?v=WBu9-eT9LcM&list=PLq8wAnVUcTFVq7RD1kuUwkdWabxvDGzfu&index=46
+  - REGDATE
+    - 등록된 시간을 자동 저장해줄 수 있도록 디폴트 설정
+  - HIT
+    - 처음엔 조회수가 0이므로 0으로 디폴트 설정
+  - PUB
+    - 공개할지 말지를 정하는 컬럼으로 처음엔 0으로 디폴트 설정
+- 컬럼 정보
+
+![31](JDBC_images/31.png)
+
+- 입력 쿼리문
+
+```sql
+INSERT INTO notice (
+    title,
+    writer_id,
+    content,
+    files
+) VALUES (
+    'test2',
+    'newlec',
+    'test content',
+    ''
+);
+commit;
+```
+
+- 결과
+
+![32](JDBC_images/32.png)
+
+
+
+## 9. 데이터 입력하기와 PreparedStatement
+
+- Program2.java
+
+```java
+package ex1;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Date;
+
+public class Program2 {
+
+	public static void main(String[] args) throws ClassNotFoundException, SQLException {
+		
+		String title = "TEST2";
+		String writerId = "newlec";
+		String content = "hahahaha";
+		String files = "";
+		
+		String url = "jdbc:oracle:thin:@localhost:1521/xepdb1";
+		String sql = "INSERT INTO notice (" + 
+				"    title," + 
+				"    writer_id," + 
+				"    content," + 
+				"    files" + 
+				") VALUES (?,?,?,?)";
+		
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+		Connection con = DriverManager.getConnection(url, "NEWLEC", "1234");
+//		Statement st = con.createStatement();
+    // sql문에 값을 넣을 때는 prepareStatement를 사용
+		PreparedStatement st = con.prepareStatement(sql);
+		st.setString(1, title);
+		st.setString(2, writerId);
+		st.setString(3, content);
+		st.setString(4, files);
+    // 데이터를 입력, 수정, 삭제할 경우에는 executeUpdate사용
+    // prepareStatement에서 sql문을 이미 넣었기 때문에 이때는 sql문을 넣지 않음
+		int result = st.executeUpdate();
+		System.out.println(result);
+		
+		st.close();
+		con.close();
+
+	}
+
+}
+
+```
+
+- 결과
+
+![33](JDBC_images/33.png)
+
+
+
+## 10. 데이터 수정을 위한 쿼리 준비하기
+
+- 수정 쿼리문 작성
+
+```sql
+UPDATE NOTICE
+SET
+    TITLE='TEST3',
+    CONTENT='HAHAHAH',
+    FILES=''
+WHERE ID=6;
+
+ROLLBACK;
+
+```
+
+
+
+## 11. 데이터 수정을 구현하기
+
+- Program3.java
+
+```java
+package ex1;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Date;
+
+public class Program3 {
+
+	public static void main(String[] args) throws ClassNotFoundException, SQLException {
+		
+		String title = "TEST3";
+		String content = "hahahaha333";
+		String files = "";
+		int id = 6;
+		
+		String url = "jdbc:oracle:thin:@localhost:1521/xepdb1";
+		String sql = "UPDATE NOTICE SET" + 
+				"    TITLE=?," + 
+				"    CONTENT=?," + 
+				"    FILES=?" + 
+				"WHERE ID=?";
+		
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+		Connection con = DriverManager.getConnection(url, "NEWLEC", "1234");
+		PreparedStatement st = con.prepareStatement(sql);
+		st.setString(1, title);
+		st.setString(2, content);
+		st.setString(3, files);
+		st.setInt(4, id);
+		int result = st.executeUpdate();
+		System.out.println(result);
+		
+		st.close();
+		con.close();
+
+	}
+
+}
+
+```
+
+- 결과
+
+![34](JDBC_images/34.png)
+
+
+
+## 12. 데이터 삭제하기
+
+- Program4
+
+```java
+package ex1;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Date;
+
+public class Program4 {
+
+	public static void main(String[] args) throws ClassNotFoundException, SQLException {
+		
+		int id = 6;
+		
+		String url = "jdbc:oracle:thin:@localhost:1521/xepdb1";
+		String sql = "DELETE NOTICE WHERE ID=?";
+		
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+		Connection con = DriverManager.getConnection(url, "NEWLEC", "1234");
+		PreparedStatement st = con.prepareStatement(sql);
+		st.setInt(1, id);
+		int result = st.executeUpdate();
+		System.out.println(result);
+		
+		st.close();
+		con.close();
+
+	}
+
+}
+
+```
+
+- 결과
+
+![35](JDBC_images/35.png)
 
 
 
