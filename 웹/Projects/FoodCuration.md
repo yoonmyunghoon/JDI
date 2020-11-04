@@ -5,7 +5,7 @@
 
 
 
-![pasted-image](FC_images/logo.tiff)
+![pasted-image](FC_images/logo.png)
 
 # :fork_and_knife: 개인별 맞춤형 맛집 추천 웹 서비스: Food Curation
 
