@@ -38,7 +38,7 @@
 
 ### 2) 개발 아키텍처
 
-- Django + VanilaJS + VueJS(CDN)
+- Django + VanillaJS + VueJS(CDN)
 
 ### 3) 서비스 배포 환경
 
