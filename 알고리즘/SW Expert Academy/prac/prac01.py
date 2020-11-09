@@ -114,7 +114,7 @@ a = {1, 5, 6, 8, 4, 5, 6}
 # a.update({'귤','토마토'})
 # print(a.pop('사과'))
 # print(a)
-# words = "hI! Everyone, I'm kim"
+words = "hI! Everyone, I'm kim"
 # words.capitalize()
 # result = words.title()
 # result = words.upper()
@@ -212,4 +212,3 @@ print(isinstance(reynold_phone, Phone))
 print(type(reynold_phone) == Phone)
 print(type(reynold_phone))
 print(reynold_phone)
-reynold_phone
