@@ -447,6 +447,168 @@ public class NoticeConsole {
 
 
 
+## 16. 공지사항 메뉴 붙이기
+
+- NoticeConsole.java
+
+```java
+public int inputNoticeMenu() {
+		Scanner scan = new Scanner(System.in);
+		
+		System.out.printf("<1.상세조회 / 2.이전 / 3.다음 / 4.글쓰기 / 5.종료 >");
+		String menu_ = scan.nextLine();
+		int menu = Integer.parseInt(menu_);
+		
+		return menu;
+	}
+```
+
+- Program5.java
+  - EXIT를 사용한 while문 탈출
+
+```java
+package ex1;
+
+import java.sql.SQLException;
+
+import com.newlecture.app.console.NoticeConsole;
+
+public class Program5 {
+
+	public static void main(String[] args) throws ClassNotFoundException, SQLException {
+		NoticeConsole console = new NoticeConsole();
+		
+		EXIT:
+		while(true) {
+			console.printNoticeList();
+			int menu = console.inputNoticeMenu();
+			
+			switch(menu) {
+			case 1: // 상세조회 
+				break;
+			case 2: // 이전 
+				break;
+			case 3: // 다음 
+				break;
+			case 4: // 글쓰기
+				break;
+			case 5: // 종료
+				System.out.println("Bye~~~");
+				break EXIT;
+			default:
+				System.out.println("<<You have to push between 1 to 4 >>");
+				break;
+			}
+			
+		}
+	}
+
+}
+
+```
+
+
+
+## 17. 페이징을 위한 쿼리 만들기
+
+### 이전 페이지, 다음 페이지 등 페이징 처리를 위해 SQL쿼리문을 변경하자
+
+```sql
+SELECT * FROM (
+    SELECT ROWNUM NUM, N.* FROM (
+        SELECT * FROM NOTICE ORDER BY REGDATE DESC
+    ) N
+)
+WHERE NUM BETWEEN 1 AND 10;
+```
+
+
+
+## 18. 페이징 쿼리 이용하기 
+
+- NoticeService.java
+  - 쿼리문 삽입하기
+  - page를 매개변수로 받아서 start와 end 값을 계산해서 쿼리에 넣어줌
+
+```java
+package com.newlecture.app.service;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import com.newlecture.app.entity.Notice;
+
+public class NoticeService {
+	private String url = "jdbc:oracle:thin:@localhost:1521/xepdb1";
+	private String uid = "NEWLEC";
+	private String pwd = "1234";
+	private String driver = "oracle.jdbc.driver.OracleDriver";
+	
+	public List<Notice> getList(int page) throws ClassNotFoundException, SQLException{
+		
+		int start = 1 + (page-1)*10;
+		int end = 10*page;
+		
+		String sql = "SELECT * FROM (" + 
+				"    SELECT ROWNUM NUM, N.* FROM (" + 
+				"        SELECT * FROM NOTICE ORDER BY REGDATE DESC" + 
+				"    ) N" + 
+				")" + 
+				"WHERE NUM BETWEEN ? AND ?";
+		
+		Class.forName(driver);
+		Connection con = DriverManager.getConnection(url, uid, pwd);
+		PreparedStatement st = con.prepareStatement(sql);
+		st.setInt(1, start);
+		st.setInt(2, end);
+		ResultSet rs = st.executeQuery();
+		
+		List<Notice> list = new ArrayList<Notice>();
+		
+		while (rs.next()) {
+			int id = rs.getInt("ID");
+			String title = rs.getString("TITLE");
+			String writerId = rs.getString("WRITER_ID");
+			Date regDate = rs.getDate("REGDATE");
+			String content = rs.getString("CONTENT");
+			int hit = rs.getInt("hit");
+			String files = rs.getString("FILES");
+			
+			Notice notice = new Notice(
+					id, title, writerId, regDate, content, hit, files
+				);
+			list.add(notice);
+		}
+		
+		
+		rs.close();
+		st.close();
+		con.close();
+		
+		return list;
+	}
+
+}
+
+```
+
+
+
+## 19. 목록을 위한 View 생성하기
+
+
+
+
+
+
+
 
 
 
