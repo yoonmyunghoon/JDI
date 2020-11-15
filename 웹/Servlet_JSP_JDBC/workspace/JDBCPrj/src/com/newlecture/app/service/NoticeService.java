@@ -17,28 +17,23 @@ public class NoticeService {
 	private String uid = "NEWLEC";
 	private String pwd = "1234";
 	private String driver = "oracle.jdbc.driver.OracleDriver";
-	
-	public List<Notice> getList(int page) throws ClassNotFoundException, SQLException{
-		
-		int start = 1 + (page-1)*10;
-		int end = 10*page;
-		
-		String sql = "SELECT * FROM (" + 
-				"    SELECT ROWNUM NUM, N.* FROM (" + 
-				"        SELECT * FROM NOTICE ORDER BY REGDATE DESC" + 
-				"    ) N" + 
-				")" + 
-				"WHERE NUM BETWEEN ? AND ?";
-		
+
+	public List<Notice> getList(int page) throws ClassNotFoundException, SQLException {
+
+		int start = 1 + (page - 1) * 10;
+		int end = 10 * page;
+
+		String sql = "SELECT * FROM NOTICE_VIEW WHERE NUM BETWEEN ? AND ?";
+
 		Class.forName(driver);
 		Connection con = DriverManager.getConnection(url, uid, pwd);
 		PreparedStatement st = con.prepareStatement(sql);
 		st.setInt(1, start);
 		st.setInt(2, end);
 		ResultSet rs = st.executeQuery();
-		
+
 		List<Notice> list = new ArrayList<Notice>();
-		
+
 		while (rs.next()) {
 			int id = rs.getInt("ID");
 			String title = rs.getString("TITLE");
@@ -47,34 +42,50 @@ public class NoticeService {
 			String content = rs.getString("CONTENT");
 			int hit = rs.getInt("hit");
 			String files = rs.getString("FILES");
-			
-			Notice notice = new Notice(
-					id, title, writerId, regDate, content, hit, files
-				);
+
+			Notice notice = new Notice(id, title, writerId, regDate, content, hit, files);
 			list.add(notice);
 		}
-		
-		
+
 		rs.close();
 		st.close();
 		con.close();
-		
+
 		return list;
 	}
-	
+
+	// Scalar
+	public int getCount() throws ClassNotFoundException, SQLException {
+		int count = 0;
+		
+		String sql = "SELECT COUNT(ID) COUNT FROM NOTICE";
+
+		Class.forName(driver);
+		Connection con = DriverManager.getConnection(url, uid, pwd);
+		Statement st = con.createStatement();
+		ResultSet rs = st.executeQuery(sql);
+
+		if(rs.next()) {
+			count = rs.getInt("COUNT");			
+		}
+			
+
+		rs.close();
+		st.close();
+		con.close();
+
+		return count;
+	}
+
 	public int insert(Notice notice) throws ClassNotFoundException, SQLException {
 		String title = notice.getTitle();
 		String writerId = notice.getWriterId();
 		String content = notice.getContent();
 		String files = notice.getFiles();
-		
-		String sql = "INSERT INTO notice (" + 
-				"    title," + 
-				"    writer_id," + 
-				"    content," + 
-				"    files" + 
-				") VALUES (?,?,?,?)";
-		
+
+		String sql = "INSERT INTO notice (" + "    title," + "    writer_id," + "    content," + "    files"
+				+ ") VALUES (?,?,?,?)";
+
 		Class.forName(driver);
 		Connection con = DriverManager.getConnection(url, uid, pwd);
 		PreparedStatement st = con.prepareStatement(sql);
@@ -83,25 +94,21 @@ public class NoticeService {
 		st.setString(3, content);
 		st.setString(4, files);
 		int result = st.executeUpdate();
-		
+
 		st.close();
 		con.close();
-		
+
 		return result;
 	}
-	
+
 	public int update(Notice notice) throws ClassNotFoundException, SQLException {
 		String title = notice.getTitle();
 		String content = notice.getContent();
 		String files = notice.getFiles();
 		int id = notice.getId();
-		
-		String sql = "UPDATE NOTICE SET" + 
-				"    TITLE=?," + 
-				"    CONTENT=?," + 
-				"    FILES=?" + 
-				"WHERE ID=?";
-		
+
+		String sql = "UPDATE NOTICE SET" + "    TITLE=?," + "    CONTENT=?," + "    FILES=?" + "WHERE ID=?";
+
 		Class.forName(driver);
 		Connection con = DriverManager.getConnection(url, uid, pwd);
 		PreparedStatement st = con.prepareStatement(sql);
@@ -110,22 +117,22 @@ public class NoticeService {
 		st.setString(3, files);
 		st.setInt(4, id);
 		int result = st.executeUpdate();
-		
+
 		st.close();
 		con.close();
-		
+
 		return result;
 	}
-	
-	public int delete(int id) throws ClassNotFoundException, SQLException {		
+
+	public int delete(int id) throws ClassNotFoundException, SQLException {
 		String sql = "DELETE NOTICE WHERE ID=?";
-		
+
 		Class.forName(driver);
 		Connection con = DriverManager.getConnection(url, uid, pwd);
 		PreparedStatement st = con.prepareStatement(sql);
 		st.setInt(1, id);
 		int result = st.executeUpdate();
-		
+
 		st.close();
 		con.close();
 		return result;
