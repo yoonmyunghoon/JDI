@@ -234,7 +234,7 @@ int y = 4;
 - 대표적으로 request, response가 있음
 - application, session 객체
 - pageContext
-  - 페이지 내에서 임시로 데이터를 저장할 수 있도록하 객체
+  - 페이지 내에서 임시로 데이터를 저장할 수 있도록하는 객체
   - setAttribute, getAttribute를 가지고 있음
   - application, session이 전역적으로 사용되는 데이터를 가지고 있다면 pageContext는 이 페이지 내에서만 사용되는 저장소
 - config
