@@ -305,6 +305,719 @@
 
 ## 71. 서비스 클래스 구현하기
 
+- NoticeService.java
+  - 필요한 메소드들 대략적으로 정의해두기
+
+```java
+package com.reynold.web.service;
+
+import java.util.List;
+
+import com.reynold.web.entity.Notice;
+
+public class NoticeService {
+	public List<Notice> getNoticeList(){
+		
+		return getNoticeList("title", "", 1);
+	}
+	
+	public List<Notice> getNoticeList(int page){
+			
+		return getNoticeList("title", "", page);
+	}
+	
+	public List<Notice> getNoticeList(String field, String query, int page){
+		
+		return null;
+	}
+	
+	public int getNoticeCount() {
+		
+		return getNoticeCount("title", "");
+	}
+	
+	public int getNoticeCount(String field, String query) {
+		
+		return 0;
+	}
+	
+	public Notice getNotice(int id) {
+		
+		return null;
+	}
+	
+	public Notice getNextNotice(int id) {
+		
+		return null;
+	}
+	
+	public Notice getPrevNotice(int id) {
+		
+		return null;
+	}
+}
+```
+
+
+
+## 72. getNoticeList 메소드의 SQL 쿼리 작성하기
+
+- getNoticeList을 위한 sql
+
+```sql
+SELECT * 
+FROM (
+    SELECT ROWNUM NUM, N.* 
+    FROM (SELECT * FROM NOTICE ORDER BY REGDATE DESC) N
+) 
+WHERE NUM BETWEEN 1 AND 10;
+```
+
+- NoticeService.java
+  - 검색관련 부분, 변수 처리 등은 다음에 더 추가하자
+  - getNoticeCount 쿼리는 getNoticeList 쿼리랑 비슷, 일단 똑같이 써놓자
+
+```java
+package com.reynold.web.service;
+
+import java.util.List;
+
+import com.reynold.web.entity.Notice;
+
+public class NoticeService {
+	public List<Notice> getNoticeList(){
+		
+		return getNoticeList("title", "", 1);
+	}
+	
+	public List<Notice> getNoticeList(int page){
+			
+		return getNoticeList("title", "", page);
+	}
+	
+	public List<Notice> getNoticeList(String field, String query, int page){
+		
+		String sql = "SELECT * FROM (" + 
+				"    SELECT ROWNUM NUM, N.*" + 
+				"    FROM (SELECT * FROM NOTICE ORDER BY REGDATE DESC) N" + 
+				") " + 
+				"WHERE NUM BETWEEN 1 AND 10";
+				
+		return null;
+	}
+	
+	public int getNoticeCount() {
+		
+		return getNoticeCount("title", "");
+	}
+	
+	public int getNoticeCount(String field, String query) {
+		String sql = "SELECT * FROM (" + 
+				"    SELECT ROWNUM NUM, N.*" + 
+				"    FROM (SELECT * FROM NOTICE ORDER BY REGDATE DESC) N" + 
+				") " + 
+				"WHERE NUM BETWEEN 1 AND 10";
+		return 0;
+	}
+	
+	public Notice getNotice(int id) {
+		
+		return null;
+	}
+	
+	public Notice getNextNotice(int id) {
+		
+		return null;
+	}
+	
+	public Notice getPrevNotice(int id) {
+		
+		return null;
+	}
+	
+}
+```
+
+
+
+## 73. getNextNotice 메소드의 SQL 쿼리 작성하기
+
+- getNotice를 위한 sql
+
+```sql
+SELECT * FROM NOTICE WHERE ID=3;
+```
+
+- getNextNotice를 위한 sql
+
+```sql
+SELECT * FROM NOTICE
+WHERE ID = (
+    SELECT ID FROM (SELECT * FROM NOTICE ORDER BY REGDATE)
+    WHERE REGDATE > (SELECT REGDATE FROM NOTICE WHERE ID=37) AND ROWNUM=1
+);
+```
+
+
+
+## 74. getPrevNotice 메소드의 SQL 쿼리 작성하기
+
+- getPrevNotice를 위한 sql
+
+```sql
+SELECT * FROM NOTICE 
+WHERE ID = (
+    SELECT ID FROM (SELECT * FROM NOTICE ORDER BY REGDATE DESC)
+    WHERE REGDATE < (SELECT REGDATE FROM NOTICE WHERE ID=1) AND ROWNUM = 1
+);
+```
+
+- NoticeService.java
+
+```java
+package com.reynold.web.service;
+
+import java.util.List;
+
+import com.reynold.web.entity.Notice;
+
+public class NoticeService {
+	public List<Notice> getNoticeList(){
+		
+		return getNoticeList("title", "", 1);
+	}
+	
+	public List<Notice> getNoticeList(int page){
+			
+		return getNoticeList("title", "", page);
+	}
+	
+	public List<Notice> getNoticeList(String field, String query, int page){
+		
+		String sql = "SELECT * FROM (" + 
+				"    SELECT ROWNUM NUM, N.*" + 
+				"    FROM (SELECT * FROM NOTICE ORDER BY REGDATE DESC) N" + 
+				") " + 
+				"WHERE NUM BETWEEN 1 AND 10";
+				
+		return null;
+	}
+	
+	public int getNoticeCount() {
+		
+		return getNoticeCount("title", "");
+	}
+	
+	public int getNoticeCount(String field, String query) {
+		String sql = "SELECT * FROM (" + 
+				"    SELECT ROWNUM NUM, N.*" + 
+				"    FROM (SELECT * FROM NOTICE ORDER BY REGDATE DESC) N" + 
+				") " + 
+				"WHERE NUM BETWEEN 1 AND 10";
+		
+		return 0;
+	}
+	
+	public Notice getNotice(int id) {
+		String sql = "SELECT * FROM NOTICE WHERE ID=?";
+		
+		return null;
+	}
+	
+	public Notice getNextNotice(int id) {
+		String sql = "SELECT * FROM NOTICE " + 
+				"WHERE ID = ( " + 
+				"    SELECT ID FROM (SELECT * FROM NOTICE ORDER BY REGDATE) " + 
+				"    WHERE REGDATE > (SELECT REGDATE FROM NOTICE WHERE ID=37) AND ROWNUM=1 " + 
+				")";
+		return null;
+	}
+	
+	public Notice getPrevNotice(int id) {
+		String sql = "SELECT * FROM NOTICE " + 
+				"WHERE ID = ( " + 
+				"    SELECT ID FROM (SELECT * FROM NOTICE ORDER BY REGDATE DESC) " + 
+				"    WHERE REGDATE < (SELECT REGDATE FROM NOTICE WHERE ID=1) AND ROWNUM = 1 " + 
+				")";
+		return null;
+	}
+}
+```
+
+
+
+## 75. getNoticeList의 JDBC 코드 구현하기
+
+- NoticeListController.java
+  - 이전에 DB를 연결하던 부분을 service에 넘겨줬기 때문에 코드가 간결해짐
+
+```java
+package com.reynold.web.controller;
+
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.reynold.web.entity.Notice;
+import com.reynold.web.service.NoticeService;
+
+@WebServlet("/notice/list")
+public class NoticeListController extends HttpServlet {
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		NoticeService service = new NoticeService();
+		List<Notice> list = service.getNoticeList();
+
+		request.setAttribute("list", list);
+		
+		request
+		.getRequestDispatcher("/WEB-INF/view/notice/list.jsp")
+		.forward(request, response);
+	}
+}
+
+```
+
+- NoticeService.java
+  - getNoticeList 부분 구현
+
+```java
+package com.reynold.web.service;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import com.reynold.web.entity.Notice;
+
+public class NoticeService {
+	public List<Notice> getNoticeList(){
+		
+		return getNoticeList("title", "", 1);
+	}
+	
+	public List<Notice> getNoticeList(int page){
+			
+		return getNoticeList("title", "", page);
+	}
+	
+	public List<Notice> getNoticeList(String field, String query, int page){
+		
+		List<Notice> list = new ArrayList<>();
+		
+		String sql = "SELECT * FROM (" + 
+				"    SELECT ROWNUM NUM, N.*" + 
+				"    FROM (SELECT * FROM NOTICE WHERE "+field+" LIKE ? ORDER BY REGDATE DESC) N" + 
+				") " + 
+				"WHERE NUM BETWEEN ? AND ?";
+		
+		String url = "jdbc:oracle:thin:@localhost:1521/xepdb1";
+
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection con = DriverManager.getConnection(url, "NEWLEC", "1234");
+			PreparedStatement st = con.prepareStatement(sql);
+			st.setString(1, "%"+query+"%");
+			st.setInt(2, 1+(page-1)*10);
+			st.setInt(3, page*10);
+			
+			ResultSet rs = st.executeQuery();
+			
+			while(rs.next()){
+				
+				int id = rs.getInt("ID");
+				String title = rs.getString("TITLE");
+				String writerId = rs.getString("WRITER_ID");
+				Date regdate = rs.getDate("REGDATE");
+				String hit = rs.getString("HIT");
+				String files = rs.getString("FILES");
+				String content = rs.getString("CONTENT");
+				
+				Notice notice = new Notice(
+						id,
+						title,
+						writerId,
+						regdate,
+						hit,
+						files,
+						content
+						);
+				list.add(notice);
+				
+			}
+			
+			rs.close();
+			st.close();
+			con.close();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	public int getNoticeCount() {
+		
+		return getNoticeCount("title", "");
+	}
+	
+	public int getNoticeCount(String field, String query) {
+		String sql = "SELECT * FROM (" + 
+				"    SELECT ROWNUM NUM, N.*" + 
+				"    FROM (SELECT * FROM NOTICE ORDER BY REGDATE DESC) N" + 
+				") " + 
+				"WHERE NUM BETWEEN 1 AND 10";
+		
+		return 0;
+	}
+	
+	public Notice getNotice(int id) {
+		String sql = "SELECT * FROM NOTICE WHERE ID=?";
+		
+		return null;
+	}
+	
+	public Notice getNextNotice(int id) {
+		String sql = "SELECT * FROM NOTICE " + 
+				"WHERE ID = ( " + 
+				"    SELECT ID FROM (SELECT * FROM NOTICE ORDER BY REGDATE) " + 
+				"    WHERE REGDATE > (SELECT REGDATE FROM NOTICE WHERE ID=37) AND ROWNUM=1 " + 
+				")";
+		return null;
+	}
+	
+	public Notice getPrevNotice(int id) {
+		String sql = "SELECT * FROM NOTICE " + 
+				"WHERE ID = ( " + 
+				"    SELECT ID FROM (SELECT * FROM NOTICE ORDER BY REGDATE DESC) " + 
+				"    WHERE REGDATE < (SELECT REGDATE FROM NOTICE WHERE ID=1) AND ROWNUM = 1 " + 
+				")";
+		return null;
+	}
+	
+}
+
+```
+
+
+
+## 76. NoticeService 클래스 완성하기
+
+- NoticeService.java
+
+```java
+package com.reynold.web.service;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import com.reynold.web.entity.Notice;
+
+public class NoticeService {
+	public List<Notice> getNoticeList(){
+		
+		return getNoticeList("title", "", 1);
+	}
+	
+	public List<Notice> getNoticeList(int page){
+			
+		return getNoticeList("title", "", page);
+	}
+	
+	public List<Notice> getNoticeList(String field, String query, int page){
+		
+		List<Notice> list = new ArrayList<>();
+		
+		String sql = "SELECT * FROM (" + 
+				"    SELECT ROWNUM NUM, N.*" + 
+				"    FROM (SELECT * FROM NOTICE WHERE "+field+" LIKE ? ORDER BY REGDATE DESC) N" + 
+				") " + 
+				"WHERE NUM BETWEEN ? AND ?";
+		
+		String url = "jdbc:oracle:thin:@localhost:1521/xepdb1";
+
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection con = DriverManager.getConnection(url, "NEWLEC", "1234");
+			PreparedStatement st = con.prepareStatement(sql);
+			st.setString(1, "%"+query+"%");
+			st.setInt(2, 1+(page-1)*10);
+			st.setInt(3, page*10);
+			
+			ResultSet rs = st.executeQuery();
+			
+			while(rs.next()){
+				
+				int id = rs.getInt("ID");
+				String title = rs.getString("TITLE");
+				String writerId = rs.getString("WRITER_ID");
+				Date regdate = rs.getDate("REGDATE");
+				String hit = rs.getString("HIT");
+				String files = rs.getString("FILES");
+				String content = rs.getString("CONTENT");
+				
+				Notice notice = new Notice(
+						id,
+						title,
+						writerId,
+						regdate,
+						hit,
+						files,
+						content
+						);
+				list.add(notice);
+				
+			}
+			
+			rs.close();
+			st.close();
+			con.close();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	public int getNoticeCount() {
+		
+		return getNoticeCount("title", "");
+	}
+	
+	public int getNoticeCount(String field, String query) {
+		
+		int count = 0;
+		
+//		String sql = "SELECT COUNT(ID) COUNT FROM (" + 
+//				"    SELECT ROWNUM NUM, N.*" + 
+//				"    FROM (SELECT * FROM NOTICE WHERE "+field+" LIKE ? ORDER BY REGDATE DESC) N " + 
+//				")";
+		
+    // 이게 맞는거 같은데 나중에 control까지 만들어서 확인해보자
+		String sql = "SELECT COUNT(ID) COUNT FROM NOTICE WHERE "+field+" LIKE ? ORDER BY REGDATE DESC";
+		
+		String url = "jdbc:oracle:thin:@localhost:1521/xepdb1";
+		
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection con = DriverManager.getConnection(url, "NEWLEC", "1234");
+			PreparedStatement st = con.prepareStatement(sql);
+			st.setString(1, "%"+query+"%");
+			
+			ResultSet rs = st.executeQuery();
+			
+			count = rs.getInt("count");
+			
+			rs.close();
+			st.close();
+			con.close();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return count;
+	}
+	
+	public Notice getNotice(int id) {
+		
+		Notice notice = null;
+		
+		String sql = "SELECT * FROM NOTICE WHERE ID=?";
+		
+		String url = "jdbc:oracle:thin:@localhost:1521/xepdb1";
+
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection con = DriverManager.getConnection(url, "NEWLEC", "1234");
+			PreparedStatement st = con.prepareStatement(sql);
+			st.setInt(1, id);
+			
+			ResultSet rs = st.executeQuery();
+			
+			if(rs.next()){
+				
+				int nid = rs.getInt("ID");
+				String title = rs.getString("TITLE");
+				String writerId = rs.getString("WRITER_ID");
+				Date regdate = rs.getDate("REGDATE");
+				String hit = rs.getString("HIT");
+				String files = rs.getString("FILES");
+				String content = rs.getString("CONTENT");
+				
+				notice = new Notice(
+						nid,
+						title,
+						writerId,
+						regdate,
+						hit,
+						files,
+						content
+						);
+			}
+			
+			rs.close();
+			st.close();
+			con.close();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return notice;
+	}
+	
+	public Notice getNextNotice(int id) {
+		
+		Notice notice = null;
+		
+		String sql = "SELECT * FROM NOTICE " + 
+				"WHERE ID = ( " + 
+				"    SELECT ID FROM (SELECT * FROM NOTICE ORDER BY REGDATE) " + 
+				"    WHERE REGDATE > (SELECT REGDATE FROM NOTICE WHERE ID=?) AND ROWNUM=1 " + 
+				")";
+		String url = "jdbc:oracle:thin:@localhost:1521/xepdb1";
+
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection con = DriverManager.getConnection(url, "NEWLEC", "1234");
+			PreparedStatement st = con.prepareStatement(sql);
+			st.setInt(1, id);
+			
+			ResultSet rs = st.executeQuery();
+			
+			if(rs.next()){
+				
+				int nid = rs.getInt("ID");
+				String title = rs.getString("TITLE");
+				String writerId = rs.getString("WRITER_ID");
+				Date regdate = rs.getDate("REGDATE");
+				String hit = rs.getString("HIT");
+				String files = rs.getString("FILES");
+				String content = rs.getString("CONTENT");
+				
+				notice = new Notice(
+						nid,
+						title,
+						writerId,
+						regdate,
+						hit,
+						files,
+						content
+						);
+			}
+			
+			rs.close();
+			st.close();
+			con.close();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return notice;
+	}
+	
+	public Notice getPrevNotice(int id) {
+		
+		Notice notice = null;
+		
+		String sql = "SELECT * FROM NOTICE " + 
+				"WHERE ID = ( " + 
+				"    SELECT ID FROM (SELECT * FROM NOTICE ORDER BY REGDATE DESC) " + 
+				"    WHERE REGDATE < (SELECT REGDATE FROM NOTICE WHERE ID=?) AND ROWNUM = 1 " + 
+				")";
+		String url = "jdbc:oracle:thin:@localhost:1521/xepdb1";
+
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection con = DriverManager.getConnection(url, "NEWLEC", "1234");
+			PreparedStatement st = con.prepareStatement(sql);
+			st.setInt(1, id);
+			
+			ResultSet rs = st.executeQuery();
+			
+			if(rs.next()){
+				
+				int nid = rs.getInt("ID");
+				String title = rs.getString("TITLE");
+				String writerId = rs.getString("WRITER_ID");
+				Date regdate = rs.getDate("REGDATE");
+				String hit = rs.getString("HIT");
+				String files = rs.getString("FILES");
+				String content = rs.getString("CONTENT");
+				
+				notice = new Notice(
+						nid,
+						title,
+						writerId,
+						regdate,
+						hit,
+						files,
+						content
+						);
+			}
+			
+			rs.close();
+			st.close();
+			con.close();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return notice;
+	}
+}
+```
+
+
+
+## 77.  목록 페이지에서 검색 추가하기
+
+
+
 
 
 
