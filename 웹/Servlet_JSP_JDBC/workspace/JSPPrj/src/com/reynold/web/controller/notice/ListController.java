@@ -1,4 +1,4 @@
-package com.reynold.web.controller;
+package com.reynold.web.controller.notice;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -17,10 +17,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.reynold.web.entity.Notice;
+import com.reynold.web.entity.NoticeView;
 import com.reynold.web.service.NoticeService;
 
 @WebServlet("/notice/list")
-public class NoticeListController extends HttpServlet {
+public class ListController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -44,7 +45,7 @@ public class NoticeListController extends HttpServlet {
 		}
 		
 		NoticeService service = new NoticeService();
-		List<Notice> list = service.getNoticeList(field, query, page);
+		List<NoticeView> list = service.getNoticeList(field, query, page);
 		int count = service.getNoticeCount(field, query);
 		
 		request.setAttribute("list", list);
