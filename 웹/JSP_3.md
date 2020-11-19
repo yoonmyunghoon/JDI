@@ -1016,7 +1016,298 @@ public class NoticeService {
 
 ## 77.  목록 페이지에서 검색 추가하기
 
+- list.jsp
+  - form 태그를 사용해서 field와 query 값을 파라미터로 전달
+  - 검색 후, 그대로 남아있도록 하기 위해 field에서 selected 처리, query에서는 value값에 파라미터 값 넣어주기
 
+```jsp
+<div class="search-form margin-top first align-right">
+  <h3 class="hidden">공지사항 검색폼</h3>
+  <form class="table-form">
+    <fieldset>
+      <legend class="hidden">공지사항 검색 필드</legend>
+      <label class="hidden">검색분류</label>
+      <select name="f">
+        <option ${(param.f == "title")?"selected":""} value="title">제목</option>
+        <option ${(param.f == "writer_id")?"selected":""} value="writer_id">작성자</option>
+      </select> 
+      <label class="hidden">검색어</label>
+      <input type="text" name="q" value="${param.q}"/>
+      <input class="btn btn-search" type="submit" value="검색" />
+    </fieldset>
+  </form>
+</div>
+```
+
+- NoticeListController.java
+  - 전달받은 파라미터들을 null 값인지 확인하고, getNoticeList()에 파라미터로 전달해서 요청 
+
+```java
+package com.reynold.web.controller;
+
+@WebServlet("/notice/list")
+public class NoticeListController extends HttpServlet {
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		String field_ = request.getParameter("f");
+		String query_ = request.getParameter("q");
+		
+		String field = "title";
+		if(field_ != null) {
+			field = field_;
+		}
+		
+		String query = "";
+		if(query_ != null) {
+			query = query_;
+		}
+		
+		NoticeService service = new NoticeService();
+		List<Notice> list = service.getNoticeList(field, query, 1);
+
+		request.setAttribute("list", list);
+		
+		request
+		.getRequestDispatcher("/WEB-INF/view/notice/list.jsp")
+		.forward(request, response);
+	}
+}
+
+```
+
+- 결과
+
+![82](JSP_images/82.png)
+
+
+
+## 78. 목록 페이지에서 페이징 구현하기
+
+- list.jsp
+  - 페이지 이동 링크에 f와 q 파라미터를 추가해주자
+
+```jsp
+<ul class="-list- center">
+  <c:forEach var="i" begin="0" end="4">
+    <li><a class="-text- orange bold" href="?p=${startNum+i}&f=${param.f}&q=${param.q}" >${startNum+i}</a></li>
+  </c:forEach>
+</ul>
+```
+
+- NoticeListController.java
+  - null 일 경우는 체크했지만, 빈문자열로 오는 경우도 체크해줘야함
+  - 빈문자열로 오면 특히, field 같은 경우에는 빈문자열("") 컬럼 자체가 없기 때문에 데이터베이스에서 요류가 발생하게 됨
+
+```java
+package com.reynold.web.controller;
+
+@WebServlet("/notice/list")
+public class NoticeListController extends HttpServlet {
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		String field_ = request.getParameter("f");
+		String query_ = request.getParameter("q");
+		String page_ = request.getParameter("p");
+		
+		String field = "title";
+		if(field_ != null && !field_.equals("")) {
+			field = field_;
+		}
+		
+		String query = "";
+		if(query_ != null && !query_.equals("")) {
+			query = query_;
+		}
+		
+		int page = 1;
+		if(page_ != null && !page_.equals("")) {
+			page = Integer.parseInt(page_);
+		}
+		
+		NoticeService service = new NoticeService();
+		List<Notice> list = service.getNoticeList(field, query, page);
+
+		request.setAttribute("list", list);
+		
+		request
+		.getRequestDispatcher("/WEB-INF/view/notice/list.jsp")
+		.forward(request, response);
+	}
+}
+
+```
+
+- 결과
+  - 제목에서 test가 포함된 게시글을 검색하고 2페이지도 이동한 상태
+
+![83](JSP_images/83.png)
+
+ 
+
+## 79. Pager에서 현재 페이지 번호 처리
+
+- list.jsp에서 현재 페이지 확인하는 부분
+
+```jsp
+<div class="indexer margin-top align-right">
+  <h3 class="hidden">현재 페이지</h3>
+  <div><span class="text-orange text-strong">${(empty param.p)?1:param.p}</span> / 1 pages</div>
+</div>
+```
+
+- list.jsp에서 현재 페이지만 주황색으로 표시하는 부분
+
+```jsp
+<c:set var="page" value="${(empty param.p)?1:param.p}"/>
+<c:set var="startNum" value="${page-(page-1)%5}"/>
+<c:set var="lastNum" value="23"/>
+
+<ul class="-list- center">
+  <c:forEach var="i" begin="0" end="4">
+    <li><a class="-text- ${(page == (startNum+i))?'orange':''} bold" href="?p=${startNum+i}&f=${param.f}&q=${param.q}" >${startNum+i}</a></li>
+  </c:forEach>
+</ul>
+```
+
+- 결과
+
+![84](JSP_images/84.png)
+
+
+
+## 80. Pager에서 마지막 번호 처리하기
+
+- NoticeListController.java
+  - getNoticeCount를 호출해서 count 값(게시글 수) 받아오기
+  - 받은 count를 request에 넣어서 list.jsp로 전달
+
+```java
+package com.reynold.web.controller;
+
+@WebServlet("/notice/list")
+public class NoticeListController extends HttpServlet {
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		String field_ = request.getParameter("f");
+		String query_ = request.getParameter("q");
+		String page_ = request.getParameter("p");
+		
+		String field = "title";
+		if(field_ != null && !field_.equals("")) {
+			field = field_;
+		}
+		
+		String query = "";
+		if(query_ != null && !query_.equals("")) {
+			query = query_;
+		}
+		
+		int page = 1;
+		if(page_ != null && !page_.equals("")) {
+			page = Integer.parseInt(page_);
+		}
+		
+		NoticeService service = new NoticeService();
+		List<Notice> list = service.getNoticeList(field, query, page);
+		int count = service.getNoticeCount(field, query);
+		
+		request.setAttribute("list", list);
+		request.setAttribute("count", count);
+		
+		request
+		.getRequestDispatcher("/WEB-INF/view/notice/list.jsp")
+		.forward(request, response);
+	}
+}
+
+```
+
+- NoticeService.java
+  - count 값 구해서 리턴해주기
+
+```java
+public int getNoticeCount(String field, String query) {
+		
+		int count = 0;
+		
+		String sql = "SELECT COUNT(ID) COUNT FROM NOTICE WHERE "+field+" LIKE ? ORDER BY REGDATE DESC";
+		
+		String url = "jdbc:oracle:thin:@localhost:1521/xepdb1";
+		
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection con = DriverManager.getConnection(url, "NEWLEC", "1234");
+			PreparedStatement st = con.prepareStatement(sql);
+			st.setString(1, "%"+query+"%");
+			
+			ResultSet rs = st.executeQuery();
+			
+			if(rs.next()) {
+				count = rs.getInt("count");
+			}
+			rs.close();
+			st.close();
+			con.close();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return count;
+	}
+```
+
+- list.jsp
+
+  - 전달받은 count를 사용해서 lastNum 구하기
+  - 현재 페이지/마지막 페이지 보여주기
+
+  ```jsp
+  <c:set var="page" value="${(empty param.p)?1:param.p}"/>
+  <c:set var="startNum" value="${page-(page-1)%5}"/>
+  <c:set var="lastNum" value="${fn:substringBefore(Math.ceil(count/10), '.')}"/>
+  
+  <div class="indexer margin-top align-right">
+    <h3 class="hidden">현재 페이지</h3>
+    <div><span class="text-orange text-strong">${page}</span> / ${lastNum} pages</div>
+  </div>
+  ```
+
+  - 마지막 페이지까지만 숫자 보여주기
+
+  ```jsp
+  <ul class="-list- center">
+    <c:forEach var="i" begin="0" end="4">
+      <c:if test="${(startNum+i) <= lastNum}">
+        <li><a class="-text- ${(page == (startNum+i))?'orange':''} bold" href="?p=${startNum+i}&f=${param.f}&q=${param.q}" >${startNum+i}</a></li>
+      </c:if>
+    </c:forEach>
+  </ul>
+  ```
+
+  - lastNum을 이용해서 다음 페이지로 넘어가는 부분 처리해주기
+
+  ```jsp
+  <div>
+    <c:if test="${startNum+4<lastNum}">
+      <a href="?p=${startNum+5}&t=&q=" class="btn btn-next">다음</a>
+    </c:if>
+    <c:if test="${startNum+4>=lastNum}">
+      <span class="btn btn-next" onclick="alert('다음 페이지가 없습니다.');">다음</span>
+    </c:if>
+  </div>
+  ```
+
+- 결과
+  - 마지막 페이지인 6페이지로 이동한 상태
+
+![85](JSP_images/85.png)
 
 
 
