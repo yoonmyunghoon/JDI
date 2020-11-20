@@ -1058,6 +1058,89 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 
 ## 91. 일괄삭제 구현하기
 
+- ListController.java
+  - 전달받은 del-id들을 정수배열로 바꿔서 deleteNoticeAll의 매개변수로 넣고 요청
+  - 삭제 후, get메소드를 요청해서 notice List를 받아올 수 있도록 response.sendRedirect("list")를 해주자
+
+```java
+package com.reynold.web.controller.admin.notice;
+
+import com.reynold.web.entity.Notice;
+import com.reynold.web.entity.NoticeView;
+import com.reynold.web.service.NoticeService;
+
+@WebServlet("/admin/board/notice/list")
+public class ListController extends HttpServlet {
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		String[] openIds = request.getParameterValues("open-id");
+		String[] delIds = request.getParameterValues("del-id");
+		String cmd = request.getParameter("cmd");
+		
+		switch(cmd) {
+		case "일괄공개":
+			for(String openId : openIds) {
+				System.out.printf("open id : %s\n", openId);
+			}
+			break;
+		case "일괄삭제":
+			NoticeService service = new NoticeService();
+			int[] ids = new int[delIds.length];
+			for(int i=0; i<delIds.length; i++) {
+				ids[i] = Integer.parseInt(delIds[i]);
+			}
+			int result = service.deleteNoticeAll(ids);
+			break;
+		}
+		
+		response.sendRedirect("list");
+	}
+
+```
+
+- NoticeService.java
+  - 여러개의 id를 sql문에 삽입하기 위해서 다음과 같이 문자열로 바꿔서 넣어줘야함
+
+```java
+public int deleteNoticeAll(int[] ids) {
+		
+		int result = 0;
+		
+		String params = "";
+		
+		for(int i=0; i<ids.length; i++) {
+			params += ids[i];
+			if(i < ids.length-1) {
+				params += ",";
+			}
+		}
+		
+		String sql = "DELETE NOTICE WHERE ID IN ("+params+")";
+		
+		String url = "jdbc:oracle:thin:@localhost:1521/xepdb1";
+
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection con = DriverManager.getConnection(url, "NEWLEC", "1234");
+			Statement st = con.createStatement();
+			
+			result = st.executeUpdate(sql);
+			
+			st.close();
+			con.close();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+```
+
 
 
 
