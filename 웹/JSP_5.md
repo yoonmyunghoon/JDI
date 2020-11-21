@@ -982,9 +982,412 @@ public class RegController extends HttpServlet {
 
 ## 99.  단일 파일 업로드
 
+- RegController.java
+  - InputStream으로 file을 읽어옴
+    - 이때, buf라는 1024바이트 크기의 변수로 받아옴
+  - FileOutputStream을 사용해서 읽은 파일을 해당 위치에 생성해줌
+
+```java
+package com.reynold.web.controller.admin.notice;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
+
+import com.reynold.web.entity.Notice;
+import com.reynold.web.service.NoticeService;
+
+@MultipartConfig(
+	fileSizeThreshold=1024*1024,
+	maxFileSize=1024*1024*50,
+	maxRequestSize=1024*1024*50*5		
+)
+@WebServlet("/admin/board/notice/reg")
+public class RegController extends HttpServlet {
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		request
+		.getRequestDispatcher("/WEB-INF/view/admin/board/notice/reg.jsp")
+		.forward(request, response);
+	}
+	
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String title = request.getParameter("title");
+		String content = request.getParameter("content");
+		String isOpen = request.getParameter("open");
+		
+		Part filePart = request.getPart("file");
+		String fileName = filePart.getSubmittedFileName();
+		InputStream fis = filePart.getInputStream();
+		
+		// 상대경로를 절대경로로 바꿔주는 것이 필요함
+		String realPath = request.getServletContext().getRealPath("/upload");
+		System.out.println(realPath);
+		
+		String filePath = realPath + File.separator + fileName;
+		FileOutputStream fos = new FileOutputStream(filePath);
+		
+		byte[] buf = new byte[1024];
+		int size = 0;
+		while((size=fis.read(buf)) != -1) {
+			fos.write(buf,0,size);
+		}
+		fos.close();
+		fis.close();
+		
+		boolean pub = false;
+		if(isOpen != null) {
+			pub = true;
+		}
+		
+		Notice notice = new Notice();
+		notice.setTitle(title);
+		notice.setContent(content);
+		notice.setPub(pub);
+		notice.setWriterId("reynold");
+		
+		NoticeService service = new NoticeService();
+//		int result = service.insertNotice(notice);
+		
+		response.sendRedirect("list");
+
+	}
+}
+```
+
+- 결과
+
+![113](JSP_images/113.png)
+
+![114](JSP_images/114.png)
 
 
 
+## 100. 다중 파일 업로드
+
+- reg.jsp
+
+```jsp
+<tr>
+  <th>첨부파일</th>
+  <td colspan="3" class="text-align-left text-indent"><input type="file"
+                                                             name="file" /> </td>
+</tr>
+<tr>
+  <th>첨부파일</th>
+  <td colspan="3" class="text-align-left text-indent"><input type="file"
+                                                             name="file" /> </td>
+</tr>
+```
+
+- RegController.java
+  - 여러개의 파일을 getParts()를 통해서 받아줌
+  - 쉼표로 구분해서 DB에 넣어주기 위해서 StringBuilder를 사용
+
+```java
+package com.reynold.web.controller.admin.notice;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.PrintWriter;
+import java.util.Collection;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
+
+import com.reynold.web.entity.Notice;
+import com.reynold.web.service.NoticeService;
+
+@MultipartConfig(
+	fileSizeThreshold=1024*1024,
+	maxFileSize=1024*1024*50,
+	maxRequestSize=1024*1024*50*5		
+)
+@WebServlet("/admin/board/notice/reg")
+public class RegController extends HttpServlet {
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		request
+		.getRequestDispatcher("/WEB-INF/view/admin/board/notice/reg.jsp")
+		.forward(request, response);
+	}
+	
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String title = request.getParameter("title");
+		String content = request.getParameter("content");
+		String isOpen = request.getParameter("open");
+		
+		Collection<Part> parts = request.getParts();
+		StringBuilder builder = new StringBuilder();
+		
+		for(Part p : parts) {
+			if(!p.getName().equals("file")) {
+				continue;
+			}
+			
+			Part filePart = p;
+			String fileName = filePart.getSubmittedFileName();
+			builder.append(fileName);
+			builder.append(",");
+			
+			InputStream fis = filePart.getInputStream();
+			
+			// 상대경로를 절대경로로 바꿔주는 것이 필요함
+			String realPath = request.getServletContext().getRealPath("/upload");
+			System.out.println(realPath);
+			
+			String filePath = realPath + File.separator + fileName;
+			FileOutputStream fos = new FileOutputStream(filePath);
+			
+			byte[] buf = new byte[1024];
+			int size = 0;
+			while((size=fis.read(buf)) != -1) {
+				fos.write(buf,0,size);
+			}
+			fos.close();
+			fis.close();
+		}
+		
+		builder.delete(builder.length()-1, builder.length());
+		
+		boolean pub = false;
+		if(isOpen != null) {
+			pub = true;
+		}
+		
+		Notice notice = new Notice();
+		notice.setTitle(title);
+		notice.setContent(content);
+		notice.setPub(pub);
+		notice.setWriterId("reynold");
+		notice.setFiles(builder.toString());
+		
+		NoticeService service = new NoticeService();
+		int result = service.insertNotice(notice);
+		
+		response.sendRedirect("list");
+
+	}
+}
+
+```
+
+- 결과
+
+![115](JSP_images/115.png)
+
+![116](JSP_images/116.png)
+
+
+
+## 101. 업로드 된 파일 사용하기
+
+- NoticeService.java
+  - files 추가
+
+```java
+public int insertNotice(Notice notice){
+		int result = 0;
+		
+		String sql = "INSERT INTO NOTICE(TITLE, CONTENT, WRITER_ID, PUB, FILES) VALUES(?,?,?,?,?)";
+		
+		String url = "jdbc:oracle:thin:@localhost:1521/xepdb1";
+
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection con = DriverManager.getConnection(url, "NEWLEC", "1234");
+			PreparedStatement st = con.prepareStatement(sql);
+			st.setString(1, notice.getTitle());
+			st.setString(2, notice.getContent());
+			st.setString(3, notice.getWriterId());
+			st.setBoolean(4, notice.getPub());
+			st.setString(5, notice.getFiles());
+			
+			result = st.executeUpdate();
+			
+			st.close();
+			con.close();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+```
+
+- detail.jsp
+  - 다운받을 수 있도록 링크 수정
+
+```jsp
+ <tr>
+   <th>첨부파일</th>
+   <td colspan="3" style="text-align:Left;text-indent:10px;">
+     <c:forTokens var="fileName" items="${n.files}" delims="," varStatus="st">
+       <c:set var="style" value="" />
+       <c:if test="${fn:endsWith(fileName, '.zip')}">
+         <c:set var="style" value="font-weight:bold; color:red;" />
+       </c:if>
+       <a download href="/upload/${fileName}" style="${style}">${fn:toUpperCase(fileName)}</a>
+       <c:if test="${!st.last}">
+         /
+       </c:if>
+     </c:forTokens>
+   </td>
+</tr>
+```
+
+- 결과
+
+![117](JSP_images/117.png)
+
+![118](JSP_images/118.png)
+
+![119](JSP_images/119.png)
+
+![120](JSP_images/120.png)
+
+
+
+## 102. 파일 업로드 마무리
+
+- 파일 하나만 올려도 정상 작동할 수 있도록 조건처리해주기
+- 개발하면서 upload라는 폴더를 프로젝트에서 직접 만들고 실행하니까 이클립스가 임시 배포서버에 이 폴더를 만들어줬었음
+- 그런데 실제 서비스로 배포될 때는 이렇게 안되기 때문에 폴더를 알아서 만들 수 있도록 해줘야함
+- RegController.java
+
+```java
+package com.reynold.web.controller.admin.notice;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.PrintWriter;
+import java.util.Collection;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
+
+import com.reynold.web.entity.Notice;
+import com.reynold.web.service.NoticeService;
+
+@MultipartConfig(
+	fileSizeThreshold=1024*1024,
+	maxFileSize=1024*1024*50,
+	maxRequestSize=1024*1024*50*5		
+)
+@WebServlet("/admin/board/notice/reg")
+public class RegController extends HttpServlet {
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		request
+		.getRequestDispatcher("/WEB-INF/view/admin/board/notice/reg.jsp")
+		.forward(request, response);
+	}
+	
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String title = request.getParameter("title");
+		String content = request.getParameter("content");
+		String isOpen = request.getParameter("open");
+		
+		Collection<Part> parts = request.getParts();
+		StringBuilder builder = new StringBuilder();
+		
+		for(Part p : parts) {
+			if(!p.getName().equals("file")) {
+				continue;
+			}
+      // 파일이 첨부되지 않았을 경우에 대한 조건 처리
+			if(p.getSize() == 0) {
+				continue;
+			}
+			
+			Part filePart = p;
+			String fileName = filePart.getSubmittedFileName();
+			builder.append(fileName);
+			builder.append(",");
+			
+			InputStream fis = filePart.getInputStream();
+			
+			// 상대경로를 절대경로로 바꿔주는 것이 필요함
+			String realPath = request.getServletContext().getRealPath("/upload");
+//			System.out.println(realPath);
+			
+      // 파일경로에 폴더가 없을 경우, 확인하고 생성해주는 부분
+			File path = new File(realPath);
+			if(!path.exists()) {
+				path.mkdirs();
+			}
+			
+			String filePath = realPath + File.separator + fileName;
+			FileOutputStream fos = new FileOutputStream(filePath);
+			
+			byte[] buf = new byte[1024];
+			int size = 0;
+			while((size=fis.read(buf)) != -1) {
+				fos.write(buf,0,size);
+			}
+			fos.close();
+			fis.close();
+		}
+		
+		builder.delete(builder.length()-1, builder.length());
+		
+		boolean pub = false;
+		if(isOpen != null) {
+			pub = true;
+		}
+		
+		Notice notice = new Notice();
+		notice.setTitle(title);
+		notice.setContent(content);
+		notice.setPub(pub);
+		notice.setWriterId("reynold");
+		notice.setFiles(builder.toString());
+		
+		NoticeService service = new NoticeService();
+		int result = service.insertNotice(notice);
+		
+		response.sendRedirect("list");
+		
+		
+		
+	}
+}
+
+```
 
 
 
