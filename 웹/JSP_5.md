@@ -607,6 +607,383 @@ public class NoticeService {
 
 ## 94. 공지사항 등록하기
 
+- RegController.java
+  - 입력받은 title, content, isOpen 값을 사용해서 공지사항을 추가하자
+  - 작성자는 일단 임의의값으로 채워두고 나중에 로그인 부분을 완성하면 다시 수정하자
+  - notice에 값을 넣고, insertNotice 함수 호출
+
+```java
+package com.reynold.web.controller.admin.notice;
+
+import com.reynold.web.entity.Notice;
+import com.reynold.web.service.NoticeService;
+
+@WebServlet("/admin/board/notice/reg")
+public class RegController extends HttpServlet {
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String title = request.getParameter("title");
+		String content = request.getParameter("content");
+		String isOpen = request.getParameter("open");
+		boolean pub = false;
+		if(isOpen != null) {
+			pub = true;
+		}
+		
+		Notice notice = new Notice();
+		notice.setTitle(title);
+		notice.setContent(content);
+		notice.setPub(pub);
+		notice.setWriterId("reynold");
+		
+		NoticeService service = new NoticeService();
+		int result = service.insertNotice(notice);
+		
+		response.sendRedirect("list");
+	}
+}
+```
+
+- NoticeService.java
+  - insert문으로 DB에 새로운 공지사항 추가
+
+```java
+public int insertNotice(Notice notice){
+		int result = 0;
+		
+		String sql = "INSERT INTO NOTICE(TITLE, CONTENT, WRITER_ID, PUB) VALUES(?,?,?,?)";
+		
+		String url = "jdbc:oracle:thin:@localhost:1521/xepdb1";
+
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection con = DriverManager.getConnection(url, "NEWLEC", "1234");
+			PreparedStatement st = con.prepareStatement(sql);
+			st.setString(1, notice.getTitle());
+			st.setString(2, notice.getContent());
+			st.setString(3, notice.getWriterId());
+			st.setBoolean(4, notice.getPub());
+			
+			result = st.executeUpdate();
+			
+			st.close();
+			con.close();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+```
+
+-  List.jsp
+  - 글쓰기 부분의 링크 수정해주기
+
+```jsp
+<div class="text-align-right margin-top">
+  <input type="submit" class="btn-text btn-default" name="cmd" value="일괄공개">
+  <input type="submit" class="btn-text btn-default" name="cmd" value="일괄삭제">
+  <a class="btn-text btn-default" href="reg">글쓰기</a>				
+</div>
+```
+
+- 결과
+
+![107](JSP_images/107.png)
+
+![108](JSP_images/108.png)
+
+
+
+## 95. 관리자 공지사항 자세한 페이지 추가
+
+- detail.jsp
+  - detail.html 내용 복사
+  - 일반회원용 detail.jsp에서의 데이터 처리부분 가져오기
+
+```jsp
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
+<div class="margin-top first">
+  <h3 class="hidden">공지사항 내용</h3>
+  <table class="table">
+    <tbody>
+      <tr>
+        <th>제목</th>
+        <td class="text-align-left text-indent text-strong text-orange" colspan="3">${n.title}</td>
+      </tr>
+      <tr>
+        <th>작성일</th>
+        <td class="text-align-left text-indent" colspan="3"><fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss" value="${n.regdate}"/></td>
+      </tr>
+      <tr>
+        <th>작성자</th>
+        <td>${n.writerId}</td>
+        <th>조회수</th>
+        <td><fmt:formatNumber value="${n.hit}" /></td>
+      </tr>
+      <tr>
+        <th>첨부파일</th>
+        <td colspan="3" style="text-align:Left;text-indent:10px;">
+          <c:forTokens var="fileName" items="${n.files}" delims="," varStatus="st">
+            <c:set var="style" value="" />
+            <c:if test="${fn:endsWith(fileName, '.zip')}">
+              <c:set var="style" value="font-weight:bold; color:red;" />
+            </c:if>
+            <a href="${fileName}" style="${style}">${fn:toUpperCase(fileName)}</a>
+            <c:if test="${!st.last}">
+              /
+            </c:if>
+          </c:forTokens>
+        </td>
+      </tr>
+      <tr class="content">
+        <td colspan="4">${n.content}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="margin-top text-align-center">
+  <a class="btn-text btn-cancel" href="list">목록</a>
+  <a class="btn-text btn-default" href="edit">수정</a>
+  <a class="btn-text btn-default" href="del">삭제</a>
+</div>
+```
+
+- DetailController.java
+  - 일반회원용 DetailController와 유사함
+
+```java
+package com.reynold.web.controller.admin.notice;
+
+import com.reynold.web.entity.Notice;
+import com.reynold.web.service.NoticeService;
+
+
+@WebServlet("/admin/board/notice/detail")
+public class DetailController extends HttpServlet {
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		int id = Integer.parseInt(request.getParameter("id"));
+
+		NoticeService service = new NoticeService();
+		Notice notice = service.getNotice(id);
+		request.setAttribute("n", notice);
+		request
+		.getRequestDispatcher("/WEB-INF/view/admin/board/notice/detail.jsp")
+		.forward(request, response);
+	}
+}
+
+```
+
+- 결과
+
+![109](JSP_images/109.png)
+
+
+
+## 96. 파일업로드를 위한 인코드 multipart/form-data
+
+### 파일전송과 멀티파트 라이브러리
+
+- form 태그를 사용해서 요청할 때, 인코드타입을 지정할 수 있음
+- 파일첨부를 하기 위해서는 enctype="mulitpart/form-data" 이렇게 설정해줘야함
+
+![110](JSP_images/110.png)
+
+- reg.jsp
+  - 인코드타입 설정해줌
+
+```jsp
+<form method="post" action="reg" enctype="multipart/form-data">
+  <div class="margin-top first">
+    <h3 class="hidden">공지사항 입력</h3>
+    <table class="table">
+      <tbody>
+        <tr>
+          <th>제목</th>
+          <td class="text-align-left text-indent text-strong text-orange" colspan="3">
+            <input type="text" name="title" />
+          </td>
+        </tr>
+        <tr>
+          <th>첨부파일</th>
+          <td colspan="3" class="text-align-left text-indent"><input type="file"
+                                                                     name="file" /> </td>
+        </tr>
+        <tr class="content">
+          <td colspan="4"><textarea class="content" name="content"></textarea></td>
+        </tr>
+        <tr>
+          <td colspan="4" class="text-align-right"><input class="vertical-align" type="checkbox" id="open" name="open" value="true"><label for="open" class="margin-left">바로공개</label> </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="margin-top text-align-center">
+    <input class="btn-text btn-default" type="submit" value="등록" />
+    <a class="btn-text btn-cancel" href="list.html">취소</a>
+  </div>
+</form>
+```
+
+
+
+## 97. 파일 업로드를 위한 서블릿 설정
+
+### 파일 업로드 위한 서블릿 설정
+
+- web.xml로 설정할 경우, 한번만 설정하고 필요로하는 클래스에서 가져다 쓰면 됨
+- annotation으로 설정할 경우, 매 클래스마다 설정을 해줘야함
+  - 여기서 annotation으로 설정해주자
+
+![111](JSP_images/111.png)
+
+- RegController.java
+  - @MultipartConfig()을 사용
+    - location
+      - 절대경로를 써야함
+      - 절대경로는 서비스를 실행하는 리눅스와 윈도우즈에 차이가 있기 때문에, 차라리 설정을 안하고 자바가 지정된 임시 디렉토리를 사용하도록 하자
+    - fileSizeThreshold
+      - 이 정도 크기가 넘어가면 메모리가 아니라 디스크를 사용
+    - maxFileSize
+      - 하나의 파일 용량의 최대값
+    - maxRequestSize
+      - 여러개의 파일을 보낼 경우, 한번의 요청에 최대로 보낼 수 있는 용량
+
+```java
+package com.reynold.web.controller.admin.notice;
+
+import com.reynold.web.entity.Notice;
+import com.reynold.web.service.NoticeService;
+
+@MultipartConfig(
+	fileSizeThreshold=1024*1024,
+	maxFileSize=1024*1024*50,
+	maxRequestSize=1024*1024*50*5		
+)
+@WebServlet("/admin/board/notice/reg")
+public class RegController extends HttpServlet {
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		request
+		.getRequestDispatcher("/WEB-INF/view/admin/board/notice/reg.jsp")
+		.forward(request, response);
+	}
+	
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String title = request.getParameter("title");
+		String content = request.getParameter("content");
+		String isOpen = request.getParameter("open");
+		boolean pub = false;
+		if(isOpen != null) {
+			pub = true;
+		}
+		
+		Notice notice = new Notice();
+		notice.setTitle(title);
+		notice.setContent(content);
+		notice.setPub(pub);
+		notice.setWriterId("reynold");
+		
+		NoticeService service = new NoticeService();
+		int result = service.insertNotice(notice);
+		
+		response.sendRedirect("list");
+		
+		
+		
+	}
+}
+
+```
+
+
+
+## 98. 파일 저장을 위한 물리 경로 얻기
+
+- RegController.java
+  - 실제 물리 경로를 얻을 수 있는 메소드
+    - request.getServletContext().getRealPath("/upload");
+
+```java
+package com.reynold.web.controller.admin.notice;
+
+import com.reynold.web.entity.Notice;
+import com.reynold.web.service.NoticeService;
+
+@MultipartConfig(
+	fileSizeThreshold=1024*1024,
+	maxFileSize=1024*1024*50,
+	maxRequestSize=1024*1024*50*5		
+)
+@WebServlet("/admin/board/notice/reg")
+public class RegController extends HttpServlet {
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		request
+		.getRequestDispatcher("/WEB-INF/view/admin/board/notice/reg.jsp")
+		.forward(request, response);
+	}
+	
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String title = request.getParameter("title");
+		String content = request.getParameter("content");
+		String isOpen = request.getParameter("open");
+		
+		Part filePart = request.getPart("file");
+		filePart.getInputStream();
+		
+		// 상대경로를 절대경로로 바꿔주는 것이 필요함
+		String realPath = request.getServletContext().getRealPath("/upload");
+		System.out.println(realPath);
+		
+		boolean pub = false;
+		if(isOpen != null) {
+			pub = true;
+		}
+		
+		Notice notice = new Notice();
+		notice.setTitle(title);
+		notice.setContent(content);
+		notice.setPub(pub);
+		notice.setWriterId("reynold");
+		
+		NoticeService service = new NoticeService();
+//		int result = service.insertNotice(notice);
+		
+		response.sendRedirect("list");
+
+	}
+}
+
+```
+
+- 결과
+
+![112](JSP_images/112.png)
+
+
+
+## 99.  단일 파일 업로드
+
+
+
 
 
 
