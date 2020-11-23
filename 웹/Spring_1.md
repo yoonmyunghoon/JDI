@@ -1,6 +1,6 @@
-# Spring Framework and Boot
+# Spring Framework and Boot 학습 1
 
-![Spring](Spring_images/Spring.png)
+![1](Spring_images/1.png)
 
 ## 1. 스프링 소개
 
@@ -19,7 +19,7 @@
 
 ### 기업형 응용 프로그램을 보조하기 위한 쉬운 프레임워크
 
-- Java EE -> <b>Sprint</b>
+- Java EE -> <b>Spring</b>으로 대체됨
   - 분산형, 기업형 응용 프로그램
   - 개발을 위한 API
   - 결합력을 낮추는 DI, DB Transaction 처리, 로그 처리...
@@ -33,7 +33,7 @@
 
 ### 웹을 위한 스프링 프레임워크 모듈
 
-![Spring framework module](Spring_images/Spring_framework_module.png)
+![2](Spring_images/2.png)
 
 - 아직까지 선택할 수는 있음
   - Java SE 위에 EE
@@ -52,6 +52,8 @@
 
 
 ## 2. 느슨한 결합력과 인터페이스
+
+### 코드 수정을 없애고 DI를 위한 설정
 
 
 
