@@ -46,7 +46,7 @@ static void power(int x) {
 - 처음부터 구조적 프로그램으로 설계하고 개발하는 방식: Top Down
 - 여기서는 절차적인 프로그램을 짤라서 구조적 프로그램을 만들어보자
 
-### 성정입력을 위한 코드를 새로운 함수에 담기
+### 성적입력을 위한 코드를 새로운 함수에 담기
 
 ![create_function](Structured_JAVA_img/create_function.png)
 
