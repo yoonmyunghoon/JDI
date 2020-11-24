@@ -100,6 +100,87 @@
 
 ## 3. DI(Dependency Injection)
 
+### 스프링 프레임워크
+
+#### 스프링 프레임워크 코어 기능: 종속 객체를 생성, 조립해주는 도구
+
+- 스프링이 가지고 있는 가장 기본적인 능력은 무엇인가?
+  - 객체를 생성해주고, 객체들을 조립해주는 능력
+    - DI(Dependency Injection)
+    - IoC Container
+
+### Dependency들을 조립하기 - Dependecy를 부품으로 생각해보자
+
+- Composition has a
+  - 일체형
+  - A가 생성될 떄, 부품인 B도 함께 생성됨
+- Association has a
+  - 조립형
+  - A가 생성되더라도 B가 생성되지 않음
+  - B는 외부에서 생성됨
+  - 외부에서 생성된 객체를 셋팅해서 사용할 수 있음
+
+![7](Spring_images/7.png)
+
+### DI(Dependency Injection)
+
+#### Dependency
+
+- 일체형보다는 조립형이 결합력을 낮춰주고, 부품을 쉽게 갈아끼울 수 있는 형태임
+- 그래서 유지보수나 업데이트 등을 고려하는 기업형 어플리케이션에서는 조립형으로 많이 만듬
+- Dependecy Injection을 사용했을 경우
+  - 장점: 부품을 쉽게 바꿀 수 있음
+  - 단점: 부품을 조립해야하는 번거로움이 있음
+    - 누군가 부품을 대신 조립해주면 좋을텐데..
+    - Spring이 그 역할을 해줌
+
+![8](Spring_images/8.png)
+
+#### Injection - 조립하는 방법 두가지
+
+- Setter Injection
+- Construction Injection
+
+![9](Spring_images/9.png)
+
+- 스프링은 객체 생성과 조립을 해줌
+- 부품을 조립해주는 것이 Dependency Injection임
+  - 원하는 부품들이 어떤것이 있고, 어떤 부품 결합을 하길 원하는지 설정을 해주면 스프링이 그런일을 해줌
+  - 우리는 조립된 결과물을 가져다 쓰면 됨
+- 객체를 조립해주기 위해서는 컨테이너가 필요한데, 그게 IoC Container임
+
+
+
+## 4. IoC(Inversion of Control) 컨테이너
+
+### DI(Dependency Injection)
+
+- 부품을 조립해주는 능력
+- 여러가지 부품들을 주문서에 적어서 스프링에게 제공해주어야함
+- 스프링은 주문서를 보고 부품(객체)을 생성하고 조립함
+- 어떤 부품이 필요하고 어떤 조립관계를 가져야하는지 명세화할 수 있어야함 - 두가지 방법
+  - XML 파일
+  - Annotation
+- 주문서에 맞게 부품을 생성해서 담을 수 있는 공간이 필요함
+  - IoC Container
+
+![10](Spring_images/10.png)
+
+### IoC(Inversion of Control) Container
+
+- 왜 IoC라는 이름이 붙었나?
+- 일체형의 경우, 큰 것이 조립되면 하위 부품들이 조립되는 순서
+- 조립형의 경우, 작은 것부터 조립되고, 점점 커지는 순서
+  - 조립까지해준다는 의미가 포함되어서, 순서가 역순이라는 의미로 IoC가 붙음
+
+#### DI 순서
+
+![11](Spring_images/11.png)
+
+
+
+## 5. Dependecy를 직접 Injection하기
+
 
 
 
