@@ -531,6 +531,100 @@ mvn archetype:generate
 
 ## 11. 라이브러리 인덱싱 검색
 
+- 라이브러리를 설정할 때, 매번 메이븐 중앙 저장소 사이트에 가서 검색해서 사용해야하나?
+- 이클립스를 사용하면 그럴 필요없음
+  - 이클립스에 포함된 메이븐 플러그인에는 라이브러리 검색 기능까지 있음
+
+- pom.xml
+  - 밑쪽에 있는 Dependencies 탭을 누르면 dependency를 추가할 수 있는 GUI가 나옴
+
+![42](Maven_images/42.png)
+
+- Add를 누르면 검색할 수 있음
+  - 그런데 검색 결과에 라이브러리들이 많이 안나옴
+
+![43](Maven_images/43.png)
+
+- Maven repositories 탭을 보면 Global Repositories에 central이 있는데 여기서 Rebuild Index를 누르면 원격저장소에 있는 라이브러리들을 받아올 수 있음
+  - 이때 시간이 많이 걸리면 5시간이 걸릴 수도 있음, 여유로울때 받아두자
+
+![44](Maven_images/44.png)
+
+
+
+## 12. mvn install - 내가 만든 라이브러리 설치하기
+
+- 프로젝트를 개발할 때, 메이븐을 쓴다고하면 모든 라이브러리는 로컬 저장소에 있어야함
+- 내가 만든 라이브러리도 메이븐 저장소에 두고, 쓸 상황에는 꺼내서 사용해야함
+- 메이븐 프로젝트로해서 프로젝트를 하나 생성함
+  - Exam.java를 하나 생성
+
+![45](Maven_images/45.png)
+
+- Maven install
+  - 프로젝트를 메이븐 로컬 저장소로 install하기
+
+![46](Maven_images/46.png)
+
+- 사용하고자하는 프로젝트의 pom.xml로 와서 local repository를 rebuild index 해주기
+
+![47](Maven_images/47.png)
+
+- Dependency 추가해주기
+
+![48](Maven_images/48.png)
+
+- pom.xml
+  - dependency에 examlib이 추가되어있음을 확인 
+
+```xml
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.newlecture</groupId>
+  <artifactId>javaprj</artifactId>
+  <packaging>war</packaging>
+  <version>1.0-SNAPSHOT</version>
+  <name>javaprj</name>
+  <url>http://maven.apache.org</url>
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.tomcat/tomcat-jsp-api -->
+	<dependency>
+	    <groupId>org.apache.tomcat</groupId>
+	    <artifactId>tomcat-jsp-api</artifactId>
+	    <version>9.0.39</version>
+	</dependency>
+	<dependency>
+		<groupId>com.newlecture</groupId>
+		<artifactId>examlib</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</dependency>
+  </dependencies>
+  <properties>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+  </properties>
+</project>
+
+```
+
+- App.java에서 Exam 클래스 import해서 사용해보기
+
+![49](Maven_images/49.png)
+
+- 이렇게 내가 만들던 다른 사람이 만들던 사용하고자 하는 라이브러리가 있으면 로컬메이븐 저장소에 있어야함
+- 만약 로컬 메이븐 저장소에 있는 라이브러리를 다른 사람들이랑 같이 쓰고 싶다면 원격 저장소에 deploy해야함
+- 메이븐 단계들 중 install과 deploy
+  - Install: 로컬 저장소에 옮기는 작업
+  - Deploy: 원격 저장소에 올리는 작업
+    - deploy하기 위해서는 메이븐에 계정이 있어야함
+
 
 
 
