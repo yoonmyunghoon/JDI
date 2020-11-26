@@ -574,7 +574,244 @@ public class Program {
 
 ## 9. 값 형식 DI
 
+### 값 형식의 속성에 값 설정하기
 
+![20](Spring_images/20.png)
+
+- NewlecExam.java에서 각 멤버변수에 해당하는 getter와 setter를 추가해주자
+- setting.xml
+  - 이렇게 값을 넣는것은 setter를 사용하는 것
+  - 밑에처럼 value태그를 따로 써주거나 property 태그 내에 속성으로 넣는 방식이 있음
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!-- Exam exam = new NewlecExam(); -->
+	<bean id="exam" class="spring.di.entity.NewlecExam">
+		<property name="kor">
+			<value>10</value>
+		</property>
+		<property name="eng" value="10" />
+		<property name="math" value="10" />
+		<property name="com" value="10" />
+	</bean>
+	<!-- ExamConsole console = new GridExamConsole(); -->
+	<bean id="console" class="spring.di.ui.InlineExamConsole">
+		<!-- console.setExam(exam); -->
+		<!-- name ==> {setExam -> Exam -> exam} -->
+		<property name="exam" ref="exam" />
+	</bean>
+	
+	
+</beans>
+
+```
+
+
+
+## 10. 생성자 DI
+
+### Dependency 객체 생성과 초기화
+
+#### Exam 객체 constructor를 이용한 속성 값 설정
+
+![21](Spring_images/21.png)
+
+- NewlecExam.java
+  - 생성자 및 toString 생성
+
+```java
+package spring.di.entity;
+
+public class NewlecExam implements Exam {
+	
+	private int kor;
+	private int eng;
+	private int math;
+	private int com;
+	
+	public NewlecExam() {
+	}
+	
+	public NewlecExam(int kor, int eng, int math, int com) {
+		this.kor = kor;
+		this.eng = eng;
+		this.math = math;
+		this.com = com;
+	}
+
+	public int getKor() {
+		return kor;
+	}
+
+	public void setKor(int kor) {
+		this.kor = kor;
+	}
+
+	public int getEng() {
+		return eng;
+	}
+
+	public void setEng(int eng) {
+		this.eng = eng;
+	}
+
+	public int getMath() {
+		return math;
+	}
+
+	public void setMath(int math) {
+		this.math = math;
+	}
+
+	public int getCom() {
+		return com;
+	}
+
+	public void setCom(int com) {
+		this.com = com;
+	}
+
+	@Override
+	public int total() {
+		return kor+eng+math+com;
+	}
+
+	@Override
+	public float avg() {
+		return total() / 4.0f;
+	}
+
+	@Override
+	public String toString() {
+		return "NewlecExam [kor=" + kor + ", eng=" + eng + ", math=" + math + ", com=" + com + "]";
+	}
+
+}
+```
+
+- Program.java
+
+```java
+package spring.di;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import spring.di.entity.Exam;
+import spring.di.entity.NewlecExam;
+import spring.di.ui.ExamConsole;
+import spring.di.ui.GridExamConsole;
+import spring.di.ui.InlineExamConsole;
+
+public class Program {
+
+	public static void main(String[] args) {
+		
+		ApplicationContext context = 
+				new ClassPathXmlApplicationContext("spring/di/setting.xml");
+		
+    // exam 객체도 가져와서 toString을 통해 설정된 값을 확인해보자
+		Exam exam = context.getBean(Exam.class);
+		System.out.println(exam.toString());
+
+		ExamConsole console = context.getBean(ExamConsole.class);
+		
+		console.print();
+		
+		
+	}
+
+}
+
+```
+
+- 생성자를 이용해서 DI하는 경우의 setting.xml
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!-- Exam exam = new NewlecExam(); -->
+	<bean id="exam" class="spring.di.entity.NewlecExam">
+		<constructor-arg value="10"/>
+		<constructor-arg value="20"/>
+		<constructor-arg value="30"/>
+		<constructor-arg value="40"/>
+	</bean>
+	<!-- ExamConsole console = new GridExamConsole(); -->
+	<bean id="console" class="spring.di.ui.InlineExamConsole">
+		<!-- console.setExam(exam); -->
+		<!-- name ==> {setExam -> Exam -> exam} -->
+		<property name="exam" ref="exam" />
+	</bean>
+	
+	
+</beans>
+
+```
+
+- 매개변수를 index로 받을 수도 있음
+
+```java
+<bean id="exam" class="spring.di.entity.NewlecExam">
+		<constructor-arg index="0" value="10"/>
+		<constructor-arg index="1" value="20"/>
+		<constructor-arg index="2" value="30"/>
+		<constructor-arg index="3" value="40"/>
+</bean>
+```
+
+- 매개변수를 변수명으로 받을 수도 있음
+  - 이렇게 하니까 매개변수의 타입이 다르고 변수명이 같은 오버로드 생성자들의 경우, 모호해짐 
+
+```java
+<bean id="exam" class="spring.di.entity.NewlecExam">
+		<constructor-arg name="kor" value="10"/>
+		<constructor-arg name="eng" value="20"/>
+		<constructor-arg name="com" value="30"/>
+		<constructor-arg name="math" value="40"/>
+</bean>
+```
+
+#### 생성자 호출의 모호한 매개변수
+
+- 타입도 속성으로 넣을 수가 있음
+- 그런데 이렇게 하니까 태그가 좀 복잡해보임
+
+![22](Spring_images/22.png)
+
+- 이러한 부분을 해결할 수 있는 방법이 있음
+
+![23](Spring_images/23.png)
+
+- Namespace : p 추가
+  - namespace의 두가지 의미
+    - 해당 태그가 특정한 처리기에 의해서 실행될 수 있도록 특정짓기 위해서 사용함
+    - 태그의 이름을 식별하기 위해서 써주는 것
+  - 속성이나 태그 앞에 접두사를 붙여서 식별하고, 특정 처리기가 처리할 수 있도록해주는 것
+- setting.xml
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<bean id="exam" class="spring.di.entity.NewlecExam" p:kor="10" p:eng="10" />
+	<bean id="console" class="spring.di.ui.InlineExamConsole">
+		<property name="exam" ref="exam" />
+	</bean>
+
+</beans>
+```
+
+- 결과
+
+![25](Spring_images/25.png)
 
 
 
