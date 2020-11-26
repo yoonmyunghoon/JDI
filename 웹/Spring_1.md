@@ -181,6 +181,399 @@
 
 ## 5. Dependecy를 직접 Injection하기
 
+### DI를 스프링의 도움없이 직접 해보자
+
+- Entity 인터페이스 Exam
+
+```java
+package spring.di.entity;
+
+public interface Exam {
+	int total();
+	float avg();
+}
+```
+
+- Exam을 실제 데이터 구조인 NewlecExam
+
+```java
+package spring.di.entity;
+
+public class NewlecExam implements Exam {
+	private int kor;
+	private int eng;
+	private int math;
+	private int com;
+	
+	@Override
+	public int total() {
+		return kor+eng+math+com;
+	}
+
+	@Override
+	public float avg() {
+		return total() / 4.0f;
+	}
+
+}
+```
+
+- UI 인터페이스 ExamConsole
+
+```java
+package spring.di.ui;
+
+public interface ExamConsole {
+	void print();
+}
+```
+
+- Console 방식 두가지
+
+```java
+package spring.di.ui;
+
+import spring.di.entity.Exam;
+
+public class InlineExamConsole implements ExamConsole {
+	private Exam exam;
+	
+	public InlineExamConsole(Exam exam) {
+		this.exam = exam;
+	}
+
+	@Override
+	public void print() {
+		System.out.printf("total is %d, avg is %f\n", exam.total(), exam.avg());
+	}
+}
+```
+
+```java
+package spring.di.ui;
+
+import spring.di.entity.Exam;
+
+public class GridExamConsole implements ExamConsole {
+	private Exam exam;
+	
+	public GridExamConsole(Exam exam) {
+		this.exam = exam;
+	}
+
+	@Override
+	public void print() {
+		System.out.println("|---------|---------|");
+		System.out.println("|  total  |   avg   |");
+		System.out.println("|---------|---------|");
+		System.out.printf("|  %3d  |   %3.2f   |\n", exam.total(), exam.avg());
+		System.out.println("|---------|---------|");
+	}
+}
+```
+
+- Program
+  - Console 방식을 선택해서 사용할 수 있음
+  - Entity든 UI든 DI를 통해 선택적으로 사용할 수 있게 됨
+  - 여기서 객체를 생성하고 DI하는 일을 스프링에게 맡기는 것
+
+```java
+package spring.di;
+
+import spring.di.entity.Exam;
+import spring.di.entity.NewlecExam;
+import spring.di.ui.ExamConsole;
+import spring.di.ui.GridExamConsole;
+import spring.di.ui.InlineExamConsole;
+
+public class Program {
+
+	public static void main(String[] args) {
+		
+		Exam exam = new NewlecExam();
+		ExamConsole console = new InlineExamConsole(exam); //DI
+//		ExamConsole console = new GridExamConsole(exam);
+		console.print();
+	}
+}
+```
+
+
+
+## 6. 스프링 DI 설정을 위해 이클립스 플러그인 설치하기
+
+- 스프링에게 DI를 하도록 하기위해서는 지시서를 작성해서줘야하는데 이때 쓰는 방식이 XML 방식과 Annotation방식이 있음
+- 일단 XML방식부터 해보자
+
+### 설정 파일
+
+- 이런 식으로 스프링이 알아보도록 써줘야하는데 이걸 다 일일히 써주는 것은 비효율적임
+- 이런부분을 지원해주는 플러그인을 사용하자
+
+![12](Spring_images/12.png)
+
+### 플러그인 설치
+
+- 이클립스 마켓플레이스
+
+![13](Spring_images/13.png)
+
+- Spring Tools 3 설치
+  - Spring Tools 4는 스프링 부트를 기반으로하는 새로운 툴인데 여기서는 스프링을 중심으로하기 때문에 일단 3을 설치하자
+
+![14](Spring_images/14.png)
+
+- 설치 과정에서 오류가 나서 구글링을 통해 해결
+  - 이클립스 버전에 따른 오류가 있었던 거 같음
+  - https://impact-ko.tistory.com/20
+
+- Spring을 사용하는데 이클립스와 메이븐만으로도 충분히 만들 수는 있음
+  - 다만, 설정파일 관련한 불편함을 줄이기 위해 플러그인을 설치하는 것
+
+- 설치완료 후, 이클립스 재시작
+- setting.xml를 생성해보자
+
+![15](Spring_images/15.png)
+
+- setting.xml
+  - 자동으로 만들어줌
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+</beans>
+
+```
+
+
+
+## 7. 스프링 DI 지시서 작성하기(Spring Bean Configuration)
+
+- Program.java
+  - Exam이 ExamConsole의 부품이라고 할 수 있고, DI를 통해서 조립을 해주는 것
+  - DI 방법에는 생성자를 통한 방법과 setter를 이용한 방법이 있음
+  - 일단 setter를 이용하는 방법부터, 스프링에서 설정하는 방법에 대해 알아보자
+
+```java
+package spring.di;
+
+import spring.di.entity.Exam;
+import spring.di.entity.NewlecExam;
+import spring.di.ui.ExamConsole;
+import spring.di.ui.GridExamConsole;
+import spring.di.ui.InlineExamConsole;
+
+public class Program {
+
+	public static void main(String[] args) {
+		
+		Exam exam = new NewlecExam();
+		
+		//DI
+		// 1.생성자를 사용한 DI
+//		ExamConsole console = new InlineExamConsole(exam);
+//		ExamConsole console = new GridExamConsole(exam);
+		
+		// 2.setter를 이용한 DI
+//		ExamConsole console = new InlineExamConsole();
+		ExamConsole console = new GridExamConsole();
+		console.setExam(exam);
+		
+		
+		console.print();
+	}
+}
+```
+
+### 지시서 작성하기
+
+- Program.java
+  - 객체를 생성하고 조립하는 것을 지시서에 작성하자
+  - 지시서를 작성하고나면 이 지시서를 스프링에게 전달할 주체가 필요함
+    - 다음 챕터에서 알아보자
+
+```java
+package spring.di;
+
+import spring.di.entity.Exam;
+import spring.di.entity.NewlecExam;
+import spring.di.ui.ExamConsole;
+import spring.di.ui.GridExamConsole;
+import spring.di.ui.InlineExamConsole;
+
+public class Program {
+
+	public static void main(String[] args) {
+		
+		/* 스프링에게 지시하는 방법으로 코드를 변경
+		Exam exam = new NewlecExam();
+		ExamConsole console = new GridExamConsole();
+		
+		console.setExam(exam);
+		*/
+
+		ExamConsole console = ?;
+		console.print();
+
+	}
+}
+```
+
+- setting.xml
+  - 세팅해주는 부분의 setExam(exam)은
+  - property태그로 나타내는데, 이때 name 속성의 값은 매개변수인 exam이 아니라, setExam에서 set을 떼어내고 소문자로 바꿔서 적어주는 것임
+  - value와 ref 두개의 속성이 더 있는데, 이때 넘기는 매개변수가 값 타입(int, char, boolean ... )인지 참조 타입인지에 따라 배타적으로 쓰여짐
+    - 여기서는 exam이 객체, 즉, 참조 타입이기 때문에 ref를 사용
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!-- Exam exam = new NewlecExam(); -->
+	<bean id="exam" class="spring.di.entity.NewlecExam" />
+	<!-- ExamConsole console = new GridExamConsole(); -->
+	<bean id="console" class="spring.di.ui.GridExamConsole">
+		<!-- console.setExam(exam); -->
+		<!-- name ==> {setExam -> Exam -> exam} -->
+		<property name="exam" ref="exam" />
+	</bean>
+	
+	
+</beans>
+
+```
+
+
+
+## 8. 스프링 IoC 컨테이너 사용하기(ApplicationContext 이용하기)
+
+### Application Context
+
+- 스프링에서 DI 또는 지시서를 읽어서 객체를 생성해주고 조립해주는 스프링의 구체적인 객체이름은 ApplicationContext
+- ApplicationContext는 인터페이스명이고, 실질적으로 이 인터페이스를 구현하고 있는 여러가지 클래스들이 있음
+- 그 중 대표적인 것이 ClassPathXmlApplicationContext임
+- 각 클래스들의 차이
+  - 지시서를 넘길 때, 그 지시서의 위치를 어떻게 알려주냐에 따라 다름
+  - ClassPathXmlApplicationContext: 
+    - 어플리케이션의 루트로부터 경로를 지정하고 싶을 경우
+  - FileSystemXmlApplicationContext: 
+    - C드라이브의 어디에.., D드라이브 어디에.. 처럼 현재 파일 시스템의 경로를 이용할 경우
+  - XmlWebApplicationContext: 
+    - web에 둬서 url을 통해서 지정하는 경우
+  - AnnotationConfigAppicationContext:
+    - 파일로 두는 것이 아니라 annotation으로 두었기 때문에 스캔하는 방법을 씀
+    - 다음에 더 자세히 알아보자
+
+![16](Spring_images/16.png)
+
+### ApplicationContext를 사용하기 위해서 스프링 관련 라이브러리 받기
+
+- 직접 다운받아도되지만, 메이븐이라는 빌드 툴을 배웠으니까 메이븐 프로젝트로 변경해서 dependency를 추가해주는 식으로 하자
+
+![17](Spring_images/17.png)
+
+- dependency를 추가하려면 메이븐 원격 저장소에 있는 라이브러리들을 로컬로 가져와야하는데, 이때 시간이 많이 걸림..
+  - 일단은 직접 메이븐 레파지토리에 가서 필요한 라이브러리만 받아서 pom파일에 추가해주자
+  - https://mvnrepository.com/artifact/org.springframework/spring-context/5.1.19.RELEASE
+
+- pom.xml
+
+```xml
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.newlecture</groupId>
+  <artifactId>spring</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  
+  <dependencies>
+  <!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-context</artifactId>
+	    <version>5.1.19.RELEASE</version>
+	</dependency>
+  </dependencies>
+  
+  <build>
+    <sourceDirectory>src</sourceDirectory>
+    <resources>
+      <resource>
+        <directory>src</directory>
+        <excludes>
+          <exclude>**/*.java</exclude>
+        </excludes>
+      </resource>
+    </resources>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.1</version>
+        <configuration>
+          <release>11</release>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>
+```
+
+- Program.java
+  - 이제 스프링이 작업지시서를 보고 객체를 생성하고 조립한 다음에 IoC 컨테이너에 넣어둠
+  - IoC 컨테이너에 있는 객체들을 꺼내쓰면 되는데, 꺼내는 방법 두가지가 있음
+  - 객체명(console)으로 꺼낼 수도 있고, 타입명(ExamConsole)으로 꺼낼 수도 있음
+
+```java
+package spring.di;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import spring.di.entity.Exam;
+import spring.di.entity.NewlecExam;
+import spring.di.ui.ExamConsole;
+import spring.di.ui.GridExamConsole;
+import spring.di.ui.InlineExamConsole;
+
+public class Program {
+
+	public static void main(String[] args) {
+		
+		/* 스프링에게 지시하는 방법으로 코드를 변경
+		Exam exam = new NewlecExam();
+		ExamConsole console = new GridExamConsole();
+		
+		console.setExam(exam);
+		*/
+		
+		ApplicationContext context = 
+				new ClassPathXmlApplicationContext("spring/di/setting.xml");
+		
+		// 객체명 방법
+//		ExamConsole console = (ExamConsole) context.getBean("console");
+		// 타입명 방법 - 좀 더 선호됨
+		ExamConsole console = context.getBean(ExamConsole.class);
+		
+		console.print();
+
+	}
+}
+```
+
+- setting.xml를 수정하면 실행 결과가 달라짐
+
+![18](Spring_images/18.png)
+
+![19](Spring_images/19.png)
+
+
+
+## 9. 값 형식 DI
+
 
 
 
