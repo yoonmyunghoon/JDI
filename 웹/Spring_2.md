@@ -330,6 +330,144 @@ public void setExam(Exam exam) {
 
 ## 14. @Autowired의 위치와 Required 옵션
 
+### Injection 방법 3가지
+
+#### setter위에 두는 방법
+
+![35](Spring_images/35.png)
+
+```java
+@Autowired
+@Qualifier("exam2")
+@Override
+public void setExam(Exam exam) {
+  System.out.println("setter");
+  this.exam = exam;
+}
+```
+
+#### 오버로드 생성자 위에 두는 방법
+
+- 오버로드 생성자의 경우에는 매개변수로 여러개의 Exan이 있을 수도 있기 때문에 각 매개변수마다 @Qualifier 어노테이션을 달아줘야함
+
+![36](Spring_images/37.png)
+
+```java
+@Autowired
+public InlineExamConsole(@Qualifier("exam2") Exam exam) {
+  System.out.println("overloaded constructor");
+  this.exam = exam;
+}
+```
+
+#### 필드 위에 두는 법
+
+- 오버로드 생성자가 아니라 기본 생성자에서 객체를 생성하는 형태
+- 이 경우에는 오버로드 생성자만 있을 경우엔 오류가 뜸
+  - 기본 생성자가 자동으로 만들어지지 않기 때문임
+  - 기본 생성자와 오버로드 생성자 모두 직접 만들지 않으면 기본 생성자가 자동으로 만들어지기 때문에 정상 작동함
+
+![36](Spring_images/36.png)
+
+```java
+@Autowired
+@Qualifier("exam2")
+private Exam exam;
+
+public InlineExamConsole() {
+  System.out.println("constructor");
+}
+
+public InlineExamConsole(Exam exam) {
+  System.out.println("overloaded constructor");
+  this.exam = exam;
+}
+```
+
+### Required 옵션
+
+- 객체가 만들어지지 않은 경우에도 정상작동할 수 있도록 하기 위한 옵션
+- setting.xml
+  - Exam 객체들이 없는 상태
+
+```java
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
+	
+	<context:annotation-config />
+	<bean id="console" class="spring.di.ui.InlineExamConsole">
+	</bean>
+
+</beans>
+
+```
+
+- InlineExamConsole.java
+
+```java
+package spring.di.ui;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+
+import spring.di.entity.Exam;
+
+public class InlineExamConsole implements ExamConsole {
+	
+	@Autowired(required = false)
+	@Qualifier("exam2")
+	private Exam exam;
+	
+	public InlineExamConsole() {
+		System.out.println("constructor");
+	}
+
+	public InlineExamConsole(Exam exam) {
+		System.out.println("overloaded constructor");
+		this.exam = exam;
+	}
+
+	@Override
+	public void print() {
+		if(exam == null) {
+			System.out.printf("total is %d, avg is %f\n", 0, 0.0);
+		} else {
+			System.out.printf("total is %d, avg is %f\n", exam.total(), exam.avg());			
+		}
+
+	}
+
+	@Override
+	public void setExam(Exam exam) {
+		System.out.println("setter");
+		this.exam = exam;
+		
+	}
+
+}
+```
+
+- 결과
+
+```txt
+constructor
+total is 0, avg is 0.000000
+
+```
+
+
+
+## 15. 어노테이션을 이용한 객체생성
+
+
+
 
 
 
