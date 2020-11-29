@@ -1,4 +1,4 @@
-# Spring Framework and Boot 학습 1
+# Spring Framework and Boot 학습 1 - DI
 
 ![1](Spring_images/1.png)
 

@@ -1,4 +1,4 @@
-# Spring Framework and Boot 학습 2
+# Spring Framework and Boot 학습 2 - DI
 
 ![1](Spring_images/1.png)
 
@@ -466,13 +466,283 @@ total is 0, avg is 0.000000
 
 ## 15. 어노테이션을 이용한 객체생성
 
+### 객체 생성과 @Component
+
+- setting.xml에서 객체 생성하는 부분을 없애는 대신에, 어노테이션을 통해 객체를 생성한다는 것을 알려줘야함
+- 이때 클래스의 위치를 context태그안에 적어주는데, 이렇게 되면 스프링이 그 위치의 클래스에 가서 어노테이션들을 읽을 수 있게 됨
+  - 이전에 사용했던 <context:annotation-config /> 태그를 없애주어도 읽을 수 있기 때문에 생략해줌
+
+![38](Spring_images/38.png)
+
+- setting.xml
+  - 읽어올 객체 클래스가 있는 패키지를 여러개 적어줄 수 있음
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
+	
+	<context:component-scan base-package="spring.di.ui, spring.di.entity" />
+  
+</beans>
+
+```
+
+- InlineExamConsole.java
+  - Program.java에서 이름으로 객체를 찾는 방법을 쓸 때는 @Component 어노테이션에 객체명도 적어줘야함
+  - 타입으로 찾을 때는 생략가능
+  - Exam 객체가 있어야 실행이 되도록 @Autowired의 required 옵션을 제거함
+
+```java
+package spring.di.ui;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
+
+import spring.di.entity.Exam;
+
+@Component("console")
+public class InlineExamConsole implements ExamConsole {
+	
+	@Autowired
+//	@Autowired(required = false)
+//	@Qualifier("exam2")
+	private Exam exam;
+	
+	public InlineExamConsole() {
+		System.out.println("constructor");
+	}
+
+	public InlineExamConsole(Exam exam) {
+		System.out.println("overloaded constructor");
+		this.exam = exam;
+	}
+
+	@Override
+	public void print() {
+		if(exam == null) {
+			System.out.println("exam is null");
+			System.out.printf("total is %d, avg is %f\n", 0, 0.0);
+		} else {
+			System.out.println("exam has values");
+			System.out.printf("total is %d, avg is %f\n", exam.total(), exam.avg());			
+		}
+	}
+
+	@Override
+	public void setExam(Exam exam) {
+		System.out.println("setter");
+		this.exam = exam;
+	}
+}
+```
+
+- Program.java
+
+```java
+package spring.di;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import spring.di.entity.Exam;
+import spring.di.entity.NewlecExam;
+import spring.di.ui.ExamConsole;
+import spring.di.ui.GridExamConsole;
+import spring.di.ui.InlineExamConsole;
+
+public class Program {
+
+	public static void main(String[] args) {
+		
+		ApplicationContext context = 
+				new ClassPathXmlApplicationContext("spring/di/setting.xml");
+		
+		// 객체명 방법
+		ExamConsole console = (ExamConsole) context.getBean("console");
+		// 타입명 방법 - 좀 더 선호됨
+//		ExamConsole console = context.getBean(ExamConsole.class);
+		console.print();
+	}
+}
+```
+
+- NewlecExam.java
+  - @Component를 사용해서 객체를 생성
+
+```java
+package spring.di.entity;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class NewlecExam implements Exam {
+	
+	private int kor;
+	private int eng;
+	private int math;
+	private int com;
+	
+	public NewlecExam() {
+	}
+	
+	public NewlecExam(int kor, int eng, int math, int com) {
+		this.kor = kor;
+		this.eng = eng;
+		this.math = math;
+		this.com = com;
+	}
+
+	public int getKor() {
+		return kor;
+	}
+
+	public void setKor(int kor) {
+		this.kor = kor;
+	}
+
+	public int getEng() {
+		return eng;
+	}
+
+	public void setEng(int eng) {
+		this.eng = eng;
+	}
+
+	public int getMath() {
+		return math;
+	}
+
+	public void setMath(int math) {
+		this.math = math;
+	}
+
+	public int getCom() {
+		return com;
+	}
+
+	public void setCom(int com) {
+		this.com = com;
+	}
+
+	@Override
+	public int total() {
+		return kor+eng+math+com;
+	}
+
+	@Override
+	public float avg() {
+		return total() / 4.0f;
+	}
+
+	@Override
+	public String toString() {
+		return "NewlecExam [kor=" + kor + ", eng=" + eng + ", math=" + math + ", com=" + com + "]";
+	}
+
+}
+```
+
+- 결과
+  - 기본 생성자를 사용해서 DI해주었기 때문에 값들은 0으로 초기화되어있음
+  - 그러면 어떻게 값을 넣어서 DI를 해줄 수 있을까?
+
+```txt
+constructor
+exam has values
+total is 0, avg is 0.000000
+```
 
 
 
+## 16. @component의 종류와 시멘틱 @Component
+
+### 특화된 @Component 어노테이션 (@Controller, @Service, @Repository)
+
+### 기본 값 설정을 위한 @Value 어노테이션
+
+![39](Spring_images/39.png)
+
+### 처리기의 명령
+
+- Controller, Service, Repository 등은 Component와 똑같은 기능을 하는 어노테이션이지만 이름을 좀 더 MVC에 특화된 표현으로 했다는 차이점이 있음
+
+![40](Spring_images/40.png)
+
+### Spring MVC의 구성
+
+#### 스프링 웹 어플리케이션을 구성하는 기본 구성
+
+- controller, service, repository를 컴포넌트라고 함
+- model, Entity, 코드를 가지고 있지 않은 외부 클래스 등에는 component 어노테이션을 사용하지 않음
+- NewlecExam은 Entitiy이기 때문에 컴포넌트 어노테이션을 붙여서 쓰지 않음
+  - 그러면 어노테이션을 사용하지 않고, xml을 무조건 사용해야하는가?, No
+  - 어노테이션만 사용하는 방법이 있음
+
+![41](Spring_images/41.png)
+
+- NewlecExam.java
+  - 컴포넌트 어노테이션 지워주기
+  - NewlecExam객체를 생성할 다른 방법을 알아보자
+
+```java
+package spring.di.entity;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
+//@Component
+public class NewlecExam implements Exam {
+	
+	@Value("20")
+	private int kor;
+	@Value("30")
+	private int eng;
+	private int math;
+	private int com;
+}
+
+```
 
 
 
+## 17. XML Configuration을 Java Configruation으로 변경하기
 
+### 지시서 작성방식의 변경
+
+- xml파일을 지우면 이를 대신할 수 있는 설정파일이 있어야되는데 , 자바 클래스로 만들 수 있음
+- 설정을 위한 자바 클래스라는 점을 표시하기 위해 @Configuraion을 써줌
+- @ComponentScan("spring.di.ui")를 통해 객체화할 클래스들을 찾을 수 있음
+  - 이때 여러개의 패키지에서 찾고자할 때는 배열 형태로 써줘야함
+    - @ComponentScan({"spring.di.ui", "spring.di.controller"}) 이런식으로
+- bean을 생성할 때는 함수를 정의하는 형태처럼 쓰는데 이때, 함수명은 동사가 아니고 명사임
+  - 함수명이 id가 되서 IoC 컨테이너에서 식별자로 쓰이는 것
+
+![42](Spring_images/42.png)
+
+### Application Context
+
+- 종류 4가지 중에서 위에 3가지는 xml파일을 사용하는데 위치가 어디인지에 따라 바뀌는 것이었고, 마지막에 있는 AnnotaionConfig는 Config 클래스를 받는 것
+
+![43](Spring_images/43.png)
+
+### 클래스 설정 방법
+
+- '설정방법 2'는 여러개의 config 클래스를 받을 수 있는 방법
+- 한번에 쉼표로 구분해서 넣을 수도 있고, 아니면 여러번 register해줄 수도 있음
+- 마지막에 refresh만 해주면 됨
+
+![44](Spring_images/44.png)
 
 
 
