@@ -15,14 +15,16 @@ import spring.di.NewlecDIConfig;
 public class Program {
 
 	public static void main(String[] args) {
-
+		
 		ApplicationContext context = 
 //				new AnnotationConfigApplicationContext(NewlecDIConfig.class);
 				new ClassPathXmlApplicationContext("spring/aop/setting.xml");
 		
 		Exam exam = (Exam) context.getBean("exam");
 		
+		System.out.println("=========== < result of total > ==========");
 		System.out.printf("total is %d\n", exam.total());
+		System.out.println("=========== < result of avg > ==========");
 		System.out.printf("avg is %f\n", exam.avg());
 		
 		/*

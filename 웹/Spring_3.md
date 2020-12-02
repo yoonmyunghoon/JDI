@@ -264,7 +264,7 @@ avg is 1.000000
 - 스프링에서는 네가지 형태로 구분하고 있음
   - Before Advice
     - 주업무의 앞에만 필요로하는 보조업무
-  - After returnning Advice
+  - After returning Advice
     - 뒤에만 필요로하는 보조업무
   - After throwing Advice
     - 예외를 처리하는 보조업무
@@ -556,7 +556,424 @@ avg is 1.000000
 
 ## 6. After Returning Advice / Throwing Advice 구현
 
- 
+- LogBeforeAdvice은 target의 메소드가 실행되기 전에 보조업무를 처리하는 것
+- LogAfterReturningAdvice는 target의 메소드가 정상 실행된 후, 보조업무를 처리하는 것
+- LogAfterThrowingAdvice는 target의 메소드를 실행하는 도중 예외가 발생했을 경우, 이에 대한 보조업무를 처리하는 것
+- LogAfterReturningAdvice와 LogAfterThrowingAdvice는 함께 적더라도 둘 중에 하나만 실행됨
+- LogAfterReturningAdvice.java
+
+```java
+package spring.aop.advice;
+
+import java.lang.reflect.Method;
+
+import org.springframework.aop.AfterReturningAdvice;
+
+public class LogAfterReturningAdvice implements AfterReturningAdvice{
+
+	@Override
+	public void afterReturning(Object returnValue, Method method, Object[] args, Object target) throws Throwable {
+		
+		System.out.println("returnValue: " + returnValue + ", method: " + method.getName());
+		
+	}
+
+}
+
+```
+
+- LogAfterThrowingAdvice.java
+
+```java
+package spring.aop.advice;
+
+import org.springframework.aop.ThrowsAdvice;
+
+public class LogAfterThrowingAdvice implements ThrowsAdvice {
+	public void afterThrowing(IllegalArgumentException e) throws Throwable {
+		System.out.println("예외가 발생하였습니다.: " + e.getMessage());
+	}
+}
+
+```
+
+- setting.xml
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
+	
+
+	<bean id="target" class="spring.aop.entity.NewlecExam" p:kor="1" p:eng="1" p:math="1" p:com="1"/>
+	<bean id="logAroundAdvice" class="spring.aop.advice.LogAroundAdvice" />
+	<bean id="logBeforeAdvice" class="spring.aop.advice.LogBeforeAdvice" />
+	<bean id="logAfterReturningAdvice" class="spring.aop.advice.LogAfterReturningAdvice" />
+	<bean id="logAfterThrowingAdvice" class="spring.aop.advice.LogAfterThrowingAdvice" />
+	<bean id="exam" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="target" ref="target" />
+		<property name="interceptorNames">
+			<list>
+				<value>logAroundAdvice</value>
+				<value>logBeforeAdvice</value>
+				<value>logAfterReturningAdvice</value>
+				<value>logAfterThrowingAdvice</value>
+			</list>
+		</property>
+	</bean>
+	
+	
+</beans>
+
+```
+
+- NewlecExam.java
+
+```java
+@Override
+public int total() {
+
+  int result = kor+eng+math+com;
+
+  // 국어점수가 100보다 클 경우, 예외발생
+  if(kor > 100) {
+    throw new IllegalArgumentException("유효하지 않은 국어점수");
+  }
+
+  try {
+    Thread.sleep(200);
+  } catch (InterruptedException e) {
+    e.printStackTrace();
+  }
+  return result;
+}
+```
+
+- kor이 100보다 작을 경우, 결과
+
+```txt
+앞에서 실행될 로직 ---> Before
+returnValue: 4, method: total ---> After Returning
+204ms 시간이 걸렸습니다. ---> Around
+total is 4 ---> 최종 결과
+앞에서 실행될 로직
+returnValue: 1.0, method: avg
+206ms 시간이 걸렸습니다.
+avg is 1.000000
+```
+
+- kor이 100보다 클 경우, 결과
+
+```txt
+앞에서 실행될 로직Exception in thread "main" 
+예외가 발생하였습니다.: 유효하지 않은 국어점수 ---> 예외가 발생하고 난 후, 메시지를 출력하는 보조 업무 처리
+java.lang.IllegalArgumentException: 유효하지 않은 국어점수
+	at spring.aop.entity.NewlecExam.total(NewlecExam.java:60)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	'''''' (생략) '''''''
+```
+
+
+
+## 7. Point Cut(Weaving, Join Point)
+
+### AOP 구현 방식
+
+#### 포인트 컷(Pointcuts)과 조인 포인트(JoinPoint) 그리고 위빙(weaving)
+
+- proxy가 실제 주업무인 target의 메소드를 호출해서 연결되는 모습이 마치 뜨개질과 비슷하다고해서 weaving이라고 함
+- 연결될 target의 메소드들을 JoinPoint라고 함
+  - 그런데 proxy는 target의 모든 메소드를 JoinPoint로 인식함
+  - 그래서 target으로  NewlecExam을 정했더니, total과 avg 모두 JoinPoint가 되었음
+- 모든 메소드가 아니라 필요로하는 메소드만 JoinPoint로 인식되서 weaving이 되도록 하고싶다면, 그때 설정할 수 있는 별도의 정보가 필요한데 그것을 Pointcuts이라고함
+- Pointcuts 설정을 해주면 스프링은 원하는 메소드만 weaving해주는 능력을 가지고 있음
+- setting.xml
+  - total을 pointcut으로 설정
+  - advisor을 사용해서 around와 before advice는 total에만 weaving해줌
+  - 이 방법은 가장 초기의 classic한 방법, 하나의 advice를 연결해줄려면 하나의 advisor이 만들어져야함
+    - 다음 챕터에서 좀 더 간단하게 할 수 있는 방법을 알아보자
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
+	
+
+	<bean id="target" class="spring.aop.entity.NewlecExam" p:kor="1" p:eng="1" p:math="1" p:com="1"/>
+	<bean id="logAroundAdvice" class="spring.aop.advice.LogAroundAdvice" />
+	<bean id="logBeforeAdvice" class="spring.aop.advice.LogBeforeAdvice" />
+	<bean id="logAfterReturningAdvice" class="spring.aop.advice.LogAfterReturningAdvice" />
+	<bean id="logAfterThrowingAdvice" class="spring.aop.advice.LogAfterThrowingAdvice" />
+	
+	<bean id="classicPointCut" class="org.springframework.aop.support.NameMatchMethodPointcut">
+		<property name="mappedName" value="total" />
+	</bean>
+	
+	<bean id="classicBeforeAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+		<property name="advice" ref="logBeforeAdvice" />
+		<property name="pointcut" ref="classicPointCut" />
+	</bean>
+	
+	<bean id="classicAroundAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+		<property name="advice" ref="logAroundAdvice" />
+		<property name="pointcut" ref="classicPointCut" />
+	</bean>
+	
+	<bean id="exam" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="target" ref="target" />
+		<property name="interceptorNames">
+			<list>
+				<value>classicAroundAdvisor</value>
+				<value>classicBeforeAdvisor</value>
+				<value>logAfterReturningAdvice</value>
+				<value>logAfterThrowingAdvice</value>
+			</list>
+		</property>
+	</bean>
+	
+</beans>
+
+```
+
+- 결과
+  - before과 around advice는 total 메소드가 실행될 때만 실행됨
+
+```txt
+앞에서 실행될 로직 ---> before
+returnValue: 4, method: total ---> after return
+203ms 시간이 걸렸습니다. ---> around
+total is 4 ---> 최종출력
+returnValue: 1.0, method: avg ---> after return
+avg is 1.000000 ---> 최종출력
+```
+
+
+
+## 8. 간소화된 Advisor
+
+###  PointCut을 품은  Advisor
+
+- 이전에는 PointCut과 Advisor이 따로 있었음
+
+![52](Spring_images/52.png)
+
+- 이제는 PointCut을 Advisor 안에 적어넣는 방법을 써보자
+
+![53](Spring_images/53.png)
+
+### pointcut을 advisor 안에 쓰기
+
+- setting.xml
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
+	
+
+	<bean id="target" class="spring.aop.entity.NewlecExam" p:kor="1" p:eng="1" p:math="1" p:com="1"/>
+	<bean id="logAroundAdvice" class="spring.aop.advice.LogAroundAdvice" />
+	<bean id="logBeforeAdvice" class="spring.aop.advice.LogBeforeAdvice" />
+	<bean id="logAfterReturningAdvice" class="spring.aop.advice.LogAfterReturningAdvice" />
+	<bean id="logAfterThrowingAdvice" class="spring.aop.advice.LogAfterThrowingAdvice" />
+	
+  <!--pointcut을 advisor 안에 쓰기-->
+	<bean id="classicBeforeAdvisor" class="org.springframework.aop.support.NameMatchMethodPointcutAdvisor">
+		<property name="advice" ref="logBeforeAdvice" />
+		<property name="mappedName" value="total" />
+	</bean>
+	
+	<bean id="classicAroundAdvisor" class="org.springframework.aop.support.NameMatchMethodPointcutAdvisor">
+		<property name="advice" ref="logAroundAdvice" />
+		<property name="mappedName" value="total" />
+	</bean>
+	
+	<bean id="exam" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="target" ref="target" />
+		<property name="interceptorNames">
+			<list>
+				<value>classicAroundAdvisor</value>
+				<value>classicBeforeAdvisor</value>
+				<value>logAfterReturningAdvice</value>
+				<value>logAfterThrowingAdvice</value>
+			</list>
+		</property>
+	</bean>
+	
+</beans>
+
+```
+
+- 결과
+
+```txt
+=========== < result of total > ==========
+앞에서 실행될 로직
+returnValue: 4, method: total
+203ms 시간이 걸렸습니다.
+total is 4
+=========== < result of avg > ==========
+returnValue: 1.0, method: avg
+avg is 1.000000
+```
+
+### mappedNames로 바꾸고 여러개의 메소드와 연결
+
+- setting.xml
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
+	
+
+	<bean id="target" class="spring.aop.entity.NewlecExam" p:kor="1" p:eng="1" p:math="1" p:com="1"/>
+	<bean id="logAroundAdvice" class="spring.aop.advice.LogAroundAdvice" />
+	<bean id="logBeforeAdvice" class="spring.aop.advice.LogBeforeAdvice" />
+	<bean id="logAfterReturningAdvice" class="spring.aop.advice.LogAfterReturningAdvice" />
+	<bean id="logAfterThrowingAdvice" class="spring.aop.advice.LogAfterThrowingAdvice" />
+	
+  <!-- pointcut을 advisor 안에 쓰기 -->
+  <!-- mappedNames로 바꾸고 여러개의 메소드와 연결 -->
+	<bean id="classicBeforeAdvisor" class="org.springframework.aop.support.NameMatchMethodPointcutAdvisor">
+		<property name="advice" ref="logBeforeAdvice" />
+		<property name="mappedNames">
+			<list>
+				<value>total</value>
+				<value>avg</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="classicAroundAdvisor" class="org.springframework.aop.support.NameMatchMethodPointcutAdvisor">
+		<property name="advice" ref="logAroundAdvice" />
+		<property name="mappedName" value="total" />
+	</bean>
+	
+	<bean id="exam" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="target" ref="target" />
+		<property name="interceptorNames">
+			<list>
+				<value>classicAroundAdvisor</value>
+				<value>classicBeforeAdvisor</value>
+				<value>logAfterReturningAdvice</value>
+				<value>logAfterThrowingAdvice</value>
+			</list>
+		</property>
+	</bean>
+	
+</beans>
+
+
+```
+
+- 결과
+  - Before advice의 경우,  total과 avg 모두 연결했기 때문에 두번 출력됨
+
+```txt
+=========== < result of total > ==========
+앞에서 실행될 로직
+returnValue: 4, method: total
+203ms 시간이 걸렸습니다.
+total is 4
+=========== < result of avg > ==========
+앞에서 실행될 로직
+returnValue: 1.0, method: avg
+avg is 1.000000
+
+```
+
+### Name이 아니라 정규표현식을 사용해서 메소드 연결시키기
+
+- setting.xml
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
+	
+
+	<bean id="target" class="spring.aop.entity.NewlecExam" p:kor="1" p:eng="1" p:math="1" p:com="1"/>
+	<bean id="logAroundAdvice" class="spring.aop.advice.LogAroundAdvice" />
+	<bean id="logBeforeAdvice" class="spring.aop.advice.LogBeforeAdvice" />
+	<bean id="logAfterReturningAdvice" class="spring.aop.advice.LogAfterReturningAdvice" />
+	<bean id="logAfterThrowingAdvice" class="spring.aop.advice.LogAfterThrowingAdvice" />
+	
+  <!-- RegexpMethodPointcutAdvisor를 사용해서 pattern으로 메소드와 연결시키기 -->
+	<bean id="classicBeforeAdvisor" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
+		<property name="advice" ref="logBeforeAdvice" />
+		<property name="patterns">
+			<list>
+				<value>.*to.*</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="classicAroundAdvisor" class="org.springframework.aop.support.NameMatchMethodPointcutAdvisor">
+		<property name="advice" ref="logAroundAdvice" />
+		<property name="mappedName" value="total" />
+	</bean>
+	
+	<bean id="exam" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="target" ref="target" />
+		<property name="interceptorNames">
+			<list>
+				<value>classicAroundAdvisor</value>
+				<value>classicBeforeAdvisor</value>
+				<value>logAfterReturningAdvice</value>
+				<value>logAfterThrowingAdvice</value>
+			</list>
+		</property>
+	</bean>
+	
+</beans>
+
+```
+
+- 결과
+  - before advise가 total과 잘 연결됨 
+
+```txt
+=========== < result of total > ==========
+앞에서 실행될 로직
+returnValue: 4, method: total
+205ms 시간이 걸렸습니다.
+total is 4
+=========== < result of avg > ==========
+returnValue: 1.0, method: avg
+avg is 1.000000
+```
 
 
 
