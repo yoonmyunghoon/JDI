@@ -51,9 +51,10 @@
 - Maven 학습
   - [학습](웹/Maven.md)
 - Spring 학습
-  - [학습1](웹/Spring_1.md) - DI Part1
-  - [학습2](웹/Spring_2.md) - DI Part2
+  - [학습1](웹/Spring_1.md) - DI Part 1
+  - [학습2](웹/Spring_2.md) - DI Part 2
   - [학습3](웹/Spring_3.md) - AOP
+  - [학습4](웹/Spring_4.md) - Spring MVC Part 1
 
 
 
