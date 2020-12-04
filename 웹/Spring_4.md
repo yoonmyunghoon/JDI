@@ -113,12 +113,12 @@
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
   <dependencies>
-  	<!-- https://mvnrepository.com/artifact/org.apache.tomcat/tomcat-jsp-api -->
-	<dependency>
-	    <groupId>org.apache.tomcat</groupId>
-	    <artifactId>tomcat-jsp-api</artifactId>
-	    <version>9.0.39</version>
-	</dependency>
+  	<!-- https://mvnrepository.com/artifact/org.apache.tomcat/tomcat-api -->
+    <dependency>
+        <groupId>org.apache.tomcat</groupId>
+        <artifactId>tomcat-api</artifactId>
+        <version>9.0.39</version>
+    </dependency>
   </dependencies>
   <properties>
   	<maven.compiler.source>1.8</maven.compiler.source>
@@ -153,6 +153,39 @@
 ## 4. Dispatcher Servlet 라이브러리 설정하기
 
 ### Spring Dispatcher를 Front 컨트롤러로 설정하기
+
+- 라이브러리가 필요함
+
+![64](Spring_images/64.png)
+
+- 메이븐 저장소에서 spring mvc 5.2.9버전을 찾아서 dependency 추가해주기
+  - 메이븐 탭에서 메이븐 원격 저장소를 rebuild해서 라이브러리 목록을 전부다 받아두고 필요한 것만 검색해서 설치하는 방법도 있지만, 목록을 받아오는데 시간이 걸리므로 그냥 메이븐 저장소 사이트에서 직접 코드를 받아옴
+
+![65](Spring_images/65.png)
+
+- 필요한 라이브러리 설치완료
+  - 이 서블릿클래스는 프론트 컨트롤러의 역할을 하기 위한 것임 
+  - 이를 사용하기 위해서는 web.xml에서 설정을 해줘야함
+  - 다음 챕터에서 해보자
+
+![66](Spring_images/66.png)
+
+- pom.xml
+
+```xml
+<!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
+<dependency>
+  <groupId>org.springframework</groupId>
+  <artifactId>spring-webmvc</artifactId>
+  <version>5.2.9.RELEASE</version>
+</dependency>
+```
+
+
+
+## 5. Dispatcher-servlet.xml 파일
+
+
 
 
 
