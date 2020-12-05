@@ -185,7 +185,130 @@
 
 ## 5. Dispatcher-servlet.xml 파일
 
+- 기존에는 Controller를 서블릿으로 직접 만들어서 사용했기 때문에 어노테이션을 사용해서 url 매핑을 할 수 있었지만, 이제는 스프링에서 제공하는 서블릿을 사용해야하므로 어노테이션을 달 수가 없음
+  - web.xml을 사용해서 매핑해줘야함
+- DispatcherServlet의 qualified name을 복사해서 붙여넣고, 확장자명(.class)을 지워주자
+- web.xml
+  - /* : 어떤 주소를 입력해도 dispatcher로 요청이 감
+  - dispathcer에서 각 요청들을 적절한 컨트롤러에 매핑해주어야함
+    - *-servlet.xml가 약속된 위치에 있어야함
+      - WEB-INF안에 만들어줘야함
+      - 여기서 *은 dispatcher의 servlet-name임
+        - 만약 aaa로 했으면, aaa-servlet.xml로 만들어야함
 
+```xml
+<servlet>
+  <servlet-name>dispatcher</servlet-name>
+  <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+  <servlet-name>dispatcher</servlet-name>
+  <url-pattern>/*</url-pattern>
+</servlet-mapping>
+```
+
+- dispatcher-servlet.xml 생성
+
+![67](Spring_images/67.png)
+
+
+
+## 6. 스프링 컨트롤러 IndexController 작성하기
+
+- dispatcher-servlet.xml 를 작성하기 위해서 레퍼런스를 찾아보자
+  - https://docs.spring.io/spring-framework/docs/
+  - bean을 생성하는데 id가 url이되고 class에 컨트롤러를 써줌
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="/index" class="com.newlecture.web.controller.IndexController">  
+        <!-- collaborators and configuration for this bean go here -->
+    </bean>
+
+</beans>
+```
+
+- dispatcher-servlet.xml에 작성한대로 IoC 컨테이너에는 객체가 만들어짐
+  - 사용자가 url을 요청하면 객체가 만들어지는 것에서 그치는게 아니라 먼가 요청에 해당하는 일을 해주어야함
+  - 그래서 약속된 메소드가 있음
+    - handleRequest
+    - 사용자가 요청을 보내면 이 메소드가 실행되는 것
+  - 이 메소드를 정의해둔 인터페이스 Controller를 상속해서 오버라이딩해줘야함
+
+![68](Spring_images/68.png)
+
+- IndexController.java
+
+```java
+package com.newlecture.web.controller;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.Controller;
+
+public class IndexController implements Controller {
+
+	@Override
+	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("data", "Hello Spring MVC");
+		mv.setViewName("index.jsp");
+		
+		return mv;
+	}
+	
+}
+
+```
+
+- web.xml
+  - 모든 요청이 디스패처를 거치는데 IndexController에서 포워딩 방식으로 넘긴 index.jsp도 결국엔 디스패처를 거치게 됨
+  - 이때, dispatcher-servlet.xml에서 이에 대한 설정 부분이 없기 때문에 오류가 발생하게 됨
+  - /* 을 / 로 바꿔주게 되면, dispatcher-servlet.xml를 찾아보다가 만약 없는 경우엔 그냥 요청을 받은 url로 요청을 해줌
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+                      http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+  version="4.0"
+  metadata-complete="true">
+
+	<servlet>
+		<servlet-name>dispatcher</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>dispatcher</servlet-name>
+    <!-- <url-pattern>/*</url-pattern> -->
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+
+  <display-name>Welcome to Tomcat</display-name>
+  <description>
+     Welcome to Tomcat
+  </description>
+
+
+</web-app>
+
+```
+
+![69](Spring_images/69.png)
+
+
+
+## 7. View 페이지를 위한 위치
 
 
 
