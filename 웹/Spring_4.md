@@ -310,6 +310,57 @@ public class IndexController implements Controller {
 
 ## 7. View 페이지를 위한 위치
 
+- View 페이지(index.jsp)는 사용자가 직접 요청할 수 없음
+  - WEB-INF에 넣어야함
+  - IndexController.java의 포워딩을 통해서만 접근할 수 있음
+
+![70](Spring_images/70.png)
+
+- IndexController.java
+
+```java
+package com.newlecture.web.controller;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.Controller;
+
+public class IndexController implements Controller {
+
+	@Override
+	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("data", "Hello Spring MVC");
+    // 경로 앞에 '/'를 써서 절대경로를 써주자
+		mv.setViewName("/WEB-INF/view/index.jsp");
+		
+		return mv;
+	}
+	
+}
+
+```
+
+- Context명 제거해주기
+  - localhost:8080/webprj/index
+    - 여기서 webprj은 프로젝트명으로 자동으로 Context로 추가된 것인데 빼주는게 좋음
+    - webprj -> / 으로 변경
+
+![71](Spring_images/71.png)
+
+
+
+## 8. ViewResolver 사용하기
+
+
+
+
+
+
+
 
 
 
