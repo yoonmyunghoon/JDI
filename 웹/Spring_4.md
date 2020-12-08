@@ -355,11 +355,89 @@ public class IndexController implements Controller {
 
 ## 8. ViewResolver 사용하기
 
+- View page를 쉽게 찾을 수 있도록 하는 ViewResolver를 사용해보자
+
+### 반복되는 View의 일부분
+
+- 반복되는 부분이 존재함
+
+![72](Spring_images/72.png)
+
+- ViewResolver를 사용해서 반복을 없앨 수 있음
+
+![73](Spring_images/73.png)
+
+- IndexController.java
+
+```java
+package com.newlecture.web.controller;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.Controller;
+
+public class IndexController implements Controller {
+
+	@Override
+	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+// 이렇게 오버로딩된 생성자를 사용해서 view 설정할 수도 있음
+//		ModelAndView mv = new ModelAndView("/WEB-INF/view/index.jsp");
+		ModelAndView mv = new ModelAndView("index");
+		mv.addObject("data", "Hello Spring MVC");
+//		mv.setViewName("/WEB-INF/view/index.jsp");
+		return mv;
+	}
+	
+}
+
+```
+
+- dispatcher-servlet.xml
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="/index" class="com.newlecture.web.controller.IndexController" />  
+
+  <!-- ViewResolver 추가 -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/view/"></property>
+		<property name="suffix" value=".jsp"></property>
+	</bean>
+	
+	
+</beans>
+```
 
 
 
+## 9. HTML 파일 설정하기
+
+- HTML 파일 다운로드 받기
+  - http://www.newlecture.com/customer/notice/16
+- webapp에 html 폴더 넣기
+- html의 index.html 내용 복사해서 view안에 있는 index.jsp에 붙여넣고 서버 실행
+- 이미지같은 것들이 제대로 안나옴
+
+![74](Spring_images/74.png)
+
+- 사용되는 css나 images, js를 root(webapp)로 옮기자
+
+![75](Spring_images/75.png)
+
+- 다시 서버 실행해봐도 결과는 똑같이 나옴
+- 다음 챕터에서 문제를 해결해보자
 
 
+
+## 10. 정적 파일 서비스하기
 
 
 
