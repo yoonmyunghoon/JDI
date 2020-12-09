@@ -439,6 +439,262 @@ public class IndexController implements Controller {
 
 ## 10. 정적 파일 서비스하기
 
+### 정적인 리소스(이미지, html, js, css 등) Get 요청
+
+#### 404 에러
+
+- 기본적으로 스프링이 정적인 파일을 제공하지 않도록 막아놓고 있음
+  - Jsp는 제공되고 있음
+
+![76](Spring_images/76.png)
+
+- web.xml
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+                      http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+  version="4.0"
+  metadata-complete="true">
+
+	<servlet>
+		<servlet-name>dispatcher</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>dispatcher</servlet-name>
+    <!-- /* ==> jsp까지 막겠다는 의미  -->
+    <!-- / ==> 정적인 파일을 막겠다는 의미  -->
+		<url-pattern>/</url-pattern> 
+	</servlet-mapping>
+
+  <display-name>Welcome to Tomcat</display-name>
+  <description>
+     Welcome to Tomcat
+  </description>
+
+
+</web-app>
+
+```
+
+- 정적인 파일들도 제공할 수 있는 설정이 있음
+  - Images, js, css 등을 각각 설정해줄 수도 있고, resource라는 폴더에 다 넣어서 설정할 수도 있음
+  - 한 곳에 몰아넣는 것이 좀 더 바람직
+
+![77](Spring_images/77.png)
+
+- dispatcher-servlet.xml
+  - mvc태그를 읽을 수 있도록 네임스페이스 추가해줌
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc
+        https://www.springframework.org/schema/mvc/spring-mvc.xsd">
+        
+
+    <bean id="/index" class="com.newlecture.web.controller.IndexController" />  
+
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/view/"></property>
+		<property name="suffix" value=".jsp"></property>
+	</bean>
+	
+	<mvc:resources location="/resource/" mapping="/resource/**"></mvc:resources>
+	
+</beans>
+```
+
+- resource로 매핑할 수도 있지만, 그럴 경우엔 요청하는 url의 앞 부분에 /resource/를 추가해줘야함
+- Index.jsp
+
+```jsp
+<link href="/resource/css/layout.css" type="text/css" rel="stylesheet" />
+<!-- <link href="/css/layout.css" type="text/css" rel="stylesheet" /> -->
+```
+
+- 이렇게 안하기 위해서 모든 정적파일 요청에 대해서 static 폴더 내부를 찾아보게끔 해주자
+- dispatcher-servlet.xml
+
+```xml
+<!-- <mvc:resources location="/resource/" mapping="/resource/**"></mvc:resources> -->
+<mvc:resources location="/static/" mapping="/**"></mvc:resources>
+```
+
+- 폴더 구조
+
+![78](Spring_images/78.png)
+
+- 결과
+
+![79](Spring_images/79.png)
+
+
+
+## 11. 공지사항 컨트롤러 추가하기
+
+- Notice 관련 jsp파일과 controller 추가해주기
+  - jsp파일은 html파일을 복사해서 만들고, controller은 indexController.java 와 동일한 방식으로 만들어주자
+
+![80](Spring_images/80.png)
+
+- ListController.java
+
+```java
+package com.newlecture.web.controller.notice;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.Controller;
+
+public class ListController implements Controller{
+
+	@Override
+	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		ModelAndView mv = new ModelAndView("notice/list");
+//		mv.setViewName("/WEB-INF/view/notice/list.jsp");
+		return mv;
+	}
+
+}
+
+```
+
+- DetailController.java
+
+```java
+package com.newlecture.web.controller.notice;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.Controller;
+
+public class DetailController implements Controller{
+
+	@Override
+	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+		ModelAndView mv = new ModelAndView("notice/detail");
+//		mv.setViewName("/WEB-INF/view/notice/detail.jsp");
+		return mv;
+	}
+
+}
+
+```
+
+- dispatcher-servlet.xml
+  - Controller 객체 추가해주기
+
+```xml
+<bean id="/notice/list" class="com.newlecture.web.controller.notice.ListController" />  
+<bean id="/notice/detail" class="com.newlecture.web.controller.notice.DetailController" />  
+```
+
+- Index.jsp, list.jsp에서 html로 되어있는 url를 contoller에 연결시켜주기
+- index.jsp
+
+```jsp
+<li><a href="/notice/list"><img src="/images/txt-customer.png" alt="고객센터" /></a></li>
+```
+
+- list.jsp
+
+```jsp
+<tr>
+  <td>8</td>
+  <td class="title indent text-align-left"><a href="detail">스프링 8강까지의 예제 코드</a></td>
+  <td>newlec</td>
+  <td>
+    2019-08-18		
+  </td>
+  <td>146</td>
+</tr>
+```
+
+
+
+## 12. Detail 컨트롤러 추가와 View 페이지 집중화의 필요성
+
+- Detail 컨트롤러는 전 챕터에서 추가했음
+- detail.jsp에서 다시 공지사항 목록으로 가려고 고객센터 버튼을 눌렀는데, html 이 나옴
+- 모든 jsp에서 Head부분의 url을 일일이 수정해주어야하나?
+  - 공통부분을 집중화하기 위해서 tiles라는 것을 사용하게 될 것
+  - tiles를 쓰기 위해서 메이븐 라이브러리를 사용해야함
+
+
+
+## 13. 페이지 공통분모 집중화
+
+### 페이지들의 공통 분모
+
+#### 공통 부분을 수정하게 되면 모든 페이지를 다 수정해야만 한다
+
+![81](Spring_images/81.png)
+
+### 페이지 모듈의 집중화
+
+#### 공통 부분을 분리하여 공통으로 참조하도록 한다
+
+![82](Spring_images/82.png)
+
+### index.jsp의 헤더 잘라내기
+
+- jsp에서는 이렇게 include를 사용하는 방식을 제공해줬음
+- 이렇게 했을 때, 문제점이 있음
+
+![83](Spring_images/83.png)
+
+### 기존 페이지 모듈 집중화의 형태
+
+#### 공통 부분을 분리하여 공통으로 참조하도록 한다
+
+![84](Spring_images/84.png)
+
+### 기존 페이지 모듈 집중화의 문제점
+
+- 페이지마다 include하는 부분이 중복됨
+- 이렇게 중복되는 부분까지도 집중화 할 수는 없을까?
+  - jsp가 제공하는 include 기능을 사용하지 않고, 외부라이브러리(tiles)를 사용하자
+
+![85](Spring_images/85.png)
+
+- 중복되는 부분(header, footer, aside)은 레이아웃으로 따로 만들고, 메인부분(content)만 만들도록 할 수 있음
+
+![86](Spring_images/86.png)
+
+
+
+## 14. 페이지 모듈 분리하기
+
+- 전체에서 공통된 부분 header와 footer를 inc에 넣어주자
+- 공지사항, 이벤트, 자주하는 질문 등은 customer폴더에 넣고, 이들끼리의 공통된 부분인 aside와 visual를 따로 떼어내어 inc폴더에 넣어주자
+- layout안에 aside와 visual과 main이 있었는데, aside와 visual을 빼주고 난 후, 껍데기인 layout과 알맹이인 main을 분리시키기 위해 layout에서 main을 뺀 후, inc에 넣어주자
+- main부분이 detail과 list에 해당함
+
+![87](Spring_images/87.png)
+
+![88](Spring_images/88.png)
+
+
+
+## 15. Tiles 지시서 작성하기
+
+
+
 
 
 
