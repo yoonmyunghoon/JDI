@@ -691,14 +691,6 @@ public class DetailController implements Controller{
 
 
 
-## 15. Tiles 지시서 작성하기
-
-
-
-
-
-
-
 ## 참고
 
 - 유튜브 채널 - 뉴렉처

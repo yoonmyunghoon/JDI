@@ -2,31 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e1972930-8d11-4459-84b4-b1189c95813c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/알고리즘/SW Expert Academy/prac/prac03.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/알고리즘/SW Expert Academy/prac/prac04.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/알고리즘/SW Expert Academy/prac/부분집합정리.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/알고리즘/SW Expert Academy/prac/순열정리.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/알고리즘/SW Expert Academy/prac/유니온파인드.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/알고리즘/SW Expert Academy/prac/이진트리.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/알고리즘/SW Expert Academy/prac/조합정리.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/알고리즘/프로그래머스/코딩테스트 고득점 Kit/그래프/순위.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/알고리즘/프로그래머스/코딩테스트 고득점 Kit/해시/베스트앨범.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/알고리즘/SW Expert Academy/prac/prac01.py" beforeDir="false" afterPath="$PROJECT_DIR$/알고리즘/SW Expert Academy/prac/prac01.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/알고리즘/SW Expert Academy/problem/BFS.py" beforeDir="false" afterPath="$PROJECT_DIR$/알고리즘/SW Expert Academy/prac/BFS.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/알고리즘/SW Expert Academy/problem/DFS.py" beforeDir="false" afterPath="$PROJECT_DIR$/알고리즘/SW Expert Academy/prac/DFS.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/알고리즘/SW Expert Academy/problem/DFS_BFS.txt" beforeDir="false" afterPath="$PROJECT_DIR$/알고리즘/SW Expert Academy/prac/DFS_BFS.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/알고리즘/SW Expert Academy/problem/mst(크루스칼).py" beforeDir="false" afterPath="$PROJECT_DIR$/알고리즘/SW Expert Academy/prac/mst(크루스칼).py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/알고리즘/SW Expert Academy/problem/mst.txt" beforeDir="false" afterPath="$PROJECT_DIR$/알고리즘/SW Expert Academy/prac/mst.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/알고리즘/SW Expert Academy/problem/practice1.py" beforeDir="false" afterPath="$PROJECT_DIR$/알고리즘/SW Expert Academy/prac/practice1.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/알고리즘/SW Expert Academy/problem/practice2.py" beforeDir="false" afterPath="$PROJECT_DIR$/알고리즘/SW Expert Academy/prac/practice2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/알고리즘/SW Expert Academy/problem/부분집합.py" beforeDir="false" afterPath="$PROJECT_DIR$/알고리즘/SW Expert Academy/prac/부분집합.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/알고리즘/SW Expert Academy/problem/순열.py" beforeDir="false" afterPath="$PROJECT_DIR$/알고리즘/SW Expert Academy/prac/순열.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/알고리즘/SW Expert Academy/problem/조합 계산.py" beforeDir="false" afterPath="$PROJECT_DIR$/알고리즘/SW Expert Academy/prac/조합 계산.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/알고리즘/SW Expert Academy/problem/조합.py" beforeDir="false" afterPath="$PROJECT_DIR$/알고리즘/SW Expert Academy/prac/조합.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/알고리즘/SW Expert Academy/problem/중복 조합.py" beforeDir="false" afterPath="$PROJECT_DIR$/알고리즘/SW Expert Academy/prac/중복 조합.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/알고리즘/SW Expert Academy/problem/중복순열.py" beforeDir="false" afterPath="$PROJECT_DIR$/알고리즘/SW Expert Academy/prac/중복순열.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/알고리즘/SW Expert Academy/problem/중복조합.py" beforeDir="false" afterPath="$PROJECT_DIR$/알고리즘/SW Expert Academy/prac/중복조합.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,7 +32,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="ToolWindowDebug.ShowToolbar" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/알고리즘/SW Expert Academy/prac" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="power.mode.ii" />
   </component>
   <component name="RecentsManager">
@@ -71,7 +47,7 @@
       <recent name="$PROJECT_DIR$/알고리즘/프로그래머스/2020 신입 개발자 블라인드 채용 1차 코딩" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.유니온파인드">
+  <component name="RunManager" selected="Python.14499_주사위 굴리기">
     <configuration name="이진트리" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="JDI" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -169,48 +145,6 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/알고리즘/백준/15684_사다리 조작.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="유니온파인드" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="JDI" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/알고리즘/SW Expert Academy/prac" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/알고리즘/SW Expert Academy/prac/유니온파인드.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="순열정리" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="JDI" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/알고리즘/SW Expert Academy/prac" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/알고리즘/SW Expert Academy/prac/순열정리.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -471,6 +405,48 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="유니온파인드" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="JDI" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/알고리즘/SW Expert Academy/prac" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/알고리즘/SW Expert Academy/prac/유니온파인드.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="순열정리" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="JDI" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/알고리즘/SW Expert Academy/prac" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/알고리즘/SW Expert Academy/prac/순열정리.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="prac04" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="JDI" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -494,11 +470,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.유니온파인드" />
         <item itemvalue="Python.이진트리" />
         <item itemvalue="Python.prac04" />
-        <item itemvalue="Python.조합정리" />
-        <item itemvalue="Python.순열정리" />
       </list>
     </recent_temporary>
   </component>
