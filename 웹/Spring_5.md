@@ -227,7 +227,647 @@ public class DetailController implements Controller{
 
 ## 17. Tiles ViewResolver 설정하기
 
+- tiles.xml에 페이지 설정과 layout.jsp에서 위치 지정까지 해주었음
+- 이제 컨트롤러에서 notice.list를 통해 페이지를 요청할 때, 앞서 설정한 부분들과 연결될 수 있도록 resolver를 설정해줘야함
 
+### Controller와 Resolver
+
+![92](Spring_images/92.png)
+
+- dispatcher-servlet.xml
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc
+        https://www.springframework.org/schema/mvc/spring-mvc.xsd">
+        
+
+    <bean id="/index" class="com.newlecture.web.controller.IndexController" />  
+    <bean id="/notice/list" class="com.newlecture.web.controller.notice.ListController" />  
+    <bean id="/notice/detail" class="com.newlecture.web.controller.notice.DetailController" />  
+
+<!-- *******추가******* -->
+	<bean
+		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.tiles3.TilesView" />
+		<property name="order" value="1" />
+	</bean>
+
+	<bean
+		class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+		<property name="definitions" value="/WEB-INF/tiles.xml" />
+	</bean>
+<!-- ***************** -->
+
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/view/"></property>
+		<property name="suffix" value=".jsp"></property>
+		<property name="order" value="2" />
+	</bean>
+	
+	<mvc:resources location="/static/" mapping="/**"></mvc:resources>
+	
+</beans>
+```
+
+- 실행 결과
+  - jstl 라이브러리가 없음
+  - 라이브러리 추가하자
+    - https://mvnrepository.com/artifact/javax.servlet/jstl/1.2
+
+![93](Spring_images/93.png)
+
+- pom.xml에 dependency 추가
+
+```xml
+	<!-- https://mvnrepository.com/artifact/javax.servlet/jstl -->
+	<dependency>
+	    <groupId>javax.servlet</groupId>
+	    <artifactId>jstl</artifactId>
+	    <version>1.2</version>
+	</dependency>
+```
+
+- 재실행 결과
+
+![94](Spring_images/94.png)
+
+
+
+## 18. Tiles 설정에 Wildcard 이용하기
+
+- tiles.xml에서 설정을 할 때, 비효율적인 부분들이 있었음(반복하는 부분들)
+- wildcard를 사용해서 이런 부분을 개선해보자
+  - 자세한 활용방법은 https://tiles.apache.org/framework/tutorial/advanced/wildcard.html 참고
+- tiles.xml
+  - 패턴을 사용할 수 있음
+  - notice.* -> notice. 뒤로 오는 패턴들을 밑에 {1}에서 받겠다는 의미
+  - 패턴을 여러개 사용할 수도 있음
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+  <definition name="notice.*" template="/WEB-INF/view/customer/inc/layout.jsp">
+    <put-attribute name="title" value="공지사항" />
+    <put-attribute name="header" value="/WEB-INF/view/inc/header.jsp" />
+    <put-attribute name="visual" value="/WEB-INF/view/customer/inc/visual.jsp" />
+    <put-attribute name="aside" value="/WEB-INF/view/customer/inc/aside.jsp" />
+    <put-attribute name="body" value="/WEB-INF/view/customer/notice/{1}.jsp" />
+    <put-attribute name="footer" value="/WEB-INF/view/inc/footer.jsp" />
+  </definition>
+</tiles-definitions>
+```
+
+
+
+## 19. Root 페이지들을 위한 Layout 페이지 만들기
+
+- Root 페이지(index.jsp)를 위한 layout.jsp 생성
+
+![95](Spring_images/95.png)
+
+```jsp
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>코딩 전문가를 만들기 위한 온라인 강의 시스템</title>
+    <meta charset="UTF-8">
+    <title>공지사항목록</title>
+
+    <link href="/css/layout.css" type="text/css" rel="stylesheet" />
+    <link href="/css/index.css" type="text/css" rel="stylesheet" />
+    <script>
+    
+    </script>
+</head>
+
+<body>
+    <!-- header 부분 -->
+	<tiles:insertAttribute name="header" />
+    <!-- --------------------------- <body> --------------------------------------- -->
+	<tiles:insertAttribute name="body" />
+    <!-- ------------------- <footer> --------------------------------------- -->
+	<tiles:insertAttribute name="footer" />
+   
+</body>
+
+</html>
+```
+
+- Index.jsp에는 content 부분만 남기고 지워주기
+- tiles.xml
+  - root를 앞에 적어줌으로써 구분해주기
+  - 만약 안적어주면 모든 요청에 대해 응답하기 때문에 notice.* 를 통해서 페이지를 생성할 수가 없음
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+  <definition name="root.*" template="/WEB-INF/view/inc/layout.jsp">
+    <put-attribute name="title" value="공지사항" />
+    <put-attribute name="header" value="/WEB-INF/view/inc/header.jsp" />
+    <put-attribute name="body" value="/WEB-INF/view/{1}.jsp" />
+    <put-attribute name="footer" value="/WEB-INF/view/inc/footer.jsp" />
+  </definition>
+  <definition name="notice.*" template="/WEB-INF/view/customer/inc/layout.jsp">
+    <put-attribute name="title" value="공지사항" />
+    <put-attribute name="header" value="/WEB-INF/view/inc/header.jsp" />
+    <put-attribute name="visual" value="/WEB-INF/view/customer/inc/visual.jsp" />
+    <put-attribute name="aside" value="/WEB-INF/view/customer/inc/aside.jsp" />
+    <put-attribute name="body" value="/WEB-INF/view/customer/notice/{1}.jsp" />
+    <put-attribute name="footer" value="/WEB-INF/view/inc/footer.jsp" />
+  </definition>
+</tiles-definitions>
+```
+
+- IndexController.java
+
+```java
+package com.newlecture.web.controller;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.Controller;
+
+public class IndexController implements Controller {
+
+	@Override
+	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		// root를 적어주자
+		ModelAndView mv = new ModelAndView("root.index");
+		mv.addObject("data", "Hello Spring MVC");
+		return mv;
+	}
+	
+}
+
+```
+
+- 실행 결과
+
+![96](Spring_images/96.png)
+
+
+
+## 20. 데이터 서비스 클래스(NoticeService) 준비하기
+
+- 강의에서 제공해주는 NoticeService와 Notice를 사용하자
+  - JDBC 학습할 때 사용한 NoticeService와 Notice는 완성형이기 때문에 강의에서 제공해주는 것을 사용
+  - http://www.newlecture.com/customer/notice/1020
+- Notice.java
+
+```java
+package com.newlecture.web.entity;
+
+import java.util.Date;
+
+public class Notice {
+	private int id;
+	private String title;
+	private String writerId;
+	private Date regDate;
+	private String content;
+	private int hit;
+	private String files;
+	
+	public Notice() {
+		
+	}
+	public Notice(int id, String title, String writerId, Date regDate, String content, int hit, String files) {
+		super();
+		this.id = id;
+		this.title = title;
+		this.writerId = writerId;
+		this.regDate = regDate;
+		this.content = content;
+		this.hit = hit;
+		this.files = files;
+	}
+
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getWriterId() {
+		return writerId;
+	}
+	public void setWriterId(String writerId) {
+		this.writerId = writerId;
+	}
+	public Date getRegDate() {
+		return regDate;
+	}
+	public void setRegDate(Date regDate) {
+		this.regDate = regDate;
+	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
+	public int getHit() {
+		return hit;
+	}
+	public void setHit(int hit) {
+		this.hit = hit;
+	}
+
+	public String getFiles() {
+		return files;
+	}
+
+	public void setFiles(String files) {
+		this.files = files;
+	}
+
+}
+```
+
+- NoticeService.java
+
+```java
+package com.newlecture.web.service;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import com.newlecture.web.entity.Notice;
+
+public class NoticeService {
+	private String url = "jdbc:oracle:thin:@localhost:1521/xepdb1";
+	private String uid = "NEWLEC";
+	private String pwd = "1234";
+	private String driver = "oracle.jdbc.driver.OracleDriver";
+	
+	public List<Notice> getList(int page, String field, String query) throws ClassNotFoundException, SQLException{
+		
+		int start = 1 + (page-1)*10;     // 1, 11, 21, 31, ..
+		int end = 10*page; // 10, 20, 30, 40...
+		
+		String sql = "SELECT * FROM NOTICE_VIEW WHERE "+field+" LIKE ? AND NUM BETWEEN ? AND ?";	
+		
+		Class.forName(driver);
+		Connection con = DriverManager.getConnection(url,uid, pwd);
+		PreparedStatement st = con.prepareStatement(sql);
+		st.setString(1, "%"+query+"%");
+		st.setInt(2, start);
+		st.setInt(3, end);
+		ResultSet rs = st.executeQuery();
+		
+		List<Notice> list = new ArrayList<Notice>();
+		
+		while(rs.next()){
+		    int id = rs.getInt("ID");
+		    String title = rs.getString("TITLE");
+		    String writerId = rs.getString("WRITER_ID");
+		    Date regDate = rs.getDate("REGDATE");
+		    String content = rs.getString("CONTENT");
+		    int hit = rs.getInt("hit");
+		    String files = rs.getString("FILES");
+		    
+		    Notice notice = new Notice(
+		    					id,
+		    					title,
+		    					writerId,
+		    					regDate,
+		    					content,
+		    					hit,
+		    					files
+		    				);
+
+		    list.add(notice);
+		    
+		}
+
+		
+		rs.close();
+		st.close();
+		con.close();
+		
+		return list;
+	}
+	
+	// Scalar 
+	public int getCount() throws ClassNotFoundException, SQLException {
+		int count = 0;
+		
+		String sql = "SELECT COUNT(ID) COUNT FROM NOTICE";	
+		
+		Class.forName(driver);
+		Connection con = DriverManager.getConnection(url,uid, pwd);
+		Statement st = con.createStatement();
+		
+		ResultSet rs = st.executeQuery(sql);
+		
+		if(rs.next())
+			count = rs.getInt("COUNT");		
+		
+		rs.close();
+		st.close();
+		con.close();
+		
+		return count;
+	}
+
+	public int insert(Notice notice) throws SQLException, ClassNotFoundException {
+		String title = notice.getTitle();
+		String writerId = notice.getWriterId();
+		String content = notice.getContent();
+		String files = notice.getFiles();
+		
+		String url = "jdbc:oracle:thin:@localhost:1521/xepdb1";
+		String sql = "INSERT INTO notice (    " + 
+				"    title," + 
+				"    writer_id," + 
+				"    content," + 
+				"    files" + 
+				") VALUES (?,?,?,?)";	
+		
+		Class.forName(driver);
+		Connection con = DriverManager.getConnection(url,uid, pwd);                   
+		//Statement st = con.createStatement();
+		//st.ex....(sql)
+		PreparedStatement st = con.prepareStatement(sql);
+		st.setString(1, title);
+		st.setString(2, writerId);
+		st.setString(3, content);
+		st.setString(4, files);
+		
+		int result = st.executeUpdate();
+		
+		
+		st.close();
+		con.close();
+		
+		return result;
+	}
+	
+	public int update(Notice notice) throws SQLException, ClassNotFoundException {
+		String title = notice.getTitle();
+		String content = notice.getContent();
+		String files = notice.getFiles();
+		int id = notice.getId();
+		
+		String url = "jdbc:oracle:thin:@localhost:1521/xepdb1";
+		String sql = "UPDATE NOTICE " + 
+				"SET" + 
+				"    TITLE=?," + 
+				"    CONTENT=?," + 
+				"    FILES=?" + 
+				"WHERE ID=?";
+		
+		Class.forName(driver);
+		Connection con = DriverManager.getConnection(url,uid, pwd);                   
+		//Statement st = con.createStatement();
+		//st.ex....(sql)
+		PreparedStatement st = con.prepareStatement(sql);
+		st.setString(1, title);
+		st.setString(2, content);
+		st.setString(3, files);
+		st.setInt(4, id);
+		
+		int result = st.executeUpdate();
+				
+		st.close();
+		con.close();
+		
+		return result;
+	}
+	
+	public int delete(int id) throws ClassNotFoundException, SQLException {
+	
+		String url = "jdbc:oracle:thin:@localhost:1521/xepdb1";
+		String sql = "DELETE NOTICE WHERE ID=?";
+		
+		Class.forName(driver);
+		Connection con = DriverManager.getConnection(url,uid, pwd);                  
+		//Statement st = con.createStatement();
+		//st.ex....(sql)
+		PreparedStatement st = con.prepareStatement(sql);		
+		st.setInt(1, id);
+		
+		int result = st.executeUpdate();
+				
+		st.close();
+		con.close();
+		
+		return result;
+	}
+
+	
+}
+
+```
+
+- 오라클 데이터베이스에서 PDB1서버(xepdb1)에 새로운 사용자 하나 추가해주자
+  - 이전에 사용하던 NEWLEC은 이미 완성된 테이블들을 가지고 있으므로 새로운 사용자 추가
+  - 먼저 할당할 테이블스페이스 생성
+    - NEWLEC1_TABLESPACE 생성
+    - NEWLEC1_LOGSPACE 생성
+  - 사용자 추가 및 테이블스페이스 연결
+    - NEWLEC1
+    - 1234
+  - 접속 완료
+    - 오라클 NEWLEC1 PDB1 서버
+- Notcie 테이블 생성
+
+```sql
+CREATE TABLE NOTICE ( 
+  ID NUMBER NOT NULL,
+  TITLE NVARCHAR2(100) NOT NULL,
+  WRITER_ID NVARCHAR2(50) NOT NULL,
+  CONTENT CLOB,
+  REGDATE TIMESTAMP (6) DEFAULT systimestamp NOT NULL,
+  HIT NUMBER DEFAULT 0 NOT NULL,
+  FILES NVARCHAR2(1000),
+  PUB NUMBER(1,0) DEFAULT 0 NOT NULL,
+  CONSTRAINT "NOTICE_PK" PRIMARY KEY ("ID")
+);
+```
+
+- 결과
+
+![97](Spring_images/97.png)
+
+- 다음챕터를 공부해본 결과, JSP, JDBC에서 추가한 부분은 강의에서 스킵하고 진행하고 있음
+  - 그냥 기존의 NEWLEC으로 진행해도 될 듯
+
+
+
+## 21. Service 객체 사용하기
+
+- JDBC 라이브러리 추가
+  - https://mvnrepository.com/artifact/com.oracle.database.jdbc/ojdbc10/19.7.0.0
+- pom.xml
+
+```xml
+<!-- https://mvnrepository.com/artifact/com.oracle.database.jdbc/ojdbc10 -->
+<dependency>
+  <groupId>com.oracle.database.jdbc</groupId>
+  <artifactId>ojdbc10</artifactId>
+  <version>19.7.0.0</version>
+</dependency>
+```
+
+### 데이터 서비스 생성과 바인딩
+
+- NoticeService를 bean을 통해 객체화하고, 컨트롤러에 DI 해주자
+
+![98](Spring_images/98.png)
+
+- dispatcher-servlet.xml
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc
+        https://www.springframework.org/schema/mvc/spring-mvc.xsd">
+        
+
+    <bean id="/index" class="com.newlecture.web.controller.IndexController" />  
+    <bean id="/notice/list" class="com.newlecture.web.controller.notice.ListController">
+      <!-- setter를 통해 DI 해주기 -->
+    	<property name="noticeService" ref="noticeService" />
+    </bean>  
+    <bean id="/notice/detail" class="com.newlecture.web.controller.notice.DetailController" />  
+
+	<bean
+		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.tiles3.TilesView" />
+		<property name="order" value="1" />
+	</bean>
+
+	<bean
+		class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+		<property name="definitions" value="/WEB-INF/tiles.xml" />
+	</bean>
+
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/view/"></property>
+		<property name="suffix" value=".jsp"></property>
+		<property name="order" value="2" />
+	</bean>
+	
+	<mvc:resources location="/static/" mapping="/**"></mvc:resources>
+	<!-- bean 추가 -->
+	<bean id="noticeService" class="com.newlecture.web.service.NoticeService" />
+	
+</beans>
+```
+
+- ListController.java
+  - Setter 만들어서 noticeService 받기
+
+```java
+package com.newlecture.web.controller.notice;
+
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.Controller;
+
+import com.newlecture.web.entity.Notice;
+import com.newlecture.web.service.NoticeService;
+
+public class ListController implements Controller{
+	
+	private NoticeService noticeService;
+	
+	public void setNoticeService(NoticeService noticeService) {
+		this.noticeService = noticeService;
+	}
+
+	@Override
+	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		ModelAndView mv = new ModelAndView("notice.list");
+//		ModelAndView mv = new ModelAndView("notice/list");
+//		mv.setViewName("/WEB-INF/view/notice/list.jsp");
+		
+		List<Notice> list = noticeService.getList(1, "TITLE", "");
+		mv.addObject("list", list);
+		
+		return mv;
+	}
+
+}
+
+```
+
+- list.jsp
+  - JSTL 태그라이브러리 추가 
+
+```jsp
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<!-- 생략 -->
+
+<c:forEach var="n" items="${list}">
+  <tr>
+    <td>${n.id}</td>
+    <td class="title indent text-align-left"><a href="detail">${n.title}</a></td>
+    <td>${n.writerId}</td>
+    <td>
+      ${n.regDate}
+    </td>
+    <td>${n.hit}</td>
+  </tr>
+</c:forEach>
+
+
+<!-- 생략 -->
+```
+
+- 결과
+
+![99](Spring_images/99.png)
+
+
+
+## 22. 서비스 객체 분리하기
 
 
 
