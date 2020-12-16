@@ -722,7 +722,7 @@ CREATE TABLE NOTICE (
 
 ![97](Spring_images/97.png)
 
-- 다음챕터를 공부해본 결과, JSP, JDBC에서 추가한 부분은 강의에서 스킵하고 진행하고 있음
+- 다음챕터를 공부해본 결과, JSP, JDBC에서 추가한 부분(NOTICE_VIEW 생성 과정 등)은 강의에서 스킵하고 진행하고 있음
   - 그냥 기존의 NEWLEC으로 진행해도 될 듯
 
 
@@ -867,7 +867,375 @@ public class ListController implements Controller{
 
 
 
-## 22. 서비스 객체 분리하기
+## 22. Service 객체 분리하기
+
+- 보통 스프링을 통해 기업용 어플리케이션을 만들 때는 결합력을 낮추기 위해서 service를 controller가 직접 사용하지 않음
+  - Service 객체를 분리해서 사용함
+
+### 서비스 객체의 결합력을 낮추기
+
+#### 서비스 객체를 다른 객체로 바꾸려면?
+
+- Service 인터페이스를 하나 생성하고, 실제 구현되는 부분은 쉽게 갈아끼울 수 있도록 만들자
+
+![100](Spring_images/100.png)
+
+- 디렉토리 구조 변경
+  - 기존의 NoticeService를 JDBCNoticeService로 변경
+  - 이해를 돕기 위해 임시로 JPANoticeService 생성
+    - JDBC뿐만 아니라 JPA나 mybatis와 같이 여러가지 기술이 사용될 수 있고, 이를 쉽게 변경할 수 있도록 결합력을 낮추는 과정에 대해 설명하고 있음
+    - 나중에는 DAO라는 계층에서 데이터와 관련된 처리를 하기 때문에 DAO안에서 JDBC, JPA, Mabatis 등으로 나뉠 예정
+    - 일단은 이해를 돕기 위해 만든 것이고 나중에 지워줄 것임
+  - NoticeService를 인터페이스로 생성하고, JDBCNoticeService에 implements 해주자
+
+![101](Spring_images/101.png)
+
+- NoticeService.java
+  - JDBCNoticeService에서 구현하게 될 메소드들을 정의해줌
+
+```java
+package com.newlecture.web.service;
+
+import java.sql.SQLException;
+import java.util.List;
+
+import com.newlecture.web.entity.Notice;
+
+public interface NoticeService {
+
+	List<Notice> getList(int page, String field, String query) throws ClassNotFoundException, SQLException;
+	int getCount() throws ClassNotFoundException, SQLException;
+	int insert(Notice notice) throws SQLException, ClassNotFoundException;
+	int update(Notice notice) throws SQLException, ClassNotFoundException;
+	int delete(int id) throws ClassNotFoundException, SQLException;
+}
+
+```
+
+- ListController.java
+
+```java
+package com.newlecture.web.controller.notice;
+
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.Controller;
+
+import com.newlecture.web.entity.Notice;
+import com.newlecture.web.service.NoticeService;
+
+public class ListController implements Controller{
+	
+	private NoticeService noticeService;
+	
+	public void setNoticeService(NoticeService noticeService) {
+		this.noticeService = noticeService;
+	}
+
+	@Override
+	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		ModelAndView mv = new ModelAndView("notice.list");
+		List<Notice> list = noticeService.getList(1, "TITLE", "");
+		mv.addObject("list", list);
+		
+		return mv;
+	}
+
+}
+
+```
+
+- JDBCNoticeService.java
+  - NoticeService 인터페이스를 상속
+- Dispatcher-servlet.xml
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc
+        https://www.springframework.org/schema/mvc/spring-mvc.xsd">
+        
+
+    <bean id="/index" class="com.newlecture.web.controller.IndexController" />  
+    <bean id="/notice/list" class="com.newlecture.web.controller.notice.ListController">
+      <!-- 어떤 객체를 사용하던 상속한 인터페이스명을 사용하기 때문에 갈아끼울 수 있음 -->
+    	<property name="noticeService" ref="noticeService" />
+    </bean>  
+    <bean id="/notice/detail" class="com.newlecture.web.controller.notice.DetailController" />  
+
+	<bean
+		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.tiles3.TilesView" />
+		<property name="order" value="1" />
+	</bean>
+
+	<bean
+		class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+		<property name="definitions" value="/WEB-INF/tiles.xml" />
+	</bean>
+
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/view/"></property>
+		<property name="suffix" value=".jsp"></property>
+		<property name="order" value="2" />
+	</bean>
+	
+	<mvc:resources location="/static/" mapping="/**"></mvc:resources>
+	
+  <!-- 여기서 클래스를 변경해서 갈아끼울 수 있도록 만들어줌 -->
+	<bean id="noticeService" class="com.newlecture.web.service.jdbc.JDBCNoticeService" />
+	
+</beans>
+```
+
+
+
+## 23. Connection 정보 분리하기
+
+- Database 연결 정보를 별도의 클래스로 만들어서 분리하자
+- 연결 정보를 분리하는 이유
+  - 만약 DB 비밀번호를 주기적으로 변경해줘야한다면, 배포된 서비스(바이너리로 배포된 형태, 코드 형태가 아님)를 소스 코드를 수정하고 다시 배포해야됨
+  - 만약 여러개의 DAO에 적어둔 연결 정보를 전부다 수정해줘야한다면? 굉장히 비효율적임
+  - DB의 위치가 localhost가 별도의 DB를 사용한다면 그 부분도 수정하고 다시 배포해야함
+- JDBCNoticeService.java
+
+```java
+package com.newlecture.web.service.jdbc;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+// DB 연결 정보를 넣어주기 위한 인터페이스
+import javax.sql.DataSource;
+
+import com.newlecture.web.entity.Notice;
+import com.newlecture.web.service.NoticeService;
+
+public class JDBCNoticeService implements NoticeService {
+//	private String url = "jdbc:oracle:thin:@localhost:1521/xepdb1";
+//	private String uid = "NEWLEC";
+//	private String pwd = "1234";
+//	private String driver = "oracle.jdbc.driver.OracleDriver";
+	
+	private DataSource dataSource;
+	
+	public void setDataSource(DataSource dataSource) {
+		this.dataSource = dataSource;
+	}
+
+	public List<Notice> getList(int page, String field, String query) throws ClassNotFoundException, SQLException{
+		
+		int start = 1 + (page-1)*10;     // 1, 11, 21, 31, ..
+		int end = 10*page; // 10, 20, 30, 40...
+		
+		String sql = "SELECT * FROM NOTICE_VIEW WHERE "+field+" LIKE ? AND NUM BETWEEN ? AND ?";	
+		
+//		Class.forName(driver);
+//		Connection con = DriverManager.getConnection(url,uid, pwd);
+    // 이렇게 연결할 수 있음
+		Connection con = dataSource.getConnection();
+		PreparedStatement st = con.prepareStatement(sql);
+		st.setString(1, "%"+query+"%");
+		st.setInt(2, start);
+		st.setInt(3, end);
+		ResultSet rs = st.executeQuery();
+		
+		List<Notice> list = new ArrayList<Notice>();
+		
+		while(rs.next()){
+		    int id = rs.getInt("ID");
+		    String title = rs.getString("TITLE");
+		    String writerId = rs.getString("WRITER_ID");
+		    Date regDate = rs.getDate("REGDATE");
+		    String content = rs.getString("CONTENT");
+		    int hit = rs.getInt("hit");
+		    String files = rs.getString("FILES");
+		    
+		    Notice notice = new Notice(
+		    					id,
+		    					title,
+		    					writerId,
+		    					regDate,
+		    					content,
+		    					hit,
+		    					files
+		    				);
+
+		    list.add(notice);
+		    
+		}
+
+		
+		rs.close();
+		st.close();
+		con.close();
+		
+		return list;
+	}
+	
+	// Scalar 
+	public int getCount() throws ClassNotFoundException, SQLException {
+		int count = 0;
+		
+		String sql = "SELECT COUNT(ID) COUNT FROM NOTICE";	
+		
+//		Class.forName(driver);
+//		Connection con = DriverManager.getConnection(url,uid, pwd);
+		Connection con = dataSource.getConnection();
+		Statement st = con.createStatement();
+		
+		ResultSet rs = st.executeQuery(sql);
+		
+		if(rs.next())
+			count = rs.getInt("COUNT");		
+		
+		rs.close();
+		st.close();
+		con.close();
+		
+		return count;
+	}
+
+	public int insert(Notice notice) throws SQLException, ClassNotFoundException {
+		String title = notice.getTitle();
+		String writerId = notice.getWriterId();
+		String content = notice.getContent();
+		String files = notice.getFiles();
+		
+		String url = "jdbc:oracle:thin:@localhost:1521/xepdb1";
+		String sql = "INSERT INTO notice (    " + 
+				"    title," + 
+				"    writer_id," + 
+				"    content," + 
+				"    files" + 
+				") VALUES (?,?,?,?)";	
+		
+//		Class.forName(driver);
+//		Connection con = DriverManager.getConnection(url,uid, pwd);            
+		Connection con = dataSource.getConnection();
+		//Statement st = con.createStatement();
+		//st.ex....(sql)
+		PreparedStatement st = con.prepareStatement(sql);
+		st.setString(1, title);
+		st.setString(2, writerId);
+		st.setString(3, content);
+		st.setString(4, files);
+		
+		int result = st.executeUpdate();
+		
+		
+		st.close();
+		con.close();
+		
+		return result;
+	}
+	
+	public int update(Notice notice) throws SQLException, ClassNotFoundException {
+		String title = notice.getTitle();
+		String content = notice.getContent();
+		String files = notice.getFiles();
+		int id = notice.getId();
+		
+		String url = "jdbc:oracle:thin:@localhost:1521/xepdb1";
+		String sql = "UPDATE NOTICE " + 
+				"SET" + 
+				"    TITLE=?," + 
+				"    CONTENT=?," + 
+				"    FILES=?" + 
+				"WHERE ID=?";
+		
+//		Class.forName(driver);
+//		Connection con = DriverManager.getConnection(url,uid, pwd);    
+		Connection con = dataSource.getConnection();
+		//Statement st = con.createStatement();
+		//st.ex....(sql)
+		PreparedStatement st = con.prepareStatement(sql);
+		st.setString(1, title);
+		st.setString(2, content);
+		st.setString(3, files);
+		st.setInt(4, id);
+		
+		int result = st.executeUpdate();
+				
+		st.close();
+		con.close();
+		
+		return result;
+	}
+	
+	public int delete(int id) throws ClassNotFoundException, SQLException {
+	
+		String url = "jdbc:oracle:thin:@localhost:1521/xepdb1";
+		String sql = "DELETE NOTICE WHERE ID=?";
+		
+//		Class.forName(driver);
+//		Connection con = DriverManager.getConnection(url,uid, pwd);
+		Connection con = dataSource.getConnection();
+		//Statement st = con.createStatement();
+		//st.ex....(sql)
+		PreparedStatement st = con.prepareStatement(sql);		
+		st.setInt(1, id);
+		
+		int result = st.executeUpdate();
+				
+		st.close();
+		con.close();
+		
+		return result;
+	}
+
+}
+```
+
+- dispatcher-servlet.xml
+  - dataSource 인터페이스를 상속한 DriverManagerDataSource객체에 DB 연결 정보들을 주입
+  - 이를 JDBCNoticeService의 dataSource에 주입
+
+```xml
+<bean id="noticeService" class="com.newlecture.web.service.jdbc.JDBCNoticeService">
+  <property name="dataSource" ref="dataSource" />
+</bean>
+
+<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+  <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+  <property name="url" value="jdbc:oracle:thin:@localhost:1521/xepdb1" />
+  <property name="username" value="NEWLEC" />
+  <property name="password" value="1234" />
+</bean>
+```
+
+- 여기서 DriverManagerDataSource이 클래스를 사용해야하기 때문에 라이브러리 추가해줘야함
+- pom.xml
+
+```xml
+<!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
+<dependency>
+  <groupId>org.springframework</groupId>
+  <artifactId>spring-jdbc</artifactId>
+  <version>5.2.9.RELEASE</version>
+</dependency>
+```
+
+
+
+## 24. 스프링 설정파일 분리하기
 
 
 
