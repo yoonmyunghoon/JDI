@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e1972930-8d11-4459-84b4-b1189c95813c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/알고리즘/프로그래머스/코딩테스트 연습/멀쩡한 사각형.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -47,7 +48,28 @@
       <recent name="$PROJECT_DIR$/알고리즘/프로그래머스/2020 신입 개발자 블라인드 채용 1차 코딩" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.14499_주사위 굴리기">
+  <component name="RunManager" selected="Python.멀쩡한 사각형">
+    <configuration name="멀쩡한 사각형" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="JDI" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/알고리즘/프로그래머스/코딩테스트 연습" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/알고리즘/프로그래머스/코딩테스트 연습/멀쩡한 사각형.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="이진트리" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="JDI" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -145,6 +167,132 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/알고리즘/백준/15684_사다리 조작.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="조합" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="JDI" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/알고리즘/SW Expert Academy/problem" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/알고리즘/SW Expert Academy/problem/조합.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="중복순열" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="JDI" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/알고리즘/SW Expert Academy/problem" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/알고리즘/SW Expert Academy/problem/중복순열.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="조합" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="JDI" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/알고리즘/SW Expert Academy/problem" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/알고리즘/SW Expert Academy/problem/조합.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="프린터" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="JDI" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/알고리즘/프로그래머스/코딩테스트 고득점 Kit/스택_큐" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/알고리즘/프로그래머스/코딩테스트 고득점 Kit/스택_큐/프린터.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="유니온파인드" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="JDI" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/알고리즘/SW Expert Academy/prac" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/알고리즘/SW Expert Academy/prac/유니온파인드.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="순열정리" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="JDI" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/알고리즘/SW Expert Academy/prac" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/알고리즘/SW Expert Academy/prac/순열정리.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -321,132 +469,6 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="조합" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="JDI" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/알고리즘/SW Expert Academy/problem" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/알고리즘/SW Expert Academy/problem/조합.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="중복순열" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="JDI" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/알고리즘/SW Expert Academy/problem" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/알고리즘/SW Expert Academy/problem/중복순열.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="조합" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
-      <module name="JDI" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/알고리즘/SW Expert Academy/problem" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/알고리즘/SW Expert Academy/problem/조합.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="프린터" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="JDI" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/알고리즘/프로그래머스/코딩테스트 고득점 Kit/스택_큐" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/알고리즘/프로그래머스/코딩테스트 고득점 Kit/스택_큐/프린터.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="유니온파인드" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="JDI" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/알고리즘/SW Expert Academy/prac" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/알고리즘/SW Expert Academy/prac/유니온파인드.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="순열정리" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="JDI" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/알고리즘/SW Expert Academy/prac" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/알고리즘/SW Expert Academy/prac/순열정리.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="prac04" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="JDI" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -470,6 +492,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.멀쩡한 사각형" />
         <item itemvalue="Python.이진트리" />
         <item itemvalue="Python.prac04" />
       </list>
@@ -525,100 +548,69 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="640" y="91" key="#Plugins" timestamp="1597728958437">
-      <screen x="0" y="23" width="1440" height="806" />
-    </state>
-    <state x="640" y="91" key="#Plugins/0.23.1440.806@0.23.1440.806" timestamp="1597728958437" />
-    <state x="369" y="88" width="1071" height="696" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1597717965615">
-      <screen x="0" y="23" width="1440" height="806" />
-    </state>
-    <state x="369" y="88" width="1071" height="696" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1440.806@0.23.1440.806" timestamp="1597717965615" />
     <state x="835" y="237" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1603601101563">
       <screen x="0" y="23" width="1440" height="811" />
     </state>
     <state x="835" y="237" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1440.811@0.23.1440.811" timestamp="1603601101563" />
-    <state x="963" y="323" key="#com.jetbrains.python.refactoring.move.PyMoveModuleMembersDialog" timestamp="1597727943473">
-      <screen x="0" y="23" width="1440" height="806" />
+    <state width="689" height="163" key="GridCell.Tab.0.bottom" timestamp="1608127624254">
+      <screen x="0" y="23" width="1440" height="816" />
     </state>
-    <state x="963" y="323" key="#com.jetbrains.python.refactoring.move.PyMoveModuleMembersDialog/0.23.1440.806@0.23.1440.806" timestamp="1597727943473" />
-    <state width="684" height="502" key="GridCell.Tab.0.bottom" timestamp="1604893746642">
-      <screen x="0" y="23" width="1440" height="812" />
-    </state>
-    <state width="661" height="448" key="GridCell.Tab.0.bottom/0.23.1440.804@0.23.1440.804" timestamp="1597405877574" />
-    <state width="790" height="457" key="GridCell.Tab.0.bottom/0.23.1440.806@0.23.1440.806" timestamp="1598343572656" />
-    <state width="630" height="151" key="GridCell.Tab.0.bottom/0.23.1440.808@0.23.1440.808" timestamp="1599211160714" />
     <state width="565" height="184" key="GridCell.Tab.0.bottom/0.23.1440.811/-1366.110.1366.745@-1366.110.1366.745" timestamp="1599842598831" />
     <state width="1398" height="127" key="GridCell.Tab.0.bottom/0.23.1440.811/-1366.110.1366.745@0.23.1440.811" timestamp="1599739336577" />
     <state width="609" height="165" key="GridCell.Tab.0.bottom/0.23.1440.811@0.23.1440.811" timestamp="1603889723675" />
     <state width="684" height="502" key="GridCell.Tab.0.bottom/0.23.1440.812@0.23.1440.812" timestamp="1604893746642" />
     <state width="486" height="503" key="GridCell.Tab.0.bottom/0.23.1440.814@0.23.1440.814" timestamp="1604580764035" />
-    <state width="631" height="193" key="GridCell.Tab.0.bottom/0.23.1440.877/-1366.110.1366.679@-1366.110.1366.679" timestamp="1598530426507" />
+    <state width="689" height="163" key="GridCell.Tab.0.bottom/0.23.1440.816@0.23.1440.816" timestamp="1608127624254" />
     <state width="327" height="401" key="GridCell.Tab.0.bottom/0.23.1440.877/-1366.110.1366.681@-1366.110.1366.681" timestamp="1599971091187" />
     <state width="1419" height="232" key="GridCell.Tab.0.bottom/0.23.1440.877/-1366.110.1366.681@0.23.1440.877" timestamp="1602164950984" />
     <state width="585" height="533" key="GridCell.Tab.0.bottom/1440.219.960.681/0.23.1440.811@0.23.1440.811" timestamp="1603720585827" />
     <state width="939" height="114" key="GridCell.Tab.0.bottom/1440.219.960.681/0.23.1440.811@1440.219.960.681" timestamp="1602650261806" />
-    <state width="1419" height="151" key="GridCell.Tab.0.bottom/1440.23.960.681/0.23.1440.804@0.23.1440.804" timestamp="1596520932244" />
     <state width="1398" height="211" key="GridCell.Tab.0.bottom/1440.23.960.681/0.23.1440.811@0.23.1440.811" timestamp="1601987314119" />
-    <state width="684" height="502" key="GridCell.Tab.0.center" timestamp="1604893746641">
-      <screen x="0" y="23" width="1440" height="812" />
+    <state width="689" height="163" key="GridCell.Tab.0.center" timestamp="1608127624252">
+      <screen x="0" y="23" width="1440" height="816" />
     </state>
-    <state width="661" height="448" key="GridCell.Tab.0.center/0.23.1440.804@0.23.1440.804" timestamp="1597405877573" />
-    <state width="790" height="457" key="GridCell.Tab.0.center/0.23.1440.806@0.23.1440.806" timestamp="1598343572654" />
-    <state width="630" height="151" key="GridCell.Tab.0.center/0.23.1440.808@0.23.1440.808" timestamp="1599211160713" />
     <state width="565" height="184" key="GridCell.Tab.0.center/0.23.1440.811/-1366.110.1366.745@-1366.110.1366.745" timestamp="1599842598830" />
     <state width="1398" height="127" key="GridCell.Tab.0.center/0.23.1440.811/-1366.110.1366.745@0.23.1440.811" timestamp="1599739336576" />
     <state width="609" height="165" key="GridCell.Tab.0.center/0.23.1440.811@0.23.1440.811" timestamp="1603889723673" />
     <state width="684" height="502" key="GridCell.Tab.0.center/0.23.1440.812@0.23.1440.812" timestamp="1604893746641" />
     <state width="486" height="503" key="GridCell.Tab.0.center/0.23.1440.814@0.23.1440.814" timestamp="1604580764035" />
-    <state width="631" height="193" key="GridCell.Tab.0.center/0.23.1440.877/-1366.110.1366.679@-1366.110.1366.679" timestamp="1598530426505" />
+    <state width="689" height="163" key="GridCell.Tab.0.center/0.23.1440.816@0.23.1440.816" timestamp="1608127624252" />
     <state width="327" height="401" key="GridCell.Tab.0.center/0.23.1440.877/-1366.110.1366.681@-1366.110.1366.681" timestamp="1599971091185" />
     <state width="1419" height="232" key="GridCell.Tab.0.center/0.23.1440.877/-1366.110.1366.681@0.23.1440.877" timestamp="1602164950982" />
     <state width="585" height="533" key="GridCell.Tab.0.center/1440.219.960.681/0.23.1440.811@0.23.1440.811" timestamp="1603720585825" />
     <state width="939" height="114" key="GridCell.Tab.0.center/1440.219.960.681/0.23.1440.811@1440.219.960.681" timestamp="1602650261805" />
-    <state width="1419" height="151" key="GridCell.Tab.0.center/1440.23.960.681/0.23.1440.804@0.23.1440.804" timestamp="1596520932242" />
     <state width="1398" height="211" key="GridCell.Tab.0.center/1440.23.960.681/0.23.1440.811@0.23.1440.811" timestamp="1601987314118" />
-    <state width="684" height="502" key="GridCell.Tab.0.left" timestamp="1604893746641">
-      <screen x="0" y="23" width="1440" height="812" />
+    <state width="689" height="163" key="GridCell.Tab.0.left" timestamp="1608127624251">
+      <screen x="0" y="23" width="1440" height="816" />
     </state>
-    <state width="661" height="448" key="GridCell.Tab.0.left/0.23.1440.804@0.23.1440.804" timestamp="1597405877573" />
-    <state width="790" height="457" key="GridCell.Tab.0.left/0.23.1440.806@0.23.1440.806" timestamp="1598343572654" />
-    <state width="630" height="151" key="GridCell.Tab.0.left/0.23.1440.808@0.23.1440.808" timestamp="1599211160712" />
     <state width="565" height="184" key="GridCell.Tab.0.left/0.23.1440.811/-1366.110.1366.745@-1366.110.1366.745" timestamp="1599842598829" />
     <state width="1398" height="127" key="GridCell.Tab.0.left/0.23.1440.811/-1366.110.1366.745@0.23.1440.811" timestamp="1599739336575" />
     <state width="609" height="165" key="GridCell.Tab.0.left/0.23.1440.811@0.23.1440.811" timestamp="1603889723673" />
     <state width="684" height="502" key="GridCell.Tab.0.left/0.23.1440.812@0.23.1440.812" timestamp="1604893746641" />
     <state width="486" height="503" key="GridCell.Tab.0.left/0.23.1440.814@0.23.1440.814" timestamp="1604580764034" />
-    <state width="631" height="193" key="GridCell.Tab.0.left/0.23.1440.877/-1366.110.1366.679@-1366.110.1366.679" timestamp="1598530426504" />
+    <state width="689" height="163" key="GridCell.Tab.0.left/0.23.1440.816@0.23.1440.816" timestamp="1608127624251" />
     <state width="327" height="401" key="GridCell.Tab.0.left/0.23.1440.877/-1366.110.1366.681@-1366.110.1366.681" timestamp="1599971091185" />
     <state width="1419" height="232" key="GridCell.Tab.0.left/0.23.1440.877/-1366.110.1366.681@0.23.1440.877" timestamp="1602164950981" />
     <state width="585" height="533" key="GridCell.Tab.0.left/1440.219.960.681/0.23.1440.811@0.23.1440.811" timestamp="1603720585825" />
     <state width="939" height="114" key="GridCell.Tab.0.left/1440.219.960.681/0.23.1440.811@1440.219.960.681" timestamp="1602650261804" />
-    <state width="1419" height="151" key="GridCell.Tab.0.left/1440.23.960.681/0.23.1440.804@0.23.1440.804" timestamp="1596520932241" />
     <state width="1398" height="211" key="GridCell.Tab.0.left/1440.23.960.681/0.23.1440.811@0.23.1440.811" timestamp="1601987314117" />
-    <state width="684" height="502" key="GridCell.Tab.0.right" timestamp="1604893746642">
-      <screen x="0" y="23" width="1440" height="812" />
+    <state width="689" height="163" key="GridCell.Tab.0.right" timestamp="1608127624252">
+      <screen x="0" y="23" width="1440" height="816" />
     </state>
-    <state width="661" height="448" key="GridCell.Tab.0.right/0.23.1440.804@0.23.1440.804" timestamp="1597405877574" />
-    <state width="790" height="457" key="GridCell.Tab.0.right/0.23.1440.806@0.23.1440.806" timestamp="1598343572655" />
-    <state width="630" height="151" key="GridCell.Tab.0.right/0.23.1440.808@0.23.1440.808" timestamp="1599211160713" />
     <state width="565" height="184" key="GridCell.Tab.0.right/0.23.1440.811/-1366.110.1366.745@-1366.110.1366.745" timestamp="1599842598830" />
     <state width="1398" height="127" key="GridCell.Tab.0.right/0.23.1440.811/-1366.110.1366.745@0.23.1440.811" timestamp="1599739336576" />
     <state width="609" height="165" key="GridCell.Tab.0.right/0.23.1440.811@0.23.1440.811" timestamp="1603889723674" />
     <state width="684" height="502" key="GridCell.Tab.0.right/0.23.1440.812@0.23.1440.812" timestamp="1604893746642" />
     <state width="486" height="503" key="GridCell.Tab.0.right/0.23.1440.814@0.23.1440.814" timestamp="1604580764035" />
-    <state width="631" height="193" key="GridCell.Tab.0.right/0.23.1440.877/-1366.110.1366.679@-1366.110.1366.679" timestamp="1598530426506" />
+    <state width="689" height="163" key="GridCell.Tab.0.right/0.23.1440.816@0.23.1440.816" timestamp="1608127624252" />
     <state width="327" height="401" key="GridCell.Tab.0.right/0.23.1440.877/-1366.110.1366.681@-1366.110.1366.681" timestamp="1599971091186" />
     <state width="1419" height="232" key="GridCell.Tab.0.right/0.23.1440.877/-1366.110.1366.681@0.23.1440.877" timestamp="1602164950982" />
     <state width="585" height="533" key="GridCell.Tab.0.right/1440.219.960.681/0.23.1440.811@0.23.1440.811" timestamp="1603720585826" />
     <state width="939" height="114" key="GridCell.Tab.0.right/1440.219.960.681/0.23.1440.811@1440.219.960.681" timestamp="1602650261805" />
-    <state width="1419" height="151" key="GridCell.Tab.0.right/1440.23.960.681/0.23.1440.804@0.23.1440.804" timestamp="1596520932243" />
     <state width="1398" height="211" key="GridCell.Tab.0.right/1440.23.960.681/0.23.1440.811@0.23.1440.811" timestamp="1601987314119" />
     <state width="684" height="502" key="GridCell.Tab.1.bottom" timestamp="1604893746644">
       <screen x="0" y="23" width="1440" height="812" />
     </state>
-    <state width="661" height="448" key="GridCell.Tab.1.bottom/0.23.1440.804@0.23.1440.804" timestamp="1597405877576" />
-    <state width="790" height="457" key="GridCell.Tab.1.bottom/0.23.1440.806@0.23.1440.806" timestamp="1598343572657" />
-    <state width="716" height="539" key="GridCell.Tab.1.bottom/0.23.1440.808@0.23.1440.808" timestamp="1599207915076" />
     <state width="496" height="469" key="GridCell.Tab.1.bottom/0.23.1440.811/-1366.110.1366.745@-1366.110.1366.745" timestamp="1599736536080" />
     <state width="245" height="450" key="GridCell.Tab.1.bottom/0.23.1440.811@0.23.1440.811" timestamp="1603803329284" />
     <state width="684" height="502" key="GridCell.Tab.1.bottom/0.23.1440.812@0.23.1440.812" timestamp="1604893746644" />
@@ -630,9 +622,6 @@
     <state width="684" height="502" key="GridCell.Tab.1.center" timestamp="1604893746643">
       <screen x="0" y="23" width="1440" height="812" />
     </state>
-    <state width="661" height="448" key="GridCell.Tab.1.center/0.23.1440.804@0.23.1440.804" timestamp="1597405877575" />
-    <state width="790" height="457" key="GridCell.Tab.1.center/0.23.1440.806@0.23.1440.806" timestamp="1598343572656" />
-    <state width="716" height="539" key="GridCell.Tab.1.center/0.23.1440.808@0.23.1440.808" timestamp="1599207915075" />
     <state width="496" height="469" key="GridCell.Tab.1.center/0.23.1440.811/-1366.110.1366.745@-1366.110.1366.745" timestamp="1599736536079" />
     <state width="245" height="450" key="GridCell.Tab.1.center/0.23.1440.811@0.23.1440.811" timestamp="1603803329283" />
     <state width="684" height="502" key="GridCell.Tab.1.center/0.23.1440.812@0.23.1440.812" timestamp="1604893746643" />
@@ -644,9 +633,6 @@
     <state width="684" height="502" key="GridCell.Tab.1.left" timestamp="1604893746643">
       <screen x="0" y="23" width="1440" height="812" />
     </state>
-    <state width="661" height="448" key="GridCell.Tab.1.left/0.23.1440.804@0.23.1440.804" timestamp="1597405877575" />
-    <state width="790" height="457" key="GridCell.Tab.1.left/0.23.1440.806@0.23.1440.806" timestamp="1598343572656" />
-    <state width="716" height="539" key="GridCell.Tab.1.left/0.23.1440.808@0.23.1440.808" timestamp="1599207915075" />
     <state width="496" height="469" key="GridCell.Tab.1.left/0.23.1440.811/-1366.110.1366.745@-1366.110.1366.745" timestamp="1599736536079" />
     <state width="245" height="450" key="GridCell.Tab.1.left/0.23.1440.811@0.23.1440.811" timestamp="1603803329283" />
     <state width="684" height="502" key="GridCell.Tab.1.left/0.23.1440.812@0.23.1440.812" timestamp="1604893746643" />
@@ -658,9 +644,6 @@
     <state width="684" height="502" key="GridCell.Tab.1.right" timestamp="1604893746644">
       <screen x="0" y="23" width="1440" height="812" />
     </state>
-    <state width="661" height="448" key="GridCell.Tab.1.right/0.23.1440.804@0.23.1440.804" timestamp="1597405877576" />
-    <state width="790" height="457" key="GridCell.Tab.1.right/0.23.1440.806@0.23.1440.806" timestamp="1598343572657" />
-    <state width="716" height="539" key="GridCell.Tab.1.right/0.23.1440.808@0.23.1440.808" timestamp="1599207915075" />
     <state width="496" height="469" key="GridCell.Tab.1.right/0.23.1440.811/-1366.110.1366.745@-1366.110.1366.745" timestamp="1599736536080" />
     <state width="245" height="450" key="GridCell.Tab.1.right/0.23.1440.811@0.23.1440.811" timestamp="1603803329284" />
     <state width="684" height="502" key="GridCell.Tab.1.right/0.23.1440.812@0.23.1440.812" timestamp="1604893746644" />
@@ -669,14 +652,6 @@
     <state width="649" height="496" key="GridCell.Tab.1.right/0.23.1440.877/-1366.110.1366.681@0.23.1440.877" timestamp="1601176762930" />
     <state width="585" height="533" key="GridCell.Tab.1.right/1440.219.960.681/0.23.1440.811@0.23.1440.811" timestamp="1603720585829" />
     <state width="445" height="452" key="GridCell.Tab.1.right/1440.23.960.681/0.23.1440.811@0.23.1440.811" timestamp="1601987158590" />
-    <state x="554" y="154" key="RollbackChangesDialog" timestamp="1597403884436">
-      <screen x="0" y="23" width="1440" height="804" />
-    </state>
-    <state x="554" y="154" key="RollbackChangesDialog/0.23.1440.804@0.23.1440.804" timestamp="1597403884436" />
-    <state x="0" y="23" width="1440" height="806" key="SettingsEditor" timestamp="1597730178063">
-      <screen x="0" y="23" width="1440" height="806" />
-    </state>
-    <state x="0" y="23" width="1440" height="806" key="SettingsEditor/0.23.1440.806@0.23.1440.806" timestamp="1597730178063" />
     <state x="907" y="349" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1603450940880">
       <screen x="0" y="23" width="1440" height="811" />
     </state>
@@ -685,16 +660,9 @@
       <screen x="1440" y="219" width="960" height="681" />
     </state>
     <state x="1440" y="219" width="604" height="681" key="find.popup/1440.219.960.681/0.23.1440.811@1440.219.960.681" timestamp="1602504468059" />
-    <state x="482" y="64" key="refactoring.ChangeSignatureDialog" timestamp="1597557200951">
-      <screen x="0" y="23" width="1440" height="806" />
-    </state>
-    <state x="482" y="64" key="refactoring.ChangeSignatureDialog/0.23.1440.806@0.23.1440.806" timestamp="1597557200951" />
     <state x="385" y="153" width="670" height="683" key="search.everywhere.popup" timestamp="1604834857892">
       <screen x="0" y="23" width="1440" height="812" />
     </state>
-    <state x="385" y="153" width="670" height="675" key="search.everywhere.popup/0.23.1440.804@0.23.1440.804" timestamp="1596710982662" />
-    <state x="385" y="153" width="670" height="677" key="search.everywhere.popup/0.23.1440.806@0.23.1440.806" timestamp="1597892542548" />
-    <state x="385" y="153" width="670" height="679" key="search.everywhere.popup/0.23.1440.808@0.23.1440.808" timestamp="1598690954988" />
     <state x="385" y="153" width="670" height="682" key="search.everywhere.popup/0.23.1440.811@0.23.1440.811" timestamp="1601127870762" />
     <state x="385" y="153" width="670" height="683" key="search.everywhere.popup/0.23.1440.812@0.23.1440.812" timestamp="1604834857892" />
     <state x="385" y="153" width="670" height="682" key="search.everywhere.popup/1440.219.960.681/0.23.1440.811@0.23.1440.811" timestamp="1603709583771" />
