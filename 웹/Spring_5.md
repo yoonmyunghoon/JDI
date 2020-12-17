@@ -1235,7 +1235,369 @@ public class JDBCNoticeService implements NoticeService {
 
 
 
-## 24. 스프링 설정파일 분리하기
+## 24. 스프링 설정 파일 분리하기
+
+### 스프링 설정 파일 나누기
+
+#### 스프링 설정 파일은 원하는 위치와 파일명으로 만들 수 있음
+
+- 지금까지는 dispatcher-servlet.xml 이라는 파일에 설정을 했었음
+  - WEB-INF 안에 둬야했고, 이름도 ooo-servlet.xml 이라는 파일명을 사용해야했음
+- 이를 분리할 필요가 있음
+  - 프로젝트를 보통 여러명에서 만들기 때문에 각 역할에 따라 설정파일을 나누는 것이 바람직
+  - 만약 나누지 않고 한 파일에서 모두 다 처리하려면, 다른 사람이 처리하기까지 기다렸다가 처리해야하고, 여러명의 다루는 과정에서 문제가 발생할 수도 있음
+- 이제부터 위치와 이름을 변경하는 방법을 알아보자
+
+![102](Spring_images/102.png)
+
+- service-context.xml
+  - 서비스 관련 설정 부분만 가져오기
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc
+        https://www.springframework.org/schema/mvc/spring-mvc.xsd">
+        
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521/xepdb1" />
+		<property name="username" value="NEWLEC" />
+		<property name="password" value="1234" />
+	</bean>
+	
+	<bean id="noticeService" class="com.newlecture.web.service.jdbc.JDBCNoticeService">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+        
+        
+</beans>
+```
+
+- servlet-context.xml
+  - 서비스 이외의 부분들 가져오기
+  - 보안 관련 내용은 아직 안했으므로 security-context.xml는 비워둠 
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc
+        https://www.springframework.org/schema/mvc/spring-mvc.xsd">
+        
+    <bean id="/index" class="com.newlecture.web.controller.IndexController" />  
+    <bean id="/notice/list" class="com.newlecture.web.controller.notice.ListController">
+    	<property name="noticeService" ref="noticeService" />
+    </bean>  
+    <bean id="/notice/detail" class="com.newlecture.web.controller.notice.DetailController" />  
+
+	<bean
+		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.tiles3.TilesView" />
+		<property name="order" value="1" />
+	</bean>
+
+	<bean
+		class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+		<property name="definitions" value="/WEB-INF/tiles.xml" />
+	</bean>
+
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/view/"></property>
+		<property name="suffix" value=".jsp"></property>
+		<property name="order" value="2" />
+	</bean>
+	
+	<mvc:resources location="/static/" mapping="/**"></mvc:resources>
+	
+</beans>
+```
+
+- dispatcher-servlet.xml은 지워도되지만, 그냥 확장자명을 임의로 바꿔두자
+- web.xml
+  - 이전에는 dispatcher 서블릿을 사용할 때, 설정 파일의 위치에 대한 내용을 정해주지 않았음
+    - 그래서 위치나 이름을 약속으로 정해진대로 해줬어야했음
+  - 파일명이나 위치를 바꾸게 되면 그걸 여기서 표시해줘야함
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+                      http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+	version="4.0" metadata-complete="true">
+
+	<!-- 스프링이 제공하는 listener -->
+  <!-- 톰캣이 시작될때, 끝날때, 세션이 시작될때, 끝날때 등 어떤 시점에 무언가 행위를 할 수 있는 이벤트를 처리할 때 사용하는 것 -->
+  <!-- ContextLoaderListener는 context-param으로 파라미터를 가질 수 있음 -->
+  <!-- ContextLoaderListener를 DispatcherServlet가 쓸 수 있음 -->
+  <!-- DispatcherServlet가 context-param를 사용할 수가 있음 -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>
+			/WEB-INF/spring/service-context.xml
+			/WEB-INF/spring/security-context.xml
+		</param-value>
+	</context-param>
+	
+	<servlet>
+		<servlet-name>dispatcher</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <!-- DispatcherServlet가 알아볼 수 있도록 정해진 형식으로 적어줘야함 -->
+		<init-param>
+      <!-- 여기서는 하나만 지정해줄 수 있음, 스프링이 제공하는 listener를 사용하자(위쪽에 있음) -->
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/spring/servlet-context.xml</param-value>
+		</init-param>
+    <!-- servlet은 언제 실행되나? 언제 servlet객체가 메모리에 올라가나?
+    모든 servlet은 url 매핑이 되어있음, 첫번째 url 요청이 있을 때 메모리에 올라감
+    그런데 DispatcherServlet의 경우에는 설정을 가지고 있는 서블릿이다보니 
+		첫번째 요청이 올 때 메모리에 올라가면 너무 느림
+		그래서 미리 올라가 있도록 할 수 있으면 좋을 것 같다, 톰캣이 시작될 때 서블릿을 바로 로드할 수 있도록 설정해줌
+ 		우선순위를 지정할 수도 있음
+    -->
+		<load-on-startup>1</load-on-startup>
+    <!-- 다른 서블릿들과 연관되어 차례로 하나하나 로드되지 않고, 비동기적으로 로드될 수 있도록 설정 -->
+		<async-supported>true</async-supported>
+	</servlet>
+  <!-- 변경 전
+  <servlet>
+		<servlet-name>dispatcher</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+	</servlet>
+  -->
+	<servlet-mapping>
+		<servlet-name>dispatcher</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+
+	<display-name>Welcome to Tomcat</display-name>
+	<description>
+     Welcome to Tomcat
+ 	</description>
+
+
+</web-app>
+
+```
+
+
+
+## 25. 객체 DI를 Annotation으로 변경하기
+
+### 자바 프로그램의 초기화 또는 설정 파일
+
+- 자바 프로그램 보통 xml이나 어노테이션을 사용해서 외부설정을 함
+- 스프링도 2버전 이상부터는 어노테이션을 지원해서 요즘에는 대부분 어노테이션을 사용함
+- 최근에는 외부설정파일로 properties같은 경량화된 파일형태로도 사용한다고 함
+
+![103](Spring_images/103.png)
+
+- servlet-context.xml
+  - annotation-config 사용
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc
+        https://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context.xsd">
+        
+    <context:annotation-config />
+    
+    <bean id="/index" class="com.newlecture.web.controller.IndexController" />  
+    <bean id="/notice/list" class="com.newlecture.web.controller.notice.ListController">
+      <!-- setter를 통해서 객체 주입하는 부분을 annotation으로 처리 -->
+    	<!-- <property name="noticeService" ref="noticeService" /> -->
+    </bean>  
+    <bean id="/notice/detail" class="com.newlecture.web.controller.notice.DetailController" />  
+
+	<bean
+		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.tiles3.TilesView" />
+		<property name="order" value="1" />
+	</bean>
+
+	<bean
+		class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+		<property name="definitions" value="/WEB-INF/tiles.xml" />
+	</bean>
+
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/view/"></property>
+		<property name="suffix" value=".jsp"></property>
+		<property name="order" value="2" />
+	</bean>
+	
+	<mvc:resources location="/static/" mapping="/**"></mvc:resources>
+	
+</beans>
+```
+
+- ListController.java
+
+```java
+package com.newlecture.web.controller.notice;
+
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.Controller;
+
+import com.newlecture.web.entity.Notice;
+import com.newlecture.web.service.NoticeService;
+
+public class ListController implements Controller{
+	
+   // 여기에 달면 기본생성자를 통해 주입되기 때문에 굳이 setter를 쓸 필요가 없음
+	@Autowired
+	private NoticeService noticeService;
+	
+  // 여기에 달아줘도 되지만, 객체가 주입되면서 다른 처리를 함께 해주는게 아니면 굳이 여기에 달 필요가 없음
+//	public void setNoticeService(NoticeService noticeService) {
+//		this.noticeService = noticeService;
+//	}
+
+	@Override
+	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		ModelAndView mv = new ModelAndView("notice.list");
+		
+		List<Notice> list = noticeService.getList(1, "TITLE", "");
+		mv.addObject("list", list);
+		
+		return mv;
+	}
+
+}
+
+```
+
+- service-context.xml
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc
+        https://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context.xsd">
+        
+    <context:annotation-config />
+        
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521/xepdb1" />
+		<property name="username" value="NEWLEC" />
+		<property name="password" value="1234" />
+	</bean>
+	
+	<bean id="noticeService" class="com.newlecture.web.service.jdbc.JDBCNoticeService">
+		<!-- <property name="dataSource" ref="dataSource" /> -->
+	</bean>
+        
+        
+</beans>
+```
+
+- JDBCNoticeService.java
+
+```java
+	// 생략
+
+	@Autowired
+	private DataSource dataSource;
+	
+//	public void setDataSource(DataSource dataSource) {
+//		this.dataSource = dataSource;
+//	}
+
+
+	// 생략
+```
+
+
+
+## 26. Annotation으로 서비스 객체 생성하기
+
+- service-context.xml
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc
+        https://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context.xsd">
+        
+  	<!-- 해당 패키지에서 component를 스캔하면서 Autowired도 확인하기 때문에 밑에꺼는 없애줘도 됨 -->
+    <!-- <context:annotation-config /> -->
+    <context:component-scan base-package="com.newlecture.web.service" />
+        
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521/xepdb1" />
+		<property name="username" value="NEWLEC" />
+		<property name="password" value="1234" />
+	</bean>
+	
+  <!-- Service 객체를 생성하는 것까지 어노테이션으로 처리 -->
+	<!-- <bean id="noticeService" class="com.newlecture.web.service.jdbc.JDBCNoticeService">
+		<property name="dataSource" ref="dataSource" />
+	</bean> -->
+        
+        
+</beans>
+```
+
+- JDBCNoticeService.java
+
+```java
+//@Component를 써도 되지만, 좀 더 의미에 맞도록 @Service를 사용하자
+@Service
+public class JDBCNoticeService implements NoticeService {
+	// 생략
+}
+```
+
+
+
+## 27. Annotation으로 URL 매핑하기
+
+
 
 
 
