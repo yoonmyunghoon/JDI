@@ -1597,7 +1597,104 @@ public class JDBCNoticeService implements NoticeService {
 
 ## 27. Annotation으로 URL 매핑하기
 
+- 이번에는 Controller를 Annotation으로 객체화해보자
+- servlet-context.xml
 
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc
+        https://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context.xsd">
+        
+    <!-- <context:annotation-config /> -->
+  	<!-- 해당 패키지 내에서 찾을 수 있도록 설정 -->
+    <context:component-scan base-package="com.newlecture.web.controller" />
+    
+  	<!-- IndexController를 어노테이션을 사용해서 객체화하자 -->
+    <!-- <bean id="/index" class="com.newlecture.web.controller.IndexController" /> -->  
+    <bean id="/notice/list" class="com.newlecture.web.controller.notice.ListController">
+    	<!-- <property name="noticeService" ref="noticeService" /> -->
+    </bean>  
+    <bean id="/notice/detail" class="com.newlecture.web.controller.notice.DetailController" />  
+
+	<bean
+		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.tiles3.TilesView" />
+		<property name="order" value="1" />
+	</bean>
+
+	<bean
+		class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+		<property name="definitions" value="/WEB-INF/tiles.xml" />
+	</bean>
+
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/view/"></property>
+		<property name="suffix" value=".jsp"></property>
+		<property name="order" value="2" />
+	</bean>
+	
+	<mvc:resources location="/static/" mapping="/**"></mvc:resources>
+  <!-- 단순히 객체를 생성하는 것이 아니라 그 안에 있는 url매핑도 해야하기 때문에 이걸 추가해줘야함 -->
+	<mvc:annotation-driven />
+	
+</beans>
+```
+
+- IndexController.java
+
+```java
+package com.newlecture.web.controller;
+
+import org.springframework.stereotype.Controller;
+// 이걸 지워줘야함, 위에 Contoller와 겹치기 때문에
+//import org.springframework.web.servlet.mvc.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+
+// 어노테이션으로 설정하게되면 클래스 자체를 찾기 때문에 참조하기위한 인터페이스 클래스와 정해진 메소드가 필요없음 
+//public class IndexController implements Controller {
+@Controller
+public class IndexController {
+	
+	@RequestMapping("/index")
+	public void aaaa() {
+		System.out.println("sdafsf");
+	}
+
+//	@Override
+//	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
+//		
+////		ModelAndView mv = new ModelAndView("/WEB-INF/view/index.jsp");
+////		ModelAndView mv = new ModelAndView("index");
+//		ModelAndView mv = new ModelAndView("root.index");
+//		mv.addObject("data", "Hello Spring MVC");
+////		mv.setViewName("/WEB-INF/view/index.jsp");
+//		return mv;
+//	}
+	
+	
+}
+```
+
+- 결과
+  - 어노테이션에서 requestmapping으로 /index를 적어주긴했는데, 어떻게 index.jsp를 찾아서 보내준 건가?
+    - servlet-context.xml에서 viewresolver들을 설정해준 적이 있음(tiles를 사용하는 것이 우선순위1, 기본 url를 사용하는 것이 우선순위 2로 설정해줬었음)
+    - 여기서는 기본 url로 요청한 것이기 때문에 tiles를 통한 resolver는 해당 컨텐츠를 찾지못하고, 다음 우선순위인 url을 통한 resolver가 해당 url을 통해서 index.jsp를 찾아서 결과로 응답해줌 
+
+![104](Spring_images/104.png)
+
+
+
+## 28. HomeController 만들기
 
 
 
