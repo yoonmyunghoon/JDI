@@ -56,6 +56,7 @@
   - [학습3](웹/Spring_3.md) - AOP
   - [학습4](웹/Spring_4.md) - Spring MVC Part 1
   - [학습5](웹/Spring_5.md) - Spring MVC Part 2
+  - [학습6](웹/Spring_6.md) - Spring MVC Part 3
 
 
 
