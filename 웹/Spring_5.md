@@ -1696,6 +1696,258 @@ public class IndexController {
 
 ## 28. HomeController 만들기
 
+- IndexController를 HomeController로 변경하기
+  - 어노테이션을 쓰기 전에는 컨트롤러 클래스 하나당 url이 매핑됐었음(정해진 메소드, handleRequest를 사용해서 ModelAndView 형식으로 결과를 반환해줬었음), 그래서 /index를 요청하면 IndexController가 요청에 대해 처리했었음
+  - 어노테이션을 쓰고나서부터는 클래스 내에 있는 여러개의 메소드들이 각각 url요청에 대해 처리를 해줄 수 있게 됨
+  - 그래서 Index를 포함한 Home관련된 url요청을 담당하는 컨트롤러(사실 여러개의 메소드 컨트롤러들을 포함하고 있는 컨테이너 느낌임)로 변경해줌
+
+```java
+package com.newlecture.web.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+public class HomeController {
+	
+	@RequestMapping("/index")
+	public String index() {
+		// retrun값을 따로 주지 않으면 default로 요청된 url을 가지고 매핑을 시켜줌
+    // tiles를 사용한 결과를 내줘야하기 때문에 이렇게 return string형태로 적어줘야함
+    // model(data)는 어떻게 전달하는지 다음 챕터에서 학습
+		return "root.index";
+	}
+	
+	@RequestMapping("/help")
+	public void help() {
+		System.out.println("help");
+	}
+	
+}
+
+```
+
+
+
+## 29. Notice Controller 정리하기
+
+### /notice/list와 /notice/reg를 위한 컨트롤러 추가하기
+
+- Notice와 관련된 처리는 따로 모으는 것이 바람직
+
+![105](Spring_images/105.png)
+
+- 컨트롤러 파일 구조 정리
+  - notice 패키지를 지우고 customer 패키지 내부에 있는 NoticeController가 detail 및 list 기능을 담당
+
+![106](Spring_images/106.png)
+
+![107](/Users/yoonmyunghoon/JDI/웹/Spring_images/107.png)
+
+- servlet-context.xml
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc
+        https://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context.xsd">
+        
+    <!-- <context:annotation-config /> -->
+    <context:component-scan base-package="com.newlecture.web.controller" />
+    
+  <!-- 객체 생성 부분 제거 -->
+    <!-- <bean id="/index" class="com.newlecture.web.controller.IndexController" /> -->  
+    <!-- <bean id="/notice/list" class="com.newlecture.web.controller.notice.ListController">
+    	<property name="noticeService" ref="noticeService" />
+    </bean> -->  
+    <!-- <bean id="/notice/detail" class="com.newlecture.web.controller.notice.DetailController" /> -->  
+
+	<bean
+		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.tiles3.TilesView" />
+		<property name="order" value="1" />
+	</bean>
+
+	<bean
+		class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+		<property name="definitions" value="/WEB-INF/tiles.xml" />
+	</bean>
+
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/view/"></property>
+		<property name="suffix" value=".jsp"></property>
+		<property name="order" value="2" />
+	</bean>
+	
+	<mvc:resources location="/static/" mapping="/**"></mvc:resources>
+	<mvc:annotation-driven />
+	
+</beans>
+```
+
+- HomeController.java 정리
+  - 각 메소드들의 요청 url에서 겹치는 부분을 class에다가 requestmapping 어노테이션으로 적어줄 수 있음
+  - 메소드의 requestmapping 부분을 간결하게 만들어줌
+
+```java
+package com.newlecture.web.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("/")
+public class HomeController {
+	
+	@RequestMapping("index")
+	public String index() {
+		
+		return "root.index";
+	}
+	
+}
+
+```
+
+- NoticeController.java
+  - url을 패키지 및 파일 구조에 맞춰서 넣어주는 것이 바람직
+  - 앞쪽에 /customer 추가 
+
+```java
+package com.newlecture.web.controller.customer;
+
+import java.sql.SQLException;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.newlecture.web.entity.Notice;
+import com.newlecture.web.service.NoticeService;
+
+@Controller
+@RequestMapping("/customer/notice/")
+public class NoticeController {
+	
+	@Autowired
+	private NoticeService noticeService;
+	
+	@RequestMapping("list")
+	public String list() throws ClassNotFoundException, SQLException {
+		
+    // 데이터를 함께 반환하는 부분은 다음 챕터에서.. 
+		List<Notice> list = noticeService.getList(1, "TITLE", "");
+		
+		return "notice.list";
+	}
+	
+	@RequestMapping("detail")
+	public String detail() {
+		
+		return "notice.detail";
+	}
+	
+}
+
+```
+
+- header.jsp
+  - 고객센터 버튼의 url 요청에 /customer 추가
+
+```jsp
+<nav id="member-menu" class="linear-layout">
+  <h1 class="hidden">고객메뉴</h1>
+  <ul class="linear-layout">
+    <li><a href="/member/home"><img src="/images/txt-mypage.png" alt="마이페이지" /></a></li>
+    <li><a href="/customer/notice/list"><img src="/images/txt-customer.png" alt="고객센터" /></a></li>
+  </ul>
+</nav>
+```
+
+
+
+## 30. 컨트롤러를 위한 Annotation 개념 정리
+
+### XML로 설정할 때의 url과 컨트롤러의 매핑 방식
+
+#### url과 매핑되는 처리 단위는 클래스
+
+- 이 과정에서 중간에 Front Controller(Dispatcher Servlet)가 존재함
+
+![108](Spring_images/108.png)
+
+#### 분리와 연결의 단위는 캡슐
+
+- 모든 요청을 front controller(servlet클래스)가 받아서 적절한 conroller(pojo클래스)에 해당 요청을 전달해줌
+- 스프링에서 제공하는 인터페이스를 사용하는 것이기 때문에 제약이 있음
+  - Controller 인터페이스를 상속한 클래스가 정해진 메소드로 요청을 받아서 처리해야만함
+
+![109](Spring_images/109.png)
+
+### Annotation으로 매핑을 설정하게 되면
+
+#### 설정 단위를 메소드 단위로 변경할 수 있다.
+
+- url 매핑 어노테이션이 클래스가 아니라 메소드에 붙기 때문에 매 요청마다 클래스를 만들어줄 필요가 없음
+- 약속된 메소드 이름과 인터페이스 상속 등 기존의 제약에서 벗어남
+
+![110](Spring_images/110.png)
+
+### @Controller 어노테이션
+
+#### 컨트롤러 객체 생성과 URL 매핑을 위한 설정
+
+- 해당 패키지 내부의 @Controller 어노테이션(== @Component)이 붙은 클래스를 객체화해주기 위한 context:component-scan 태그 추가
+- 해당 객체의 메소드가 가지고 있는 url 매핑을 처리해주기 위한 mvc:annotaion-drivern 태그 추가
+
+![111](Spring_images/111.png)
+
+### RootController 구현하기
+
+- 클래스 및 메소드의 이름은 아무렇게나 지어도 되지만, 클래스는 파일 구조, 메소드는 역할에 맞춰서 이름을 지어주는 것이 바람직
+-  메소드의 반환값이 없도록 void로 정의하면, 묵시적으로 화면에 출력할 문서를 해당 요청 url을 통해서 찾게 됨
+  - 이때 설정해둔 resolver를 통해서 문서파일을 찾게 됨
+
+![112](Spring_images/112.png)
+
+### ViewResolver가 설정되어 있는 경우
+
+- 만약 해당 url을 resolever를 통해서 찾았는데 없는 경우엔 404 에러가 출력됨
+- 하지만 콘솔 출력을 확인해보면, 해당 메소드는 정상실행되었음을 알 수 있음
+- 이거는 문서파일, 즉 resource가 없는 것
+
+![113](Spring_images/113.png)
+
+### ViewResolver가 설정되어 있지 않은 경우
+
+- resolver가 설정되어 있지 않으면 요청에 대한 view 정보가 없기 때문에 내부 서버 오류(500)가 발생
+- 메소드 실행은 정상
+
+![114](Spring_images/114.png)
+
+### 에러 출력 방식
+
+- 해당 요청 url에 매핑되는 컨트롤러 자체가 없을 경우, 404에러 출력
+
+![115](Spring_images/115.png)
+
+- 해당 컨트롤러가 존재하고 반환 타입이 void일 경우
+  - resolver가 없을 때는 500에러
+  - resolver가 있을 경우
+    - 해당 위치를 찾아서 resource가 있을 경우, 해당 문서파일 출력
+    - 만약 없을 경우, 404에러 출력
+
+![116](Spring_images/116.png)
+
 
 
 
