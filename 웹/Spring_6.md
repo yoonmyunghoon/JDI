@@ -148,6 +148,85 @@ public class NoticeController {
 
 ## 33. JSON 출력하기
 
+- 이번에는 단순 문자열이 아니라 객체(데이터, model)를 반환해보자
+- 여기서 객체를 보낸다는 것은 객체 형태의 데이터를 문자열로 보낸다는 의미
+
+### 데이터를 구분하기 위한 표현방법
+
+#### XML, CSV, JSON
+
+- CSV는 콤마로 구분하기 때문에 순서를 나타내기에는 용이하지만, 중첩된 구분을 하기가 어려움
+- XML은 데이터의 데이터, 즉, 메타데이터를 함께 나타내서 보낼 수 있기 때문에 중첩이 깊어져도 적절하게 형태를 만들어낼 수 있음
+  - 하지만, 태그라는 것을 여러개 쓰다보니, 데이터가 비대한 느낌이 있음
+  - 성능도 느리기 때문에 좀 더 경량화할 필요를 느낌
+  - 그래서 요즘에는 JSON을 많이 사용하고 있음
+- JSON은 메타데이터도 함께 표현할 수 있으면서, 경량화되어있음
+  - 원래는 Javascript에서 객체를 표현하는 방식이었는데, 요즘에는 이렇게 사용범위가 넓어졌음
+  - 서버에서 클라이언트에게 데이터를 보낼 때 가장 많이 사용하는 방식이 되었음
+
+![119](Spring_images/119.png)
+
+### 공지사항 목록을 JSON으로 반환하기 위한 컨트롤러
+
+- 그냥 list 객체를 반환하면 어떻게 될까?
+
+![120](Spring_images/120.png)
+
+- pom.xml에 라이브러리 추가
+
+```xml
+<dependency>
+  <groupId>com.fasterxml.jackson.core</groupId>
+  <artifactId>jackson-databind</artifactId>
+  <version>2.11.2</version>
+</dependency>
+```
+
+- NoticeController.java
+
+```java
+package com.newlecture.web.controller.api;
+
+import java.sql.SQLException;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.newlecture.web.entity.Notice;
+import com.newlecture.web.service.NoticeService;
+
+@RestController("apiNoticeController")
+@RequestMapping("/api/notice/")
+public class NoticeController {
+	
+	@Autowired
+	private NoticeService service;
+
+	@RequestMapping("list")
+	public List<Notice> list() throws ClassNotFoundException, SQLException {
+		
+		List<Notice> list = service.getList(1, "title", "");
+		
+		return list;
+	}
+	
+}
+
+```
+
+- 결과
+  - 스프링이 알아서 객체를 JSON으로 변환해서 반환해줌
+  - 지난 챕터에서 annotation-driven 태그에서 UTF-8을 지원하는 컨버터를 달았었는데, 그 위치에 JSON 변환 컨버터가 미리 추가 되어 있기 때문임
+    - MessageConverter가 내장되어있음
+
+![121](Spring_images/121.png)
+
+
+
+## 34. 지금까지 다루었던 내용과 이번에 다루게 될 사용자 입력 5가지
+
 
 
 
