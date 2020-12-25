@@ -197,11 +197,3 @@
 
 
 
-### v. 배포 URL
-
-http://final-deploy-movies.2s5njh7pyk.ap-northeast-2.elasticbeanstalk.com/movies/
-
-
-
-
-
