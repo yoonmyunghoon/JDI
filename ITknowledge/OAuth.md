@@ -42,7 +42,7 @@
 - 구글이 가지고 있는 전체 정보 중에서 사용할 정보, scope를 설정
 - 요청 url을 제공해줌, 단, api key(access token)가 있어야 해당 데이터를 얻을 수 있음
 
-![OAuth](/Users/yoonmyunghoon/JDI/ITknowledge/images/OAuth.png)
+![OAuth](images/OAuth.png)
 
 
 
