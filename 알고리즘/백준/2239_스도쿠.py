@@ -38,11 +38,11 @@ def find_sudoku(n):
 
 
 data = [list(map(int, input())) for _ in range(9)]
-visited = [[0 for _ in range(9)] for _ in range(9)]
-for i in range(9):
-    for j in range(9):
-        if data[i][j] != 0:
-            visited[i][j] = 1
+# visited = [[0 for _ in range(9)] for _ in range(9)]
+# for i in range(9):
+#     for j in range(9):
+#         if data[i][j] != 0:
+#             visited[i][j] = 1
 
 positions = []
 for i in range(9):
