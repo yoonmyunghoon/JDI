@@ -1,0 +1,203 @@
+import requests
+import json
+import pprint
+
+
+# ------ API 정의 -------
+
+def start(url, qid):
+    '''
+    {
+      "auth_key": "",
+      "problem": 1,
+      "time": 0
+    }
+    '''
+    path = 'start'
+    token = ''
+    param = {'problem': qid}
+    headers = {'X-Auth-Token': token, 'Content-Type': 'application/json'}
+    req = requests.post('/'.join([url, path]), headers=headers, data=json.dumps(param))
+    result = req.json()
+    return result
+
+
+def get_waiting_line(url, headers):
+    '''
+    {
+      "waiting_line": [
+        { "id": 1, "from": 3 },
+        { "id": 2, "from": 14 },
+        ...
+      ]
+    }
+    '''
+    path = 'waiting_line'
+    req = requests.get('/'.join([url, path]), headers=headers)
+    result = req.json()
+    return result
+
+
+def get_game_result(url, headers):
+    '''
+    {
+      "game_result": [
+        {"win": 10, "lose": 2, "taken": 7 },
+        {"win": 7, "lose": 12, "taken": 33 },
+        ...
+      ]
+    }
+    '''
+    path = 'game_result'
+    req = requests.get('/'.join([url, path]), headers=headers)
+    result = req.json()
+    return result
+
+
+def get_user_info(url, headers):
+    '''
+    {
+      "user_info": [
+        { "id": 1, "grade": 2100 },
+        { "id": 13, "grade": 1501 },
+        ...
+      ]
+    }
+    '''
+    path = 'user_info'
+    req = requests.get('/'.join([url, path]), headers=headers)
+    result = req.json()
+    return result
+
+
+def match(url, headers, pairs):
+    '''
+    {
+      "status": "ready",
+      "time": 312
+    }
+    '''
+    path = 'match'
+    param = {'pairs': pairs}    # "pairs": [[1, 2], [9, 7], [11, 49]]
+    req = requests.put('/'.join([url, path]), headers=headers, data=json.dumps(param))
+    result = req.json()
+    return result
+
+
+def change_grade(url, headers, commands):
+    '''
+    {
+      "status": "ready"
+    }
+    '''
+    path = 'change_grade'
+    param = {'commands': commands}    # "commands": [{ "id": 1, "grade": 1900 }...]
+    req = requests.put('/'.join([url, path]), headers=headers, data=json.dumps(param))
+    result = req.json()
+    return result
+
+
+def get_score(url, headers):
+    '''
+    {
+      "status": "finished",
+      "efficiency_score": -1.0,
+      "accuracy_score1": 0.0,
+      "accuracy_score2": 32.62,
+      "score": 30.94
+    }
+    '''
+    path = 'score'
+    req = requests.get('/'.join([url, path]), headers=headers)
+    result = req.json()
+    return result
+
+
+# ------- 필요한 함수 정의 -------
+
+# grade 에 저장된 등급 데이터를 요청에 맞게 변경해줌
+def get_commands():
+    min_grade = min(grade)
+    if min_grade < 0:
+        new_grade_list = [old_grade - min_grade for old_grade in grade]
+    else:
+        new_grade_list = [old_grade for old_grade in grade]
+
+    commands = []
+    for i, e in enumerate(new_grade_list):
+        if e > 9999:
+            e = 9999
+        user_info = {'id': i, 'grade': e}
+        commands.append(user_info)
+    return commands
+
+
+# ------- 메인 -------
+base_url = ''
+qid = 2
+auth_key = start(base_url, qid)['auth_key']
+headers = {'Authorization': auth_key, 'Content-Type': 'application/json'}
+
+if qid == 1:
+    user_num = 30
+    m_mean = 1
+else:
+    user_num = 900
+    m_mean = 45
+
+# 초기에 user 들의 등급을 받아옴
+initial_user_info = get_user_info(base_url, headers)['user_info']
+
+# grade: user 등급을 저장한 배열, id가 index
+grade = [0 for _ in range(user_num+1)]
+for ui in initial_user_info:
+    grade[ui['id']] = ui['grade']
+
+
+for turn in range(596):
+    # 마지막에 등급 변경 요청
+    if turn == 595:
+        change_grade(base_url, headers, get_commands())
+
+    # 대기열 확인
+    waiting_line = get_waiting_line(base_url, headers)['waiting_line']
+    # pprint.pprint(waiting_line)
+    if len(waiting_line) < 2:
+        pairs = []
+        match_result = match(base_url, headers, pairs)
+        pprint.pprint(match_result)
+        continue
+
+    # 매칭
+    # 대기열에 있는 순서대로 두명씩 매칭시켜줌
+    pairs = []
+    while 1:
+        if len(waiting_line) < 2:
+            break
+        user1 = waiting_line.pop()
+        user2 = waiting_line.pop()
+        pairs.append([user1['id'], user2['id']])
+    match_result = match(base_url, headers, pairs)
+    pprint.pprint(match_result)
+
+    # 결과 확인
+    game_result = get_game_result(base_url, headers)['game_result']
+    pprint.pprint(game_result)
+    if len(game_result) == 0:
+        continue
+
+    # 등급 수정
+    for result in game_result:
+        winner = result['win']
+        loser = result['lose']
+        time = result['taken']
+        grade[winner] += (43 - time)
+        grade[loser] -= (43 - time)
+
+
+# 점수 확인
+pprint.pprint(get_score(base_url, headers))
+
+
+
+

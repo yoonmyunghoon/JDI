@@ -92,6 +92,10 @@
   - [학습2](ITknowledge/Docker_2.md)
   - [학습3](ITknowledge/Docker_3.md)
 
+- CS 스터디
+  - Notion 정리
+  - [My Subjects](https://gaudy-honey-959.notion.site/d5d10d5333e24786b9f3fd64145c3bd1?v=3f7fe2debd1b489cb1012eaf849b96d7)
+
 
 
 ## :closed_book: ​JAVA
